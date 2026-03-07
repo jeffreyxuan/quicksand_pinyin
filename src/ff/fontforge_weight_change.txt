@@ -1,0 +1,42 @@
+# -*- coding: utf-8 -*-
+import fontforge
+
+font = fontforge.activeFont()
+if font is None:
+    raise EnvironmentError("沒有開啟中的字型。請先在 FontForge 打開字型再執行。")
+
+AMOUNT = 2  # 筆畫加粗 2 單位
+
+# 記錄原本 width
+old_widths = {}
+for g in font.glyphs():
+    old_widths[g.glyphname] = g.width
+
+# 只處理 base glyph，跳過有 reference 的 glyph
+for g in font.glyphs():
+    if not g.isWorthOutputting():
+        continue
+
+    # 取得目前圖層 references
+    refs = g.layerrefs[g.activeLayer]
+
+    # 有 reference 的 glyph 跳過
+    if len(refs) != 0:
+        continue
+
+    # 沒有輪廓的 glyph 跳過
+    if g.foreground.isEmpty():
+        continue
+
+    # 加粗
+    g.changeWeight(AMOUNT)
+
+    # 還原 advance width
+    g.width = old_widths[g.glyphname]
+
+# 再次保險：全部 glyph width 還原
+for g in font.glyphs():
+    if g.glyphname in old_widths:
+        g.width = old_widths[g.glyphname]
+
+print("完成：base glyph 已加粗，width 已還原。")
