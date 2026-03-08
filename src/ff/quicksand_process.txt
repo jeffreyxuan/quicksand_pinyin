@@ -60,3 +60,29 @@ Regular
 		- rotate clockwise 40 degree 
 		- move right 35 steps down 24 steps
 		- merge
+	- i̍
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name。
+		- copy from i
+		- remove dot, outline only
+		- copy from ̍, outline only
+	- i̋
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name。
+		- copy from i
+		- remove dot, outline only
+		- copy from ̋, outline only		
+	- ⁿ
+		- copy from ⁸
+		- delete outline
+		- copy the outline from n
+		- scale uniform 50%
+		- change weight cjk 16
+		- up 36 steps
+		- left 14 steps
+	- ᴺ
+		- copy from ⁿ
+		- delete outline
+		- copy the outline from n
+		- scale uniform 37%
+		- change weight cjk 22
+		- up 27 steps
+		- left 22 steps

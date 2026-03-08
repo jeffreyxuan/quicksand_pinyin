@@ -1,5 +1,5 @@
 ﻿#!/usr/bin/env python3
-"""Fix cmap entries for required pinyin combining marks and related letters."""
+"""Fix cmap entries, uni0358 anchors, and ccmp substitutions."""
 
 from __future__ import annotations
 
@@ -17,7 +17,6 @@ TARGET_TEXT = (
     "A̍A̋E̍E̋I̍I̋O̍U̍M̀M̂M̌M̄M̍M̋M̆N̂N̄N̍N̋N̆"
 )
 
-# Explicit preferred glyph names for combining marks.
 PREFERRED_GLYPH_NAMES = {
     0x0300: ["gravecomb", "uni0300"],
     0x0301: ["acutecomb", "uni0301"],
@@ -30,34 +29,34 @@ PREFERRED_GLYPH_NAMES = {
     0x0358: ["uni0358"],
 }
 
-TARGET_O_GLYPHS = [
+UPPER_O_GLYPHS = [
     "O",
     "Oacute",
     "Ograve",
     "Ocircumflex",
-    "uni01D1",  # Ǒ
-    "Omacron",  # Ō
-    "Obreve",  # Ŏ
-    "Ohungarumlaut",  # Ő
+    "uni01D1",
+    "Omacron",
+    "Obreve",
+    "Ohungarumlaut",
+]
+
+LOWER_O_GLYPHS = [
+    "o",
+    "oacute",
+    "ograve",
+    "ocircumflex",
+    "uni01D2",
+    "omacron",
+    "obreve",
+    "ohungarumlaut",
 ]
 
 
 def parse_args() -> argparse.Namespace:
-    """Summary: Parse CLI arguments.
-
-    Args:
-        None
-
-    Returns:
-        argparse.Namespace: Parsed arguments.
-
-    Raises:
-        SystemExit: When required args are missing.
-    """
     parser = argparse.ArgumentParser(
         description=(
-            "Dump font to JSON, fix required cmap entries for pinyin-related "
-            "combining marks/letters, then rebuild font with otfccbuild.exe."
+            "Dump font to JSON, fix required cmap entries, apply uni0358 anchor "
+            "rules, and rebuild font with otfccbuild.exe."
         )
     )
     parser.add_argument("-input", required=True, help="Input font path")
@@ -68,14 +67,6 @@ def parse_args() -> argparse.Namespace:
 
 
 def collect_required_codepoints() -> list[int]:
-    """Summary: Collect unique codepoints from TARGET_TEXT.
-
-    Args:
-        None
-
-    Returns:
-        list[int]: Sorted unique Unicode codepoints.
-    """
     codepoints: set[int] = set()
     for ch in TARGET_TEXT:
         if ch.isspace() or ch == "◌":
@@ -85,22 +76,11 @@ def collect_required_codepoints() -> list[int]:
 
 
 def pick_glyph_name(cp: int, glyph_set: set[str], cmap: dict[str, str]) -> str | None:
-    """Summary: Pick a glyph name for a Unicode codepoint.
-
-    Args:
-        cp: Unicode codepoint.
-        glyph_set: Existing glyph names in font.
-        cmap: Current cmap mapping.
-
-    Returns:
-        str | None: Matching glyph name if found.
-    """
     key = str(cp)
     if key in cmap and cmap[key] in glyph_set:
         return cmap[key]
 
     candidates: list[str] = []
-
     if cp in PREFERRED_GLYPH_NAMES:
         candidates.extend(PREFERRED_GLYPH_NAMES[cp])
 
@@ -119,17 +99,6 @@ def pick_glyph_name(cp: int, glyph_set: set[str], cmap: dict[str, str]) -> str |
 
 
 def run_cmd(cmd: list[str]) -> None:
-    """Summary: Run a command and fail on non-zero exit.
-
-    Args:
-        cmd: Command arguments.
-
-    Returns:
-        None
-
-    Raises:
-        RuntimeError: If command exits non-zero.
-    """
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.stdout:
         print(result.stdout, end="")
@@ -139,42 +108,31 @@ def run_cmd(cmd: list[str]) -> None:
         raise RuntimeError(f"Command failed ({result.returncode}): {' '.join(cmd)}")
 
 
-def _glyph_y_bounds(glyf_entry: dict) -> tuple[int, int] | None:
-    """Summary: Calculate y-bounds from a glyf contour entry.
-
-    Args:
-        glyf_entry: One glyph object in ttf_json["glyf"].
-
-    Returns:
-        tuple[int, int] | None: (y_min, y_max) if contours exist, else None.
-    """
+def _glyph_bounds(glyf_entry: dict) -> tuple[int, int, int, int] | None:
     contours = glyf_entry.get("contours")
     if not isinstance(contours, list) or not contours:
         return None
 
+    xs: list[int] = []
     ys: list[int] = []
     for contour in contours:
         if not isinstance(contour, list):
             continue
         for point in contour:
-            if isinstance(point, dict) and "y" in point:
+            if not isinstance(point, dict):
+                continue
+            if "x" in point:
+                xs.append(int(point["x"]))
+            if "y" in point:
                 ys.append(int(point["y"]))
 
-    if not ys:
+    if not xs or not ys:
         return None
 
-    return min(ys), max(ys)
+    return min(xs), max(xs), min(ys), max(ys)
 
 
-def _pick_o_anchor_class_and_y(subtable: dict) -> tuple[str, int] | None:
-    """Summary: Pick the base anchor class/y for O-series attachment.
-
-    Args:
-        subtable: A gpos_mark_to_base subtable object.
-
-    Returns:
-        tuple[str, int] | None: (anchor class name, O base anchor y) if found.
-    """
+def _pick_o_anchor_class_and_point(subtable: dict) -> tuple[str, int, int] | None:
     bases = subtable.get("bases")
     if not isinstance(bases, dict):
         return None
@@ -183,74 +141,47 @@ def _pick_o_anchor_class_and_y(subtable: dict) -> tuple[str, int] | None:
     if not isinstance(o_base, dict):
         return None
 
-    # Prefer anchor4 because Oacute/Ograve/Ocircumflex may move anchor2 upward
-    # with tone marks, while anchor4 stays near the O top edge.
     for cls in ("anchor4", "anchor2"):
         anchor = o_base.get(cls)
-        if isinstance(anchor, dict) and "y" in anchor:
-            return cls, int(anchor["y"])
+        if isinstance(anchor, dict) and "x" in anchor and "y" in anchor:
+            return cls, int(anchor["x"]), int(anchor["y"])
 
     return None
 
 
-def _pick_mark_x(marks: dict, preferred_class: str) -> int:
-    """Summary: Pick a sensible x for uni0358 mark anchor.
-
-    Args:
-        marks: Subtable marks object.
-        preferred_class: Anchor class chosen for uni0358.
-
-    Returns:
-        int: X coordinate to use for uni0358 mark anchor.
-    """
-    current = marks.get("uni0358")
-    if isinstance(current, dict) and "x" in current:
-        return int(current["x"])
-
-    for item in marks.values():
-        if isinstance(item, dict) and item.get("class") == preferred_class and "x" in item:
-            return int(item["x"])
-
-    for fallback_name in ("uni030D", "uni030C", "uni030B", "acutecomb"):
-        fallback = marks.get(fallback_name)
-        if isinstance(fallback, dict) and "x" in fallback:
-            return int(fallback["x"])
-
-    return 0
+def _set_base_anchor(base: dict, anchor_name: str, x: int, y: int) -> bool:
+    new = {"x": int(x), "y": int(y)}
+    if base.get(anchor_name) == new:
+        return False
+    base[anchor_name] = new
+    return True
 
 
 def fix_uni0358(ttf_json: dict) -> dict[str, int]:
-    """Summary: Fix uni0358 mark class/position for uppercase O-series use.
-
-    Args:
-        ttf_json: Parsed otfcc JSON object.
-
-    Returns:
-        dict[str, int]: Counters of applied updates.
-    """
     stats = {
         "class_updates": 0,
         "mark_entries_updated": 0,
         "subtables_touched": 0,
+        "base_anchor_updates": 0,
     }
 
     glyf = ttf_json.get("glyf", {})
     if not isinstance(glyf, dict):
         return stats
 
-    o_bounds = _glyph_y_bounds(glyf.get("O", {}))
-    uni0358_bounds = _glyph_y_bounds(glyf.get("uni0358", {}))
-    if o_bounds is None or uni0358_bounds is None:
+    o_bounds = _glyph_bounds(glyf.get("O", {}))
+    lower_o_bounds = _glyph_bounds(glyf.get("o", {}))
+    uni0358_bounds = _glyph_bounds(glyf.get("uni0358", {}))
+    if o_bounds is None or lower_o_bounds is None or uni0358_bounds is None:
         return stats
 
-    o_top_y = o_bounds[1]
-    uni0358_bottom_y = uni0358_bounds[0]
+    _, o_right_x, _, o_top_y = o_bounds
+    _, lower_o_right_x, _, _ = lower_o_bounds
+    uni0358_left_x, _, uni0358_bottom_y, _ = uni0358_bounds
 
-    # Ensure uni0358 is a Mark in GDEF.
     gdef = ttf_json.setdefault("GDEF", {})
     glyph_class_def = gdef.setdefault("glyphClassDef", {})
-    old_class = glyph_class_def.get("uni0358")
-    if old_class != 3:
+    if glyph_class_def.get("uni0358") != 3:
         glyph_class_def["uni0358"] = 3
         stats["class_updates"] += 1
 
@@ -260,9 +191,7 @@ def fix_uni0358(ttf_json: dict) -> dict[str, int]:
         return stats
 
     for lookup in lookups.values():
-        if not isinstance(lookup, dict):
-            continue
-        if lookup.get("type") != "gpos_mark_to_base":
+        if not isinstance(lookup, dict) or lookup.get("type") != "gpos_mark_to_base":
             continue
 
         subtables = lookup.get("subtables")
@@ -273,48 +202,159 @@ def fix_uni0358(ttf_json: dict) -> dict[str, int]:
             if not isinstance(subtable, dict):
                 continue
 
-            picked = _pick_o_anchor_class_and_y(subtable)
+            picked = _pick_o_anchor_class_and_point(subtable)
             if picked is None:
                 continue
-            anchor_class, o_anchor_y = picked
+            source_class, o_anchor_x, o_anchor_y = picked
 
             marks = subtable.get("marks")
             bases = subtable.get("bases")
             if not isinstance(marks, dict) or not isinstance(bases, dict):
                 continue
 
-            if not any(isinstance(bases.get(g), dict) for g in TARGET_O_GLYPHS):
+            has_upper = any(isinstance(bases.get(g), dict) for g in UPPER_O_GLYPHS)
+            has_lower = any(isinstance(bases.get(g), dict) for g in LOWER_O_GLYPHS)
+            if not has_upper and not has_lower:
                 continue
 
-            # final_bottom = base_y - mark_y + mark_bottom
-            # target: final_bottom == O_top_y
-            mark_y = o_anchor_y + uni0358_bottom_y - o_top_y
-            mark_x = _pick_mark_x(marks, anchor_class)
+            target_class = "anchor5"
 
-            marks["uni0358"] = {
-                "class": anchor_class,
-                "x": int(mark_x),
-                "y": int(mark_y),
-            }
-            stats["mark_entries_updated"] += 1
+            mark_x = o_anchor_x + uni0358_left_x - o_right_x
+            mark_y = o_anchor_y + uni0358_bottom_y - o_top_y
+
+            new_mark = {"class": target_class, "x": int(mark_x), "y": int(mark_y)}
+            if marks.get("uni0358") != new_mark:
+                marks["uni0358"] = new_mark
+                stats["mark_entries_updated"] += 1
+
+            upper_base_x = o_right_x + mark_x - uni0358_left_x
+            upper_base_y = o_top_y + mark_y - uni0358_bottom_y
+            for glyph_name in UPPER_O_GLYPHS:
+                base = bases.get(glyph_name)
+                if isinstance(base, dict) and _set_base_anchor(base, target_class, upper_base_x, upper_base_y):
+                    stats["base_anchor_updates"] += 1
+
+            lower_base_x = lower_o_right_x + mark_x - uni0358_left_x
+            for glyph_name in LOWER_O_GLYPHS:
+                base = bases.get(glyph_name)
+                if not isinstance(base, dict):
+                    continue
+                src_anchor = base.get(source_class)
+                if isinstance(src_anchor, dict) and "y" in src_anchor:
+                    lower_base_y = int(src_anchor["y"])
+                else:
+                    lower_base_y = upper_base_y
+                if _set_base_anchor(base, target_class, lower_base_x, lower_base_y):
+                    stats["base_anchor_updates"] += 1
+
             stats["subtables_touched"] += 1
 
     return stats
 
 
+def fix_i_ccmp(ttf_json: dict) -> dict[str, int]:
+    stats = {
+        "feature_created": 0,
+        "lookup_created": 0,
+        "rules_added_or_updated": 0,
+        "languages_updated": 0,
+    }
+
+    glyph_order = ttf_json.get("glyph_order", [])
+    if "i_hungarumlautcomb" not in glyph_order or "i_verticallineabovecomb" not in glyph_order:
+        return stats
+
+    gsub = ttf_json.setdefault("GSUB", {})
+    lookups = gsub.setdefault("lookups", {})
+    features = gsub.setdefault("features", {})
+    languages = gsub.setdefault("languages", {})
+    lookup_order = gsub.setdefault("lookupOrder", [])
+
+    ccmp_key = None
+    for k in features.keys():
+        if k == "ccmp" or str(k).startswith("ccmp"):
+            ccmp_key = k
+            break
+
+    if ccmp_key is None:
+        ccmp_key = "ccmp_auto"
+        features[ccmp_key] = []
+        stats["feature_created"] += 1
+
+    ccmp_lookups = features.get(ccmp_key)
+    if not isinstance(ccmp_lookups, list):
+        ccmp_lookups = []
+        features[ccmp_key] = ccmp_lookups
+
+    lookup_name = None
+    for lname in ccmp_lookups:
+        lk = lookups.get(lname)
+        if isinstance(lk, dict) and lk.get("type") == "gsub_ligature":
+            lookup_name = lname
+            break
+
+    if lookup_name is None:
+        lookup_name = "lookup_ccmp_i_marks"
+        idx = 0
+        while lookup_name in lookups:
+            idx += 1
+            lookup_name = f"lookup_ccmp_i_marks_{idx}"
+        lookups[lookup_name] = {
+            "type": "gsub_ligature",
+            "flags": {},
+            "subtables": [{"substitutions": []}],
+        }
+        ccmp_lookups.append(lookup_name)
+        lookup_order.append(lookup_name)
+        stats["lookup_created"] += 1
+
+    lookup = lookups[lookup_name]
+    if lookup.get("type") != "gsub_ligature":
+        lookup["type"] = "gsub_ligature"
+
+    subtables = lookup.setdefault("subtables", [])
+    if not isinstance(subtables, list) or len(subtables) == 0:
+        subtables = [{"substitutions": []}]
+        lookup["subtables"] = subtables
+
+    if "substitutions" not in subtables[0] or not isinstance(subtables[0]["substitutions"], list):
+        subtables[0]["substitutions"] = []
+    substitutions = subtables[0]["substitutions"]
+
+    wanted = [
+        {"from": ["i", "uni030B"], "to": "i_hungarumlautcomb"},
+        {"from": ["i", "uni030D"], "to": "i_verticallineabovecomb"},
+    ]
+
+    for rule in wanted:
+        found = False
+        for item in substitutions:
+            if not isinstance(item, dict):
+                continue
+            if item.get("from") == rule["from"]:
+                found = True
+                if item.get("to") != rule["to"]:
+                    item["to"] = rule["to"]
+                    stats["rules_added_or_updated"] += 1
+                break
+        if not found:
+            substitutions.append(rule)
+            stats["rules_added_or_updated"] += 1
+
+    for lang_obj in languages.values():
+        if not isinstance(lang_obj, dict):
+            continue
+        feats = lang_obj.get("features")
+        if not isinstance(feats, list):
+            continue
+        if ccmp_key not in feats:
+            feats.append(ccmp_key)
+            stats["languages_updated"] += 1
+
+    return stats
+
+
 def load_json_with_fallback(json_path: Path) -> dict:
-    """Summary: Load JSON with encoding fallback for otfccdump outputs.
-
-    Args:
-        json_path: Path to JSON file.
-
-    Returns:
-        dict: Parsed JSON data.
-
-    Raises:
-        UnicodeDecodeError: If all encoding attempts fail.
-        json.JSONDecodeError: If decoded text is not valid JSON.
-    """
     encodings = ["utf-8", "utf-8-sig", "cp950", "cp936", "mbcs", "latin-1"]
     last_exc: Exception | None = None
 
@@ -332,17 +372,6 @@ def load_json_with_fallback(json_path: Path) -> dict:
 
 
 def main() -> int:
-    """Summary: Script entry point.
-
-    Args:
-        None
-
-    Returns:
-        int: Process exit code.
-
-    Example:
-        python ff_fix_cmap.py -input in.ttf -output out.ttf
-    """
     args = parse_args()
 
     input_path = Path(args.input).resolve()
@@ -366,7 +395,6 @@ def main() -> int:
         glyph_set = set(glyph_order)
 
         required_cps = collect_required_codepoints()
-
         added: list[tuple[int, str]] = []
         missing: list[int] = []
 
@@ -384,6 +412,7 @@ def main() -> int:
             added.append((cp, glyph_name))
 
         uni0358_stats = fix_uni0358(data)
+        ccmp_stats = fix_i_ccmp(data)
 
         with json_path.open("w", encoding="utf-8", newline="\n") as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
@@ -407,7 +436,16 @@ def main() -> int:
         "uni0358 fix stats: "
         f"class_updates={uni0358_stats['class_updates']}, "
         f"mark_entries_updated={uni0358_stats['mark_entries_updated']}, "
-        f"subtables_touched={uni0358_stats['subtables_touched']}"
+        f"subtables_touched={uni0358_stats['subtables_touched']}, "
+        f"base_anchor_updates={uni0358_stats['base_anchor_updates']}"
+    )
+
+    print(
+        "ccmp fix stats: "
+        f"feature_created={ccmp_stats['feature_created']}, "
+        f"lookup_created={ccmp_stats['lookup_created']}, "
+        f"rules_added_or_updated={ccmp_stats['rules_added_or_updated']}, "
+        f"languages_updated={ccmp_stats['languages_updated']}"
     )
 
     return 0
