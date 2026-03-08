@@ -1,0 +1,62 @@
+Regular
+		
+	- aacute 
+		- clockwise 142 degree
+		- top 3 steps up
+		- clockwise -142 degree
+		- right 7 down 5
+		- clockwise -10 degree
+		- left 12 up 8
+		#- clockwise 20 degree
+		
+		
+	- grave
+		- clockwise 42 degree
+		- top 3 steps up
+		- clockwise -27 degree
+		- right 9 up 9
+		#- clockwise -22 degree
+		#- right 16 up 13
+		#- clockwise -32 degree
+		#- right 3 up 5
+		
+	- uni030D ̍
+		- copy from uni030C
+		- delete outline
+		- copy a outline from grave		
+		- rotate clockwise 28 degree
+		- left 28 steps
+		- move Anchor-10 Base to the top of the stroke, up 7 steps
+		
+	- uni0358 is a dot
+		- copy from uni0307
+		- delete anchor
+		- right align to x=0 (right 5 steps)
+		- bottom align to the top of "o" (down 7 steps)
+		
+	- ế - top to 873
+	- uni03020301
+		- acute 
+			- left 19 steps up 5 step
+	
+	- ề 
+	- uni03020300
+		- grave
+			- left 6 steps up 3 step
+			
+	- Ế
+		- acutecomb.case + Anchor-6
+		- left 22 steps up 7 steps
+			
+	- í
+		- left 3 steps
+
+	- ì
+		- right 4 steps
+		
+	- Q
+		- delete original outline, copy from "O"
+		- copy the upper "-" from "="
+		- rotate clockwise 40 degree 
+		- move right 35 steps down 24 steps
+		- merge
