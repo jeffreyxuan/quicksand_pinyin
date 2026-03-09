@@ -60,6 +60,24 @@ Regular
 		- rotate clockwise 40 degree 
 		- move right 35 steps down 24 steps
 		- merge
+	- R
+		- delete the right bottom tail
+		- in P , select the vector point at bottom right, down 1 step
+		- in P, select the right parts, move left 1 steps
+		- copy K
+		- rotate clockwise 5 degree
+		- up 2 steps, right 4 steps
+		- merge
+		
+		
+		#- copy from dotlessi
+		#- delete the right bottom tail
+		#- duplicate outline
+		#- flip vertical
+		#- up 30 steps
+		#- inner p move down 0.5 steps
+		#- rotate clockwise -36 degree
+		#- down 2.4 steps right 30 steps
 	- i̍
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name。
 		- copy from i
