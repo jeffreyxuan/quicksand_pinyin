@@ -6,7 +6,7 @@ set PYTHONIOENCODING=utf-8
 set PYTHONLEGACYWINDOWSSTDIO=1
 
 pushd "%~dp0.."
-python3 src\py\ff_fix_cmap.py -input "C:\Users\jeffreyx\Documents\git\quicksand_pinyin\_output\Quicksand-Regular_pinyin.ttf" -output "C:\Users\jeffreyx\Documents\git\peruseFont_mengshen\res\fonts\varwidetest\Quicksand-Regular_pinyin.ttf" --otfccbuild otfccbuild.exe
+python3 src\py\ff_fix_cmap.py -input "_output\Quicksand-Regular_pinyin.ttf" -output "_output\Quicksand-Regular_pinyin.ttf" --otfccbuild otfccbuild.exe
 set ERR=%errorlevel%
 popd
 

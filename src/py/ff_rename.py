@@ -201,6 +201,28 @@ def replace_version_placeholders(name_records: list[dict[str, Any]], version: st
     return changed
 
 
+def set_fe_codepage_bits(os2_table: dict[str, Any]) -> None:
+    """Summary: Enable Far East related codepage bits in OS/2.
+
+    Args:
+        os2_table: The OS/2 table object to update in-place.
+
+    Returns:
+        None
+
+    Example:
+        set_fe_codepage_bits(font_json["OS_2"])
+    """
+    codepage = os2_table.setdefault("ulCodePageRange1", {})
+    if not isinstance(codepage, dict):
+        codepage = {}
+        os2_table["ulCodePageRange1"] = codepage
+
+    # These flags help Word avoid routing Latin-accented text into FE fallback.
+    for key in ("jis", "gbk", "big5", "korean"):
+        codepage[key] = True
+
+
 def apply_rename_rules(font_json: dict[str, Any], name_records: list[dict[str, Any]], version: str) -> None:
     """Summary: Apply all required rename and metadata update rules.
 
@@ -220,6 +242,7 @@ def apply_rename_rules(font_json: dict[str, Any], name_records: list[dict[str, A
     os2 = font_json.setdefault("OS_2", {})
     if isinstance(os2, dict):
         os2["achVendID"] = "TNOZ"
+        set_fe_codepage_bits(os2)
 
     head = font_json.setdefault("head", {})
     if isinstance(head, dict):
@@ -301,4 +324,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
