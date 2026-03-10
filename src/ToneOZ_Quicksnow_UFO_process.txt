@@ -1,13 +1,11 @@
-Regular
-	- acute 		
+W300 UFO
+	- acutecomb
 		- clockwise 142 degree
 		- select the top side, 3 steps up
 		- clockwise -142 degree
-		- right 7 down 5
+		- right 8 down 7
 		- clockwise -10 degree
-		- left 12 up 8
-		#- clockwise 20 degree
-		
+		- left 12 up 9
 		
 	- grave
 		- clockwise 42 degree
