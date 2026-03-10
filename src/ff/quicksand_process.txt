@@ -1,6 +1,5 @@
 Regular
-		
-	- aacute 
+	- acute 		
 		- clockwise 142 degree
 		- top 3 steps up
 		- clockwise -142 degree

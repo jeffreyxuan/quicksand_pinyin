@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="periodcentered.loclCAT" format="2">
+  <advance width="66" />
+  <outline>
+    <component base="periodcentered" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="-60" yOffset="79" />
+  </outline>
+</glyph>

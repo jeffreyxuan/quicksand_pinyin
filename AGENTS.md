@@ -16,12 +16,19 @@
 - 以 Python 實作。
 - function 命名使用 `snake_case`，參數與回傳值需有 type hints。
 - docstring 欄位遵循：`Summary`、`Args`、`Returns`、`Raises`（可選）、`Example`。
+## Python 執行方式
+- 在本專案（Windows + PowerShell）請優先用以下格式執行 `python3`：
+  - `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "$env:PYTHONUTF8='1'; $env:PYTHONIOENCODING='utf-8'; $env:PYTHONLEGACYWINDOWSSTDIO='1'; python3 <你的指令>"`
+- 需要快速檢查版本時可用：
+  - `C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "$env:PYTHONUTF8='1'; $env:PYTHONIOENCODING='utf-8'; $env:PYTHONLEGACYWINDOWSSTDIO='1'; python3 --version"`
 
 
 ## 變更流程
 - 新需求先更新 `SPEC.md`，再改程式。
 - 每次「新增 function」或「修改既有 function 行為/簽章」，都必須同步更新 `SPEC.md`。
 - 規格調整後，僅在必要時同步更新本檔（避免重複維護）。
+
+
 
 
 
