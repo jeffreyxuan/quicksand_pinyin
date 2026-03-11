@@ -1,0 +1,17 @@
+create a src\py\ufo_merge.py
+- CLI support -input -with -output
+  -input is a folder, inside the folder there are mand *.sfd files.e.g.:
+	Quicksand-VariableFont_wght-W300.ufo.sfd
+	Quicksand-VariableFont_wght-W700.ufo.sfd
+	these are fontforge files
+	in the same folder for each sfd file, there will be a glyf_list_*.txt, * is the same file name as sfd
+	in this text file each line is a glyf name that we have modified in the sfd file, we call it modified_list
+  -with is a *.ttf font file
+  -output is a target ttf filename
+	
+- for each *.sfd, use fontforge to generate "Unified Font Object UFO3" font under _tmp\ufo_input
+- use src\py\varwideufo\varwideufo.py to convert -with ttf file to _tmp\ufo_output
+- there will be a lot of *.glyf under input_glyf_folder , e.g.: _tmp\ufo_input\Quicksand-VariableFont_wght-W300.ufo\glyphs
+  there will be a lot of *.glyf  under output_glyf_folder , e.g.: _tmp\ufo_output\Quicksand-VariableFont_wght-W300.ufo\glyphs
+  copy the file name listed in modified_list from input_glyf_folder to output_glyf_folder, overwrite the existed one
+- use src\py\varwideufo\varwideufo.py to convert output_glyf_folder to -output ttf file
