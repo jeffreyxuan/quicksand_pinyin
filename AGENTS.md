@@ -2,11 +2,12 @@
 
 ## 目的
 本檔只保留「協作與執行準則」。
-完整功能規格、CLI 與 function 需求，請看 `SPEC.md`。
+完整功能規格、CLI 與 function 需求，請看各功能對應的 `SPEC_xxx.md`。
 
 ## 規格來源
-- `SPEC.md` 是本專案的規格唯一來源（single source of truth）。
-- 若 `AGENTS.md` 與 `SPEC.md` 有不一致，以 `SPEC.md` 為準。
+- 每個 Python 腳本都應有各自對應的規格檔，命名格式為 `SPEC_<module_name>.md`。
+- 各 `SPEC_xxx.md` 是對應 Python 腳本的規格唯一來源（single source of truth）。
+- 若 `AGENTS.md` 與對應 `SPEC_xxx.md` 有不一致，以該 `SPEC_xxx.md` 為準。
 
 ## 開發準則
 - 本專案文件預設為中文內容，文字檔請一律使用 UTF-8 編碼儲存。
@@ -24,8 +25,9 @@
 
 
 ## 變更流程
-- 新需求先更新 `SPEC.md`，再改程式。
-- 每次「新增 function」或「修改既有 function 行為/簽章」，都必須同步更新 `SPEC.md`。
+- 新需求先更新對應的 `SPEC_xxx.md`，再改程式。
+- 每次新增 Python 腳本時，都必須同步新增對應的 `SPEC_xxx.md`。
+- 每次「新增 function」或「修改既有 function 行為/簽章」，都必須同步更新對應的 `SPEC_xxx.md`。
 - 規格調整後，僅在必要時同步更新本檔（避免重複維護）。
 
 
