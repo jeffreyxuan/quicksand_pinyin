@@ -4,3 +4,7 @@ uni030D
 uni0358
 i_hungarumlautcomb
 i_verticallineabovecomb
+uni1EBF
+uni1EBE
+uni1EC0
+uni1EC1

@@ -40,19 +40,21 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- paste the reference to i_hungarumlautcomb
 		- move uni030D reference to center (Left 8 steps)
 		
-	- ế - top to 873
-	- uni03020301
-		- acute 
-			- left 19 steps up 5 step
+	- ế
+		- acutecomb
+			visually same hight with ề gravecomb
 	
 	- ề 
-	- uni03020300
-		- grave
-			- left 6 steps up 3 step
+		- gravecomb
+			visually same hight with ế acutecomb
 			
 	- Ế
-		- acutecomb.case + Anchor-6
-		- left 22 steps up 7 steps
+		- remove acutecomb.case
+		- add acutecomb
+		
+	- Ề
+		- remove gravecomb.case
+		- add gravecomb
 			
 	- í
 		- left 3 steps

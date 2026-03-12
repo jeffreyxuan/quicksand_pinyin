@@ -21,7 +21,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1773233631
-ModificationTime: 1773308277
+ModificationTime: 1773323033
 PfmFamily: 16
 TTFWeight: 300
 TTFWidth: 5
@@ -1671,7 +1671,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 625 25 8
+WinInfo: 25 25 8
 BeginChars: 812 812
 
 StartChar: .notdef
@@ -2650,9 +2650,9 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
+Refer: 740 769 S 1 0 0 1 140 330 2
 Refer: 47 69 N 1 0 0 1 0 0 2
 Refer: 784 -1 N 1 0 0 1 165 90 2
-Refer: 782 -1 N 1 0 0 1 384 113 2
 EndChar
 
 StartChar: uni1EC6
@@ -2676,9 +2676,9 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
+Refer: 739 768 S 1 0 0 1 240 320 2
 Refer: 47 69 N 1 0 0 1 0 0 2
 Refer: 784 -1 N 1 0 0 1 165 90 2
-Refer: 781 -1 N 1 0 0 1 301 177 2
 EndChar
 
 StartChar: uni1EC2
@@ -7165,7 +7165,7 @@ LayerCount: 2
 Fore
 Refer: 289 101 N 1 0 0 1 0 0 2
 Refer: 743 770 N 1 0 0 1 113 -16 2
-Refer: 740 769 N 1 0 0 1 288 100 2
+Refer: 740 769 S 1 0 0 1 98 150 2
 EndChar
 
 StartChar: uni1EC7
@@ -7191,7 +7191,7 @@ LayerCount: 2
 Fore
 Refer: 289 101 N 1 0 0 1 0 0 2
 Refer: 743 770 N 1 0 0 1 105 -16 2
-Refer: 739 768 N 1 0 0 1 241 102 2
+Refer: 739 768 S 1 0 0 1 191 142 2
 EndChar
 
 StartChar: uni1EC3
