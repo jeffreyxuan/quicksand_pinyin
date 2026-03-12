@@ -11,17 +11,34 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 	- uni030D ̍
 		- copy from uni030C
-		- delete outline
-		- copy a outline from grave		
-		- rotate clockwise 28 degree
-		- left 28 steps
-		- move Anchor-10 Base to the top of the stroke, up 7 steps
+		- move outline to background
+		- copy a outline from gravecomb		
+		- press the bottom	
+		- rotate clockwise 41 degree
+			align the bottom of the outline with the background
+			- right 6 step2
+			- bottom 5 steps
 		
 	- uni0358 is a dot
 		- copy from uni0307
-		- delete anchor
-		- right align to x=0 (right 5 steps)
-		- bottom align to the top of "o" (down 7 steps)
+		- right 5 steps
+		- bottom align to the top of "o" (down 7 steps
+
+	- i̍ i_hungarumlautcomb = uni030B + dotlessi
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name i_hungarumlautcomb。
+		- from dotlessi, Edit -> Copy reference  
+		- paste the reference to i_hungarumlautcomb
+		- from uni030B, Edit -> Copy reference  
+		- paste the reference to i_hungarumlautcomb
+		- move uni030B reference to center (Left 8 steps)
+		
+	- i̋ i_verticallineabovecomb = dotlessi + uni030D 
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name i_verticallineabovecomb。
+		- from dotlessi, Edit -> Copy reference  
+		- paste the reference to i_hungarumlautcomb
+		- from uni030D, Edit -> Copy reference  
+		- paste the reference to i_hungarumlautcomb
+		- move uni030D reference to center (Left 8 steps)
 		
 	- ế - top to 873
 	- uni03020301
@@ -67,16 +84,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		#- inner p move down 0.5 steps
 		#- rotate clockwise -36 degree
 		#- down 2.4 steps right 30 steps
-	- i̍
-		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name。
-		- copy from i
-		- remove dot, outline only
-		- copy from ̍, outline only
-	- i̋
-		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name。
-		- copy from i
-		- remove dot, outline only
-		- copy from ̋, outline only		
+	
 	- ⁿ
 		- copy from ⁸
 		- delete outline

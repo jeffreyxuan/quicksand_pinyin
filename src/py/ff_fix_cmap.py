@@ -108,6 +108,14 @@ def run_cmd(cmd: list[str]) -> None:
         raise RuntimeError(f"Command failed ({result.returncode}): {' '.join(cmd)}")
 
 
+def _coerce_int(value: object) -> int | None:
+    if isinstance(value, (int, float)):
+        return int(value)
+    if isinstance(value, list) and value:
+        return _coerce_int(value[0])
+    return None
+
+
 def _glyph_bounds(glyf_entry: dict) -> tuple[int, int, int, int] | None:
     contours = glyf_entry.get("contours")
     if not isinstance(contours, list) or not contours:
@@ -122,9 +130,13 @@ def _glyph_bounds(glyf_entry: dict) -> tuple[int, int, int, int] | None:
             if not isinstance(point, dict):
                 continue
             if "x" in point:
-                xs.append(int(point["x"]))
+                x = _coerce_int(point["x"])
+                if x is not None:
+                    xs.append(x)
             if "y" in point:
-                ys.append(int(point["y"]))
+                y = _coerce_int(point["y"])
+                if y is not None:
+                    ys.append(y)
 
     if not xs or not ys:
         return None
@@ -277,7 +289,11 @@ def fix_i_ccmp(ttf_json: dict) -> dict[str, int]:
             break
 
     if ccmp_key is None:
-        ccmp_key = "ccmp_auto"
+        ccmp_key = "ccmp_00000"
+        idx = 0
+        while ccmp_key in features:
+            idx += 1
+            ccmp_key = f"ccmp_{idx:05d}"
         features[ccmp_key] = []
         stats["feature_created"] += 1
 
@@ -341,15 +357,25 @@ def fix_i_ccmp(ttf_json: dict) -> dict[str, int]:
             substitutions.append(rule)
             stats["rules_added_or_updated"] += 1
 
-    for lang_obj in languages.values():
-        if not isinstance(lang_obj, dict):
-            continue
-        feats = lang_obj.get("features")
-        if not isinstance(feats, list):
-            continue
-        if ccmp_key not in feats:
-            feats.append(ccmp_key)
-            stats["languages_updated"] += 1
+    if not languages:
+        languages["DFLT_DFLT"] = {"features": [ccmp_key]}
+        languages["latn_DFLT"] = {"features": [ccmp_key]}
+        stats["languages_updated"] += 2
+    else:
+        for lang_key in ("DFLT_DFLT", "latn_DFLT"):
+            lang_obj = languages.get(lang_key)
+            if not isinstance(lang_obj, dict):
+                languages[lang_key] = {"features": [ccmp_key]}
+                stats["languages_updated"] += 1
+                continue
+            feats = lang_obj.get("features")
+            if not isinstance(feats, list):
+                lang_obj["features"] = [ccmp_key]
+                stats["languages_updated"] += 1
+                continue
+            if ccmp_key not in feats:
+                feats.append(ccmp_key)
+                stats["languages_updated"] += 1
 
     return stats
 

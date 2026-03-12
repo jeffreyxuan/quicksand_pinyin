@@ -236,11 +236,44 @@ def ttfont_to_ufo(tt: TTFont, out_ufo: Path, family_name: str, style_name: str) 
     write_text(out_ufo / 'features.fea', '')
 
 
+def original_glyph_order_is_preserved(source_order: List[str], built_order: List[str]) -> bool:
+    if len(built_order) < len(source_order):
+        return False
+    return built_order[:len(source_order)] == source_order
+
+
+def original_cmap_is_preserved(source_cmap: Dict[int, str], built_cmap: Dict[int, str]) -> bool:
+    for codepoint, glyph_name in source_cmap.items():
+        if built_cmap.get(codepoint) != glyph_name:
+            return False
+    return True
+
+
 def can_preserve_tables(source_font: TTFont, built_font: TTFont) -> bool:
+    source_order = source_font.getGlyphOrder()
+    built_order = built_font.getGlyphOrder()
+    source_cmap = source_font.getBestCmap() or {}
+    built_cmap = built_font.getBestCmap() or {}
     return (
-        source_font.getGlyphOrder() == built_font.getGlyphOrder()
-        and (source_font.getBestCmap() or {}) == (built_font.getBestCmap() or {})
+        original_glyph_order_is_preserved(source_order, built_order)
+        and original_cmap_is_preserved(source_cmap, built_cmap)
     )
+
+
+def get_preservation_failure_reason(source_font: TTFont, built_font: TTFont) -> str:
+    source_order = source_font.getGlyphOrder()
+    built_order = built_font.getGlyphOrder()
+    source_cmap = source_font.getBestCmap() or {}
+    built_cmap = built_font.getBestCmap() or {}
+
+    if len(built_order) < len(source_order):
+        return 'rebuilt font is missing original glyphs'
+    if built_order[:len(source_order)] != source_order:
+        return 'original glyph order changed in rebuilt font'
+    for codepoint, glyph_name in source_cmap.items():
+        if built_cmap.get(codepoint) != glyph_name:
+            return f'original cmap mapping changed for U+{codepoint:04X}'
+    return 'rebuilt font is not source-compatible'
 
 
 def preserve_source_tables(project_dir: Path, output_font: Path) -> None:
@@ -259,7 +292,8 @@ def preserve_source_tables(project_dir: Path, output_font: Path) -> None:
 
     with TTFont(str(source_font_path)) as source_font, TTFont(str(output_font)) as built_font:
         if not can_preserve_tables(source_font, built_font):
-            eprint('Warning: skipped source table preservation because glyph order or cmap differs from the source font.')
+            reason = get_preservation_failure_reason(source_font, built_font)
+            eprint(f'Warning: skipped source table preservation because {reason}.')
             return
 
         for tag in PRESERVED_TABLE_TAGS:

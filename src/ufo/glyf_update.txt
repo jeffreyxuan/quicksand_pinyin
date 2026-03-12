@@ -1,0 +1,6 @@
+acutecomb
+gravecomb
+uni030D
+uni0358
+i_hungarumlautcomb
+i_verticallineabovecomb
