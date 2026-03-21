@@ -10,3 +10,14 @@ uni1EC0
 uni1EC1
 Agrave
 Aacute
+Egrave
+Eacute
+Iacute
+Igrave
+Oacute
+Ograve
+Uacute
+Ugrave
+iacute
+igrave
+Q

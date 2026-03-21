@@ -40,102 +40,116 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- paste the reference to i_hungarumlautcomb
 		- move uni030D reference to center (Left 8 steps)
 		
-	- ế
+	- ế uni1EBF
 		- acutecomb
 			visually same hight with ề gravecomb
 	
-	- ề 
+	- ề uni1EC1
 		- gravecomb
 			visually same hight with ế acutecomb
-	- Ế
+	- Ế uni1EBE
 		- remove acutecomb.case
 		- add acutecomb
 		
-	- Ề
+	- Ề uni1EC0
 		- remove gravecomb.case
 		- add gravecomb
 		
-	- Á
+	- Á Aacute
 		- go to acutecomb, copy reference
 		- add acutecomb, bottom to be the same as original acutecomb.case
 		- move acutecomb to center
 		- remove acutecomb.case
 	
-	- À
+	- À Agrave
 		- go to gravecomb, copy reference
 		- add gravecomb, bottom to be the same as original gravecomb.case
 		- move gravecomb to center
 		- remove gravecomb.case
 		
-	- É
+	- É Eacute
 		- go to acutecomb, copy reference
 		- add acutecomb, bottom to be the same as original acutecomb.case
 		- move acutecomb to center
 		- remove acutecomb.case
 		
-	- È
+	- È Egrave
 		- go to gravecomb, copy reference
 		- add gravecomb, bottom to be the same as original gravecomb.case
 		- move gravecomb to center
 		- remove gravecomb.case
 	
-	- Í
+	- Í Iacute
 		- go to acutecomb, copy reference
 		- add acutecomb, bottom to be the same as original acutecomb.case
 		- move acutecomb to center
 		- remove acutecomb.case	
 	
-	- Ì
+	- Ì Igrave
 		- go to gravecomb, copy reference
 		- add gravecomb, bottom to be the same as original gravecomb.case
 		- move gravecomb to center
 		- remove gravecomb.case
 		
-	- Ó
+	- Ó Oacute
 		- go to acutecomb, copy reference
 		- add acutecomb, bottom to be the same as original acutecomb.case
 		- move acutecomb to center
 		- remove acutecomb.case	
 		
-	- Ò
+	- Ò Ograve
 		- go to gravecomb, copy reference
 		- add gravecomb, bottom to be the same as original gravecomb.case
 		- move gravecomb to center
 		- remove gravecomb.case
 		
-	- Ú
+	- Ú Uacute
 		- go to acutecomb, copy reference
 		- add acutecomb, bottom to be the same as original acutecomb.case
 		- move acutecomb to center
 		- remove acutecomb.case
 		
-	- Ù
+	- Ù Ugrave
 		- go to gravecomb, copy reference
 		- add gravecomb, bottom to be the same as original gravecomb.case
 		- move gravecomb to center
 		- remove gravecomb.case	
 	
-	- í
+	- í iacute
 		- acutecomb
 			- left 3 steps
 
-	- ì
+	- ì igrave
 		- right 4 steps
 		
 	- Q
-		- delete original outline, copy from "O"
+		- in Quicksand-VariableFont_wght-W300.ufo.sfd
+		- delete original outline, copy from "O", 
+		  pasted to background and then cut to foreground to make sure the width is not changed
 		- copy the upper "-" from "="
 		- rotate clockwise 40 degree 
-		- move right 35 steps down 24 steps
-		- merge
+		- move right 35 steps down 34 steps
+		
+		- in Quicksand-VariableFont_wght-W700.ufo.sfd
+		- copy Q from modified Quicksand-VariableFont_wght-W300.ufo.sfd
+		- select the inner line of "O", Scale Uniformly 75%
+		- select the "\", Scale Uniformly 265%
+		- rotate clockwise -40 degree 
+		- select the right side
+		- left 51 steps
+		- select "-"
+		- rotate clockwise 40 degree 
+		- right 20 steps
+		- up 7 steps
+		
+		
 	- R
 		- delete the right bottom tail
 		- in P , select the vector point at bottom right, down 1 step
 		- in P, select the right parts, move left 1 steps
 		- copy K
 		- rotate clockwise 5 degree
-		- up 2 steps, right 4 steps
-		- merge
+		- up 2 steps, right 4 steps		
 		
 		
 		#- copy from dotlessi

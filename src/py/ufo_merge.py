@@ -580,6 +580,7 @@ def main() -> int:
         print(f"Running fonttool_fix_cmap.py for final output: {output_ttf}")
         run_fonttool_fix_cmap(TMP_MERGED_TTF, output_ttf)
         print(f"Done: {output_ttf}")
+        print("input change list : glyf_update.txt")
         return 0
     except Exception as exc:  # noqa: BLE001
         eprint(f"Error: {exc}")
