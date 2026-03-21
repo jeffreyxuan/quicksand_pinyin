@@ -16,7 +16,7 @@ from typing import Dict, Iterable, List
 FONTFORGE_BIN = Path(r"C:\Program Files (x86)\FontForgeBuilds\bin\fontforge.exe")
 REPO_ROOT = Path(__file__).resolve().parents[2]
 VARWIDEUFO_PY = REPO_ROOT / "src" / "py" / "varwideufo" / "varwideufo.py"
-FF_FIX_CMAP_PY = REPO_ROOT / "src" / "py" / "ff_fix_cmap.py"
+FONTTOOL_FIX_CMAP_PY = REPO_ROOT / "src" / "py" / "fonttool_fix_cmap.py"
 TMP_UFO_INPUT = REPO_ROOT / "_tmp" / "ufo_input"
 TMP_UFO_OUTPUT = REPO_ROOT / "_tmp" / "ufo_output"
 TMP_MERGED_TTF = REPO_ROOT / "_tmp" / "ufo_merge_intermediate.ttf"
@@ -469,8 +469,8 @@ def build_ttf_from_ufo(input_dir: Path, output_ttf: Path) -> None:
         raise RuntimeError(f"varwideufo.py failed while converting UFO to TTF: exit code {result.returncode}")
 
 
-def run_ff_fix_cmap(input_ttf: Path, output_ttf: Path) -> None:
-    """Summary: Run ff_fix_cmap.py on an intermediate TTF.
+def run_fonttool_fix_cmap(input_ttf: Path, output_ttf: Path) -> None:
+    """Summary: Run fonttool_fix_cmap.py on an intermediate TTF.
 
     Args:
         input_ttf: Intermediate TTF path.
@@ -480,14 +480,14 @@ def run_ff_fix_cmap(input_ttf: Path, output_ttf: Path) -> None:
         None
 
     Raises:
-        RuntimeError: If ff_fix_cmap.py fails.
+        RuntimeError: If fonttool_fix_cmap.py fails.
 
     Example:
-        run_ff_fix_cmap(Path("_tmp/in.ttf"), Path("_output/out.ttf"))
+        run_fonttool_fix_cmap(Path("_tmp/in.ttf"), Path("_output/out.ttf"))
     """
 
     output_ttf.parent.mkdir(parents=True, exist_ok=True)
-    cmd = [sys.executable, str(FF_FIX_CMAP_PY), "-input", str(input_ttf), "-output", str(output_ttf)]
+    cmd = [sys.executable, str(FONTTOOL_FIX_CMAP_PY), "-input", str(input_ttf), "-output", str(output_ttf)]
     result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
     if result.stdout:
         print(result.stdout, end="")
@@ -495,7 +495,7 @@ def run_ff_fix_cmap(input_ttf: Path, output_ttf: Path) -> None:
         eprint(result.stderr, end="")
     if result.returncode != 0:
         output_ttf.unlink(missing_ok=True)
-        raise RuntimeError(f"ff_fix_cmap.py failed with exit code {result.returncode}")
+        raise RuntimeError(f"fonttool_fix_cmap.py failed with exit code {result.returncode}")
 
 
 def validate_args(input_dir: Path, with_font: Path, output_ttf: Path) -> None:
@@ -524,8 +524,8 @@ def validate_args(input_dir: Path, with_font: Path, output_ttf: Path) -> None:
         raise ValueError(f"-output must be a .ttf file path: {output_ttf}")
     if not VARWIDEUFO_PY.exists():
         raise ValueError(f"varwideufo.py not found: {VARWIDEUFO_PY}")
-    if not FF_FIX_CMAP_PY.exists():
-        raise ValueError(f"ff_fix_cmap.py not found: {FF_FIX_CMAP_PY}")
+    if not FONTTOOL_FIX_CMAP_PY.exists():
+        raise ValueError(f"fonttool_fix_cmap.py not found: {FONTTOOL_FIX_CMAP_PY}")
 
 
 def main() -> int:
@@ -577,8 +577,8 @@ def main() -> int:
 
         print(f"Building intermediate TTF: {TMP_MERGED_TTF}")
         build_ttf_from_ufo(TMP_UFO_OUTPUT, TMP_MERGED_TTF)
-        print(f"Running ff_fix_cmap.py for final output: {output_ttf}")
-        run_ff_fix_cmap(TMP_MERGED_TTF, output_ttf)
+        print(f"Running fonttool_fix_cmap.py for final output: {output_ttf}")
+        run_fonttool_fix_cmap(TMP_MERGED_TTF, output_ttf)
         print(f"Done: {output_ttf}")
         return 0
     except Exception as exc:  # noqa: BLE001

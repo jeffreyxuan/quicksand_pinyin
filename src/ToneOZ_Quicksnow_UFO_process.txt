@@ -47,7 +47,6 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	- ề 
 		- gravecomb
 			visually same hight with ế acutecomb
-			
 	- Ế
 		- remove acutecomb.case
 		- add acutecomb
@@ -55,9 +54,70 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	- Ề
 		- remove gravecomb.case
 		- add gravecomb
-			
+		
+	- Á
+		- go to acutecomb, copy reference
+		- add acutecomb, bottom to be the same as original acutecomb.case
+		- move acutecomb to center
+		- remove acutecomb.case
+	
+	- À
+		- go to gravecomb, copy reference
+		- add gravecomb, bottom to be the same as original gravecomb.case
+		- move gravecomb to center
+		- remove gravecomb.case
+		
+	- É
+		- go to acutecomb, copy reference
+		- add acutecomb, bottom to be the same as original acutecomb.case
+		- move acutecomb to center
+		- remove acutecomb.case
+		
+	- È
+		- go to gravecomb, copy reference
+		- add gravecomb, bottom to be the same as original gravecomb.case
+		- move gravecomb to center
+		- remove gravecomb.case
+	
+	- Í
+		- go to acutecomb, copy reference
+		- add acutecomb, bottom to be the same as original acutecomb.case
+		- move acutecomb to center
+		- remove acutecomb.case	
+	
+	- Ì
+		- go to gravecomb, copy reference
+		- add gravecomb, bottom to be the same as original gravecomb.case
+		- move gravecomb to center
+		- remove gravecomb.case
+		
+	- Ó
+		- go to acutecomb, copy reference
+		- add acutecomb, bottom to be the same as original acutecomb.case
+		- move acutecomb to center
+		- remove acutecomb.case	
+		
+	- Ò
+		- go to gravecomb, copy reference
+		- add gravecomb, bottom to be the same as original gravecomb.case
+		- move gravecomb to center
+		- remove gravecomb.case
+		
+	- Ú
+		- go to acutecomb, copy reference
+		- add acutecomb, bottom to be the same as original acutecomb.case
+		- move acutecomb to center
+		- remove acutecomb.case
+		
+	- Ù
+		- go to gravecomb, copy reference
+		- add gravecomb, bottom to be the same as original gravecomb.case
+		- move gravecomb to center
+		- remove gravecomb.case	
+	
 	- í
-		- left 3 steps
+		- acutecomb
+			- left 3 steps
 
 	- ì
 		- right 4 steps

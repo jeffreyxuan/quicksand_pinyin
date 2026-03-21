@@ -21,7 +21,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1773233665
-ModificationTime: 1773322947
+ModificationTime: 1774091534
 PfmFamily: 16
 TTFWeight: 700
 TTFWidth: 5
@@ -1671,7 +1671,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 25 25 8
+WinInfo: 175 25 8
 BeginChars: 812 812
 
 StartChar: .notdef
@@ -1756,8 +1756,8 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
+Refer: 740 769 S 1 0 0 1 170 140 2
 Refer: 1 65 N 1 0 0 1 0 0 2
-Refer: 782 -1 N 1 0 0 1 243 0 2
 EndChar
 
 StartChar: Abreve
@@ -1970,8 +1970,8 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
+Refer: 739 768 S 1 0 0 1 200 172 2
 Refer: 1 65 N 1 0 0 1 0 0 2
-Refer: 781 -1 N 1 0 0 1 142 0 2
 EndChar
 
 StartChar: uni1EA2
@@ -2589,8 +2589,8 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
+Refer: 740 769 N 1 0 0 1 212 139 2
 Refer: 47 69 N 1 0 0 1 0 0 2
-Refer: 782 -1 N 1 0 0 1 227 0 2
 EndChar
 
 StartChar: Ebreve
@@ -2763,8 +2763,8 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
+Refer: 739 768 N 1 0 0 1 131 172 2
 Refer: 47 69 N 1 0 0 1 0 0 2
-Refer: 781 -1 N 1 0 0 1 126 0 2
 EndChar
 
 StartChar: uni1EBA
@@ -3268,8 +3268,8 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
+Refer: 740 769 N 1 0 0 1 0 139 2
 Refer: 83 73 N 1 0 0 1 0 0 2
-Refer: 782 -1 N 1 0 0 1 61 0 2
 EndChar
 
 StartChar: Ibreve
@@ -3377,8 +3377,8 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
+Refer: 739 768 N 1 0 0 1 0 171 2
 Refer: 83 73 N 1 0 0 1 0 0 2
-Refer: 781 -1 N 1 0 0 1 -40 0 2
 EndChar
 
 StartChar: uni1EC8
@@ -4110,8 +4110,8 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
+Refer: 740 769 N 1 0 0 1 285 139 2
 Refer: 131 79 N 1 0 0 1 0 0 2
-Refer: 782 -1 N 1 0 0 1 301 0 2
 EndChar
 
 StartChar: Obreve
@@ -4285,8 +4285,8 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
+Refer: 739 768 N 1 0 0 1 205 172 2
 Refer: 131 79 N 1 0 0 1 0 0 2
-Refer: 781 -1 N 1 0 0 1 200 0 2
 EndChar
 
 StartChar: uni1ECE
@@ -5443,8 +5443,8 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
+Refer: 740 769 N 1 0 0 1 259 139 2
 Refer: 199 85 N 1 0 0 1 0 0 2
-Refer: 782 -1 N 1 0 0 1 274 0 2
 EndChar
 
 StartChar: Ubreve
@@ -5527,8 +5527,8 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
+Refer: 739 768 N 1 0 0 1 179 173 2
 Refer: 199 85 N 1 0 0 1 0 0 2
-Refer: 781 -1 N 1 0 0 1 173 0 2
 EndChar
 
 StartChar: uni1EE6
@@ -7864,7 +7864,7 @@ Flags: W
 LayerCount: 2
 Fore
 Refer: 327 305 N 1 0 0 1 0 0 2
-Refer: 740 769 N 1 0 0 1 38 -30 2
+Refer: 740 769 S 1 0 0 1 -12 -30 2
 EndChar
 
 StartChar: ibreve
@@ -7974,7 +7974,7 @@ Flags: W
 LayerCount: 2
 Fore
 Refer: 327 305 N 1 0 0 1 0 0 2
-Refer: 739 768 N 1 0 0 1 -52 0 2
+Refer: 739 768 S 1 0 0 1 -2 0 2
 EndChar
 
 StartChar: uni1EC9

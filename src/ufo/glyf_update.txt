@@ -8,3 +8,5 @@ uni1EBF
 uni1EBE
 uni1EC0
 uni1EC1
+Agrave
+Aacute
