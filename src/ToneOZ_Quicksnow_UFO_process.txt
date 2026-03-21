@@ -144,13 +144,19 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 		
 	- R
-		- delete the right bottom tail
+		- Copy original R to background
+		- in foreground, delete the right bottom tail
 		- in P , select the vector point at bottom right, down 1 step
 		- in P, select the right parts, move left 1 steps
-		- copy K
+		- copy the leg of K
 		- rotate clockwise 5 degree
-		- up 2 steps, right 4 steps		
-		
+		- align the bottom right of the leg to the original leg
+		- leg down 0.3 steps
+		- in the overlap area of the P and the leg, add 2 more dots at left and right side
+		- delete the upper part of the leg
+		- re-join the leg in the overlap area of the P and the leg
+			make sure there is no new control point added
+				
 		
 		#- copy from dotlessi
 		#- delete the right bottom tail

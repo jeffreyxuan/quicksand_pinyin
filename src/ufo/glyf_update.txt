@@ -21,3 +21,4 @@ Ugrave
 iacute
 igrave
 Q
+R
