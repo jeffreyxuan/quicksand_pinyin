@@ -22,3 +22,5 @@ iacute
 igrave
 Q
 R
+ecircumflex_uni030C
+Ecircumflex_uni030C

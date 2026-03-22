@@ -10,7 +10,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- down 0.3 step
 		
 	- uni030D ̍
-		- copy from uni030C
+		- copy from uni030C ???? uni0300 ???
 		- move outline to background
 		- copy a outline from gravecomb		
 		- press the bottom	
@@ -157,16 +157,27 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- re-join the leg in the overlap area of the P and the leg
 			make sure there is no new control point added
 				
+	- ê̌  = ê (ecircumflex) + ̌ (uni030C)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name ecircumflex_uni030C。
+		- from ecircumflex, Edit -> Copy reference  
+		- paste the reference to ecircumflex_uni030C
+		- in ế, copy the acutecomb, paste to the background of ecircumflex_uni030C
+		- from uni030C, Edit -> Copy reference  
+		- paste the reference to ecircumflex_uni030C
+		- move uni030C reference to center (right 13.1 steps)
+		- move uni030C reference top as the same as the acutecomb in the background (up 15 steps)
 		
-		#- copy from dotlessi
-		#- delete the right bottom tail
-		#- duplicate outline
-		#- flip vertical
-		#- up 30 steps
-		#- inner p move down 0.5 steps
-		#- rotate clockwise -36 degree
-		#- down 2.4 steps right 30 steps
-	
+		
+	- Ê̌  = Ê (Ecircumflex) + ̌ (uni030C)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ecircumflex_uni030C。
+		- from Ecircumflex, Edit -> Copy reference  
+		- paste the reference to Ecircumflex_uni030C
+		- in Ế, copy the acutecomb, paste to the background of Ecircumflex_uni030C
+		- from uni030C, Edit -> Copy reference  
+		- paste the reference to Ecircumflex_uni030C
+		- move uni030C reference to center (right 16.5 steps)
+		- move uni030C reference top as the same as the acutecomb in the background (up 21 steps)
+		
 	- ⁿ
 		- copy from ⁸
 		- delete outline

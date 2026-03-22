@@ -21,7 +21,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1773233665
-ModificationTime: 1774121767
+ModificationTime: 1774148530
 PfmFamily: 16
 TTFWeight: 700
 TTFWidth: 5
@@ -1671,8 +1671,8 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 50 25 8
-BeginChars: 812 812
+WinInfo: 25 25 8
+BeginChars: 814 814
 
 StartChar: .notdef
 Encoding: 0 -1 0
@@ -4867,7 +4867,7 @@ Encoding: 170 82 170
 GlifName: R
 Width: 687
 VWidth: 0
-Flags: WO
+Flags: W
 LayerCount: 2
 Back
 SplineSet
@@ -19894,6 +19894,32 @@ LayerCount: 2
 Fore
 Refer: 808 781 S 1 0 0 1 -72 0 2
 Refer: 327 305 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Ecircumflex_uni030C
+Encoding: 813 -1 812
+Width: 572
+VWidth: 0
+Flags: W
+LayerCount: 2
+Back
+Refer: 740 769 S 1 0 0 1 120 310 2
+Fore
+Refer: 744 780 S 1 0 0 1 119 337 2
+Refer: 52 202 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: ecircumflex_uni030C
+Encoding: 812 -1 813
+Width: 590
+VWidth: 0
+Flags: W
+LayerCount: 2
+Back
+Refer: 740 769 S 1 0 0 1 95 140 2
+Fore
+Refer: 744 780 S 1 0 0 1 105 187 2
+Refer: 294 234 N 1 0 0 1 0 0 2
 EndChar
 EndChars
 EndSplineFont
