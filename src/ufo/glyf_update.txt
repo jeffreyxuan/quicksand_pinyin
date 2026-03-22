@@ -18,6 +18,8 @@ Oacute
 Ograve
 Uacute
 Ugrave
+uni01D7
+uni01DB
 iacute
 igrave
 Q

@@ -1,0 +1,46 @@
+{
+  "gsub_ligature_rules": [
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "ecircumflex",
+        "uni030C"
+      ],
+      "to": "ecircumflex_uni030C"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "Ecircumflex",
+        "uni030C"
+      ],
+      "to": "Ecircumflex_uni030C"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "Ecircumflex",
+        "uni030C.case"
+      ],
+      "to": "Ecircumflex_uni030C"
+    }
+  ]
+}

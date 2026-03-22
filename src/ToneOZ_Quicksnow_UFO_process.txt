@@ -114,6 +114,24 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- add gravecomb, bottom to be the same as original gravecomb.case
 		- move gravecomb to center
 		- remove gravecomb.case	
+		
+	- Ǘ uni01D7  unicode分解 Udieresis(U+00DC) + acutecomb(U+0301)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D7。
+		- 設定 Glyph Unicode U+01D7
+		- from Udieresis, Edit -> Copy reference  
+		- paste the reference to uni01D7
+		- go to Ế, copy the acutecomb's reference
+		- paste the reference to uni01D7
+		- move acutecomb reference to center (right 8 steps)
+		
+	- Ǜ uni01DB unicode分解 Udieresis(U+00DC) + gravecomb(U+0300)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01DB。
+		- 設定 Glyph Unicode U+01DB
+		- from Udieresis, Edit -> Copy reference  
+		- paste the reference to uni01DB
+		- go to Ề, copy the gravecomb's reference
+		- paste the reference to uni01DB
+		- move gravecomb reference to center (0 steps)
 	
 	- í iacute
 		- acutecomb
