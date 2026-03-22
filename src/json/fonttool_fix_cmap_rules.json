@@ -108,7 +108,7 @@
       ],
       "from": [
         "ecircumflex",
-        "uni0304.case"
+        "uni0304"
       ],
       "to": "ecircumflex_uni0304"
     },
@@ -121,10 +121,38 @@
         "latn_DFLT"
       ],
       "from": [
-        "ecircumflex",
+        "n",
         "uni0304"
       ],
-      "to": "ecircumflex_uni0304"
+      "to": "n_uni0304"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "N",
+        "uni0304"
+      ],
+      "to": "N_uni0304"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "N",
+        "uni0304.case"
+      ],
+      "to": "N_uni0304"
     }
   ]
 }

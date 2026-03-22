@@ -232,7 +232,6 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- align uni0304 to the center of ̌
 		- delete ̌
 		
-		
 	- Ê̌  = Ê (Ecircumflex) + ̌ (uni030C.case)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ecircumflex_uni030C。
 		- from Ecircumflex, Edit -> Copy reference  
@@ -253,9 +252,22 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- down 2 steps
 		- delete acutecomb
 	
-	- n̄
+	- n̄  = n + ̄ (uni0304)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name n_uni0304。
+		- from n, Edit -> Copy reference
+		- paste the reference to n_uni0304
+		- copy ̄ from ō
+		- paste the reference to n_uni0304
+		- center (left 1 step)
+		
 	
-	- N̄
+	- N̄  = n + ̄ (uni0304)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name N_uni0304。
+		- from N, Edit -> Copy reference
+		- paste the reference to N_uni0304
+		- copy ̄ from Ō
+		- paste the reference to n_uni0304
+		- center 
 		
 	- ⁿ
 		- in Quicksand-VariableFont_wght-W700.ufo.sfd

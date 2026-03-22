@@ -35,3 +35,5 @@ M_gravecomb
 Nacute
 uni01F8
 ecircumflex_uni0304
+n_uni0304
+N_uni0304
