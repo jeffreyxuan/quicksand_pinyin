@@ -5,13 +5,18 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 	- acutecomb
 		- press the bottom
-		- clockwise -10 degree
+		- clockwise -15 degree
+		- up 1.4 step
 		
 	- gravecomb
+		- in Quicksand-VariableFont_wght-W300.ufo.sfd
 		- press the bottom		
 		- clockwise 15 degree
 		- left 1 step
 		- down 0.3 step
+		
+		- in Quicksand-VariableFont_wght-W700.ufo.sfd
+		- roate manually
 		
 	- uni030D ̍
 		- copy from uni030C ???? uni0300 ???
@@ -137,14 +142,35 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- paste the reference to uni01DB
 		- move gravecomb reference to center (0 steps)
 
-	- Ḿ 分解
-	- M̀ 
+	- Ḿ 分解 M + acutecomb
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni1E3E。
+		- 設定 Glyph Unicode U+1E3E
+		- from M, Edit -> Copy reference  
+		- paste the reference to uni1E3E
+		- go to Ó, copy the acutecomb's reference
+		- paste the reference to Ó
+		- move acutecomb reference to center (right 3 steps)
 	
-	- Ń
+	- M̀  M_gravecomb = M + uni0300
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name M_gravecomb。
+		- from M, Edit -> Copy reference  
+		- paste the reference to M_gravecomb
+		- from Ò copy the uni0300
+		- paste the reference to M_gravecomb
+		- move uni0300 reference to center (right 2 steps)
+	
+	- Ń Nacute
 		- copy acutecomb from Ú
 		- delete acutecomb.case
 		
-	- Ǹ 分解
+	- Ǹ uni01F8 分解
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01F8。
+		- 設定 Glyph Unicode U+01F8
+		- from N, Edit -> Copy reference  
+		- paste the reference to uni01F8
+		- go to Ò, copy the gravecomb's reference
+		- paste the reference to uni01F8
+		- move acutecomb reference to center (left 2 steps)
 	
 	- í iacute
 		- acutecomb
@@ -197,6 +223,14 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- paste the reference to ecircumflex_uni030C
 		- move uni030C reference to center (right 13.1 steps)
 		- move uni030C reference top as the same as the acutecomb in the background (up 15 steps)
+		
+	- ê̄  = ê (ecircumflex) + ̄ (uni0304)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name ecircumflex_uni0304。
+		- copy from ê̌
+		- from uni0304, Edit -> Copy reference 
+		- paste the reference to ecircumflex_uni0304
+		- align uni0304 to the center of ̌
+		- delete ̌
 		
 		
 	- Ê̌  = Ê (Ecircumflex) + ̌ (uni030C.case)

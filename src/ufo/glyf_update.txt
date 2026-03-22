@@ -30,3 +30,8 @@ Ecircumflex_uni030C
 uni207F
 uni1D3A
 Ecircumflex_uni0304
+uni1E3E
+M_gravecomb
+Nacute
+uni01F8
+ecircumflex_uni0304
