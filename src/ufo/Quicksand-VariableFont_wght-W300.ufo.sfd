@@ -21,7 +21,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1773233631
-ModificationTime: 1774173767
+ModificationTime: 1774175266
 PfmFamily: 16
 TTFWeight: 300
 TTFWidth: 5
@@ -1672,7 +1672,7 @@ DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
 WinInfo: 575 25 10
-BeginChars: 818 818
+BeginChars: 819 819
 
 StartChar: .notdef
 Encoding: 0 -1 0
@@ -3868,8 +3868,8 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
+Refer: 740 769 N 1 0 0 1 267 201 2
 Refer: 118 78 N 1 0 0 1 0 0 2
-Refer: 782 -1 N 1 0 0 1 292 40 2
 EndChar
 
 StartChar: Ncaron
@@ -5468,7 +5468,7 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
-Refer: 740 769 N 1 0 0 1 267 201 2
+Refer: 740 769 S 1 0 0 1 267 201 2
 Refer: 199 85 N 1 0 0 1 0 0 2
 EndChar
 
@@ -19804,7 +19804,7 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
-Refer: 740 769 S 1 0 0 1 220 350 2
+Refer: 740 769 S 1 0 0 1 260 350 2
 Refer: 205 220 N 1 0 0 1 0 0 2
 EndChar
 
@@ -19815,7 +19815,7 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
-Refer: 739 768 S 1 0 0 1 240 340 2
+Refer: 739 768 S 1 0 0 1 200 340 2
 Refer: 205 220 N 1 0 0 1 0 0 2
 EndChar
 
@@ -19906,7 +19906,7 @@ StartChar: uni1D3A
 Encoding: 817 7482 817
 Width: 273
 VWidth: 0
-Flags: WO
+Flags: W
 LayerCount: 2
 Back
 SplineSet
@@ -19964,6 +19964,17 @@ SplineSet
  218 764 218 764 221 768 c 132,-1,31
  224 772 224 772 230 772 c 261,0,1
 EndSplineSet
+EndChar
+
+StartChar: Ecircumflex_uni0304
+Encoding: 818 -1 818
+Width: 567
+VWidth: 0
+Flags: WO
+LayerCount: 2
+Fore
+Refer: 748 772 S 1 0 0 1 130 400 2
+Refer: 52 202 N 1 0 0 1 0 0 2
 EndChar
 EndChars
 EndSplineFont

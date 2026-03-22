@@ -41,6 +41,34 @@
         "uni030C.case"
       ],
       "to": "Ecircumflex_uni030C"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "Ecircumflex",
+        "uni0304.case"
+      ],
+      "to": "Ecircumflex_uni0304"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "Ecircumflex",
+        "uni0304"
+      ],
+      "to": "Ecircumflex_uni0304"
     }
   ]
 }

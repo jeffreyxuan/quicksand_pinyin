@@ -136,6 +136,15 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- go to Ề, copy the gravecomb's reference
 		- paste the reference to uni01DB
 		- move gravecomb reference to center (0 steps)
+
+	- Ḿ 分解
+	- M̀ 
+	
+	- Ń
+		- copy acutecomb from Ú
+		- delete acutecomb.case
+		
+	- Ǹ 分解
 	
 	- í iacute
 		- acutecomb
@@ -190,7 +199,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- move uni030C reference top as the same as the acutecomb in the background (up 15 steps)
 		
 		
-	- Ê̌  = Ê (Ecircumflex) + ̌ (uni030C)
+	- Ê̌  = Ê (Ecircumflex) + ̌ (uni030C.case)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ecircumflex_uni030C。
 		- from Ecircumflex, Edit -> Copy reference  
 		- paste the reference to Ecircumflex_uni030C
@@ -199,6 +208,20 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- paste the reference to Ecircumflex_uni030C
 		- move uni030C reference to center (right 16.5 steps)
 		- move uni030C reference top as the same as the acutecomb in the background (up 21 steps)
+		
+	- Ê̄  = Ê (Ecircumflex) + ̄ (uni0304.case)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ecircumflex_uni0304。
+		- copy from Ê̌
+		- from uni0304, Edit -> Copy reference  
+		- paste the reference to Ecircumflex_uni0304
+		- move uni0304 reference to center
+		- move uni0304 reference top as the same as the acutecomb
+		- down 2 steps
+		- delete acutecomb
+	
+	- n̄
+	
+	- N̄
 		
 	- ⁿ
 		- in Quicksand-VariableFont_wght-W700.ufo.sfd
@@ -222,3 +245,4 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- scale uniform 37%
 		- align the bottom of "N" to the bottom of "n", center
 		
+	

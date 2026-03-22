@@ -29,3 +29,4 @@ ecircumflex_uni030C
 Ecircumflex_uni030C
 uni207F
 uni1D3A
+Ecircumflex_uni0304
