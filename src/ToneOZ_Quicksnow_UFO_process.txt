@@ -1,4 +1,8 @@
 W300 UFO, select "Round to Int" during rotate, rotate by Last press
+	- j 
+		- in Quicksand-VariableFont_wght-W300.ufo.sfd
+		- shrink width from 268 to 206, same width as "i"
+		
 	- acutecomb
 		- press the bottom
 		- clockwise -10 degree
@@ -197,18 +201,24 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- move uni030C reference top as the same as the acutecomb in the background (up 21 steps)
 		
 	- ⁿ
-		- copy from ⁸
-		- delete outline
-		- copy the outline from n
-		- scale uniform 50%
-		- change weight cjk 16
-		- up 36 steps
-		- left 14 steps
+		- in Quicksand-VariableFont_wght-W700.ufo.sfd
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni207F。
+		- 設定 Glyph Unicode U+207F
+		- copy from uni2078 ⁸  
+				
+		- copy the outline from the "n" 
+		- scale uniform 40%
+		- align the bottom of "n" to the bottom of "8", center
+		- delete outline of 8
+		
+		- the copy to Quicksand-VariableFont_wght-W300.ufo.sfd, do manual finetune
+		
 	- ᴺ
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni1D3A。
+		- 設定 Glyph Unicode U+1D3A
 		- copy from ⁿ
 		- delete outline
-		- copy the outline from n
+		- copy the outline from N
 		- scale uniform 37%
-		- change weight cjk 22
-		- up 27 steps
-		- left 22 steps
+		- align the bottom of "N" to the bottom of "n", center
+		
