@@ -2,6 +2,12 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	- j 
 		- in Quicksand-VariableFont_wght-W300.ufo.sfd
 		- shrink width from 268 to 206, same width as "i"
+	- u
+		- create the tail from "i"
+		-> view -> Number Points -> TrueType
+		- do exactly the same procdue on the exactly point number on both 300 and 700
+		- lift up the curve to the tail 2 steps
+		- move the curve join point to the tail right 1 step
 		
 	- acutecomb
 		- press the bottom
@@ -33,21 +39,21 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- right 5 steps
 		- bottom align to the top of "o" (down 7 steps
 
-	- i̍ i_hungarumlautcomb = uni030B + dotlessi
+	- i̍ i_hungarumlautcomb = uni030D + dotlessi
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name i_hungarumlautcomb。
-		- from dotlessi, Edit -> Copy reference  
-		- paste the reference to i_hungarumlautcomb
-		- from uni030B, Edit -> Copy reference  
-		- paste the reference to i_hungarumlautcomb
-		- move uni030B reference to center (Left 8 steps)
-		
-	- i̋ i_verticallineabovecomb = dotlessi + uni030D 
-		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name i_verticallineabovecomb。
 		- from dotlessi, Edit -> Copy reference  
 		- paste the reference to i_hungarumlautcomb
 		- from uni030D, Edit -> Copy reference  
 		- paste the reference to i_hungarumlautcomb
 		- move uni030D reference to center (Left 8 steps)
+		
+	- i̋ i_verticallineabovecomb = dotlessi + uni030B
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name i_verticallineabovecomb。
+		- from dotlessi, Edit -> Copy reference  
+		- paste the reference to i_hungarumlautcomb
+		- from uni030B, Edit -> Copy reference  
+		- paste the reference to i_hungarumlautcomb
+		- move uni030B reference to center (Left 8 steps)
 		
 	- ế uni1EBF
 		- acutecomb
@@ -269,6 +275,9 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- paste the reference to n_uni0304
 		- center 
 		
+		
+- 台語
+		
 	- ⁿ
 		- in Quicksand-VariableFont_wght-W700.ufo.sfd
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni207F。
@@ -291,4 +300,71 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- scale uniform 37%
 		- align the bottom of "N" to the bottom of "n", center
 		
+		
+	- a̍ = a + ̍ (uni030D)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name a_uni030D
+		- from ǎ, Edit -> Copy reference
+		
+	- a̋ = a + ̋ (uni030B)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name a_uni030B
+		- from ǎ, Edit -> Copy reference
 	
+	- e̍ = e + ̍ (uni030D)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name e_uni030D
+		- from ě, Edit -> Copy reference
+		
+	- e̋ = e + ̋ (uni030B)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name e_uni030B
+		- from ě, Edit -> Copy reference
+		
+	- o̍ = o + ̍ (uni030D)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name o_uni030D
+		- from ǒ, Edit -> Copy reference
+		
+	- u̍ = u + ̍ (uni030D)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name u_uni030D
+		- from u, Edit -> Copy reference
+		
+	- m̍ = m + ̍ (uni030D)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name m_uni030D
+		- from m, Edit -> Copy reference
+		
+	- n̍ = n + ̍ (uni030D)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name n_uni030D
+		- from n, Edit -> Copy reference
+		
+	- A̍ = A + ̍ (uni030D)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name A_uni030D
+		- from A, Edit -> Copy reference
+		
+	- A̋ = A + ̋ (uni030B)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name A_uni030B
+		- from A, Edit -> Copy reference
+		
+	- E̍ = E + ̍ (uni030D)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name E_uni030D
+		- from E, Edit -> Copy reference
+		
+	- E̋ = E + ̋ (uni030B)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name E_uni030B
+		- from E, Edit -> Copy reference
+		
+	- I̍ = I + ̍ (uni030D)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name I_uni030D
+		- from I, Edit -> Copy reference
+	
+	- O̍ = O + ̍ (uni030D)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name O_uni030D
+		- from O, Edit -> Copy reference
+		
+	- U̍ = U + ̍ (uni030D)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name U_uni030D
+		- from U, Edit -> Copy reference
+		
+	- M̍ = M + ̍ (uni030D)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name M_uni030D
+		- from M, Edit -> Copy reference
+		
+	- N̍ = N + ̍ (uni030D)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name N_uni030D
+		- from N, Edit -> Copy reference
