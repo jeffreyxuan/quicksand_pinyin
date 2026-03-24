@@ -153,6 +153,258 @@
         "uni0304.case"
       ],
       "to": "N_uni0304"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "a",
+        "uni030D"
+      ],
+      "to": "a_uni030D"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "a",
+        "uni030B"
+      ],
+      "to": "a_uni030B"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "e",
+        "uni030D"
+      ],
+      "to": "e_uni030D"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "e",
+        "uni030B"
+      ],
+      "to": "e_uni030B"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "o",
+        "uni030D"
+      ],
+      "to": "o_uni030D"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "u",
+        "uni030D"
+      ],
+      "to": "u_uni030D"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "m",
+        "uni030D"
+      ],
+      "to": "m_uni030D"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "n",
+        "uni030D"
+      ],
+      "to": "n_uni030D"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "A",
+        "uni030D"
+      ],
+      "to": "A_uni030D"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "A",
+        "uni030B"
+      ],
+      "to": "A_uni030B"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "E",
+        "uni030D"
+      ],
+      "to": "E_uni030D"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "E",
+        "uni030B"
+      ],
+      "to": "E_uni030B"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "I",
+        "uni030D"
+      ],
+      "to": "I_uni030D"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "I",
+        "uni030B"
+      ],
+      "to": "I_uni030B"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "O",
+        "uni030D"
+      ],
+      "to": "O_uni030D"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "U",
+        "uni030D"
+      ],
+      "to": "U_uni030D"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "M",
+        "uni030D"
+      ],
+      "to": "M_uni030D"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "N",
+        "uni030D"
+      ],
+      "to": "N_uni030D"
     }
   ]
 }

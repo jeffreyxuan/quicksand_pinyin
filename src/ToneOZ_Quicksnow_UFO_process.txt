@@ -16,7 +16,45 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- (300 only)move the right side of "K", left 2 steps
 		- (300 only)move the right of the width control, left 2 steps, 682 -> 662
 		
+	- I
+		- copy "-" (U+002D)
+		- in Quicksand-VariableFont_wght-W300.ufo.sfd
+		- select left side of "-", move right 4 steps to reduce the width
+		- align to center
+		- top align with "|"
+		- left right each side should have 30 space
+		- move the whole I right 2 steps
+		- move the width right control 4 steps, from 242 to 282
+		- move top of the "|" 2 steps down
+		- move bottom of the "|" 2 steps up
+		- due to the width is increase by 40, all other combinedmark with I should move the part right 2 steps
+			ÍĬǏÎȈÏḮİỊÌỈȊĪĮĨ
 		
+		- in Quicksand-VariableFont_wght-W700.ufo.sfd
+		- align to center
+		- top align with "|"
+		- left right each side should have 30 space
+		- move the whole I right 4 steps
+		- move the width right control 8 steps, from 275 to 355
+		- move top of the "|" 2 steps down
+		- move bottom of the "|" 2 steps up
+		- due to the width is increase by 80, all other combinedmark with I should move the part right 4 steps
+		
+	- Į U+012E Iogonek same as I
+		- copy the "I" to background
+		- align "|" with the I
+		- set width to same as I
+		- cut "=" from background to foreground
+		- move top of the "|" 2 steps down
+	
+		
+	- J
+	
+	- ◌ U+25CC  虛線圓
+		
+		
+	- ǒ
+		- move the top v down 1 step
 	
 	- u
 		- create the tail from "i"
@@ -334,68 +372,126 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 	- a̍ = a + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name a_uni030D
-		- from ǎ, Edit -> Copy reference
+		- copy from ǎ, not reference
+		- copy reference from uni030D
+		- align the bottom of uni030D to "v"
+		- delete "v"
 		
 	- a̋ = a + ̋ (uni030B)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name a_uni030B
-		- from ǎ, Edit -> Copy reference
+		- copy from ǎ, not reference
+		- copy reference from uni030B
+		- align the left of uni030B to the left of "v"
+		- delete "v"
 	
 	- e̍ = e + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name e_uni030D
-		- from ě, Edit -> Copy reference
+		- copy from ě, not reference
+		- copy reference from uni030D
+		- align the bottom of uni030D to "v"
+		- delete "v"
 		
 	- e̋ = e + ̋ (uni030B)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name e_uni030B
-		- from ě, Edit -> Copy reference
+		- copy from ě, not reference
+		- copy reference from uni030B
+		- align the left of uni030B to the left of "v"
+		- delete "v"
 		
 	- o̍ = o + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name o_uni030D
-		- from ǒ, Edit -> Copy reference
+		- copy from ǒ, not reference
+		- copy reference from uni030D
+		- align the bottom of uni030D to "v"
+		- delete "v"
 		
 	- u̍ = u + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name u_uni030D
-		- from u, Edit -> Copy reference
+		- copy from ǔ, not reference
+		- copy reference from uni030D
+		- align the bottom of uni030D to "v"
+		- delete "v"
 		
 	- m̍ = m + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name m_uni030D
 		- from m, Edit -> Copy reference
+		- copy reference from uni030D
+		- align the bottom of uni030D to center
+		- delete "v"
 		
 	- n̍ = n + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name n_uni030D
 		- from n, Edit -> Copy reference
+		- copy reference from uni030D
+		- align the bottom of uni030D to center
+		- delete "v"
 		
 	- A̍ = A + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name A_uni030D
-		- from A, Edit -> Copy reference
+		- copy from Ǎ, not reference
+		- copy reference from uni030D
+		- align the bottom of uni030D to "v"
+		- delete "v"
 		
 	- A̋ = A + ̋ (uni030B)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name A_uni030B
-		- from A, Edit -> Copy reference
+		- copy from Ǎ, not reference
+		- copy reference from uni030B
+		- align the left of uni030B to the left of "v"
+		- delete "v"
 		
 	- E̍ = E + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name E_uni030D
-		- from E, Edit -> Copy reference
+		- from Ě, Edit -> Copy reference
+		- copy reference from uni030D
+		- align the bottom of uni030D to "v"
+		- delete "v"
 		
 	- E̋ = E + ̋ (uni030B)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name E_uni030B
-		- from E, Edit -> Copy reference
+		- from Ě, Edit -> Copy reference
+		- copy reference from uni030B
+		- align the left of uni030B to the left of "v"
+		- delete "v"
 		
 	- I̍ = I + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name I_uni030D
-		- from I, Edit -> Copy reference
+		- from Ǐ, Edit -> Copy reference
+		- copy reference from uni030D
+		- align the bottom of uni030D to "v"
+		- delete "v"
+		
+	- I̍ = I + ̋ (uni030B)
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name I_uni030B
+		- from Ǐ, Edit -> Copy reference
+		- copy reference from uni030B
+		- align the bottom of uni030B to "v"
+		- delete "v"		
 	
 	- O̍ = O + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name O_uni030D
-		- from O, Edit -> Copy reference
+		- from Ǒ, Edit -> Copy reference
+		- copy reference from uni030D
+		- align the bottom of uni030D to "v"
+		- delete "v"
 		
 	- U̍ = U + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name U_uni030D
-		- from U, Edit -> Copy reference
+		- from Ǔ, Edit -> Copy reference
+		- copy reference from uni030D
+		- align the bottom of uni030D to "v"
+		- delete "v"
 		
 	- M̍ = M + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name M_uni030D
 		- from M, Edit -> Copy reference
+		- copy reference from uni030D
+		- align the bottom of uni030D to center
+		- delete "v"
 		
 	- N̍ = N + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name N_uni030D
 		- from N, Edit -> Copy reference
+		- copy reference from uni030D
+		- align the bottom of uni030D to center
+		- delete "v"
