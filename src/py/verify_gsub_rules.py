@@ -272,6 +272,11 @@ def main() -> int:
 
     # 2) GSUB structure verification using otfcc JSON (feature/lookup names)
     data = dump_otfcc_json(font_path, args.otfccdump)
+    cmap_json = data.get("cmap", {}) if isinstance(data, dict) else {}
+    gdef_json = data.get("GDEF", {}) if isinstance(data.get("GDEF", {}), dict) else {}
+    gdef_classes = gdef_json.get("glyphClassDef", {}) if isinstance(gdef_json.get("glyphClassDef", {}), dict) else {}
+    gpos_json = data.get("GPOS", {}) if isinstance(data.get("GPOS", {}), dict) else {}
+    gpos_lookups = gpos_json.get("lookups", {}) if isinstance(gpos_json.get("lookups", {}), dict) else {}
     gsub = data.get("GSUB", {})
     features = gsub.get("features", {}) if isinstance(gsub, dict) else {}
     lookup_order = gsub.get("lookupOrder", []) if isinstance(gsub, dict) else []
@@ -300,6 +305,32 @@ def main() -> int:
             continue
         if "ccmp_00002" not in feats and "ccmp_00003" not in feats:
             failures.append(f"Language {lang_key} not hooked to ccmp_00002/ccmp_00003")
+
+    # 2.5) dotted-circle anchor chain verification
+    if cmap_json.get(str(0x25CC)) != "uni25CC":
+        failures.append("U+25CC cmap is missing or not mapped to uni25CC")
+    if gdef_classes.get("uni25CC") != 1:
+        failures.append("GDEF glyphClassDef for uni25CC must be 1 (base)")
+    dotted_base_found = False
+    for lookup in gpos_lookups.values():
+        if not isinstance(lookup, dict) or lookup.get("type") != "gpos_mark_to_base":
+            continue
+        for subtable in lookup.get("subtables", []):
+            if not isinstance(subtable, dict):
+                continue
+            bases = subtable.get("bases", {})
+            if not isinstance(bases, dict):
+                continue
+            uni25cc_base = bases.get("uni25CC")
+            if isinstance(uni25cc_base, dict) and any(
+                isinstance(v, dict) and "x" in v and "y" in v for v in uni25cc_base.values()
+            ):
+                dotted_base_found = True
+                break
+        if dotted_base_found:
+            break
+    if not dotted_base_found:
+        failures.append("GPOS mark-to-base is missing bases.uni25CC anchors")
 
     # 3) Rule presence verification
     rules = load_rules(rules_json_path)

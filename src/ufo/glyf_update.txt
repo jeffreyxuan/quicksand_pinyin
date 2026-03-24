@@ -108,3 +108,4 @@ O_uni030D
 U_uni030D
 M_uni030D
 N_uni030D
+uni25CC

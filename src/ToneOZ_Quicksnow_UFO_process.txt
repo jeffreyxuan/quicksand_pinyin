@@ -117,7 +117,10 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 			
 	
 	
-	- ◌ U+25CC  虛線圓
+	- ◌ uni25CC U+25CC  虛線圓
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni25CC
+		- copy from o, move o to background 
+		- use dot uni0307 , copy 8 along the path
 		
 		
 	- ǒ

@@ -242,9 +242,252 @@ def apply_ligature_rules(ttf_json: Dict[str, Any], rules: Iterable[Dict[str, Any
     return stats
 
 
+def _valid_anchor(anchor: Any) -> bool:
+    """Summary: Check whether an anchor object has numeric x/y."""
+
+    return isinstance(anchor, dict) and "x" in anchor and "y" in anchor
+
+
+def _clone_anchor(anchor: Dict[str, Any]) -> Dict[str, int]:
+    """Summary: Clone anchor coordinates as ints."""
+
+    return {"x": int(anchor["x"]), "y": int(anchor["y"])}
+
+
+def fix_dotted_circle_mark_base(ttf_json: Dict[str, Any]) -> Dict[str, int]:
+    """Summary: Ensure U+25CC dotted circle works with combining marks.
+
+    Args:
+        ttf_json: Parsed otfcc JSON.
+
+    Returns:
+        Dict[str, int]: Stats for cmap/GDEF/GPOS updates.
+
+    Example:
+        fix_dotted_circle_mark_base({"cmap": {}, "GPOS": {}})
+    """
+
+    stats = {
+        "cmap_updates": 0,
+        "class_updates": 0,
+        "subtables_touched": 0,
+        "base_anchor_updates": 0,
+    }
+
+    glyph_order = ttf_json.get("glyph_order", [])
+    if not isinstance(glyph_order, list):
+        return stats
+    glyph_set = set(glyph_order)
+
+    dotted_glyph_name = "uni25CC" if "uni25CC" in glyph_set else None
+    if dotted_glyph_name is None:
+        return stats
+
+    cmap = ttf_json.setdefault("cmap", {})
+    dotted_key = str(0x25CC)
+    if cmap.get(dotted_key) != dotted_glyph_name:
+        cmap[dotted_key] = dotted_glyph_name
+        stats["cmap_updates"] += 1
+
+    gdef = ttf_json.setdefault("GDEF", {})
+    glyph_class_def = gdef.setdefault("glyphClassDef", {})
+    if glyph_class_def.get(dotted_glyph_name) != 1:
+        glyph_class_def[dotted_glyph_name] = 1
+        stats["class_updates"] += 1
+
+    gpos = ttf_json.get("GPOS", {})
+    lookups = gpos.get("lookups", {}) if isinstance(gpos, dict) else {}
+    if not isinstance(lookups, dict):
+        return stats
+
+    template_candidates = ("a", "o", "A", "O")
+
+    for lookup in lookups.values():
+        if not isinstance(lookup, dict) or lookup.get("type") != "gpos_mark_to_base":
+            continue
+        subtables = lookup.get("subtables")
+        if not isinstance(subtables, list):
+            continue
+
+        for subtable in subtables:
+            if not isinstance(subtable, dict):
+                continue
+            marks = subtable.get("marks")
+            bases = subtable.get("bases")
+            if not isinstance(marks, dict) or not isinstance(bases, dict):
+                continue
+
+            required_classes: set[str] = set()
+            for mark_entry in marks.values():
+                if isinstance(mark_entry, dict):
+                    cls = mark_entry.get("class")
+                    if isinstance(cls, str) and cls:
+                        required_classes.add(cls)
+            if not required_classes:
+                continue
+
+            template_bases: Dict[str, Dict[str, Any]] = {}
+            for candidate in template_candidates:
+                base_entry = bases.get(candidate)
+                if isinstance(base_entry, dict) and any(_valid_anchor(v) for v in base_entry.values()):
+                    template_bases[candidate] = base_entry
+            if not template_bases:
+                continue
+
+            fallback_anchor: Dict[str, Any] | None = None
+            for candidate in template_candidates:
+                base_entry = template_bases.get(candidate)
+                if not base_entry:
+                    continue
+                for anchor in base_entry.values():
+                    if _valid_anchor(anchor):
+                        fallback_anchor = anchor
+                        break
+                if fallback_anchor is not None:
+                    break
+            if fallback_anchor is None:
+                continue
+
+            dotted_base = bases.get(dotted_glyph_name)
+            if not isinstance(dotted_base, dict):
+                dotted_base = {}
+                bases[dotted_glyph_name] = dotted_base
+
+            updated = False
+            for cls in sorted(required_classes):
+                existing = dotted_base.get(cls)
+                if _valid_anchor(existing):
+                    continue
+                src: Dict[str, Any] | None = None
+                for candidate in template_candidates:
+                    base_entry = template_bases.get(candidate)
+                    if not base_entry:
+                        continue
+                    anchor = base_entry.get(cls)
+                    if _valid_anchor(anchor):
+                        src = anchor
+                        break
+                if not _valid_anchor(src):
+                    src = fallback_anchor
+                dotted_base[cls] = _clone_anchor(src)
+                stats["base_anchor_updates"] += 1
+                updated = True
+
+            if updated:
+                stats["subtables_touched"] += 1
+
+    return stats
+
+
+def _glyph_bounds(glyf_entry: Dict[str, Any]) -> Tuple[int, int, int, int] | None:
+    """Summary: Get glyph contour bounds from otfcc glyf entry."""
+
+    contours = glyf_entry.get("contours")
+    if not isinstance(contours, list) or not contours:
+        return None
+    xs: List[int] = []
+    ys: List[int] = []
+    for contour in contours:
+        if not isinstance(contour, list):
+            continue
+        for point in contour:
+            if not isinstance(point, dict):
+                continue
+            x = point.get("x")
+            y = point.get("y")
+            if isinstance(x, (int, float)):
+                xs.append(int(x))
+            if isinstance(y, (int, float)):
+                ys.append(int(y))
+    if not xs or not ys:
+        return None
+    return min(xs), max(xs), min(ys), max(ys)
+
+
+def fix_uni030d(ttf_json: Dict[str, Any]) -> Dict[str, int]:
+    """Summary: Ensure uni030D is a valid mark with GPOS mark entries.
+
+    Args:
+        ttf_json: Parsed otfcc JSON.
+
+    Returns:
+        Dict[str, int]: Stats for class/mark updates.
+    """
+
+    stats = {"class_updates": 0, "mark_entries_updated": 0, "subtables_touched": 0}
+
+    glyph_order = ttf_json.get("glyph_order", [])
+    if not isinstance(glyph_order, list):
+        return stats
+    glyph_set = set(glyph_order)
+    if "uni030D" not in glyph_set:
+        return stats
+
+    gdef = ttf_json.setdefault("GDEF", {})
+    glyph_class_def = gdef.setdefault("glyphClassDef", {})
+    if glyph_class_def.get("uni030D") != 3:
+        glyph_class_def["uni030D"] = 3
+        stats["class_updates"] += 1
+
+    glyf = ttf_json.get("glyf", {})
+    if not isinstance(glyf, dict):
+        return stats
+
+    src_mark = "uni030C" if "uni030C" in glyph_set else ("acutecomb" if "acutecomb" in glyph_set else None)
+    if src_mark is None:
+        return stats
+
+    dst_bounds = _glyph_bounds(glyf.get("uni030D", {}))
+    src_bounds = _glyph_bounds(glyf.get(src_mark, {}))
+    dx = 0
+    dy = 0
+    if dst_bounds is not None and src_bounds is not None:
+        src_cx = (src_bounds[0] + src_bounds[1]) // 2
+        src_cy = (src_bounds[2] + src_bounds[3]) // 2
+        dst_cx = (dst_bounds[0] + dst_bounds[1]) // 2
+        dst_cy = (dst_bounds[2] + dst_bounds[3]) // 2
+        dx = dst_cx - src_cx
+        dy = dst_cy - src_cy
+
+    gpos = ttf_json.get("GPOS", {})
+    lookups = gpos.get("lookups", {}) if isinstance(gpos, dict) else {}
+    if not isinstance(lookups, dict):
+        return stats
+
+    for lookup in lookups.values():
+        if not isinstance(lookup, dict) or lookup.get("type") not in ("gpos_mark_to_base", "gpos_mark_to_mark"):
+            continue
+        subtables = lookup.get("subtables")
+        if not isinstance(subtables, list):
+            continue
+        for subtable in subtables:
+            if not isinstance(subtable, dict):
+                continue
+            marks = subtable.get("marks")
+            if not isinstance(marks, dict):
+                continue
+
+            src_entry = marks.get(src_mark)
+            if not isinstance(src_entry, dict):
+                continue
+            cls = src_entry.get("class")
+            x = src_entry.get("x")
+            y = src_entry.get("y")
+            if not isinstance(cls, str) or not isinstance(x, (int, float)) or not isinstance(y, (int, float)):
+                continue
+
+            new_entry = {"class": cls, "x": int(x) + dx, "y": int(y) + dy}
+            if marks.get("uni030D") != new_entry:
+                marks["uni030D"] = new_entry
+                stats["mark_entries_updated"] += 1
+                stats["subtables_touched"] += 1
+
+    return stats
+
+
 def apply_json_fixes(
     data: Dict[str, Any], rules_json_path: Path
-) -> Tuple[List[Tuple[int, str]], List[int], Dict[str, int], Dict[str, int]]:
+) -> Tuple[List[Tuple[int, str]], List[int], Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int]]:
     """Summary: Apply cmap, GDEF, GPOS, and GSUB fixes to otfcc JSON.
 
     Args:
@@ -252,8 +495,9 @@ def apply_json_fixes(
         rules_json_path: Path to additional GSUB rules JSON.
 
     Returns:
-        tuple[list[tuple[int, str]], list[int], dict[str, int], dict[str, int]]:
-            Added cmap entries, missing codepoints, uni0358 stats, and ccmp stats.
+        tuple[list[tuple[int, str]], list[int], dict[str, int], dict[str, int], dict[str, int], dict[str, int]]:
+            Added cmap entries, missing codepoints, uni0358 stats, ccmp stats,
+            dotted-circle stats, and uni030D stats.
 
     Example:
         apply_json_fixes({"cmap": {}, "glyph_order": []})
@@ -281,6 +525,8 @@ def apply_json_fixes(
         added.append((cp, glyph_name))
 
     uni0358_stats = fix_uni0358(data)
+    dotted_circle_stats = fix_dotted_circle_mark_base(data)
+    uni030d_stats = fix_uni030d(data)
     ccmp_stats = {"feature_updates": 0, "lookup_updates": 0, "rules_added_or_updated": 0, "languages_updated": 0}
     ccmp_stats["rules_added_or_updated"] += 0
     # Keep legacy i-based ccmp updates.
@@ -294,7 +540,7 @@ def apply_json_fixes(
     ccmp_stats["lookup_updates"] += int(rule_stats.get("lookup_updates", 0))
     ccmp_stats["rules_added_or_updated"] += int(rule_stats.get("rules_added_or_updated", 0))
     ccmp_stats["languages_updated"] += int(rule_stats.get("languages_updated", 0))
-    return added, missing, uni0358_stats, ccmp_stats
+    return added, missing, uni0358_stats, ccmp_stats, dotted_circle_stats, uni030d_stats
 
 
 def copy_patched_tables(original_font_path: Path, patched_font_path: Path, output_path: Path) -> None:
@@ -353,7 +599,9 @@ def main() -> int:
         run_cmd([args.otfccdump, "--pretty", str(input_path), "-o", str(json_path)])
 
         data = load_json_with_fallback(json_path)
-        added, missing, uni0358_stats, ccmp_stats = apply_json_fixes(data, rules_json_path)
+        added, missing, uni0358_stats, ccmp_stats, dotted_circle_stats, uni030d_stats = apply_json_fixes(
+            data, rules_json_path
+        )
 
         with json_path.open("w", encoding="utf-8", newline="\n") as handle:
             json.dump(data, handle, ensure_ascii=False, indent=2)
@@ -388,6 +636,19 @@ def main() -> int:
         f"lookup_updates={ccmp_stats['lookup_updates']}, "
         f"rules_added_or_updated={ccmp_stats['rules_added_or_updated']}, "
         f"languages_updated={ccmp_stats['languages_updated']}"
+    )
+    print(
+        "dotted-circle fix stats: "
+        f"cmap_updates={dotted_circle_stats['cmap_updates']}, "
+        f"class_updates={dotted_circle_stats['class_updates']}, "
+        f"subtables_touched={dotted_circle_stats['subtables_touched']}, "
+        f"base_anchor_updates={dotted_circle_stats['base_anchor_updates']}"
+    )
+    print(
+        "uni030D fix stats: "
+        f"class_updates={uni030d_stats['class_updates']}, "
+        f"mark_entries_updated={uni030d_stats['mark_entries_updated']}, "
+        f"subtables_touched={uni030d_stats['subtables_touched']}"
     )
 
     print(f"Done: {output_path}")
