@@ -84,7 +84,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 
 	- uni0237 dotless j
 		- add 2 dots before the point of the tail of the j
-		- move the point of the tail of the j, left 3 steps
+		- move the point of the tail of the j, left 5 steps
+		
 		#- copy the j from J to background
 		#- move the head lower
 		#- in forground, leave only the head, delete all other parts
@@ -103,7 +104,18 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 
 
 	- O
-	- Q
+		- shrink the width for O by move each side of O towards center, 4 steps progressively
+		- move O left 4 steps
+		- move the right of the width control, left 8 steps, 
+			(300)768 -> 688
+			(700)759 -> 679
+		- due to the width is decreased by 80, all other combinedmark with I should move the part left 4 steps
+			32 個：
+			O_uni030D、Oacute、Obreve、Ocircumflex、Odieresis、Ograve、Ohungarumlaut、Omacron、Otilde、uni01D1、uni020C、uni020E、uni022A、uni022C、uni0230、uni1E4C、uni1E4E、uni1E50、uni1E52、uni1ECC、uni1ED0、uni1ED2、uni1ED4、uni1ED6、uni1ED8、uni1EDC、uni1EDE、uni1EE0、uni1ECE、
+			upper part move left 2 more steps
+			Ohorn、uni1EDA、 uni1EE2
+			
+	
 	
 	- ◌ U+25CC  虛線圓
 		
@@ -317,6 +329,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- rotate clockwise 40 degree 
 		- move right 35 steps down 34 steps
 		
+		
 		- in Quicksand-VariableFont_wght-W700.ufo.sfd
 		- copy Q from modified Quicksand-VariableFont_wght-W300.ufo.sfd
 		- select the inner line of "O", Scale Uniformly 75%
@@ -329,6 +342,13 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- right 20 steps
 		- up 7 steps
 		
+		
+		after O width shrink
+		- copy the width shrinked "O", delete old O
+		- move "\" left 
+			(300)8 steps
+			(700)whole 3 steps, bottom part left 3 more steps, then move the center control point up 0.8 steps
+		- move the right of the width control, left 8 steps, 782 -> 702
 		
 	- R
 		- Copy original R to background
