@@ -2,12 +2,43 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	- j 
 		- in Quicksand-VariableFont_wght-W300.ufo.sfd
 		- shrink width from 268 to 206, same width as "i"
+	- k
+		- copy "e" to the background of "k"
+		- move the left side of "/" and "\" to touch the intersection of "|" and "-"
+		- add a dot at the bottom left of "/", convert the dot type to "corner"
+	
+	- K
+		- width should be similar and a little bigger then R
+		- copy the middle of "H" to the background of "K"
+		- move the left side of "/" and "\" to touch the intersection of "|" and "-"
+		- add a dot at the bottom left of "/", convert the dot type to "corner"
+		- move the bottom left of "/" up inside the "K"
+		- (300 only)move the right side of "K", left 2 steps
+		- (300 only)move the right of the width control, left 2 steps, 682 -> 662
+		
+		
+	
 	- u
 		- create the tail from "i"
 		-> view -> Number Points -> TrueType
 		- do exactly the same procdue on the exactly point number on both 300 and 700
 		- lift up the curve to the tail 2 steps
 		- move the curve join point to the tail right 1 step
+		
+	- y
+		- cut original outline to background
+		- copy from "v", paste to the foreground, this will change the width from 
+			(300) 562 to 518
+			(700) 587 to 562 
+		- copy "j" to the backgrond
+		- select the upper "|" of the "j"
+		- click on the bottom center of the |, roate clockwise 23 by "Last Press"
+		- move the "j" to align with the right side of the "v"
+		- cut the upper part of "j", move to foreground
+		
+
+		
+		
 		
 	- acutecomb
 		- press the bottom
