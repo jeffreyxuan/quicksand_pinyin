@@ -1,7 +1,9 @@
 W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	- j 
 		- in Quicksand-VariableFont_wght-W300.ufo.sfd
-		- shrink width from 268 to 206, same width as "i"
+		- shrink width from 268 to 236
+		#- shrink width from 268 to 206, same width as "i"
+		
 	- k
 		- copy "e" to the background of "k"
 		- move the left side of "/" and "\" to touch the intersection of "|" and "-"
@@ -46,9 +48,42 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- set width to same as I
 		- cut "=" from background to foreground
 		- move top of the "|" 2 steps down
+		- make the cure smooth, move the cure control points of the bottom left , right 1 to 2 steps
 	
 		
-	- J
+	- J 
+		- in Quicksand-VariableFont_wght-W300.ufo.sfd
+		- original width was 578
+		- copy uni0304, align with the top center of J
+		- select left part of uni0304, move left 6 steps
+		- select right part of uni0304, move right 6 steps
+		- cut the head of "|", join to make it flat
+		- disjoin the tail of "J"
+		- rotate the point by -35
+		- rejoin the point to J
+		- move left 5 steps
+		
+		
+		#- set width to 512
+		#- J move left 4 steps
+		#- shrink the width for J by move each part of J left 2 steps progressively
+		#- copy uni0304, align with the top center of J
+		#- move top of the "|" 2 steps down		
+		#- implement kerning, copy "T"
+		
+		- in Quicksand-VariableFont_wght-W700.ufo.sfd
+		- original width was 552
+		- copy uni0304, align with the top center of J
+		- select left part of uni0304, move left 6 steps
+		- select right part of uni0304, move right 6 steps
+		- cut the head of "|", join to make it flat
+		- disjoin the tail of "J"
+		- rotate the point by -25
+		- rejoin the point to J
+		- move left 5 steps
+		
+	- O
+	- Q
 	
 	- ◌ U+25CC  虛線圓
 		

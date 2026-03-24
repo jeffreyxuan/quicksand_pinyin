@@ -4,6 +4,7 @@ y
 K
 k
 I
+J
 Ibreve
 uni01CF
 Icircumflex
