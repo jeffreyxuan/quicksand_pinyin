@@ -1,9 +1,4 @@
-W300 UFO, select "Round to Int" during rotate, rotate by Last press
-	- j 
-		- in Quicksand-VariableFont_wght-W300.ufo.sfd
-		- shrink width from 268 to 236
-		#- shrink width from 268 to 206, same width as "i"
-		
+W300 UFO, select "Round to Int" during rotate, rotate by Last press	
 	- k
 		- copy "e" to the background of "k"
 		- move the left side of "/" and "\" to touch the intersection of "|" and "-"
@@ -82,6 +77,31 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- rejoin the point to J
 		- move left 5 steps
 		
+	- j 
+		#- in Quicksand-VariableFont_wght-W300.ufo.sfd
+		- shrink width from 268 to 236
+		#- shrink width from 268 to 206, same width as "i"
+
+	- uni0237 dotless j
+		- add 2 dots before the point of the tail of the j
+		- move the point of the tail of the j, left 3 steps
+		#- copy the j from J to background
+		#- move the head lower
+		#- in forground, leave only the head, delete all other parts
+		#- move the J to the foreground
+		#- join the body and head
+		#- merge the 4 dots ate bottom right
+		
+		#- in Quicksand-VariableFont_wght-W300.ufo.sfd
+		#- move tail right 6 steps
+		
+		#- in Quicksand-VariableFont_wght-W700.ufo.sfd
+		#- move tail right 4 steps
+		
+		#- merge a dot at the tail
+		#- move tail right 4 steps
+
+
 	- O
 	- Q
 	
