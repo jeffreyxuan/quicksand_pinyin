@@ -591,7 +591,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- reference from ocircumflex + uni0358
 
 	- ǒ͘
-		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name ocaron_uni0358
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D2_uni0358
 		- reference from ocaron + uni0358
 
 	- ō͘
@@ -627,7 +627,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- reference from Ocircumflex + uni0358
 
 	- Ǒ͘
-		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ocaron_uni0358
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D1_uni0358
 		- reference from Ocaron + uni0358
 
 	- Ō͘

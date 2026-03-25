@@ -113,7 +113,7 @@ o_uni0358
 oacute_uni0358
 ograve_uni0358
 ocircumflex_uni0358
-ocaron_uni0358
+uni01D2_uni0358
 omacron_uni0358
 o_uni030D_uni0358
 obreve_uni0358
@@ -122,7 +122,7 @@ O_uni0358
 Oacute_uni0358
 Ograve_uni0358
 Ocircumflex_uni0358
-Ocaron_uni0358
+uni01D1_uni0358
 Omacron_uni0358
 O_uni030D_uni0358
 Obreve_uni0358

@@ -20804,11 +20804,11 @@ Refer: 809 856 S 1 0 0 1 380 0 2
 Refer: 380 244 N 1 0 0 1 0 0 2
 EndChar
 
-StartChar: ocaron_uni0358
+StartChar: uni01D2_uni0358
 Encoding: 848 -1 850
 Width: 597
 VWidth: 0
-Flags: WO
+Flags: W
 LayerCount: 2
 Fore
 Refer: 809 856 S 1 0 0 1 380 0 2
@@ -20893,7 +20893,7 @@ Refer: 809 856 S 1 0 0 1 470 210 2
 Refer: 135 212 N 1 0 0 1 0 0 2
 EndChar
 
-StartChar: Ocaron_uni0358
+StartChar: uni01D1_uni0358
 Encoding: 857 -1 858
 Width: 688
 VWidth: 0

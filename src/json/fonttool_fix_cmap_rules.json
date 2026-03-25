@@ -419,7 +419,7 @@
         "uni0358",
         "uni030D"
       ],
-      "to": "o_uni030D_uni0358"
+      "to": "uni01D2_uni0358"
     },
     {
       "enabled": true,
@@ -434,7 +434,7 @@
         "uni030D",
         "uni0358"
       ],
-      "to": "o_uni030D_uni0358"
+      "to": "uni01D2_uni0358"
     },
     {
       "enabled": true,
@@ -449,7 +449,7 @@
         "uni0358",
         "uni030D"
       ],
-      "to": "O_uni030D_uni0358"
+      "to": "uni01D1_uni0358"
     },
     {
       "enabled": true,
@@ -464,7 +464,231 @@
         "uni030D",
         "uni0358"
       ],
-      "to": "O_uni030D_uni0358"
+      "to": "uni01D1_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "o",
+        "uni0358"
+      ],
+      "to": "o_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "oacute",
+        "uni0358"
+      ],
+      "to": "oacute_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "ograve",
+        "uni0358"
+      ],
+      "to": "ograve_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "ocircumflex",
+        "uni0358"
+      ],
+      "to": "ocircumflex_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "uni01D2",
+        "uni0358"
+      ],
+      "to": "uni01D2_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "omacron",
+        "uni0358"
+      ],
+      "to": "omacron_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "obreve",
+        "uni0358"
+      ],
+      "to": "obreve_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "ohungarumlaut",
+        "uni0358"
+      ],
+      "to": "ohungarumlaut_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "O",
+        "uni0358"
+      ],
+      "to": "O_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "Oacute",
+        "uni0358"
+      ],
+      "to": "Oacute_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "Ograve",
+        "uni0358"
+      ],
+      "to": "Ograve_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "Ocircumflex",
+        "uni0358"
+      ],
+      "to": "Ocircumflex_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "uni01D1",
+        "uni0358"
+      ],
+      "to": "uni01D1_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "Omacron",
+        "uni0358"
+      ],
+      "to": "Omacron_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "Obreve",
+        "uni0358"
+      ],
+      "to": "Obreve_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "Ohungarumlaut",
+        "uni0358"
+      ],
+      "to": "Ohungarumlaut_uni0358"
     }
   ]
 }
