@@ -17,7 +17,6 @@ from fontTools.ttLib import TTFont
 from ff_fix_cmap import (
     collect_required_codepoints,
     fix_i_ccmp,
-    fix_uni0358,
     load_json_with_fallback,
     pick_glyph_name,
     run_cmd,
@@ -26,6 +25,8 @@ from ff_fix_cmap import (
 
 PATCHED_TABLE_TAGS = ("cmap", "GDEF", "GPOS", "GSUB")
 DEFAULT_RULES_JSON = Path(__file__).resolve().parents[1] / "json" / "fonttool_fix_cmap_rules.json"
+UNI030D_ON_UNI0358_X_SHIFT = -12
+UNI030D_ON_UNI0358_Y_SHIFT = 30
 
 
 def parse_args() -> argparse.Namespace:
@@ -89,6 +90,29 @@ def ensure_lookup_has_substitutions(lookup: Dict[str, Any]) -> List[Dict[str, An
         substitutions = []
         first_subtable["substitutions"] = substitutions
     return substitutions
+
+
+def sort_ligature_substitutions(substitutions: List[Dict[str, Any]]) -> None:
+    """Summary: Sort ligature substitutions by longest source sequence first.
+
+    Args:
+        substitutions: Mutable substitutions list.
+
+    Returns:
+        None
+
+    Example:
+        sort_ligature_substitutions([{"from": ["a", "b"], "to": "ab"}])
+    """
+
+    def _key(item: Dict[str, Any]) -> Tuple[int, str]:
+        src = item.get("from")
+        if isinstance(src, list):
+            src_list = [str(x) for x in src]
+            return (-len(src_list), "|".join(src_list))
+        return (0, "")
+
+    substitutions.sort(key=_key)
 
 
 def load_rules(rules_json_path: Path) -> List[Dict[str, Any]]:
@@ -217,6 +241,10 @@ def apply_ligature_rules(ttf_json: Dict[str, Any], rules: Iterable[Dict[str, Any
         if not found:
             substitutions.append({"from": from_list, "to": to_glyph})
             stats["rules_added_or_updated"] += 1
+
+        # Keep longer ligature patterns first, so 3-glyph rules are not shadowed
+        # by earlier 2-glyph rules in the same lookup.
+        sort_ligature_substitutions(substitutions)
 
         if lookup_name not in lookup_order and isinstance(lookup_order, list):
             lookup_order.append(lookup_name)
@@ -397,11 +425,178 @@ def _glyph_bounds(glyf_entry: Dict[str, Any]) -> Tuple[int, int, int, int] | Non
             y = point.get("y")
             if isinstance(x, (int, float)):
                 xs.append(int(x))
+            elif isinstance(x, list) and x:
+                head = x[0]
+                if isinstance(head, (int, float)):
+                    xs.append(int(head))
             if isinstance(y, (int, float)):
                 ys.append(int(y))
+            elif isinstance(y, list) and y:
+                head = y[0]
+                if isinstance(head, (int, float)):
+                    ys.append(int(head))
     if not xs or not ys:
         return None
     return min(xs), max(xs), min(ys), max(ys)
+
+
+def _set_base_anchor(base: Dict[str, Any], anchor_name: str, x: int, y: int) -> bool:
+    """Summary: Set base anchor value and report whether it changed."""
+
+    new = {"x": int(x), "y": int(y)}
+    if base.get(anchor_name) == new:
+        return False
+    base[anchor_name] = new
+    return True
+
+
+def fix_uni0358(ttf_json: Dict[str, Any]) -> Dict[str, int]:
+    """Summary: Fix uni0358 mark/base anchors with lowercase-priority baseline.
+
+    Args:
+        ttf_json: Parsed otfcc JSON.
+
+    Returns:
+        Dict[str, int]: Fix stats.
+
+    Example:
+        fix_uni0358({"GDEF": {}, "GPOS": {}, "glyf": {}})
+    """
+
+    stats = {
+        "class_updates": 0,
+        "mark_entries_updated": 0,
+        "subtables_touched": 0,
+        "base_anchor_updates": 0,
+    }
+
+    glyf = ttf_json.get("glyf", {})
+    if not isinstance(glyf, dict):
+        return stats
+
+    o_bounds = _glyph_bounds(glyf.get("O", {}))
+    lower_o_bounds = _glyph_bounds(glyf.get("o", {}))
+    uni0358_bounds = _glyph_bounds(glyf.get("uni0358", {}))
+    if o_bounds is None or lower_o_bounds is None or uni0358_bounds is None:
+        return stats
+
+    _, o_right_x, _, o_top_y = o_bounds
+    _, lower_o_right_x, _, lower_o_top_y = lower_o_bounds
+    uni0358_left_x, _, uni0358_bottom_y, _ = uni0358_bounds
+
+    gdef = ttf_json.setdefault("GDEF", {})
+    glyph_class_def = gdef.setdefault("glyphClassDef", {})
+    if glyph_class_def.get("uni0358") != 3:
+        glyph_class_def["uni0358"] = 3
+        stats["class_updates"] += 1
+
+    gpos = ttf_json.get("GPOS", {})
+    lookups = gpos.get("lookups", {})
+    if not isinstance(lookups, dict):
+        return stats
+
+    upper_o_glyphs = [
+        "O",
+        "Oacute",
+        "Ograve",
+        "Ocircumflex",
+        "uni01D1",
+        "Omacron",
+        "Obreve",
+        "Ohungarumlaut",
+    ]
+    lower_o_glyphs = [
+        "o",
+        "oacute",
+        "ograve",
+        "ocircumflex",
+        "uni01D2",
+        "omacron",
+        "obreve",
+        "ohungarumlaut",
+    ]
+
+    for lookup in lookups.values():
+        if not isinstance(lookup, dict) or lookup.get("type") != "gpos_mark_to_base":
+            continue
+        subtables = lookup.get("subtables")
+        if not isinstance(subtables, list):
+            continue
+
+        for subtable in subtables:
+            if not isinstance(subtable, dict):
+                continue
+            marks = subtable.get("marks")
+            bases = subtable.get("bases")
+            if not isinstance(marks, dict) or not isinstance(bases, dict):
+                continue
+
+            o_base = bases.get("O")
+            if not isinstance(o_base, dict):
+                continue
+
+            source_class = None
+            o_anchor = None
+            for cls in ("anchor4", "anchor2"):
+                anchor = o_base.get(cls)
+                if _valid_anchor(anchor):
+                    source_class = cls
+                    o_anchor = anchor
+                    break
+            if source_class is None or o_anchor is None:
+                continue
+
+            has_upper = any(isinstance(bases.get(g), dict) for g in upper_o_glyphs)
+            has_lower = any(isinstance(bases.get(g), dict) for g in lower_o_glyphs)
+            if not has_upper and not has_lower:
+                continue
+
+            # Lowercase priority: for o͘ we derive mark anchor from lowercase geometry first.
+            # This keeps o + uni0358 from floating too high when O/o heights differ.
+            lower_o_base = bases.get("o")
+            if has_lower and isinstance(lower_o_base, dict):
+                lower_src = lower_o_base.get(source_class)
+                if _valid_anchor(lower_src):
+                    ref_anchor_x = int(lower_src["x"])
+                    ref_anchor_y = int(lower_src["y"])
+                    ref_right_x = lower_o_right_x
+                    ref_top_y = lower_o_top_y
+                else:
+                    ref_anchor_x = int(o_anchor["x"])
+                    ref_anchor_y = int(o_anchor["y"])
+                    ref_right_x = o_right_x
+                    ref_top_y = o_top_y
+            else:
+                ref_anchor_x = int(o_anchor["x"])
+                ref_anchor_y = int(o_anchor["y"])
+                ref_right_x = o_right_x
+                ref_top_y = o_top_y
+
+            target_class = "anchor5"
+            mark_x = ref_anchor_x + uni0358_left_x - ref_right_x
+            mark_y = ref_anchor_y + uni0358_bottom_y - ref_top_y
+            new_mark = {"class": target_class, "x": int(mark_x), "y": int(mark_y)}
+            if marks.get("uni0358") != new_mark:
+                marks["uni0358"] = new_mark
+                stats["mark_entries_updated"] += 1
+
+            upper_base_x = o_right_x + mark_x - uni0358_left_x
+            upper_base_y = o_top_y + mark_y - uni0358_bottom_y
+            for glyph_name in upper_o_glyphs:
+                base = bases.get(glyph_name)
+                if isinstance(base, dict) and _set_base_anchor(base, target_class, upper_base_x, upper_base_y):
+                    stats["base_anchor_updates"] += 1
+
+            lower_base_x = lower_o_right_x + mark_x - uni0358_left_x
+            lower_base_y = lower_o_top_y + mark_y - uni0358_bottom_y
+            for glyph_name in lower_o_glyphs:
+                base = bases.get(glyph_name)
+                if isinstance(base, dict) and _set_base_anchor(base, target_class, lower_base_x, lower_base_y):
+                    stats["base_anchor_updates"] += 1
+
+            stats["subtables_touched"] += 1
+
+    return stats
 
 
 def fix_uni030d(ttf_json: Dict[str, Any]) -> Dict[str, int]:
@@ -414,7 +609,12 @@ def fix_uni030d(ttf_json: Dict[str, Any]) -> Dict[str, int]:
         Dict[str, int]: Stats for class/mark updates.
     """
 
-    stats = {"class_updates": 0, "mark_entries_updated": 0, "subtables_touched": 0}
+    stats = {
+        "class_updates": 0,
+        "mark_entries_updated": 0,
+        "subtables_touched": 0,
+        "base_anchor_updates": 0,
+    }
 
     glyph_order = ttf_json.get("glyph_order", [])
     if not isinstance(glyph_order, list):
@@ -439,6 +639,7 @@ def fix_uni030d(ttf_json: Dict[str, Any]) -> Dict[str, int]:
 
     dst_bounds = _glyph_bounds(glyf.get("uni030D", {}))
     src_bounds = _glyph_bounds(glyf.get(src_mark, {}))
+    uni0358_bounds = _glyph_bounds(glyf.get("uni0358", {}))
     dx = 0
     dy = 0
     if dst_bounds is not None and src_bounds is not None:
@@ -480,6 +681,41 @@ def fix_uni030d(ttf_json: Dict[str, Any]) -> Dict[str, int]:
             if marks.get("uni030D") != new_entry:
                 marks["uni030D"] = new_entry
                 stats["mark_entries_updated"] += 1
+                stats["subtables_touched"] += 1
+
+            if lookup.get("type") != "gpos_mark_to_mark" or uni0358_bounds is None:
+                continue
+
+            bases = subtable.get("bases")
+            if not isinstance(bases, dict):
+                continue
+
+            uni0358_base = bases.get("uni0358")
+            if not isinstance(uni0358_base, dict):
+                uni0358_base = {}
+                bases["uni0358"] = uni0358_base
+
+            target_x = (uni0358_bounds[0] + uni0358_bounds[1]) // 2
+            target_y = uni0358_bounds[3]
+
+            src_base_entry = bases.get(src_mark)
+            if isinstance(src_base_entry, dict):
+                src_anchor = src_base_entry.get(cls)
+                if _valid_anchor(src_anchor) and src_bounds is not None:
+                    src_cx = (src_bounds[0] + src_bounds[1]) // 2
+                    src_top = src_bounds[3]
+                    target_x += int(src_anchor["x"]) - src_cx
+                    target_y += int(src_anchor["y"]) - src_top
+
+            # Optical tweak for o̍͘ / O̍͘:
+            # move the stacked uni030D slightly left and higher on uni0358.
+            target_x += UNI030D_ON_UNI0358_X_SHIFT
+            target_y += UNI030D_ON_UNI0358_Y_SHIFT
+
+            new_base_anchor = {"x": int(target_x), "y": int(target_y)}
+            if uni0358_base.get(cls) != new_base_anchor:
+                uni0358_base[cls] = new_base_anchor
+                stats["base_anchor_updates"] += 1
                 stats["subtables_touched"] += 1
 
     return stats
@@ -648,7 +884,8 @@ def main() -> int:
         "uni030D fix stats: "
         f"class_updates={uni030d_stats['class_updates']}, "
         f"mark_entries_updated={uni030d_stats['mark_entries_updated']}, "
-        f"subtables_touched={uni030d_stats['subtables_touched']}"
+        f"subtables_touched={uni030d_stats['subtables_touched']}, "
+        f"base_anchor_updates={uni030d_stats['base_anchor_updates']}"
     )
 
     print(f"Done: {output_path}")

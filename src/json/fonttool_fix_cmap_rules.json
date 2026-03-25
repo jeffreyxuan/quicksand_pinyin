@@ -405,6 +405,66 @@
         "uni030D"
       ],
       "to": "N_uni030D"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "o",
+        "uni0358",
+        "uni030D"
+      ],
+      "to": "o_uni030D_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "o",
+        "uni030D",
+        "uni0358"
+      ],
+      "to": "o_uni030D_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "O",
+        "uni0358",
+        "uni030D"
+      ],
+      "to": "O_uni030D_uni0358"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "O",
+        "uni030D",
+        "uni0358"
+      ],
+      "to": "O_uni030D_uni0358"
     }
   ]
 }

@@ -573,3 +573,75 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- copy reference from uni030D
 		- align the bottom of uni030D to center
 		- delete "v"
+		
+	- o͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name o_uni0358
+		- reference from o + uni0358
+
+	- ó͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name oacute_uni0358
+		- reference from oacute + uni0358
+
+	- ò͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name ograve_uni0358
+		- reference from ograve + uni0358
+
+	- ô͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name ocircumflex_uni0358
+		- reference from ocircumflex + uni0358
+
+	- ǒ͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name ocaron_uni0358
+		- reference from ocaron + uni0358
+
+	- ō͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name omacron_uni0358
+		- reference from omacron + uni0358
+
+	- o̍͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name o_uni030D_uni0358
+		- reference from o_uni030D + uni0358
+
+	- ŏ͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name obreve_uni0358
+		- reference from obreve + uni0358
+
+	- ő͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name ohungarumlaut_uni0358
+		- reference from ohungarumlaut + uni0358
+
+	- O͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name O_uni0358
+		- reference from O + uni0358
+
+	- Ó͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Oacute_uni0358
+		- reference from Oacute + uni0358
+
+	- Ò͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ograve_uni0358
+		- reference from Ograve + uni0358
+
+	- Ô͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ocircumflex_uni0358
+		- reference from Ocircumflex + uni0358
+
+	- Ǒ͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ocaron_uni0358
+		- reference from Ocaron + uni0358
+
+	- Ō͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Omacron_uni0358
+		- reference from Omacron + uni0358
+
+	- O̍͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name O_uni030D_uni0358
+		- reference from O_uni030D + uni0358
+
+	- Ŏ͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Obreve_uni0358
+		- reference from Obreve + uni0358
+
+	- Ő͘
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ohungarumlaut_uni0358
+		- reference from Ohungarumlaut + uni0358

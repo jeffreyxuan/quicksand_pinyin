@@ -21,7 +21,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1773233631
-ModificationTime: 1774359925
+ModificationTime: 1774442161
 PfmFamily: 16
 TTFWeight: 300
 TTFWidth: 5
@@ -1671,8 +1671,8 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 650 25 8
-BeginChars: 844 844
+WinInfo: 625 25 10
+BeginChars: 862 862
 
 StartChar: .notdef
 Encoding: 0 -1 0
@@ -9106,7 +9106,7 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
-Refer: 376 111 N 1 0 0 1 0 0 2
+Refer: 376 111 S 1 0 0 1 0 0 2
 Refer: 744 780 S 1 0 0 1 142 0 2
 EndChar
 
@@ -20736,6 +20736,205 @@ SplineSet
  327 460 327 460 317.5 451 c 132,-1,83
  308 442 308 442 293 442 c 260,70,71
 EndSplineSet
+EndChar
+
+StartChar: o_uni0358
+Encoding: 844 -1 844
+Width: 597
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 376 111 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: oacute_uni0358
+Encoding: 845 -1 845
+Width: 597
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 377 243 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: o_uni030D_uni0358
+Encoding: 850 -1 846
+Width: 597
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 829 -1 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: O_uni030D_uni0358
+Encoding: 859 -1 847
+Width: 688
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 838 -1 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: ograve_uni0358
+Encoding: 846 -1 848
+Width: 597
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 391 242 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: ocircumflex_uni0358
+Encoding: 847 -1 849
+Width: 597
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 380 244 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: ocaron_uni0358
+Encoding: 848 -1 850
+Width: 597
+VWidth: 0
+Flags: WO
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 376 111 N 1 0 0 1 0 0 2
+Refer: 744 780 N 1 0 0 1 142 0 2
+EndChar
+
+StartChar: omacron_uni0358
+Encoding: 849 -1 851
+Width: 597
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 401 333 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: obreve_uni0358
+Encoding: 851 -1 852
+Width: 597
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 378 335 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: ohungarumlaut_uni0358
+Encoding: 852 -1 853
+Width: 597
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 399 337 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: O_uni0358
+Encoding: 853 -1 854
+Width: 688
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 131 79 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Oacute_uni0358
+Encoding: 854 -1 855
+Width: 688
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 132 211 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Ograve_uni0358
+Encoding: 855 -1 856
+Width: 688
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 146 210 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Ocircumflex_uni0358
+Encoding: 856 -1 857
+Width: 688
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 135 212 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Ocaron_uni0358
+Encoding: 857 -1 858
+Width: 688
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 134 465 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Omacron_uni0358
+Encoding: 858 -1 859
+Width: 688
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 156 332 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Obreve_uni0358
+Encoding: 860 -1 860
+Width: 688
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 133 334 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: Ohungarumlaut_uni0358
+Encoding: 861 -1 861
+Width: 688
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 154 336 N 1 0 0 1 0 0 2
 EndChar
 EndChars
 EndSplineFont
