@@ -19,6 +19,8 @@ Imacron
 Itilde
 Iogonek
 J
+uni004A0301
+Jcircumflex
 O
 O_uni030D
 Oacute

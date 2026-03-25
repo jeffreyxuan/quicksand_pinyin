@@ -77,6 +77,10 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- rejoin the point to J
 		- move left 5 steps
 		
+		- due J moved left 5 steps, all other combinedmark with J should move left 5 steps
+	- 0x65 uni004A0301
+	- 0x66 U+0134 Jcircumflex
+		
 	- j 
 		#- in Quicksand-VariableFont_wght-W300.ufo.sfd
 		- shrink width from 268 to 236
