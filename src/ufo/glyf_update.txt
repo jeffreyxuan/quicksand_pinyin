@@ -131,3 +131,4 @@ Obreve_uni0358
 Ohungarumlaut_uni0358
 imacron
 ibreve
+dotlessi

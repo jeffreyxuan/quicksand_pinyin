@@ -181,6 +181,10 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- copy from uni0307
 		- right 5 steps
 		- bottom align to the top of "o" (down 7 steps
+		
+	- ı dotlessi U+0131
+		- 300 head is higher than j
+		- 300 move down the head 1.5 step
 
 	- i̍ i_hungarumlautcomb = uni030D + dotlessi
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name i_hungarumlautcomb。
