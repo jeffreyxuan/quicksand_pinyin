@@ -21,6 +21,8 @@ Iogonek
 J
 uni004A0301
 Jcircumflex
+uni01C7
+uni01CA
 O
 O_uni030D
 Oacute

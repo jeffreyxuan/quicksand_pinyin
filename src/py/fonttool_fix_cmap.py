@@ -63,6 +63,13 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Copy all X-left/X-right kerning rules to I in kern PairPos lookups",
     )
+    parser.add_argument(
+        "--copy-kern-t-left-to-j",
+        "--copy_kern_T_left_only_to_J",
+        dest="copy_kern_t_left_to_j",
+        action="store_true",
+        help="Copy T-left kerning rules to J-left only (keep J-right kerning unchanged)",
+    )
     parser.add_argument("--otfccdump", default="otfccdump.exe", help="Path to otfccdump executable")
     parser.add_argument("--otfccbuild", default="otfccbuild.exe", help="Path to otfccbuild executable")
     return parser.parse_args()
@@ -393,6 +400,74 @@ def copy_kern_x_to_i(ttf_json: Dict[str, Any]) -> Dict[str, int]:
                 if second.get("I") != x_second_class:
                     second["I"] = x_second_class
                     stats["i_right_rules_added_or_updated"] += right_rules
+
+    return stats
+
+
+def copy_kern_t_left_only_to_j(ttf_json: Dict[str, Any]) -> Dict[str, int]:
+    """Summary: Copy kern rules from T-left to J-left only.
+
+    Args:
+        ttf_json: Parsed otfcc JSON.
+
+    Returns:
+        Dict[str, int]: Copy statistics.
+
+    Example:
+        copy_kern_t_left_only_to_j({"GPOS": {}})
+    """
+
+    stats = {
+        "t_left_rules_found": 0,
+        "j_left_rules_added_or_updated": 0,
+        "j_right_rules_preserved": 0,
+        "skipped_conflicts": 0,
+    }
+
+    gpos = ttf_json.get("GPOS", {})
+    if not isinstance(gpos, dict):
+        return stats
+
+    lookups = gpos.get("lookups", {})
+    features = gpos.get("features", {})
+    if not isinstance(lookups, dict) or not isinstance(features, dict):
+        return stats
+
+    kern_lookup_names = features.get("kern")
+    if not isinstance(kern_lookup_names, list):
+        kern_lookup_names = [name for name, lookup in lookups.items() if isinstance(lookup, dict) and lookup.get("type") == "gpos_pair"]
+
+    for lookup_name in kern_lookup_names:
+        lookup = lookups.get(lookup_name)
+        if not isinstance(lookup, dict) or lookup.get("type") != "gpos_pair":
+            continue
+        subtables = lookup.get("subtables")
+        if not isinstance(subtables, list):
+            continue
+
+        for subtable in subtables:
+            if not isinstance(subtable, dict):
+                continue
+            first = subtable.get("first")
+            second = subtable.get("second")
+            matrix = subtable.get("matrix")
+            if not isinstance(first, dict) or not isinstance(second, dict) or not isinstance(matrix, list):
+                continue
+
+            # Keep existing J-right kerning intact.
+            j_second_class = second.get("J")
+            if isinstance(j_second_class, int):
+                stats["j_right_rules_preserved"] += _count_nonzero_in_col(matrix, j_second_class)
+
+            t_first_class = first.get("T")
+            if not isinstance(t_first_class, int):
+                continue
+
+            left_rules = _count_nonzero_in_row(matrix, t_first_class)
+            stats["t_left_rules_found"] += left_rules
+            if first.get("J") != t_first_class:
+                first["J"] = t_first_class
+                stats["j_left_rules_added_or_updated"] += left_rules
 
     return stats
 
@@ -849,10 +924,14 @@ def fix_uni030d(ttf_json: Dict[str, Any]) -> Dict[str, int]:
 
 
 def apply_json_fixes(
-    data: Dict[str, Any], rules_json_path: Path, enable_copy_kern_x_to_i: bool
+    data: Dict[str, Any],
+    rules_json_path: Path,
+    enable_copy_kern_x_to_i: bool,
+    enable_copy_kern_t_left_to_j: bool,
 ) -> Tuple[
     List[Tuple[int, str]],
     List[int],
+    Dict[str, int],
     Dict[str, int],
     Dict[str, int],
     Dict[str, int],
@@ -864,11 +943,22 @@ def apply_json_fixes(
     Args:
         data: Parsed otfcc JSON.
         rules_json_path: Path to additional GSUB rules JSON.
+        enable_copy_kern_x_to_i: Whether to apply X->I kerning copy.
+        enable_copy_kern_t_left_to_j: Whether to apply T-left->J-left kerning copy.
 
     Returns:
-        tuple[list[tuple[int, str]], list[int], dict[str, int], dict[str, int], dict[str, int], dict[str, int]]:
+        tuple[
+            list[tuple[int, str]],
+            list[int],
+            dict[str, int],
+            dict[str, int],
+            dict[str, int],
+            dict[str, int],
+            dict[str, int],
+            dict[str, int],
+        ]:
             Added cmap entries, missing codepoints, uni0358 stats, ccmp stats,
-            dotted-circle stats, and uni030D stats.
+            dotted-circle stats, uni030D stats, X->I kern stats, and T->J kern stats.
 
     Example:
         apply_json_fixes({"cmap": {}, "glyph_order": []})
@@ -920,7 +1010,24 @@ def apply_json_fixes(
     }
     if enable_copy_kern_x_to_i:
         kern_copy_stats = copy_kern_x_to_i(data)
-    return added, missing, uni0358_stats, ccmp_stats, dotted_circle_stats, uni030d_stats, kern_copy_stats
+    kern_t_to_j_stats = {
+        "t_left_rules_found": 0,
+        "j_left_rules_added_or_updated": 0,
+        "j_right_rules_preserved": 0,
+        "skipped_conflicts": 0,
+    }
+    if enable_copy_kern_t_left_to_j:
+        kern_t_to_j_stats = copy_kern_t_left_only_to_j(data)
+    return (
+        added,
+        missing,
+        uni0358_stats,
+        ccmp_stats,
+        dotted_circle_stats,
+        uni030d_stats,
+        kern_copy_stats,
+        kern_t_to_j_stats,
+    )
 
 
 def copy_patched_tables(original_font_path: Path, patched_font_path: Path, output_path: Path) -> None:
@@ -979,8 +1086,20 @@ def main() -> int:
         run_cmd([args.otfccdump, "--pretty", str(input_path), "-o", str(json_path)])
 
         data = load_json_with_fallback(json_path)
-        added, missing, uni0358_stats, ccmp_stats, dotted_circle_stats, uni030d_stats, kern_copy_stats = apply_json_fixes(
-            data, rules_json_path, args.copy_kern_x_to_i
+        (
+            added,
+            missing,
+            uni0358_stats,
+            ccmp_stats,
+            dotted_circle_stats,
+            uni030d_stats,
+            kern_copy_stats,
+            kern_t_to_j_stats,
+        ) = apply_json_fixes(
+            data,
+            rules_json_path,
+            args.copy_kern_x_to_i,
+            args.copy_kern_t_left_to_j,
         )
 
         with json_path.open("w", encoding="utf-8", newline="\n") as handle:
@@ -1039,6 +1158,14 @@ def main() -> int:
         f"i_left_rules_added_or_updated={kern_copy_stats['i_left_rules_added_or_updated']}, "
         f"i_right_rules_added_or_updated={kern_copy_stats['i_right_rules_added_or_updated']}, "
         f"skipped_conflicts={kern_copy_stats['skipped_conflicts']}"
+    )
+    print(
+        "copy_kern_T_left_only_to_J stats: "
+        f"enabled={1 if args.copy_kern_t_left_to_j else 0}, "
+        f"t_left_rules_found={kern_t_to_j_stats['t_left_rules_found']}, "
+        f"j_left_rules_added_or_updated={kern_t_to_j_stats['j_left_rules_added_or_updated']}, "
+        f"j_right_rules_preserved={kern_t_to_j_stats['j_right_rules_preserved']}, "
+        f"skipped_conflicts={kern_t_to_j_stats['skipped_conflicts']}"
     )
 
     print(f"Done: {output_path}")

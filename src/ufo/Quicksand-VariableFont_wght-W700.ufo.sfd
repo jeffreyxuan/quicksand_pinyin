@@ -21,7 +21,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1773233665
-ModificationTime: 1774514334
+ModificationTime: 1774536455
 PfmFamily: 16
 TTFWeight: 700
 TTFWidth: 5
@@ -1671,7 +1671,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 175 25 10
+WinInfo: 75 25 10
 BeginChars: 862 862
 
 StartChar: .notdef
@@ -3517,7 +3517,7 @@ EndChar
 StartChar: J
 Encoding: 100 74 100
 GlifName: J
-Width: 552
+Width: 602
 VWidth: 0
 Flags: W
 LayerCount: 2
@@ -3559,30 +3559,30 @@ SplineSet
  573 614 573 614 555 597.5 c 128,-1,12
  537 581 537 581 512 581 c 257,13,-1
  218 581 l 257,0,1
-144 118 m 20,14,15
- 164 110 164 110 188 110 c 261,16,17
- 218 110 218 110 244 125 c 132,-1,18
- 270 140 270 140 286 165 c 132,-1,19
- 302 190 302 190 302 219 c 261,20,-1
- 302 639 l 270,21,-1
- 427 639 l 278,22,-1
- 427 219 l 261,23,24
- 427 158 427 158 395 106 c 132,-1,25
- 363 54 363 54 309 22 c 132,-1,26
- 255 -10 255 -10 188 -10 c 261,27,28
- 131 -10 131 -10 82 13 c 4,29,30
- 57 25 57 25 46.5 41 c 156,-1,31
- 36 57 36 57 40.5 87 c 156,-1,32
- 45 117 45 117 68 121.5 c 156,-1,33
- 91 126 91 126 108.5 125 c 28,34,35
- 130 122 130 122 144 118 c 20,14,15
+144 118 m 16,14,15
+ 164 110 164 110 188 110 c 257,16,17
+ 218 110 218 110 244 125 c 128,-1,18
+ 270 140 270 140 286 165 c 128,-1,19
+ 302 190 302 190 302 219 c 257,20,-1
+ 302 639 l 266,21,-1
+ 427 639 l 274,22,-1
+ 427 219 l 257,23,24
+ 427 158 427 158 395 106 c 128,-1,25
+ 363 54 363 54 309 22 c 128,-1,26
+ 255 -10 255 -10 188 -10 c 257,27,28
+ 131 -10 131 -10 82 13 c 0,29,30
+ 57 25 57 25 46.5 41 c 152,-1,31
+ 36 57 36 57 40.5 87 c 152,-1,32
+ 45 117 45 117 68 121.5 c 152,-1,33
+ 91 126 91 126 108.5 125 c 24,34,35
+ 130 122 130 122 144 118 c 16,14,15
 EndSplineSet
 EndChar
 
 StartChar: uni004A0301
 Encoding: 101 -1 101
 GlifName: uni004A0301
-Width: 552
+Width: 602
 VWidth: 0
 Flags: W
 LayerCount: 2
@@ -3594,7 +3594,7 @@ EndChar
 StartChar: Jcircumflex
 Encoding: 102 308 102
 GlifName: Jcircumflex
-Width: 552
+Width: 602
 VWidth: 0
 Flags: W
 LayerCount: 2
@@ -3727,7 +3727,7 @@ Flags: W
 LayerCount: 2
 Fore
 Refer: 105 76 N 1 0 0 1 0 0 2
-Refer: 100 74 N 1 0 0 1 562 0 2
+Refer: 100 74 S 1 0 0 1 512 0 2
 EndChar
 
 StartChar: Lacute
@@ -3968,7 +3968,7 @@ Flags: W
 LayerCount: 2
 Fore
 Refer: 118 78 N 1 0 0 1 0 0 2
-Refer: 100 74 N 1 0 0 1 735 0 2
+Refer: 100 74 N 1 0 0 1 665 0 2
 EndChar
 
 StartChar: Nacute
@@ -8128,7 +8128,7 @@ Encoding: 329 301 329
 GlifName: ibreve__1
 Width: 236
 VWidth: 0
-Flags: WO
+Flags: W
 LayerCount: 2
 Fore
 SplineSet

@@ -49,6 +49,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	- J 
 		- in Quicksand-VariableFont_wght-W300.ufo.sfd
 		- original width was 578
+		- move the width right control 3.8 steps, from 578 to 616
+			make the right side padding same as T(35)
 		- copy uni0304, align with the top center of J
 		- select left part of uni0304, move left 6 steps
 		- select right part of uni0304, move right 6 steps
@@ -56,7 +58,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- disjoin the tail of "J"
 		- rotate the point by -35
 		- rejoin the point to J
-		- move left 5 steps
+		- move left 5 + 2 steps
+		
 		
 		
 		#- set width to 512
@@ -68,6 +71,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 		- in Quicksand-VariableFont_wght-W700.ufo.sfd
 		- original width was 552
+		- move the width right control 5 steps, from 552 to 602
+			make the right side padding same as T
 		- copy uni0304, align with the top center of J
 		- select left part of uni0304, move left 6 steps
 		- select right part of uni0304, move right 6 steps
@@ -77,9 +82,17 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- rejoin the point to J
 		- move left 5 steps
 		
-		- due J moved left 5 steps, all other combinedmark with J should move left 5 steps
+		- (300)due J moved left 5 + 2 steps, all other combinedmark with J should 
+			move left 5 + 2 steps
 	- 0x65 uni004A0301
 	- 0x66 U+0134 Jcircumflex
+	
+	- Ǉ U+01C7 uni01C7
+		- (300)J move left 3 steps
+		- (700)J move left 5 steps
+	- Ǌ U+01CA uni01CA
+		- J move left 7 steps
+
 		
 	- j 
 		#- in Quicksand-VariableFont_wght-W300.ufo.sfd

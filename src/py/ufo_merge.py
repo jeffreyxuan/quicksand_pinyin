@@ -494,7 +494,7 @@ def run_fonttool_fix_cmap(input_ttf: Path, output_ttf: Path) -> None:
         str(input_ttf),
         "-output",
         str(output_ttf),
-        "--copy-kern-x-to-i",
+        "--copy_kern_T_left_only_to_J",
     ]
     result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
     if result.stdout:
