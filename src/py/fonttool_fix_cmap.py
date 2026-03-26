@@ -58,6 +58,11 @@ def parse_args() -> argparse.Namespace:
         default=str(DEFAULT_RULES_JSON),
         help="Path to JSON rules file for extra GSUB ligature substitutions",
     )
+    parser.add_argument(
+        "--copy-kern-x-to-i",
+        action="store_true",
+        help="Copy all X-left/X-right kerning rules to I in kern PairPos lookups",
+    )
     parser.add_argument("--otfccdump", default="otfccdump.exe", help="Path to otfccdump executable")
     parser.add_argument("--otfccbuild", default="otfccbuild.exe", help="Path to otfccbuild executable")
     return parser.parse_args()
@@ -266,6 +271,128 @@ def apply_ligature_rules(ttf_json: Dict[str, Any], rules: Iterable[Dict[str, Any
                 if feature_name not in feats:
                     feats.append(feature_name)
                     stats["languages_updated"] += 1
+
+    return stats
+
+
+def _is_nonzero_pair_value(value: Any) -> bool:
+    """Summary: Check whether a kerning matrix value is non-zero.
+
+    Args:
+        value: Pair adjustment value from otfcc JSON matrix.
+
+    Returns:
+        bool: True when value has a non-zero adjustment.
+
+    Example:
+        _is_nonzero_pair_value(-20)
+    """
+
+    if isinstance(value, (int, float)):
+        return int(value) != 0
+    if isinstance(value, dict):
+        for sub_value in value.values():
+            if _is_nonzero_pair_value(sub_value):
+                return True
+        return False
+    if isinstance(value, list):
+        return any(_is_nonzero_pair_value(item) for item in value)
+    return False
+
+
+def _count_nonzero_in_row(matrix: List[Any], row_index: int) -> int:
+    """Summary: Count non-zero values in one kerning matrix row."""
+
+    if row_index < 0 or row_index >= len(matrix):
+        return 0
+    row = matrix[row_index]
+    if not isinstance(row, list):
+        return 0
+    return sum(1 for value in row if _is_nonzero_pair_value(value))
+
+
+def _count_nonzero_in_col(matrix: List[Any], col_index: int) -> int:
+    """Summary: Count non-zero values in one kerning matrix column."""
+
+    if col_index < 0:
+        return 0
+    total = 0
+    for row in matrix:
+        if not isinstance(row, list):
+            continue
+        if col_index >= len(row):
+            continue
+        if _is_nonzero_pair_value(row[col_index]):
+            total += 1
+    return total
+
+
+def copy_kern_x_to_i(ttf_json: Dict[str, Any]) -> Dict[str, int]:
+    """Summary: Copy kern rules from X to I for both left and right sides.
+
+    Args:
+        ttf_json: Parsed otfcc JSON.
+
+    Returns:
+        Dict[str, int]: Copy statistics.
+
+    Example:
+        copy_kern_x_to_i({"GPOS": {}})
+    """
+
+    stats = {
+        "x_left_rules_found": 0,
+        "x_right_rules_found": 0,
+        "i_left_rules_added_or_updated": 0,
+        "i_right_rules_added_or_updated": 0,
+        "skipped_conflicts": 0,
+    }
+
+    gpos = ttf_json.get("GPOS", {})
+    if not isinstance(gpos, dict):
+        return stats
+
+    lookups = gpos.get("lookups", {})
+    features = gpos.get("features", {})
+    if not isinstance(lookups, dict) or not isinstance(features, dict):
+        return stats
+
+    kern_lookup_names = features.get("kern")
+    if not isinstance(kern_lookup_names, list):
+        kern_lookup_names = [name for name, lookup in lookups.items() if isinstance(lookup, dict) and lookup.get("type") == "gpos_pair"]
+
+    for lookup_name in kern_lookup_names:
+        lookup = lookups.get(lookup_name)
+        if not isinstance(lookup, dict) or lookup.get("type") != "gpos_pair":
+            continue
+        subtables = lookup.get("subtables")
+        if not isinstance(subtables, list):
+            continue
+
+        for subtable in subtables:
+            if not isinstance(subtable, dict):
+                continue
+            first = subtable.get("first")
+            second = subtable.get("second")
+            matrix = subtable.get("matrix")
+            if not isinstance(first, dict) or not isinstance(second, dict) or not isinstance(matrix, list):
+                continue
+
+            x_first_class = first.get("X")
+            if isinstance(x_first_class, int):
+                left_rules = _count_nonzero_in_row(matrix, x_first_class)
+                stats["x_left_rules_found"] += left_rules
+                if first.get("I") != x_first_class:
+                    first["I"] = x_first_class
+                    stats["i_left_rules_added_or_updated"] += left_rules
+
+            x_second_class = second.get("X")
+            if isinstance(x_second_class, int):
+                right_rules = _count_nonzero_in_col(matrix, x_second_class)
+                stats["x_right_rules_found"] += right_rules
+                if second.get("I") != x_second_class:
+                    second["I"] = x_second_class
+                    stats["i_right_rules_added_or_updated"] += right_rules
 
     return stats
 
@@ -722,8 +849,16 @@ def fix_uni030d(ttf_json: Dict[str, Any]) -> Dict[str, int]:
 
 
 def apply_json_fixes(
-    data: Dict[str, Any], rules_json_path: Path
-) -> Tuple[List[Tuple[int, str]], List[int], Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int]]:
+    data: Dict[str, Any], rules_json_path: Path, enable_copy_kern_x_to_i: bool
+) -> Tuple[
+    List[Tuple[int, str]],
+    List[int],
+    Dict[str, int],
+    Dict[str, int],
+    Dict[str, int],
+    Dict[str, int],
+    Dict[str, int],
+]:
     """Summary: Apply cmap, GDEF, GPOS, and GSUB fixes to otfcc JSON.
 
     Args:
@@ -776,7 +911,16 @@ def apply_json_fixes(
     ccmp_stats["lookup_updates"] += int(rule_stats.get("lookup_updates", 0))
     ccmp_stats["rules_added_or_updated"] += int(rule_stats.get("rules_added_or_updated", 0))
     ccmp_stats["languages_updated"] += int(rule_stats.get("languages_updated", 0))
-    return added, missing, uni0358_stats, ccmp_stats, dotted_circle_stats, uni030d_stats
+    kern_copy_stats = {
+        "x_left_rules_found": 0,
+        "x_right_rules_found": 0,
+        "i_left_rules_added_or_updated": 0,
+        "i_right_rules_added_or_updated": 0,
+        "skipped_conflicts": 0,
+    }
+    if enable_copy_kern_x_to_i:
+        kern_copy_stats = copy_kern_x_to_i(data)
+    return added, missing, uni0358_stats, ccmp_stats, dotted_circle_stats, uni030d_stats, kern_copy_stats
 
 
 def copy_patched_tables(original_font_path: Path, patched_font_path: Path, output_path: Path) -> None:
@@ -835,8 +979,8 @@ def main() -> int:
         run_cmd([args.otfccdump, "--pretty", str(input_path), "-o", str(json_path)])
 
         data = load_json_with_fallback(json_path)
-        added, missing, uni0358_stats, ccmp_stats, dotted_circle_stats, uni030d_stats = apply_json_fixes(
-            data, rules_json_path
+        added, missing, uni0358_stats, ccmp_stats, dotted_circle_stats, uni030d_stats, kern_copy_stats = apply_json_fixes(
+            data, rules_json_path, args.copy_kern_x_to_i
         )
 
         with json_path.open("w", encoding="utf-8", newline="\n") as handle:
@@ -886,6 +1030,15 @@ def main() -> int:
         f"mark_entries_updated={uni030d_stats['mark_entries_updated']}, "
         f"subtables_touched={uni030d_stats['subtables_touched']}, "
         f"base_anchor_updates={uni030d_stats['base_anchor_updates']}"
+    )
+    print(
+        "copy_kern_X_to_I stats: "
+        f"enabled={1 if args.copy_kern_x_to_i else 0}, "
+        f"x_left_rules_found={kern_copy_stats['x_left_rules_found']}, "
+        f"x_right_rules_found={kern_copy_stats['x_right_rules_found']}, "
+        f"i_left_rules_added_or_updated={kern_copy_stats['i_left_rules_added_or_updated']}, "
+        f"i_right_rules_added_or_updated={kern_copy_stats['i_right_rules_added_or_updated']}, "
+        f"skipped_conflicts={kern_copy_stats['skipped_conflicts']}"
     )
 
     print(f"Done: {output_path}")

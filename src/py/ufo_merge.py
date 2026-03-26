@@ -487,7 +487,15 @@ def run_fonttool_fix_cmap(input_ttf: Path, output_ttf: Path) -> None:
     """
 
     output_ttf.parent.mkdir(parents=True, exist_ok=True)
-    cmd = [sys.executable, str(FONTTOOL_FIX_CMAP_PY), "-input", str(input_ttf), "-output", str(output_ttf)]
+    cmd = [
+        sys.executable,
+        str(FONTTOOL_FIX_CMAP_PY),
+        "-input",
+        str(input_ttf),
+        "-output",
+        str(output_ttf),
+        "--copy-kern-x-to-i",
+    ]
     result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
     if result.stdout:
         print(result.stdout, end="")
