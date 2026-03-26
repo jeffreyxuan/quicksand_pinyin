@@ -129,3 +129,5 @@ Omacron_uni0358
 O_uni030D_uni0358
 Obreve_uni0358
 Ohungarumlaut_uni0358
+imacron
+ibreve

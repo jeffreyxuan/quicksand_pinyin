@@ -198,6 +198,20 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- paste the reference to i_hungarumlautcomb
 		- move uni030B reference to center (Left 8 steps)
 		
+	- ī	imacron U+012B
+		- the original "-" uni0304 on the head is too wide
+		- replaced it with "̵" uni0335, copy, not reference
+		- reduce width more move left 3 steps right
+		- move right 3 steps left
+		
+	- ĭ ibreve U+012D
+		- due to in 700, the top is too low, we need to modify both 300 and 700
+		- copy uni0306 to replace the reference
+		- align to center (300 is not align)
+		- 700 move up 3 steps
+		- 700 move uni0306 both side toward center 2 steps progressively
+		- 300 uni0306 is too tall. move the head 2 steps down
+		
 	- ế uni1EBF
 		- acutecomb
 			visually same hight with ề gravecomb
