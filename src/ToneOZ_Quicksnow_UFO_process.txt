@@ -1,6 +1,9 @@
 W300 UFO, select "Round to Int" during rotate, rotate by Last press	
 	- r 
 		- right side stroke width too narrow
+		- (300) on the right side stroke, bottom edge, there are 4 dots
+			move them down progressively 0.3 0.3 1 steps
+		- (700) manual editing
 		
 	- k
 		- copy "e" to the background of "k"
