@@ -18,6 +18,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- move the bottom left of "/" up inside the "K"
 		- (300 only)move the right side of "K", left 2 steps
 		- (300 only)move the right of the width control, left 2 steps, 682 -> 662
+		- (300 only)move the K left 2 steps
+		- (300 only)move the right of the width control, left 6 steps, 682 -> 622
 		
 	- I
 		- copy "-" (U+002D)
@@ -699,3 +701,22 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	- Ő͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ohungarumlaut_uni0358
 		- reference from Ohungarumlaut + uni0358
+		
+		
+	Fix Windows Faux Bold issue in "Quicksnow Light"
+	
+	- X
+		- the top right countour 0 is shifted.
+			- move top right countour 0 "/" left 1 step
+			- move top right part of the top right countour 0 "/" right 1 step, up 1 step
+		- join  the top right countour 0 "/" and bottom left countour 2
+		
+	- B 
+	- D
+	- H
+	- J
+	- P
+	- R
+	- T
+	- Y
+	- x

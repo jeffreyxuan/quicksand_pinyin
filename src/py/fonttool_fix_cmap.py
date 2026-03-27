@@ -82,6 +82,11 @@ def parse_args() -> argparse.Namespace:
         action="store_true",
         help="Copy T-left kerning rules to J-left only (keep J-right kerning unchanged)",
     )
+    parser.add_argument(
+        "-fix_stat_linked_bold",
+        action="store_true",
+        help="Patch STAT linked bold entries: 300->700, 500->700, 600->700",
+    )
     parser.add_argument("--otfccdump", default="otfccdump.exe", help="Path to otfccdump executable")
     parser.add_argument("--otfccbuild", default="otfccbuild.exe", help="Path to otfccbuild executable")
     return parser.parse_args()
@@ -1082,27 +1087,94 @@ def apply_json_fixes(
     )
 
 
-def copy_patched_tables(original_font_path: Path, patched_font_path: Path, output_path: Path) -> None:
+def fix_stat_linked_bold(font: TTFont) -> Dict[str, int]:
+    """Summary: Patch selected STAT axis values to linked-bold entries.
+
+    Args:
+        font: Mutable TTFont object.
+
+    Returns:
+        Dict[str, int]: Stats for found/updated/already-ok entries.
+
+    Example:
+        fix_stat_linked_bold(TTFont("out.ttf"))
+    """
+
+    stats = {
+        "targets_found": 0,
+        "entries_updated": 0,
+        "entries_already_ok": 0,
+        "stat_missing": 0,
+    }
+    if "STAT" not in font:
+        stats["stat_missing"] = 1
+        return stats
+
+    stat_table = font["STAT"].table
+    axis_value_array = getattr(stat_table, "AxisValueArray", None)
+    axis_values = getattr(axis_value_array, "AxisValue", None)
+    if not isinstance(axis_values, list):
+        stats["stat_missing"] = 1
+        return stats
+
+    target_map = {300.0: 700.0, 500.0: 700.0, 600.0: 700.0}
+    for axis_value in axis_values:
+        value = getattr(axis_value, "Value", None)
+        if value is None:
+            continue
+        value_float = float(value)
+        if value_float not in target_map:
+            continue
+        stats["targets_found"] += 1
+        linked_value = target_map[value_float]
+        current_format = getattr(axis_value, "Format", None)
+        current_linked = getattr(axis_value, "LinkedValue", None)
+        if current_format == 3 and current_linked is not None and float(current_linked) == linked_value:
+            stats["entries_already_ok"] += 1
+            continue
+        axis_value.Format = 3
+        axis_value.LinkedValue = linked_value
+        stats["entries_updated"] += 1
+
+    return stats
+
+
+def copy_patched_tables(
+    original_font_path: Path,
+    patched_font_path: Path,
+    output_path: Path,
+    enable_fix_stat_linked_bold: bool,
+) -> Dict[str, int]:
     """Summary: Copy patched tables onto the original font and save output.
 
     Args:
         original_font_path: Original input font path.
         patched_font_path: Temporary rebuilt font path containing patched tables.
         output_path: Final output font path.
+        enable_fix_stat_linked_bold: Whether to patch STAT linked bold entries.
 
     Returns:
-        None
+        Dict[str, int]: STAT linked bold stats.
 
     Example:
-        copy_patched_tables(Path("in.ttf"), Path("patched.ttf"), Path("out.ttf"))
+        copy_patched_tables(Path("in.ttf"), Path("patched.ttf"), Path("out.ttf"), False)
     """
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    stat_fix_stats = {
+        "targets_found": 0,
+        "entries_updated": 0,
+        "entries_already_ok": 0,
+        "stat_missing": 0,
+    }
     with TTFont(str(original_font_path)) as original_font, TTFont(str(patched_font_path)) as patched_font:
         for tag in PATCHED_TABLE_TAGS:
             if tag in patched_font:
                 original_font[tag] = copy.deepcopy(patched_font[tag])
+        if enable_fix_stat_linked_bold:
+            stat_fix_stats = fix_stat_linked_bold(original_font)
         original_font.save(str(output_path))
+    return stat_fix_stats
 
 
 def main() -> int:
@@ -1162,7 +1234,12 @@ def main() -> int:
             handle.write("\n")
 
         run_cmd([args.otfccbuild, str(json_path), "-o", str(patched_font_path)])
-        copy_patched_tables(input_path, patched_font_path, output_path)
+        stat_fix_stats = copy_patched_tables(
+            input_path,
+            patched_font_path,
+            output_path,
+            args.fix_stat_linked_bold,
+        )
 
     if added:
         print("Added cmap entries:")
@@ -1227,6 +1304,14 @@ def main() -> int:
         f"j_left_rules_added_or_updated={kern_t_to_j_stats['j_left_rules_added_or_updated']}, "
         f"j_right_rules_preserved={kern_t_to_j_stats['j_right_rules_preserved']}, "
         f"skipped_conflicts={kern_t_to_j_stats['skipped_conflicts']}"
+    )
+    print(
+        "fix_stat_linked_bold stats: "
+        f"enabled={1 if args.fix_stat_linked_bold else 0}, "
+        f"targets_found={stat_fix_stats['targets_found']}, "
+        f"entries_updated={stat_fix_stats['entries_updated']}, "
+        f"entries_already_ok={stat_fix_stats['entries_already_ok']}, "
+        f"stat_missing={stat_fix_stats['stat_missing']}"
     )
 
     print(f"Done: {output_path}")

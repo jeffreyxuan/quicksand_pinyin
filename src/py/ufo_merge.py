@@ -79,6 +79,11 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("-input", required=True, help="Folder containing *.sfd and glyf_update.txt")
     parser.add_argument("-with", dest="with_font", required=True, help="Base variable TTF file")
     parser.add_argument("-output", required=True, help="Output TTF path")
+    parser.add_argument(
+        "-fix_stat_linked_bold",
+        action="store_true",
+        help="Patch STAT linked bold entries: 300->700, 500->700, 600->700",
+    )
     parser.add_argument("--autohint", action="store_true", help="Run ttfautohint on final output TTF")
     parser.add_argument(
         "--ttfautohint",
@@ -477,12 +482,13 @@ def build_ttf_from_ufo(input_dir: Path, output_ttf: Path) -> None:
         raise RuntimeError(f"varwideufo.py failed while converting UFO to TTF: exit code {result.returncode}")
 
 
-def run_fonttool_fix_cmap(input_ttf: Path, output_ttf: Path) -> None:
+def run_fonttool_fix_cmap(input_ttf: Path, output_ttf: Path, fix_stat_linked_bold: bool) -> None:
     """Summary: Run fonttool_fix_cmap.py on an intermediate TTF.
 
     Args:
         input_ttf: Intermediate TTF path.
         output_ttf: Final TTF path.
+        fix_stat_linked_bold: Whether to patch STAT linked bold entries.
 
     Returns:
         None
@@ -491,7 +497,7 @@ def run_fonttool_fix_cmap(input_ttf: Path, output_ttf: Path) -> None:
         RuntimeError: If fonttool_fix_cmap.py fails.
 
     Example:
-        run_fonttool_fix_cmap(Path("_tmp/in.ttf"), Path("_output/out.ttf"))
+        run_fonttool_fix_cmap(Path("_tmp/in.ttf"), Path("_output/out.ttf"), False)
     """
 
     output_ttf.parent.mkdir(parents=True, exist_ok=True)
@@ -506,6 +512,8 @@ def run_fonttool_fix_cmap(input_ttf: Path, output_ttf: Path) -> None:
         str(NAME_JSON_PATH),
         "--copy_kern_T_left_only_to_J",
     ]
+    if fix_stat_linked_bold:
+        cmd.append("-fix_stat_linked_bold")
     result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
     if result.stdout:
         print(result.stdout, end="")
@@ -639,7 +647,7 @@ def main() -> int:
         print(f"Building intermediate TTF: {TMP_MERGED_TTF}")
         build_ttf_from_ufo(TMP_UFO_OUTPUT, TMP_MERGED_TTF)
         print(f"Running fonttool_fix_cmap.py for final output: {output_ttf}")
-        run_fonttool_fix_cmap(TMP_MERGED_TTF, output_ttf)
+        run_fonttool_fix_cmap(TMP_MERGED_TTF, output_ttf, args.fix_stat_linked_bold)
         if args.autohint:
             print(f"Running ttfautohint on final output: {output_ttf}")
             run_ttfautohint(output_ttf, ttfautohint_exe)

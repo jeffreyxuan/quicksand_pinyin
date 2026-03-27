@@ -138,6 +138,7 @@ When `-input` points to a designspace/UFO/project directory:
 - 來源 variable font 原本有 `fvar` named instances，但重建後掉成 0。
 - 來源 variable font 原本有 `STAT` axis values，但重建後掉成 0。
 - `OS/2.fsSelection` 因重建退化，導致 Microsoft Word 等環境對粗體或樣式連結的判斷異常。
+- 最終字型在 Microsoft Word 中使用粗體按鈕時，`Light` 出現筆畫錯誤，或 `Medium` / `SemiBold` 完全沒有粗體變化。
 
 此類 metadata 遺失即使 outline 仍可顯示，也視為需要修正的重建 bug。
 
@@ -259,3 +260,4 @@ The implementation is acceptable if:
 9. `UFO -> TTF` roundtrip 後，原始 glyph 的 contour direction 語意必須與來源字型一致，不可系統性翻轉。
 10. 若來源字型原本含有 `fvar` named instances 與 `STAT` axis values，重建後不可掉成 0。
 11. `OS/2.fsSelection` 不可因重建而退化成導致樣式連結異常的狀態。
+12. 最終字型在 Word 中按粗體時，`Light` 不可出現筆畫錯誤，且 `Medium` / `SemiBold` 不可完全沒有粗體變化。
