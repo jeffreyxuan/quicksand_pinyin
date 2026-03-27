@@ -22,26 +22,33 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	- I
 		- copy "-" (U+002D)
 		- in Quicksand-VariableFont_wght-W300.ufo.sfd
-		- select left side of "-", move right 4 steps to reduce the width
+		#- select left side of "-", move right 4 steps to reduce the width
+		- select left side of "-", move right 2 steps to reduce the width
 		- align to center
 		- top align with "|"
 		- left right each side should have 30 space
-		- move the whole I right 2 steps
-		- move the width right control 4 steps, from 242 to 282
+		#- move the whole I right 2 steps
+		- move the whole I right 4 steps
+		#- move the width right control 4 steps, from 242 to 282
+		- move the width right control 8 steps, from 242 to 322
 		- move top of the "|" 2 steps down
 		- move bottom of the "|" 2 steps up
-		- due to the width is increase by 40, all other combinedmark with I should move the part right 2 steps
+		#- due to the width is increase by 40, all other combinedmark with I should move the part right 2 steps
+		- due to the width is increase by 40, all other combinedmark with I should move the part right 4 steps
 			ÍĬǏÎȈÏḮİỊÌỈȊĪĮĨ
 		
 		- in Quicksand-VariableFont_wght-W700.ufo.sfd
 		- align to center
 		- top align with "|"
 		- left right each side should have 30 space
-		- move the whole I right 4 steps
-		- move the width right control 8 steps, from 275 to 355
+		#- move the whole I right 4 steps
+		- move the whole I right 6 steps
+		#- move the width right control 8 steps, from 275 to 355
+		- move the width right control 8 steps, from 275 to 395
 		- move top of the "|" 2 steps down
 		- move bottom of the "|" 2 steps up
 		- due to the width is increase by 80, all other combinedmark with I should move the part right 4 steps
+			ÍĬǏÎȈÏḮİỊÌỈȊĪĮĨ
 		
 	- Į U+012E Iogonek same as I
 		- copy the "I" to background
