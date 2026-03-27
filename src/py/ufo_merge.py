@@ -14,9 +14,11 @@ from typing import Dict, Iterable, List
 
 
 FONTFORGE_BIN = Path(r"C:\Program Files (x86)\FontForgeBuilds\bin\fontforge.exe")
+DEFAULT_TTFAUTOHINT = Path(r"C:\tool\ttfautohint\ttfautohint.exe")
 REPO_ROOT = Path(__file__).resolve().parents[2]
 VARWIDEUFO_PY = REPO_ROOT / "src" / "py" / "varwideufo" / "varwideufo.py"
 FONTTOOL_FIX_CMAP_PY = REPO_ROOT / "src" / "py" / "fonttool_fix_cmap.py"
+NAME_JSON_PATH = REPO_ROOT / "src" / "json" / "name_Quicksand-VariableFont_wght.json"
 TMP_UFO_INPUT = REPO_ROOT / "_tmp" / "ufo_input"
 TMP_UFO_OUTPUT = REPO_ROOT / "_tmp" / "ufo_output"
 TMP_MERGED_TTF = REPO_ROOT / "_tmp" / "ufo_merge_intermediate.ttf"
@@ -77,6 +79,12 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("-input", required=True, help="Folder containing *.sfd and glyf_update.txt")
     parser.add_argument("-with", dest="with_font", required=True, help="Base variable TTF file")
     parser.add_argument("-output", required=True, help="Output TTF path")
+    parser.add_argument("--autohint", action="store_true", help="Run ttfautohint on final output TTF")
+    parser.add_argument(
+        "--ttfautohint",
+        default=str(DEFAULT_TTFAUTOHINT),
+        help="Path to ttfautohint executable (used with --autohint)",
+    )
     return parser.parse_args()
 
 
@@ -494,6 +502,8 @@ def run_fonttool_fix_cmap(input_ttf: Path, output_ttf: Path) -> None:
         str(input_ttf),
         "-output",
         str(output_ttf),
+        "--name-json",
+        str(NAME_JSON_PATH),
         "--copy_kern_T_left_only_to_J",
     ]
     result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
@@ -506,13 +516,51 @@ def run_fonttool_fix_cmap(input_ttf: Path, output_ttf: Path) -> None:
         raise RuntimeError(f"fonttool_fix_cmap.py failed with exit code {result.returncode}")
 
 
-def validate_args(input_dir: Path, with_font: Path, output_ttf: Path) -> None:
+def run_ttfautohint(output_ttf: Path, ttfautohint_exe: Path) -> None:
+    """Summary: Run ttfautohint on output TTF in-place.
+
+    Args:
+        output_ttf: Final output TTF path.
+        ttfautohint_exe: ttfautohint executable path.
+
+    Returns:
+        None
+
+    Raises:
+        RuntimeError: If ttfautohint execution fails.
+
+    Example:
+        run_ttfautohint(Path("_output/out.ttf"), Path("C:/tool/ttfautohint/ttfautohint.exe"))
+    """
+
+    if not ttfautohint_exe.exists():
+        raise RuntimeError(f"ttfautohint not found: {ttfautohint_exe}")
+
+    hinted_ttf = output_ttf.with_suffix(".autohint.tmp.ttf")
+    hinted_ttf.unlink(missing_ok=True)
+
+    cmd = [str(ttfautohint_exe), str(output_ttf), str(hinted_ttf)]
+    result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
+    if result.stdout:
+        print(result.stdout, end="")
+    if result.stderr:
+        eprint(result.stderr, end="")
+    if result.returncode != 0:
+        hinted_ttf.unlink(missing_ok=True)
+        raise RuntimeError(f"ttfautohint failed with exit code {result.returncode}")
+
+    shutil.move(str(hinted_ttf), str(output_ttf))
+
+
+def validate_args(input_dir: Path, with_font: Path, output_ttf: Path, autohint: bool, ttfautohint_exe: Path) -> None:
     """Summary: Validate CLI input paths and file types.
 
     Args:
         input_dir: SFD input directory.
         with_font: Base variable TTF path.
         output_ttf: Output TTF path.
+        autohint: Whether autohint is enabled.
+        ttfautohint_exe: ttfautohint executable path.
 
     Returns:
         None
@@ -521,7 +569,7 @@ def validate_args(input_dir: Path, with_font: Path, output_ttf: Path) -> None:
         ValueError: If any CLI path is invalid.
 
     Example:
-        validate_args(Path("src/ufo"), Path("res/font.ttf"), Path("_output/out.ttf"))
+        validate_args(Path("src/ufo"), Path("res/font.ttf"), Path("_output/out.ttf"), False, Path("ttfautohint.exe"))
     """
 
     if not input_dir.exists() or not input_dir.is_dir():
@@ -534,6 +582,10 @@ def validate_args(input_dir: Path, with_font: Path, output_ttf: Path) -> None:
         raise ValueError(f"varwideufo.py not found: {VARWIDEUFO_PY}")
     if not FONTTOOL_FIX_CMAP_PY.exists():
         raise ValueError(f"fonttool_fix_cmap.py not found: {FONTTOOL_FIX_CMAP_PY}")
+    if not NAME_JSON_PATH.exists():
+        raise ValueError(f"name json not found: {NAME_JSON_PATH}")
+    if autohint and not ttfautohint_exe.exists():
+        raise ValueError(f"ttfautohint not found: {ttfautohint_exe}")
 
 
 def main() -> int:
@@ -553,9 +605,10 @@ def main() -> int:
     input_dir = Path(args.input).expanduser().resolve()
     with_font = Path(args.with_font).expanduser().resolve()
     output_ttf = Path(args.output).expanduser().resolve()
+    ttfautohint_exe = Path(args.ttfautohint).expanduser().resolve()
 
     try:
-        validate_args(input_dir, with_font, output_ttf)
+        validate_args(input_dir, with_font, output_ttf, args.autohint, ttfautohint_exe)
         sfd_paths = find_sfd_inputs(input_dir)
         glyph_update_path = resolve_glyph_update_path(input_dir)
         modified_glyphs = read_modified_list(glyph_update_path)
@@ -587,6 +640,9 @@ def main() -> int:
         build_ttf_from_ufo(TMP_UFO_OUTPUT, TMP_MERGED_TTF)
         print(f"Running fonttool_fix_cmap.py for final output: {output_ttf}")
         run_fonttool_fix_cmap(TMP_MERGED_TTF, output_ttf)
+        if args.autohint:
+            print(f"Running ttfautohint on final output: {output_ttf}")
+            run_ttfautohint(output_ttf, ttfautohint_exe)
         print(f"Done: {output_ttf}")
         print("input change list : glyf_update.txt")
         return 0

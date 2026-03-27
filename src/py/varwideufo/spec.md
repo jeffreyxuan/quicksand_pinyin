@@ -119,8 +119,27 @@ When `-input` points to a designspace/UFO/project directory:
 2. Use `fontmake` to build a variable font.
 3. Invoke `fontmake` with the `.designspace` directory as the working directory so relative UFO source paths resolve correctly.
 4. Write the built variable `.ttf` to `-output`.
-5. 若 UFO 專案中含有原始來源字型 metadata，且重建結果仍符合原始資料表保留規則，則應保留原始來源字型中的相容資料表，包括 `GDEF`、`GPOS`、`GSUB`、`prep`、`gasp`、`name`。
+5. 若 UFO 專案中含有原始來源字型 metadata，且重建結果仍符合原始資料表保留規則，則應保留原始來源字型中的相容資料表，包括 `fvar`、`STAT`、`OS/2`、`GDEF`、`GPOS`、`GSUB`、`prep`、`gasp`、`name`。
 6. Fail clearly if `fontmake` is not installed.
+7. 重建後的原始 glyph contour direction 語意必須與來源字型一致；若被系統性翻轉，視為錯誤。
+8. 實作上可在 `fontmake` 前對臨時建置用 UFO 專案做 contour 反轉補償，但不可直接污染使用者原始 UFO 專案檔案。
+
+### Contour direction 錯誤定義
+以下情況明確定義為錯誤，而不是可接受差異：
+
+- `TTF -> UFO` 結果正常，但 `UFO -> TTF` 後原始 simple glyph 的 contour direction 被系統性翻轉。
+- 翻轉後雖仍可顯示，但在 Microsoft Office Word 等環境中造成粗體顯示異常（例如筆畫變細）。
+
+本工具不可將此情況視為單純編譯器慣例差異；必須視為需要修正的重建 bug。
+
+### Variable metadata 錯誤定義
+以下情況也明確定義為錯誤，而不是可接受差異：
+
+- 來源 variable font 原本有 `fvar` named instances，但重建後掉成 0。
+- 來源 variable font 原本有 `STAT` axis values，但重建後掉成 0。
+- `OS/2.fsSelection` 因重建退化，導致 Microsoft Word 等環境對粗體或樣式連結的判斷異常。
+
+此類 metadata 遺失即使 outline 仍可顯示，也視為需要修正的重建 bug。
 
 ### 原始資料表保留規則
 重建 variable font 時，若 UFO 專案中含有原始來源字型 metadata，且重建結果仍符合下列條件，則應保留原始來源字型中的相容資料表：
@@ -133,6 +152,9 @@ When `-input` points to a designspace/UFO/project directory:
 
 若符合上述條件，應保留原始來源字型中的：
 
+- `fvar`
+- `STAT`
+- `OS/2`
 - `GDEF`
 - `GPOS`
 - `GSUB`
@@ -196,6 +218,8 @@ Expected losses compared with the original authoring source may include:
 ### Forward direction notes
 The rebuild path relies on `fontmake`, which assumes the UFO and designspace are valid for interpolation.
 If the user edits masters in a way that breaks point compatibility, the build may fail. This is expected and should be surfaced as-is.
+`fontmake` 若輸出與來源字型不同的 contour direction 慣例，不可直接接受為最終結果；工具需以來源字型語意為準。
+`fontmake` 若未重建出來源字型原有的 `fvar` named instances、`STAT` axis values 或正確的 `OS/2` style metadata，也不可直接接受為最終結果；工具需以來源字型 metadata 為準。
 
 ## Non-goals
 Do not implement in v1:
@@ -216,6 +240,8 @@ varwideufo.py
   variable_font_to_ufo_project()
   ttfont_to_ufo()
   write_glif()
+  reverse_glif_contours()
+  prepare_build_project()
   build_variable_font_from_ufo()
 ```
 
@@ -230,3 +256,6 @@ The implementation is acceptable if:
 6. 若重建後字型僅在原始 glyph 集合後附加新 glyph，且原始 cmap 對應維持不變，則仍應保留原始來源字型中的相容資料表。
 7. 單純新增 `uni030D` 等新 glyph，不應自動導致 `GDEF`、`GPOS`、`GSUB` 保留流程被跳過。
 8. 若保留流程被跳過，輸出的 warning 必須可說明具體原因。
+9. `UFO -> TTF` roundtrip 後，原始 glyph 的 contour direction 語意必須與來源字型一致，不可系統性翻轉。
+10. 若來源字型原本含有 `fvar` named instances 與 `STAT` axis values，重建後不可掉成 0。
+11. `OS/2.fsSelection` 不可因重建而退化成導致樣式連結異常的狀態。

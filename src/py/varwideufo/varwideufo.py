@@ -32,11 +32,13 @@ import xml.etree.ElementTree as ET
 
 from fontTools.designspaceLib import AxisDescriptor, DesignSpaceDocument, SourceDescriptor
 from fontTools.pens.recordingPen import RecordingPointPen
+from fontTools.pens.pointPen import ReverseContourPointPen
 from fontTools.ttLib import TTFont
+from fontTools.ufoLib.glifLib import readGlyphFromString, writeGlyphToString
 from fontTools.varLib.instancer import instantiateVariableFont
 
 PROJECT_METADATA_FILENAME = 'varwideufo_source.plist'
-PRESERVED_TABLE_TAGS = ('GDEF', 'GPOS', 'GSUB', 'prep', 'gasp', 'name')
+PRESERVED_TABLE_TAGS = ('fvar', 'STAT', 'OS/2', 'GDEF', 'GPOS', 'GSUB', 'prep', 'gasp', 'name')
 
 
 def eprint(*args: object) -> None:
@@ -201,6 +203,44 @@ def write_glif(path: Path, glyph_name: str, width: int, ops: List[Tuple], unicod
     indent_xml(root)
     tree = ET.ElementTree(root)
     tree.write(path, encoding='UTF-8', xml_declaration=True)
+
+
+class GlifGlyph:
+    """Minimal glyph object for GLIF round-trip through glifLib."""
+
+    def __init__(self) -> None:
+        self.name = ''
+        self.width = 0
+        self.height = 0
+        self.unicodes: List[int] = []
+
+
+def reverse_glif_contours(glif_path: Path) -> None:
+    """Reverse contour winding in one GLIF file while preserving metadata."""
+
+    glyph = GlifGlyph()
+    pen = RecordingPointPen()
+    text = glif_path.read_text(encoding='utf-8')
+    readGlyphFromString(text, glyphObject=glyph, pointPen=pen)
+
+    reversed_pen = RecordingPointPen()
+    pen.replay(ReverseContourPointPen(reversed_pen))
+    out = writeGlyphToString(glyph.name, glyphObject=glyph, drawPointsFunc=reversed_pen.replay)
+    glif_path.write_text(out, encoding='utf-8', newline='\n')
+
+
+def prepare_build_project(original_designspace: Path) -> tuple[tempfile.TemporaryDirectory[str], Path]:
+    """Create a temporary UFO project copy with contours pre-reversed for fontmake."""
+
+    tmp_dir = tempfile.TemporaryDirectory(prefix='varwideufo_build_')
+    tmp_root = Path(tmp_dir.name)
+    project_copy = tmp_root / 'project'
+    shutil.copytree(original_designspace.parent, project_copy)
+
+    for glif_path in project_copy.glob('*.ufo/glyphs/*.glif'):
+        reverse_glif_contours(glif_path)
+
+    return tmp_dir, project_copy / original_designspace.name
 
 
 def ttfont_to_ufo(tt: TTFont, out_ufo: Path, family_name: str, style_name: str) -> None:
@@ -377,13 +417,17 @@ def build_variable_font_from_ufo(input_path: Path, output_font: Path) -> None:
         raise RuntimeError('fontmake is required for UFO -> variable TTF. Install it with: pip install fontmake')
 
     ensure_dir(output_font.parent)
-    cmd = [
-        fontmake,
-        '-m', str(designspace),
-        '-o', 'variable',
-        '--output-path', str(output_font),
-    ]
-    subprocess.run(cmd, check=True, cwd=str(designspace.parent))
+    tmp_dir, build_designspace = prepare_build_project(designspace)
+    try:
+        cmd = [
+            fontmake,
+            '-m', str(build_designspace),
+            '-o', 'variable',
+            '--output-path', str(output_font),
+        ]
+        subprocess.run(cmd, check=True, cwd=str(build_designspace.parent))
+    finally:
+        tmp_dir.cleanup()
     preserve_source_tables(designspace.parent, output_font)
 
 

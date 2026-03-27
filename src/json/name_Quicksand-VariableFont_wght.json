@@ -112,6 +112,83 @@
             "nameID": 25,
             "nameString": "ToneOZ-Quicksnow"
         },
+		{
+            "platformID": 1,
+            "encodingID": 0,
+            "languageID": 0,
+            "nameID": 256,
+            "nameString": "Weight"
+        },
+		{
+            "platformID": 1,
+            "encodingID": 0,
+            "languageID": 0,
+            "nameID": 257,
+            "nameString": "Light"
+        },
+		{
+            "platformID": 1,
+            "encodingID": 0,
+            "languageID": 0,
+            "nameID": 258,
+            "nameString": "Regular"
+        },
+		{
+            "platformID": 1,
+            "encodingID": 0,
+            "languageID": 0,
+            "nameID": 259,
+            "nameString": "Medium"
+        },
+		{
+            "platformID": 1,
+            "encodingID": 0,
+            "languageID": 0,
+            "nameID": 260,
+            "nameString": "SemiBold"
+        },
+		{
+            "platformID": 1,
+            "encodingID": 0,
+            "languageID": 0,
+            "nameID": 261,
+            "nameString": "Bold"
+        },
+		{
+            "platformID": 1,
+            "encodingID": 0,
+            "languageID": 0,
+            "nameID": 262,
+            "nameString": "ToneOZ-Quicksnow-Light"
+        },
+		{
+            "platformID": 1,
+            "encodingID": 0,
+            "languageID": 0,
+            "nameID": 263,
+            "nameString": "ToneOZ-Quicksnow-Regular"
+        },
+		{
+            "platformID": 1,
+            "encodingID": 0,
+            "languageID": 0,
+            "nameID": 264,
+            "nameString": "ToneOZ-Quicksnow-Medium"
+        },
+		{
+            "platformID": 1,
+            "encodingID": 0,
+            "languageID": 0,
+            "nameID": 265,
+            "nameString": "ToneOZ-Quicksnow-SemiBold"
+        },
+		{
+            "platformID": 1,
+            "encodingID": 0,
+            "languageID": 0,
+            "nameID": 266,
+            "nameString": "ToneOZ-Quicksnow-Bold"
+        },
         {
             "platformID": 3,
             "encodingID": 1,
@@ -223,6 +300,83 @@
             "languageID": 1033,
             "nameID": 25,
             "nameString": "ToneOZ-Quicksnow"
+        },
+		{
+            "platformID": 3,
+            "encodingID": 1,
+            "languageID": 1033,
+            "nameID": 256,
+            "nameString": "Weight"
+        },
+		{
+            "platformID": 3,
+            "encodingID": 1,
+            "languageID": 1033,
+            "nameID": 257,
+            "nameString": "Light"
+        },
+		{
+            "platformID": 3,
+            "encodingID": 1,
+            "languageID": 1033,
+            "nameID": 258,
+            "nameString": "Regular"
+        },
+		{
+            "platformID": 3,
+            "encodingID": 1,
+            "languageID": 1033,
+            "nameID": 259,
+            "nameString": "Medium"
+        },
+		{
+            "platformID": 3,
+            "encodingID": 1,
+            "languageID": 1033,
+            "nameID": 260,
+            "nameString": "SemiBold"
+        },
+		{
+            "platformID": 3,
+            "encodingID": 1,
+            "languageID": 1033,
+            "nameID": 261,
+            "nameString": "Bold"
+        },
+		{
+            "platformID": 3,
+            "encodingID": 1,
+            "languageID": 1033,
+            "nameID": 262,
+            "nameString": "ToneOZ-Quicksnow-Light"
+        },
+		{
+            "platformID": 3,
+            "encodingID": 1,
+            "languageID": 1033,
+            "nameID": 263,
+            "nameString": "ToneOZ-Quicksnow-Regular"
+        },
+		{
+            "platformID": 3,
+            "encodingID": 1,
+            "languageID": 1033,
+            "nameID": 264,
+            "nameString": "ToneOZ-Quicksnow-Medium"
+        },
+		{
+            "platformID": 3,
+            "encodingID": 1,
+            "languageID": 1033,
+            "nameID": 265,
+            "nameString": "ToneOZ-Quicksnow-SemiBold"
+        },
+		{
+            "platformID": 3,
+            "encodingID": 1,
+            "languageID": 1033,
+            "nameID": 266,
+            "nameString": "ToneOZ-Quicksnow-Bold"
         }
     ]  
 }

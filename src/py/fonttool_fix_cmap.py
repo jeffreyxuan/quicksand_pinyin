@@ -21,10 +21,17 @@ from ff_fix_cmap import (
     pick_glyph_name,
     run_cmd,
 )
+from font_name_utils import (
+    apply_rename_rules,
+    compute_version,
+    normalize_name_records,
+    replace_version_placeholders,
+)
 
 
-PATCHED_TABLE_TAGS = ("cmap", "GDEF", "GPOS", "GSUB")
+PATCHED_TABLE_TAGS = ("cmap", "GDEF", "GPOS", "GSUB", "name", "head", "OS/2")
 DEFAULT_RULES_JSON = Path(__file__).resolve().parents[1] / "json" / "fonttool_fix_cmap_rules.json"
+DEFAULT_NAME_JSON = Path(__file__).resolve().parents[1] / "json" / "name_Quicksand-VariableFont_wght.json"
 UNI030D_ON_UNI0358_X_SHIFT = -12
 UNI030D_ON_UNI0358_Y_SHIFT = 30
 
@@ -57,6 +64,11 @@ def parse_args() -> argparse.Namespace:
         "--rules-json",
         default=str(DEFAULT_RULES_JSON),
         help="Path to JSON rules file for extra GSUB ligature substitutions",
+    )
+    parser.add_argument(
+        "--name-json",
+        default=str(DEFAULT_NAME_JSON),
+        help="Path to name table JSON used to rename output font metadata",
     )
     parser.add_argument(
         "--copy-kern-x-to-i",
@@ -279,6 +291,40 @@ def apply_ligature_rules(ttf_json: Dict[str, Any], rules: Iterable[Dict[str, Any
                     feats.append(feature_name)
                     stats["languages_updated"] += 1
 
+    return stats
+
+
+def apply_name_json_rename(ttf_json: Dict[str, Any], name_json_path: Path) -> Dict[str, int]:
+    """Summary: Apply name JSON and version placeholders to font metadata.
+
+    Args:
+        ttf_json: Parsed otfcc JSON.
+        name_json_path: Name table JSON path.
+
+    Returns:
+        Dict[str, int]: Rename stats.
+
+    Example:
+        apply_name_json_rename({}, Path("src/json/name_Quicksand-VariableFont_wght.json"))
+    """
+
+    stats = {
+        "enabled": 0,
+        "name_records_applied": 0,
+        "version_replaced_count": 0,
+    }
+    if not name_json_path.exists():
+        return stats
+
+    name_json = load_json_with_fallback(name_json_path)
+    name_records = normalize_name_records(name_json)
+    version = compute_version()
+    replaced = replace_version_placeholders(name_records, version)
+    apply_rename_rules(ttf_json, name_records, version)
+
+    stats["enabled"] = 1
+    stats["name_records_applied"] = len(name_records)
+    stats["version_replaced_count"] = replaced
     return stats
 
 
@@ -926,11 +972,13 @@ def fix_uni030d(ttf_json: Dict[str, Any]) -> Dict[str, int]:
 def apply_json_fixes(
     data: Dict[str, Any],
     rules_json_path: Path,
+    name_json_path: Path,
     enable_copy_kern_x_to_i: bool,
     enable_copy_kern_t_left_to_j: bool,
 ) -> Tuple[
     List[Tuple[int, str]],
     List[int],
+    Dict[str, int],
     Dict[str, int],
     Dict[str, int],
     Dict[str, int],
@@ -943,6 +991,7 @@ def apply_json_fixes(
     Args:
         data: Parsed otfcc JSON.
         rules_json_path: Path to additional GSUB rules JSON.
+        name_json_path: Path to name table JSON.
         enable_copy_kern_x_to_i: Whether to apply X->I kerning copy.
         enable_copy_kern_t_left_to_j: Whether to apply T-left->J-left kerning copy.
 
@@ -956,9 +1005,10 @@ def apply_json_fixes(
             dict[str, int],
             dict[str, int],
             dict[str, int],
+            dict[str, int],
         ]:
             Added cmap entries, missing codepoints, uni0358 stats, ccmp stats,
-            dotted-circle stats, uni030D stats, X->I kern stats, and T->J kern stats.
+            dotted-circle stats, uni030D stats, rename stats, X->I kern stats, and T->J kern stats.
 
     Example:
         apply_json_fixes({"cmap": {}, "glyph_order": []})
@@ -988,6 +1038,7 @@ def apply_json_fixes(
     uni0358_stats = fix_uni0358(data)
     dotted_circle_stats = fix_dotted_circle_mark_base(data)
     uni030d_stats = fix_uni030d(data)
+    rename_stats = apply_name_json_rename(data, name_json_path)
     ccmp_stats = {"feature_updates": 0, "lookup_updates": 0, "rules_added_or_updated": 0, "languages_updated": 0}
     ccmp_stats["rules_added_or_updated"] += 0
     # Keep legacy i-based ccmp updates.
@@ -1025,6 +1076,7 @@ def apply_json_fixes(
         ccmp_stats,
         dotted_circle_stats,
         uni030d_stats,
+        rename_stats,
         kern_copy_stats,
         kern_t_to_j_stats,
     )
@@ -1071,6 +1123,7 @@ def main() -> int:
     input_path = Path(args.input).resolve()
     output_path = Path(args.output).resolve()
     rules_json_path = Path(args.rules_json).resolve()
+    name_json_path = Path(args.name_json).resolve()
 
     if not input_path.exists():
         print(f"Input file not found: {input_path}", file=sys.stderr)
@@ -1093,11 +1146,13 @@ def main() -> int:
             ccmp_stats,
             dotted_circle_stats,
             uni030d_stats,
+            rename_stats,
             kern_copy_stats,
             kern_t_to_j_stats,
         ) = apply_json_fixes(
             data,
             rules_json_path,
+            name_json_path,
             args.copy_kern_x_to_i,
             args.copy_kern_t_left_to_j,
         )
@@ -1149,6 +1204,12 @@ def main() -> int:
         f"mark_entries_updated={uni030d_stats['mark_entries_updated']}, "
         f"subtables_touched={uni030d_stats['subtables_touched']}, "
         f"base_anchor_updates={uni030d_stats['base_anchor_updates']}"
+    )
+    print(
+        "rename fix stats: "
+        f"enabled={rename_stats['enabled']}, "
+        f"name_records_applied={rename_stats['name_records_applied']}, "
+        f"version_replaced_count={rename_stats['version_replaced_count']}"
     )
     print(
         "copy_kern_X_to_I stats: "

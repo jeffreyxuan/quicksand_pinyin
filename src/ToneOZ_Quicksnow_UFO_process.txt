@@ -1,4 +1,7 @@
 W300 UFO, select "Round to Int" during rotate, rotate by Last press	
+	- r 
+		- right side stroke width too narrow
+		
 	- k
 		- copy "e" to the background of "k"
 		- move the left side of "/" and "\" to touch the intersection of "|" and "-"
