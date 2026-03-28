@@ -136,3 +136,12 @@ imacron
 ibreve
 dotlessi
 X
+B
+D
+H
+J
+P
+R
+T
+Y
+x

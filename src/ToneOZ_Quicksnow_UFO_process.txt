@@ -712,9 +712,19 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- join  the top right countour 0 "/" and bottom left countour 2
 		
 	- B 
+		- the 2 inner small "D", glyf self intersect
+		- solution:
+			- except the bottom left, remove the triangle at the corder of "D"
+		
 	- D
+		- except the bottom left, remove the triangle at the corder of "D"
+	
 	- H
+		- join the left "|" and the left side of "-"
+		
 	- J
+		- join the head of "j" to "-"
+		
 	- P
 	- R
 	- T
