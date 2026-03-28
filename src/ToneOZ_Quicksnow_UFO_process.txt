@@ -4,6 +4,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- (300) on the right side stroke, bottom edge, there are 4 dots
 			move them down progressively 0.3 0.3 1 steps
 		- (700) manual editing
+		- anchor no change
 		
 	- t
 		- it should be similar to up side down "f"
@@ -31,12 +32,16 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- increase width from 409 to 437, same as "f"
 		- increase the width of the tail of the "t" progressively, to be the same as "f"
 			3 steps
+			
+		- anchor-1 right 1 steps, down 1 step
 		
 		
 	- k
 		- copy "e" to the background of "k"
 		- move the left side of "/" and "\" to touch the intersection of "|" and "-"
 		- add a dot at the bottom left of "/", convert the dot type to "corner"
+		
+		- anchor no change
 	
 	- K
 		- width should be similar and a little bigger then R
@@ -48,6 +53,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- (300 only)move the right of the width control, left 2 steps, 682 -> 662
 		- (300 only)move the K left 2 steps
 		- (300 only)move the right of the width control, left 6 steps, 682 -> 622
+		
+		- anchor-0 left 2 steps
 		
 	- I
 		- copy "-" (U+002D)
@@ -79,6 +86,11 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- move bottom of the "|" 2 steps up
 		- due to the width is increase by 80, all other combinedmark with I should move the part right 4 steps
 			ÍĬǏÎȈÏḮİỊÌỈȊĪĮĨ
+			
+		- anchor-0 right 4 steps
+		- anchor-2 right 4 steps
+		- anchor-3 right 10 steps
+		
 		
 	- Į U+012E Iogonek same as I
 		- copy the "I" to background

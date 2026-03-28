@@ -19,7 +19,6 @@ from ff_fix_cmap import (
     fix_i_ccmp,
     load_json_with_fallback,
     pick_glyph_name,
-    run_cmd,
 )
 from font_name_utils import (
     apply_rename_rules,
@@ -32,8 +31,76 @@ from font_name_utils import (
 PATCHED_TABLE_TAGS = ("cmap", "GDEF", "GPOS", "GSUB", "name", "head", "OS/2")
 DEFAULT_RULES_JSON = Path(__file__).resolve().parents[1] / "json" / "fonttool_fix_cmap_rules.json"
 DEFAULT_NAME_JSON = Path(__file__).resolve().parents[1] / "json" / "name_Quicksand-VariableFont_wght.json"
+DEFAULT_ANCHOR_RULES_JSON = Path(__file__).resolve().parents[1] / "json" / "fonttool_fix_anchor_rules.json"
 UNI030D_ON_UNI0358_X_SHIFT = -12
 UNI030D_ON_UNI0358_Y_SHIFT = 30
+
+
+def indent_stderr(stderr_text: str) -> str:
+    """Summary: Indent stderr text for easier visual grouping.
+
+    Args:
+        stderr_text: Raw stderr text.
+
+    Returns:
+        str: Stderr text with each non-empty line prefixed by eight spaces.
+
+    Example:
+        indent_stderr("line1\nline2\n")
+    """
+
+    indented_lines: list[str] = []
+    for line in stderr_text.splitlines(keepends=True):
+        if line.strip():
+            indented_lines.append(f"        {line}")
+        else:
+            indented_lines.append(line)
+    return "".join(indented_lines)
+
+
+def eprint(*args: object, **kwargs: object) -> None:
+    """Summary: Print stderr text with 8-space indentation.
+
+    Args:
+        *args: Message parts to print.
+        **kwargs: Extra print keyword arguments.
+
+    Returns:
+        None
+
+    Example:
+        eprint("Something went wrong")
+    """
+
+    sep = kwargs.pop("sep", " ")
+    end = kwargs.pop("end", "\n")
+    text = sep.join(str(arg) for arg in args) + end
+    print(indent_stderr(text), end="", file=sys.stderr, **kwargs)
+
+
+def run_cmd(cmd: list[str]) -> None:
+    """Summary: Run a subprocess command with indented stderr output.
+
+    Args:
+        cmd: Command and arguments.
+
+    Returns:
+        None
+
+    Raises:
+        RuntimeError: If the command fails.
+
+    Example:
+        run_cmd(["otfccdump.exe", "--version"])
+    """
+
+    result = subprocess.run(cmd, capture_output=True, text=True)
+    if result.stdout:
+        print(result.stdout, end="")
+    if result.stderr:
+        eprint(result.stderr, end="")
+    if result.returncode != 0:
+        raise RuntimeError(f"Command failed ({result.returncode}): {' '.join(cmd)}")
 
 
 def parse_args() -> argparse.Namespace:
@@ -69,6 +136,11 @@ def parse_args() -> argparse.Namespace:
         "--name-json",
         default=str(DEFAULT_NAME_JSON),
         help="Path to name table JSON used to rename output font metadata",
+    )
+    parser.add_argument(
+        "--anchor-rules-json",
+        default=str(DEFAULT_ANCHOR_RULES_JSON),
+        help="Path to JSON rules file for patching GPOS mark_to_base anchors",
     )
     parser.add_argument(
         "--copy-kern-x-to-i",
@@ -974,15 +1046,100 @@ def fix_uni030d(ttf_json: Dict[str, Any]) -> Dict[str, int]:
     return stats
 
 
+def apply_anchor_rules_from_json(ttf_json: Dict[str, Any], anchor_rules_json: Path) -> Dict[str, int]:
+    """Summary: Patch mark-to-base anchors from a JSON rules file.
+
+    Args:
+        ttf_json: Parsed otfcc JSON.
+        anchor_rules_json: Anchor JSON path.
+
+    Returns:
+        Dict[str, int]: Stats for patched glyphs/anchors/lookups.
+
+    Example:
+        apply_anchor_rules_from_json({}, Path("src/json/fonttool_fix_anchor_rules.json"))
+    """
+
+    stats = {
+        "enabled": 0,
+        "glyphs_updated": 0,
+        "anchors_updated": 0,
+        "lookups_touched": 0,
+    }
+    if not anchor_rules_json.exists():
+        return stats
+
+    raw = json.loads(anchor_rules_json.read_text(encoding="utf-8"))
+    glyph_anchors = raw.get("glyph_anchors") if isinstance(raw, dict) else None
+    if not isinstance(glyph_anchors, dict) or not glyph_anchors:
+        return stats
+
+    gpos = ttf_json.get("GPOS", {})
+    lookups = gpos.get("lookups", {}) if isinstance(gpos, dict) else {}
+    if not isinstance(lookups, dict):
+        return stats
+
+    touched_glyphs: set[str] = set()
+    touched_lookups: set[str] = set()
+    for lookup_name, lookup in lookups.items():
+        if not isinstance(lookup, dict) or lookup.get("type") != "gpos_mark_to_base":
+            continue
+        subtables = lookup.get("subtables")
+        if not isinstance(subtables, list):
+            continue
+        lookup_touched = False
+        for subtable in subtables:
+            if not isinstance(subtable, dict):
+                continue
+            bases = subtable.get("bases")
+            if not isinstance(bases, dict):
+                continue
+            subtable_touched = False
+            for glyph_name, anchors in glyph_anchors.items():
+                if glyph_name not in bases or not isinstance(anchors, dict):
+                    continue
+                base_obj = bases.get(glyph_name)
+                if not isinstance(base_obj, dict):
+                    continue
+                glyph_touched = False
+                for anchor_name, anchor_value in anchors.items():
+                    if not isinstance(anchor_name, str) or not isinstance(anchor_value, dict):
+                        continue
+                    x = anchor_value.get("x")
+                    y = anchor_value.get("y")
+                    if not isinstance(x, (int, float)) or not isinstance(y, (int, float)):
+                        continue
+                    new_anchor = {"x": int(x), "y": int(y)}
+                    if base_obj.get(anchor_name) != new_anchor:
+                        base_obj[anchor_name] = new_anchor
+                        stats["anchors_updated"] += 1
+                        glyph_touched = True
+                        subtable_touched = True
+                if glyph_touched:
+                    touched_glyphs.add(glyph_name)
+            if subtable_touched:
+                lookup_touched = True
+        if lookup_touched:
+            touched_lookups.add(lookup_name)
+
+    if stats["anchors_updated"] > 0:
+        stats["enabled"] = 1
+    stats["glyphs_updated"] = len(touched_glyphs)
+    stats["lookups_touched"] = len(touched_lookups)
+    return stats
+
+
 def apply_json_fixes(
     data: Dict[str, Any],
     rules_json_path: Path,
     name_json_path: Path,
+    anchor_rules_json_path: Path,
     enable_copy_kern_x_to_i: bool,
     enable_copy_kern_t_left_to_j: bool,
 ) -> Tuple[
     List[Tuple[int, str]],
     List[int],
+    Dict[str, int],
     Dict[str, int],
     Dict[str, int],
     Dict[str, int],
@@ -997,6 +1154,7 @@ def apply_json_fixes(
         data: Parsed otfcc JSON.
         rules_json_path: Path to additional GSUB rules JSON.
         name_json_path: Path to name table JSON.
+        anchor_rules_json_path: Path to anchor rules JSON.
         enable_copy_kern_x_to_i: Whether to apply X->I kerning copy.
         enable_copy_kern_t_left_to_j: Whether to apply T-left->J-left kerning copy.
 
@@ -1011,9 +1169,11 @@ def apply_json_fixes(
             dict[str, int],
             dict[str, int],
             dict[str, int],
+            dict[str, int],
         ]:
             Added cmap entries, missing codepoints, uni0358 stats, ccmp stats,
-            dotted-circle stats, uni030D stats, rename stats, X->I kern stats, and T->J kern stats.
+            dotted-circle stats, uni030D stats, rename stats, X->I kern stats,
+            T->J kern stats, and anchor patch stats.
 
     Example:
         apply_json_fixes({"cmap": {}, "glyph_order": []})
@@ -1074,6 +1234,7 @@ def apply_json_fixes(
     }
     if enable_copy_kern_t_left_to_j:
         kern_t_to_j_stats = copy_kern_t_left_only_to_j(data)
+    anchor_patch_stats = apply_anchor_rules_from_json(data, anchor_rules_json_path)
     return (
         added,
         missing,
@@ -1084,6 +1245,7 @@ def apply_json_fixes(
         rename_stats,
         kern_copy_stats,
         kern_t_to_j_stats,
+        anchor_patch_stats,
     )
 
 
@@ -1196,9 +1358,10 @@ def main() -> int:
     output_path = Path(args.output).resolve()
     rules_json_path = Path(args.rules_json).resolve()
     name_json_path = Path(args.name_json).resolve()
+    anchor_rules_json_path = Path(args.anchor_rules_json).resolve()
 
     if not input_path.exists():
-        print(f"Input file not found: {input_path}", file=sys.stderr)
+        eprint(f"Input file not found: {input_path}")
         return 2
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -1221,10 +1384,12 @@ def main() -> int:
             rename_stats,
             kern_copy_stats,
             kern_t_to_j_stats,
+            anchor_patch_stats,
         ) = apply_json_fixes(
             data,
             rules_json_path,
             name_json_path,
+            anchor_rules_json_path,
             args.copy_kern_x_to_i,
             args.copy_kern_t_left_to_j,
         )
@@ -1304,6 +1469,13 @@ def main() -> int:
         f"j_left_rules_added_or_updated={kern_t_to_j_stats['j_left_rules_added_or_updated']}, "
         f"j_right_rules_preserved={kern_t_to_j_stats['j_right_rules_preserved']}, "
         f"skipped_conflicts={kern_t_to_j_stats['skipped_conflicts']}"
+    )
+    print(
+        "anchor patch stats: "
+        f"enabled={anchor_patch_stats['enabled']}, "
+        f"glyphs_updated={anchor_patch_stats['glyphs_updated']}, "
+        f"anchors_updated={anchor_patch_stats['anchors_updated']}, "
+        f"lookups_touched={anchor_patch_stats['lookups_touched']}"
     )
     print(
         "fix_stat_linked_bold stats: "

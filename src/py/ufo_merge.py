@@ -19,6 +19,7 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 VARWIDEUFO_PY = REPO_ROOT / "src" / "py" / "varwideufo" / "varwideufo.py"
 FONTTOOL_FIX_CMAP_PY = REPO_ROOT / "src" / "py" / "fonttool_fix_cmap.py"
 NAME_JSON_PATH = REPO_ROOT / "src" / "json" / "name_Quicksand-VariableFont_wght.json"
+ANCHOR_RULES_JSON_PATH = REPO_ROOT / "src" / "json" / "fonttool_fix_anchor_rules.json"
 TMP_UFO_INPUT = REPO_ROOT / "_tmp" / "ufo_input"
 TMP_UFO_OUTPUT = REPO_ROOT / "_tmp" / "ufo_output"
 TMP_MERGED_TTF = REPO_ROOT / "_tmp" / "ufo_merge_intermediate.ttf"
@@ -41,7 +42,7 @@ print(f"Done: {output_ufo}")
 
 
 def eprint(*args: object, **kwargs: object) -> None:
-    """Summary: Print a message to stderr.
+    """Summary: Print a message to stderr with 8-space indentation.
 
     Args:
         *args: Message parts to print.
@@ -54,7 +55,16 @@ def eprint(*args: object, **kwargs: object) -> None:
         eprint("Something went wrong")
     """
 
-    print(*args, file=sys.stderr, **kwargs)
+    sep = kwargs.pop("sep", " ")
+    end = kwargs.pop("end", "\n")
+    text = sep.join(str(arg) for arg in args) + end
+    indented_lines: list[str] = []
+    for line in text.splitlines(keepends=True):
+        if line.strip():
+            indented_lines.append(f"        {line}")
+        else:
+            indented_lines.append(line)
+    print("".join(indented_lines), end="", file=sys.stderr, **kwargs)
 
 
 def parse_args() -> argparse.Namespace:
@@ -127,7 +137,9 @@ def find_sfd_inputs(input_dir: Path) -> List[Path]:
         find_sfd_inputs(Path("src/ufo"))
     """
 
-    sfd_paths = sorted(input_dir.glob("*.sfd"))
+    sfd_paths = sorted(
+        path for path in input_dir.glob("*.sfd") if not path.stem.lower().endswith("_anchor")
+    )
     if not sfd_paths:
         raise ValueError(f"No .sfd files found in {input_dir}")
     return sfd_paths
@@ -510,6 +522,8 @@ def run_fonttool_fix_cmap(input_ttf: Path, output_ttf: Path, fix_stat_linked_bol
         str(output_ttf),
         "--name-json",
         str(NAME_JSON_PATH),
+        "--anchor-rules-json",
+        str(ANCHOR_RULES_JSON_PATH),
         "--copy_kern_T_left_only_to_J",
     ]
     if fix_stat_linked_bold:
