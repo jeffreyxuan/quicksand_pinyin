@@ -5,6 +5,34 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 			move them down progressively 0.3 0.3 1 steps
 		- (700) manual editing
 		
+	- t
+		- it should be similar to up side down "f"
+		
+		- (300)
+		- the "-" of t is too high, it should be a little lower then the top of "u"
+		- copy "f" the the background
+		- align the "-" of t to the same height of "-" of f. 
+			1 step down
+		  also align the width, right head 0.6 step right
+		- center of "t" 0.2 step left
+		- increase the width of the tail of the "t" progressively, to be the same as "f"
+			5.6 steps
+		- increase width from 316 to 334, same as "f"
+		  
+		#- flip vertical the center of "f", align the head with the head of t
+		#- replace the center of "t" with the flipped center of "f"
+		#- replace the "-" of "t" with the "-" of "f"
+		
+		
+		- (700)
+		- copy "f" the the background, align to the left side of t
+		- align the "-" of f to the same size of "-" of t
+		- move the right side of "-" of f 3 steps right
+		- increase width from 409 to 437, same as "f"
+		- increase the width of the tail of the "t" progressively, to be the same as "f"
+			3 steps
+		
+		
 	- k
 		- copy "e" to the background of "k"
 		- move the left side of "/" and "\" to touch the intersection of "|" and "-"
@@ -735,4 +763,9 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- join the head of "|" to "-"
 	
 	- Y
+		- height diff between left "\" and right "/"
+		- align the height of left "\" and right "/"
+		- (300) select the head of "/", move up 0.2 steps
+		- remove the triangle at the intersection of "|" and "\" and "/"
+		
 	- x
