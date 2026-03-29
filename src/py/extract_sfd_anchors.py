@@ -102,7 +102,7 @@ def extract_sfd_anchors(input_sfd: Path, output_json: Path) -> None:
         RuntimeError: If FontForge execution fails.
 
     Example:
-        extract_sfd_anchors(Path("src/ufo/ToneOZ-Quicksnow_anchor.sfd"), Path("src/json/fonttool_fix_anchor_rules.json"))
+        extract_sfd_anchors(Path("src/ufo/anchor/ToneOZ-Quicksnow_anchor.sfd"), Path("src/json/fonttool_fix_anchor_rules.json"))
     """
 
     if not input_sfd.exists():

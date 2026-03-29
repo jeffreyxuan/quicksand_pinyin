@@ -86,7 +86,11 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="Merge modified glyphs from SFD sources into a variable TTF."
     )
-    parser.add_argument("-input", required=True, help="Folder containing *.sfd and glyf_update.txt")
+    parser.add_argument(
+        "-input",
+        required=True,
+        help="Folder containing glyf_update.txt and a glyf subfolder with *.sfd files",
+    )
     parser.add_argument("-with", dest="with_font", required=True, help="Base variable TTF file")
     parser.add_argument("-output", required=True, help="Output TTF path")
     parser.add_argument(
@@ -125,7 +129,7 @@ def find_sfd_inputs(input_dir: Path) -> List[Path]:
     """Summary: Find all SFD sources from the input folder.
 
     Args:
-        input_dir: Folder containing source SFD files.
+        input_dir: Root folder containing `glyf_update.txt` and `glyf/*.sfd`.
 
     Returns:
         List[Path]: Sorted list of matching SFD paths.
@@ -137,11 +141,12 @@ def find_sfd_inputs(input_dir: Path) -> List[Path]:
         find_sfd_inputs(Path("src/ufo"))
     """
 
-    sfd_paths = sorted(
-        path for path in input_dir.glob("*.sfd") if not path.stem.lower().endswith("_anchor")
-    )
+    sfd_dir = input_dir / "glyf"
+    if not sfd_dir.exists():
+        sfd_dir = input_dir
+    sfd_paths = sorted(path for path in sfd_dir.glob("*.sfd") if not path.stem.lower().endswith("_anchor"))
     if not sfd_paths:
-        raise ValueError(f"No .sfd files found in {input_dir}")
+        raise ValueError(f"No .sfd files found in {sfd_dir}")
     return sfd_paths
 
 
@@ -206,7 +211,7 @@ def build_ufo_from_sfd(input_sfd: Path, output_ufo: Path) -> None:
         RuntimeError: If FontForge is missing or export fails.
 
     Example:
-        build_ufo_from_sfd(Path("src/ufo/font.ufo.sfd"), Path("_tmp/ufo_input/font.ufo"))
+        build_ufo_from_sfd(Path("src/ufo/glyf/font.ufo.sfd"), Path("_tmp/ufo_input/font.ufo"))
     """
 
     if not FONTFORGE_BIN.exists():

@@ -123,6 +123,7 @@ When `-input` points to a designspace/UFO/project directory:
 6. Fail clearly if `fontmake` is not installed.
 7. 重建後的原始 glyph contour direction 語意必須與來源字型一致；若被系統性翻轉，視為錯誤。
 8. 實作上可在 `fontmake` 前對臨時建置用 UFO 專案做 contour 反轉補償，但不可直接污染使用者原始 UFO 專案檔案。
+9. 若使用者提供 `W300/W700` 兩組不同的 anchor masters，anchor 必須在 master UFO 階段參與 build，並由 variable font layout 自動內插；不可只在最終 TTF 階段寫入單一固定 `GPOS` anchor。
 
 ### Contour direction 錯誤定義
 以下情況明確定義為錯誤，而不是可接受差異：
@@ -221,6 +222,7 @@ The rebuild path relies on `fontmake`, which assumes the UFO and designspace are
 If the user edits masters in a way that breaks point compatibility, the build may fail. This is expected and should be surfaced as-is.
 `fontmake` 若輸出與來源字型不同的 contour direction 慣例，不可直接接受為最終結果；工具需以來源字型語意為準。
 `fontmake` 若未重建出來源字型原有的 `fvar` named instances、`STAT` axis values 或正確的 `OS/2` style metadata，也不可直接接受為最終結果；工具需以來源字型 metadata 為準。
+若 variable font 的 mark-to-base / mark-to-mark anchor 需要隨軸變化，正確做法是讓 master UFO 各自帶 anchor，再由編譯流程產生 variable `GPOS`；不可依賴最終 TTF 的單一固定 anchor patch。
 
 ## Non-goals
 Do not implement in v1:
@@ -261,3 +263,4 @@ The implementation is acceptable if:
 10. 若來源字型原本含有 `fvar` named instances 與 `STAT` axis values，重建後不可掉成 0。
 11. `OS/2.fsSelection` 不可因重建而退化成導致樣式連結異常的狀態。
 12. 最終字型在 Word 中按粗體時，`Light` 不可出現筆畫錯誤，且 `Medium` / `SemiBold` 不可完全沒有粗體變化。
+13. 若 `W300` 與 `W700` 提供不同 anchor，最終 variable font 必須能隨字重變化對應 anchor，而不是固定使用單一座標。
