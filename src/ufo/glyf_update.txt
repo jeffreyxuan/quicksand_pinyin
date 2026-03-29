@@ -146,3 +146,11 @@ R
 T
 Y
 x
+uni01D6
+uni01D8
+uni01DA
+uni01DC
+uni01D5
+uni01D9
+uni1E3F
+uni01F9

@@ -21,7 +21,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1773233631
-ModificationTime: 1774674077
+ModificationTime: 1774806590
 PfmFamily: 16
 TTFWeight: 300
 TTFWidth: 5
@@ -1671,8 +1671,8 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 275 25 8
-BeginChars: 862 862
+WinInfo: 675 25 8
+BeginChars: 870 870
 
 StartChar: .notdef
 Encoding: 0 -1 0
@@ -10537,7 +10537,7 @@ Encoding: 435 116 435
 GlifName: t__1
 Width: 334
 VWidth: 0
-Flags: WO
+Flags: W
 LayerCount: 2
 Back
 SplineSet
@@ -10871,7 +10871,7 @@ Flags: W
 LayerCount: 2
 Fore
 Refer: 444 117 N 1 0 0 1 0 0 2
-Refer: 737 776 N 1 0 0 1 86 -1 2
+Refer: 737 776 S 1 0 0 1 86 -1 2
 EndChar
 
 StartChar: uni1EE5
@@ -11213,7 +11213,7 @@ Flags: W
 LayerCount: 2
 Fore
 Refer: 469 119 N 1 0 0 1 0 0 2
-Refer: 740 769 N 1 0 0 1 259 -20 2
+Refer: 740 769 S 1 0 0 1 259 -20 2
 EndChar
 
 StartChar: wcircumflex
@@ -21282,7 +21282,7 @@ VWidth: 0
 Flags: W
 LayerCount: 2
 Fore
-Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 809 856 N 1 0 0 1 380 0 2
 Refer: 391 242 N 1 0 0 1 0 0 2
 EndChar
 
@@ -21428,6 +21428,94 @@ LayerCount: 2
 Fore
 Refer: 809 856 S 1 0 0 1 470 210 2
 Refer: 154 336 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni01D6
+Encoding: 862 470 862
+Width: 563
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 748 772 S 1 0 0 1 90 170 2
+Refer: 450 252 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni01D8
+Encoding: 863 472 863
+Width: 563
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 740 769 S 1 0 0 1 148 150 2
+Refer: 450 252 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni01DA
+Encoding: 864 474 864
+Width: 563
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 744 780 S 1 0 0 1 125 150 2
+Refer: 450 252 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni01DC
+Encoding: 865 476 865
+Width: 563
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 739 768 S 1 0 0 1 161 142 2
+Refer: 450 252 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni01D5
+Encoding: 866 469 866
+Width: 715
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 748 772 S 1 0 0 1 170 400 2
+Refer: 205 220 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni01D9
+Encoding: 867 473 867
+Width: 715
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 744 780 S 1 0 0 1 205 350 2
+Refer: 205 220 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni1E3F
+Encoding: 868 7743 868
+Width: 909
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 740 769 N 1 0 0 1 355 3 2
+Refer: 361 109 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni01F9
+Encoding: 869 505 869
+Width: 572
+VWidth: 0
+Flags: W
+LayerCount: 2
+Fore
+Refer: 739 768 S 1 0 0 1 150 2 2
+Refer: 363 110 N 1 0 0 1 0 0 2
 EndChar
 EndChars
 EndSplineFont

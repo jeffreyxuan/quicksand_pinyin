@@ -124,6 +124,9 @@ When `-input` points to a designspace/UFO/project directory:
 7. 重建後的原始 glyph contour direction 語意必須與來源字型一致；若被系統性翻轉，視為錯誤。
 8. 實作上可在 `fontmake` 前對臨時建置用 UFO 專案做 contour 反轉補償，但不可直接污染使用者原始 UFO 專案檔案。
 9. 若使用者提供 `W300/W700` 兩組不同的 anchor masters，anchor 必須在 master UFO 階段參與 build，並由 variable font layout 自動內插；不可只在最終 TTF 階段寫入單一固定 `GPOS` anchor。
+10. 若 master UFO 已提供新的 variable anchors，且其目的是重建可內插的 `GDEF/GPOS`，則保留來源資料表時不可再用舊來源字型的 `GDEF/GPOS` 覆蓋輸出。
+11. `reverse_glif_contours()` 若需保留 metadata，不得在單一 GLIF 內重複寫入同名 anchor；建置用 UFO 不可產生 duplicate anchor。
+12. 若重建出的 `GPOS` 主要來自新的 master anchors，仍需保留來源字型的 kerning；正確作法是合併「來源字型的 kern PairPos」與「新建出的 mark/mkmk」。
 
 ### Contour direction 錯誤定義
 以下情況明確定義為錯誤，而不是可接受差異：
@@ -223,6 +226,8 @@ If the user edits masters in a way that breaks point compatibility, the build ma
 `fontmake` 若輸出與來源字型不同的 contour direction 慣例，不可直接接受為最終結果；工具需以來源字型語意為準。
 `fontmake` 若未重建出來源字型原有的 `fvar` named instances、`STAT` axis values 或正確的 `OS/2` style metadata，也不可直接接受為最終結果；工具需以來源字型 metadata 為準。
 若 variable font 的 mark-to-base / mark-to-mark anchor 需要隨軸變化，正確做法是讓 master UFO 各自帶 anchor，再由編譯流程產生 variable `GPOS`；不可依賴最終 TTF 的單一固定 anchor patch。
+若建置流程有對 GLIF 做 contour round-trip，不可因此在單一 glyph 內製造 duplicate anchor，否則 `ufo2ft` 產生的 `mark/mkmk` 會失真或警告。
+若 variable anchor 流程會停用來源字型原有 `GDEF/GPOS` 覆蓋，則後段必須另行把來源字型的 kerning 與新建出的 `mark/mkmk` 合併。
 
 ## Non-goals
 Do not implement in v1:
@@ -257,6 +262,8 @@ The implementation is acceptable if:
 4. The generated UFOs can be opened by at least one UFO editor.
 5. The code is written as one standalone Python file named `varwideufo.py`.
 6. 若重建後字型僅在原始 glyph 集合後附加新 glyph，且原始 cmap 對應維持不變，則仍應保留原始來源字型中的相容資料表。
+7. 若 master anchors 啟用，build 過程不得出現 duplicate anchor warning。
+8. 若 master anchors 啟用，最終字型需同時保有來源字型的 kerning 與新建出的 variable mark/mkmk。
 7. 單純新增 `uni030D` 等新 glyph，不應自動導致 `GDEF`、`GPOS`、`GSUB` 保留流程被跳過。
 8. 若保留流程被跳過，輸出的 warning 必須可說明具體原因。
 9. `UFO -> TTF` roundtrip 後，原始 glyph 的 contour direction 語意必須與來源字型一致，不可系統性翻轉。

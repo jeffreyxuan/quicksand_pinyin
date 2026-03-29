@@ -90,6 +90,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- anchor-0 right 4 steps
 		- anchor-2 right 4 steps
 		- anchor-3 right 10 steps
+		- due to the width is increase by 80, all other combinedmark with I should move the part right 4 steps
+			ÍĬǏÎȈÏḮİỊÌỈȊĪĮĨ
 		
 		
 	- Į U+012E Iogonek same as I
@@ -742,6 +744,47 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ohungarumlaut_uni0358
 		- reference from Ohungarumlaut + uni0358
 		
+	- ǖ U+01D6
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D6
+		- reference from ü U+00FC
+		- reference head from ê̄ếê̌ề
+		
+	- ǘ U+01D8
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D8
+		- reference from ü U+00FC
+		- reference head from ê̄ếê̌ề
+		
+	- ǚ U+01DA
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01DA
+		- reference from ü U+00FC
+		- reference head from ê̄ếê̌ề
+		
+	- ǜ U+01DC
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01DC
+		- reference from ü U+00FC
+		- reference head from ê̄ếê̌ề
+		
+	- Ǖ U+01D5
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D5
+		- reference from Ü Udieresis
+		- reference head from Ê̄Ê̌
+		
+	- Ǚ U+01D9
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D9
+		- reference from Ü Udieresis
+		- reference head from Ê̄Ê̌
+		
+	- ḿ U+1E3F
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni1E3F
+		- copy from m̍
+		- reference from acutecomb, align the bottom of ̍
+		- delete ̍
+		
+	- ǹ U+01F9
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01F9
+		- copy from n̍
+		- reference from gravecomb, align the bottom of ̍
+		- delete ̍
 		
 	Fix Windows Faux Bold issue in "Quicksnow Light"
 	

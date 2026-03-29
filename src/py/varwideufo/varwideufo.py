@@ -218,15 +218,29 @@ class GlifGlyph:
 def reverse_glif_contours(glif_path: Path) -> None:
     """Reverse contour winding in one GLIF file while preserving metadata."""
 
+    original_root = ET.fromstring(glif_path.read_text(encoding='utf-8'))
+    preserved_anchors = [copy.deepcopy(child) for child in list(original_root) if child.tag == 'anchor']
+
     glyph = GlifGlyph()
     pen = RecordingPointPen()
-    text = glif_path.read_text(encoding='utf-8')
+    text = ET.tostring(original_root, encoding='unicode')
     readGlyphFromString(text, glyphObject=glyph, pointPen=pen)
 
     reversed_pen = RecordingPointPen()
     pen.replay(ReverseContourPointPen(reversed_pen))
     out = writeGlyphToString(glyph.name, glyphObject=glyph, drawPointsFunc=reversed_pen.replay)
-    glif_path.write_text(out, encoding='utf-8', newline='\n')
+    rebuilt_root = ET.fromstring(out)
+    rebuilt_anchor_names = [child.get('name') for child in list(rebuilt_root) if child.tag == 'anchor']
+    if preserved_anchors and not rebuilt_anchor_names:
+        insert_index = 0
+        for index, child in enumerate(list(rebuilt_root)):
+            if child.tag in {'unicode', 'advance'}:
+                insert_index = index + 1
+        for anchor_elem in preserved_anchors:
+            rebuilt_root.insert(insert_index, anchor_elem)
+            insert_index += 1
+    indent_xml(rebuilt_root)
+    ET.ElementTree(rebuilt_root).write(glif_path, encoding='UTF-8', xml_declaration=True)
 
 
 def prepare_build_project(original_designspace: Path) -> tuple[tempfile.TemporaryDirectory[str], Path]:
@@ -324,6 +338,10 @@ def preserve_source_tables(project_dir: Path, output_font: Path) -> None:
     relative_source_path = metadata.get('sourceFontPath')
     if not relative_source_path:
         return
+    skip_preserve_tags = {
+        str(tag) for tag in metadata.get('skipPreserveTags', [])
+        if isinstance(tag, str)
+    }
 
     source_font_path = (project_dir / relative_source_path).resolve()
     if not source_font_path.exists():
@@ -337,6 +355,8 @@ def preserve_source_tables(project_dir: Path, output_font: Path) -> None:
             return
 
         for tag in PRESERVED_TABLE_TAGS:
+            if tag in skip_preserve_tags:
+                continue
             if tag in source_font:
                 built_font[tag] = copy.deepcopy(source_font[tag])
         built_font.save(str(output_font))

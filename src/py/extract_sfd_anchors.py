@@ -21,20 +21,25 @@ input_sfd = sys.argv[1]
 output_json = sys.argv[2]
 
 font = fontforge.open(input_sfd)
-result = {"glyph_anchors": {}}
+result = {"glyph_anchors": {}, "glyph_mark_anchors": {}}
 
 for glyph in font.glyphs():
     anchors = {}
+    mark_anchors = {}
     for item in glyph.anchorPoints:
         if len(item) < 4:
             continue
         name, anchor_type, x, y = item[:4]
-        if anchor_type != "base":
-            continue
         anchor_name = str(name).replace("Anchor-", "anchor").replace("-", "")
-        anchors[anchor_name] = {"x": int(round(float(x))), "y": int(round(float(y)))}
+        anchor_value = {"x": int(round(float(x))), "y": int(round(float(y)))}
+        if anchor_type in {"base", "basemark", "ligature"}:
+            anchors[anchor_name] = anchor_value
+        elif anchor_type == "mark":
+            mark_anchors[f"_{anchor_name}"] = anchor_value
     if anchors:
         result["glyph_anchors"][glyph.glyphname] = anchors
+    if mark_anchors:
+        result["glyph_mark_anchors"][glyph.glyphname] = mark_anchors
 
 with open(output_json, "w", encoding="utf-8") as handle:
     json.dump(result, handle, ensure_ascii=False, indent=2)

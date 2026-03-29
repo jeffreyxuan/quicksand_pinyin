@@ -4,13 +4,17 @@
 from __future__ import annotations
 
 import argparse
+import json
 import plistlib
 import shutil
 import subprocess
 import sys
 import tempfile
+import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import Dict, Iterable, List
+from typing import Dict, Iterable, List, Optional
+
+from extract_sfd_anchors import extract_sfd_anchors
 
 
 FONTFORGE_BIN = Path(r"C:\Program Files (x86)\FontForgeBuilds\bin\fontforge.exe")
@@ -20,9 +24,13 @@ VARWIDEUFO_PY = REPO_ROOT / "src" / "py" / "varwideufo" / "varwideufo.py"
 FONTTOOL_FIX_CMAP_PY = REPO_ROOT / "src" / "py" / "fonttool_fix_cmap.py"
 NAME_JSON_PATH = REPO_ROOT / "src" / "json" / "name_Quicksand-VariableFont_wght.json"
 ANCHOR_RULES_JSON_PATH = REPO_ROOT / "src" / "json" / "fonttool_fix_anchor_rules.json"
+ANCHOR_DIR_NAME = "anchor"
+GLYF_DIR_NAME = "glyf"
+PROJECT_METADATA_FILENAME = "varwideufo_source.plist"
 TMP_UFO_INPUT = REPO_ROOT / "_tmp" / "ufo_input"
 TMP_UFO_OUTPUT = REPO_ROOT / "_tmp" / "ufo_output"
 TMP_MERGED_TTF = REPO_ROOT / "_tmp" / "ufo_merge_intermediate.ttf"
+DISABLED_ANCHOR_RULES_JSON_PATH = REPO_ROOT / "_tmp" / "__disabled_anchor_rules__.json"
 
 FONTFORGE_UFO_SCRIPT = r'''
 import sys
@@ -141,7 +149,7 @@ def find_sfd_inputs(input_dir: Path) -> List[Path]:
         find_sfd_inputs(Path("src/ufo"))
     """
 
-    sfd_dir = input_dir / "glyf"
+    sfd_dir = input_dir / GLYF_DIR_NAME
     if not sfd_dir.exists():
         sfd_dir = input_dir
     sfd_paths = sorted(path for path in sfd_dir.glob("*.sfd") if not path.stem.lower().endswith("_anchor"))
@@ -195,6 +203,233 @@ def read_modified_list(modified_list_path: Path) -> List[str]:
         seen.add(glyph_name)
         glyph_names.append(glyph_name)
     return glyph_names
+
+
+def extract_weight_token(path: Path) -> Optional[str]:
+    """Summary: Extract a W### token from a path stem.
+
+    Args:
+        path: Path whose stem may contain a weight token.
+
+    Returns:
+        Optional[str]: Weight token digits when found.
+
+    Example:
+        extract_weight_token(Path("ToneOZ-Quicksnow-W300_anchor.sfd"))
+    """
+
+    normalized_stem = path.stem.replace(".", "-").replace("_", "-")
+    for part in normalized_stem.split("-"):
+        upper_part = part.upper()
+        if upper_part.startswith("W") and upper_part[1:].isdigit():
+            return upper_part[1:]
+    return None
+
+
+def resolve_variable_anchor_master_paths(input_dir: Path) -> Dict[str, Path]:
+    """Summary: Find variable anchor master SFDs for W300/W700.
+
+    Args:
+        input_dir: Root input directory.
+
+    Returns:
+        Dict[str, Path]: Mapping like {"300": path, "700": path} when present.
+
+    Example:
+        resolve_variable_anchor_master_paths(Path("src/ufo"))
+    """
+
+    anchor_dir = input_dir / ANCHOR_DIR_NAME
+    if not anchor_dir.is_dir():
+        return {}
+
+    found: Dict[str, Path] = {}
+    for path in sorted(anchor_dir.glob("*.sfd")):
+        weight_token = extract_weight_token(path)
+        if weight_token in {"300", "700"}:
+            found[weight_token] = path
+    return found
+
+
+def find_matching_ufo_by_weight(project_dir: Path, weight_token: str) -> Path:
+    """Summary: Find a master UFO directory whose name contains the target weight token.
+
+    Args:
+        project_dir: UFO project root directory.
+        weight_token: Weight token such as "300" or "700".
+
+    Returns:
+        Path: Matching UFO directory.
+
+    Raises:
+        ValueError: If no matching UFO exists.
+
+    Example:
+        find_matching_ufo_by_weight(Path("_tmp/ufo_output"), "300")
+    """
+
+    matches = sorted(path for path in project_dir.glob("*.ufo") if f"W{weight_token}" in path.stem.upper())
+    if not matches:
+        raise ValueError(f"Matching UFO not found for W{weight_token} in {project_dir}")
+    return matches[0]
+
+
+def indent_xml(elem: ET.Element, level: int = 0) -> None:
+    """Summary: Pretty-print XML indentation in-place.
+
+    Args:
+        elem: XML element to indent.
+        level: Current nesting depth.
+
+    Returns:
+        None
+
+    Example:
+        indent_xml(root)
+    """
+
+    indent = "\n" + level * "  "
+    if len(elem):
+        if not elem.text or not elem.text.strip():
+            elem.text = indent + "  "
+        for child in elem:
+            indent_xml(child, level + 1)
+        if not child.tail or not child.tail.strip():
+            child.tail = indent
+    if level and (not elem.tail or not elem.tail.strip()):
+        elem.tail = indent
+
+
+def apply_anchor_rules_to_ufo(ufo_dir: Path, anchor_rules_json: Path) -> Dict[str, int]:
+    """Summary: Apply anchor JSON to one UFO master by updating GLIF anchor elements.
+
+    Args:
+        ufo_dir: Target UFO directory.
+        anchor_rules_json: JSON file exported from an anchor SFD.
+
+    Returns:
+        Dict[str, int]: Update stats.
+
+    Raises:
+        ValueError: If required UFO files are missing.
+
+    Example:
+        apply_anchor_rules_to_ufo(Path("_tmp/ufo_output/Font-W300.ufo"), Path("_tmp/W300_anchor.json"))
+    """
+
+    glyph_dir = ufo_dir / "glyphs"
+    contents = load_contents_plist(glyph_dir)
+    anchor_data = json.loads(anchor_rules_json.read_text(encoding="utf-8"))
+    glyph_anchors = anchor_data.get("glyph_anchors", {})
+    glyph_mark_anchors = anchor_data.get("glyph_mark_anchors", {})
+    if not isinstance(glyph_anchors, dict) or not isinstance(glyph_mark_anchors, dict):
+        raise ValueError(f"Invalid anchor rules json: {anchor_rules_json}")
+
+    stats = {"glyphs_updated": 0, "anchors_updated": 0}
+    all_glyph_names = sorted(set(glyph_anchors) | set(glyph_mark_anchors))
+    for glyph_name in all_glyph_names:
+        anchors = glyph_anchors.get(glyph_name, {})
+        mark_anchors = glyph_mark_anchors.get(glyph_name, {})
+        if glyph_name not in contents or (not isinstance(anchors, dict)) or (not isinstance(mark_anchors, dict)):
+            continue
+        glif_path = glyph_dir / contents[glyph_name]
+        if not glif_path.exists():
+            continue
+
+        tree = ET.parse(glif_path)
+        root = tree.getroot()
+        old_anchor_elements = [child for child in list(root) if child.tag == "anchor"]
+        for child in old_anchor_elements:
+            root.remove(child)
+
+        insert_index = 0
+        for index, child in enumerate(list(root)):
+            if child.tag in {"unicode", "advance"}:
+                insert_index = index + 1
+
+        combined_anchors = dict(anchors)
+        combined_anchors.update(mark_anchors)
+        for anchor_name in sorted(combined_anchors):
+            anchor_value = combined_anchors[anchor_name]
+            if not isinstance(anchor_value, dict):
+                continue
+            x = int(anchor_value["x"])
+            y = int(anchor_value["y"])
+            anchor_element = ET.Element("anchor", {"name": anchor_name, "x": str(x), "y": str(y)})
+            root.insert(insert_index, anchor_element)
+            insert_index += 1
+            stats["anchors_updated"] += 1
+
+        indent_xml(root)
+        tree.write(glif_path, encoding="UTF-8", xml_declaration=True)
+        stats["glyphs_updated"] += 1
+    return stats
+
+
+def update_project_metadata_skip_tags(project_dir: Path, skip_tags: List[str]) -> None:
+    """Summary: Mark project metadata so varwideufo skips preserving selected source tables.
+
+    Args:
+        project_dir: UFO project root directory.
+        skip_tags: Source table tags to skip preserving.
+
+    Returns:
+        None
+
+    Example:
+        update_project_metadata_skip_tags(Path("_tmp/ufo_output"), ["GDEF", "GPOS"])
+    """
+
+    metadata_path = project_dir / PROJECT_METADATA_FILENAME
+    if not metadata_path.exists():
+        return
+    with metadata_path.open("rb") as handle:
+        metadata = plistlib.load(handle)
+    if not isinstance(metadata, dict):
+        return
+    metadata["skipPreserveTags"] = skip_tags
+    with metadata_path.open("wb") as handle:
+        plistlib.dump(metadata, handle, sort_keys=False)
+
+
+def apply_variable_anchor_masters(input_dir: Path, project_dir: Path) -> bool:
+    """Summary: Apply W300/W700 anchor masters to matching UFO masters before variable build.
+
+    Args:
+        input_dir: Root input directory.
+        project_dir: UFO project root directory to patch.
+
+    Returns:
+        bool: True when variable anchor masters were applied.
+
+    Example:
+        apply_variable_anchor_masters(Path("src/ufo"), Path("_tmp/ufo_output"))
+    """
+
+    anchor_master_paths = resolve_variable_anchor_master_paths(input_dir)
+    if not {"300", "700"}.issubset(anchor_master_paths):
+        return False
+
+    total_glyphs_updated = 0
+    total_anchors_updated = 0
+    with tempfile.TemporaryDirectory(prefix="ufo_anchor_masters_") as tmpdir:
+        tmp_root = Path(tmpdir)
+        for weight_token in ("300", "700"):
+            anchor_sfd = anchor_master_paths[weight_token]
+            anchor_json = tmp_root / f"W{weight_token}_anchors.json"
+            extract_sfd_anchors(anchor_sfd, anchor_json)
+            target_ufo = find_matching_ufo_by_weight(project_dir, weight_token)
+            stats = apply_anchor_rules_to_ufo(target_ufo, anchor_json)
+            total_glyphs_updated += stats["glyphs_updated"]
+            total_anchors_updated += stats["anchors_updated"]
+
+    update_project_metadata_skip_tags(project_dir, ["GDEF", "GPOS"])
+    print(
+        "variable anchor master stats: "
+        f"enabled=1, glyphs_updated={total_glyphs_updated}, anchors_updated={total_anchors_updated}, "
+        "skip_preserve_tags=GDEF,GPOS"
+    )
+    return True
 
 
 def build_ufo_from_sfd(input_sfd: Path, output_ufo: Path) -> None:
@@ -499,13 +734,21 @@ def build_ttf_from_ufo(input_dir: Path, output_ttf: Path) -> None:
         raise RuntimeError(f"varwideufo.py failed while converting UFO to TTF: exit code {result.returncode}")
 
 
-def run_fonttool_fix_cmap(input_ttf: Path, output_ttf: Path, fix_stat_linked_bold: bool) -> None:
+def run_fonttool_fix_cmap(
+    input_ttf: Path,
+    output_ttf: Path,
+    fix_stat_linked_bold: bool,
+    anchor_rules_json_path: Optional[Path],
+    merge_source_kern_from: Optional[Path],
+) -> None:
     """Summary: Run fonttool_fix_cmap.py on an intermediate TTF.
 
     Args:
         input_ttf: Intermediate TTF path.
         output_ttf: Final TTF path.
         fix_stat_linked_bold: Whether to patch STAT linked bold entries.
+        anchor_rules_json_path: Optional fixed anchor JSON path for final TTF patching.
+        merge_source_kern_from: Optional source variable font path used to merge original kern.
 
     Returns:
         None
@@ -514,7 +757,7 @@ def run_fonttool_fix_cmap(input_ttf: Path, output_ttf: Path, fix_stat_linked_bol
         RuntimeError: If fonttool_fix_cmap.py fails.
 
     Example:
-        run_fonttool_fix_cmap(Path("_tmp/in.ttf"), Path("_output/out.ttf"), False)
+        run_fonttool_fix_cmap(Path("_tmp/in.ttf"), Path("_output/out.ttf"), False, None, None)
     """
 
     output_ttf.parent.mkdir(parents=True, exist_ok=True)
@@ -527,10 +770,12 @@ def run_fonttool_fix_cmap(input_ttf: Path, output_ttf: Path, fix_stat_linked_bol
         str(output_ttf),
         "--name-json",
         str(NAME_JSON_PATH),
-        "--anchor-rules-json",
-        str(ANCHOR_RULES_JSON_PATH),
         "--copy_kern_T_left_only_to_J",
     ]
+    if anchor_rules_json_path is not None:
+        cmd.extend(["--anchor-rules-json", str(anchor_rules_json_path)])
+    if merge_source_kern_from is not None:
+        cmd.extend(["--merge-source-kern-from", str(merge_source_kern_from)])
     if fix_stat_linked_bold:
         cmd.append("-fix_stat_linked_bold")
     result = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace")
@@ -664,9 +909,19 @@ def main() -> int:
             copy_modified_glyphs(input_ufo, output_ufo, modified_glyphs)
 
         print(f"Building intermediate TTF: {TMP_MERGED_TTF}")
+        variable_anchor_masters_applied = apply_variable_anchor_masters(input_dir, TMP_UFO_OUTPUT)
         build_ttf_from_ufo(TMP_UFO_OUTPUT, TMP_MERGED_TTF)
         print(f"Running fonttool_fix_cmap.py for final output: {output_ttf}")
-        run_fonttool_fix_cmap(TMP_MERGED_TTF, output_ttf, args.fix_stat_linked_bold)
+        final_anchor_rules_json = (
+            DISABLED_ANCHOR_RULES_JSON_PATH if variable_anchor_masters_applied else ANCHOR_RULES_JSON_PATH
+        )
+        run_fonttool_fix_cmap(
+            TMP_MERGED_TTF,
+            output_ttf,
+            args.fix_stat_linked_bold,
+            final_anchor_rules_json,
+            with_font if variable_anchor_masters_applied else None,
+        )
         if args.autohint:
             print(f"Running ttfautohint on final output: {output_ttf}")
             run_ttfautohint(output_ttf, ttfautohint_exe)

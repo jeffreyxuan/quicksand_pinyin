@@ -143,6 +143,11 @@ def parse_args() -> argparse.Namespace:
         help="Path to JSON rules file for patching GPOS mark_to_base anchors",
     )
     parser.add_argument(
+        "--merge-source-kern-from",
+        default="",
+        help="Optional source variable font path used to merge original kern into rebuilt variable mark/mkmk GPOS",
+    )
+    parser.add_argument(
         "--copy-kern-x-to-i",
         action="store_true",
         help="Copy all X-left/X-right kerning rules to I in kern PairPos lookups",
@@ -1301,12 +1306,268 @@ def fix_stat_linked_bold(font: TTFont) -> Dict[str, int]:
     return stats
 
 
+def _get_feature_records(font: TTFont) -> List[Any]:
+    """Summary: Get GPOS feature records from a font."""
+
+    if "GPOS" not in font:
+        return []
+    gpos_table = font["GPOS"].table
+    feature_list = getattr(gpos_table, "FeatureList", None)
+    records = getattr(feature_list, "FeatureRecord", None)
+    return list(records) if isinstance(records, list) else []
+
+
+def _get_lookup_records(font: TTFont) -> List[Any]:
+    """Summary: Get GPOS lookups from a font."""
+
+    if "GPOS" not in font:
+        return []
+    gpos_table = font["GPOS"].table
+    lookup_list = getattr(gpos_table, "LookupList", None)
+    lookups = getattr(lookup_list, "Lookup", None)
+    return list(lookups) if isinstance(lookups, list) else []
+
+
+def _feature_tag_map(records: List[Any]) -> Dict[str, Tuple[int, Any]]:
+    """Summary: Map feature tag to first matching feature record."""
+
+    mapping: Dict[str, Tuple[int, Any]] = {}
+    for index, record in enumerate(records):
+        tag = getattr(record, "FeatureTag", None)
+        if isinstance(tag, str) and tag not in mapping:
+            mapping[tag] = (index, record)
+    return mapping
+
+
+def _langsys_feature_tags(langsys: Any, feature_records: List[Any]) -> List[str]:
+    """Summary: Read feature tags referenced by one LangSys object."""
+
+    indices = getattr(langsys, "FeatureIndex", None)
+    if not isinstance(indices, list):
+        return []
+    tags: List[str] = []
+    for index in indices:
+        if isinstance(index, int) and 0 <= index < len(feature_records):
+            tag = getattr(feature_records[index], "FeatureTag", None)
+            if isinstance(tag, str):
+                tags.append(tag)
+    return tags
+
+
+def _langsys_req_feature_tag(langsys: Any, feature_records: List[Any]) -> str | None:
+    """Summary: Read required feature tag for one LangSys object."""
+
+    req_index = getattr(langsys, "ReqFeatureIndex", None)
+    if not isinstance(req_index, int) or req_index in (-1, 0xFFFF):
+        return None
+    if 0 <= req_index < len(feature_records):
+        tag = getattr(feature_records[req_index], "FeatureTag", None)
+        if isinstance(tag, str):
+            return tag
+    return None
+
+
+def merge_source_kern_into_patched_gpos(source_font: TTFont, target_font: TTFont) -> Dict[str, int]:
+    """Summary: Merge source kern PairPos with rebuilt variable mark/mkmk GPOS.
+
+    Args:
+        source_font: Original source variable font containing legacy kern.
+        target_font: Mutable output font already containing rebuilt GPOS.
+
+    Returns:
+        Dict[str, int]: Merge statistics.
+
+    Example:
+        merge_source_kern_into_patched_gpos(TTFont("src.ttf"), TTFont("out.ttf"))
+    """
+
+    stats = {
+        "enabled": 0,
+        "source_kern_lookups_found": 0,
+        "kern_lookups_merged": 0,
+        "features_updated": 0,
+        "preserved_variable_gpos": 1,
+    }
+    if "GPOS" not in source_font or "GPOS" not in target_font:
+        return stats
+
+    source_gpos_table = source_font["GPOS"].table
+    target_gpos_table = target_font["GPOS"].table
+    source_feature_records = _get_feature_records(source_font)
+    target_feature_records = _get_feature_records(target_font)
+    source_lookup_records = _get_lookup_records(source_font)
+    target_lookup_records = _get_lookup_records(target_font)
+    if not source_feature_records or not target_feature_records:
+        return stats
+
+    source_feature_map = _feature_tag_map(source_feature_records)
+    target_feature_map = _feature_tag_map(target_feature_records)
+    replace_tags = {"abvm", "blwm", "mark", "mkmk"}
+    replace_available = {tag for tag in replace_tags if tag in target_feature_map}
+
+    selected_specs: List[Tuple[str, int, str, Any]] = []
+    for source_index, source_record in enumerate(source_feature_records):
+        feature_tag = getattr(source_record, "FeatureTag", None)
+        if not isinstance(feature_tag, str):
+            continue
+        if feature_tag in replace_available:
+            continue
+        selected_specs.append(("source", source_index, feature_tag, source_record))
+
+    for target_index, target_record in enumerate(target_feature_records):
+        feature_tag = getattr(target_record, "FeatureTag", None)
+        if not isinstance(feature_tag, str) or feature_tag not in replace_tags:
+            continue
+        selected_specs.append(("target", target_index, feature_tag, target_record))
+
+    merged_gpos = copy.deepcopy(source_font["GPOS"])
+    merged_table = merged_gpos.table
+    new_lookups: List[Any] = []
+    new_feature_records: List[Any] = []
+    lookup_index_map: Dict[Tuple[str, int], int] = {}
+    new_feature_index_by_tag: Dict[str, int] = {}
+
+    for origin, _feature_index, feature_tag, feature_record in selected_specs:
+        lookup_source = source_lookup_records if origin == "source" else target_lookup_records
+        cloned_feature_record = copy.deepcopy(feature_record)
+        new_lookup_indices: List[int] = []
+        lookup_indices = getattr(feature_record.Feature, "LookupListIndex", [])
+        for lookup_index in lookup_indices:
+            if not isinstance(lookup_index, int):
+                continue
+            key = (origin, lookup_index)
+            if key not in lookup_index_map:
+                if lookup_index < 0 or lookup_index >= len(lookup_source):
+                    continue
+                lookup_index_map[key] = len(new_lookups)
+                new_lookups.append(copy.deepcopy(lookup_source[lookup_index]))
+            new_lookup_indices.append(lookup_index_map[key])
+        cloned_feature_record.Feature.LookupListIndex = new_lookup_indices
+        cloned_feature_record.Feature.LookupCount = len(new_lookup_indices)
+        if feature_tag == "kern":
+            stats["source_kern_lookups_found"] += len(new_lookup_indices)
+            stats["kern_lookups_merged"] = len(new_lookup_indices)
+        new_feature_index_by_tag[feature_tag] = len(new_feature_records)
+        new_feature_records.append(cloned_feature_record)
+
+    merged_table.LookupList.Lookup = new_lookups
+    merged_table.LookupList.LookupCount = len(new_lookups)
+    merged_table.FeatureList.FeatureRecord = new_feature_records
+    merged_table.FeatureList.FeatureCount = len(new_feature_records)
+    stats["features_updated"] = len(new_feature_records)
+
+    source_script_list = getattr(source_gpos_table, "ScriptList", None)
+    target_script_list = getattr(target_gpos_table, "ScriptList", None)
+    source_script_records = list(getattr(source_script_list, "ScriptRecord", []) or [])
+    target_script_records = list(getattr(target_script_list, "ScriptRecord", []) or [])
+    target_script_map = {getattr(record, "ScriptTag", ""): record for record in target_script_records}
+
+    merged_script_records: List[Any] = []
+    seen_script_tags: set[str] = set()
+
+    def merge_langsys(base_langsys: Any, other_langsys: Any | None, base_features: List[Any], other_features: List[Any]) -> Any:
+        if base_langsys is None and other_langsys is None:
+            return None
+        langsys = copy.deepcopy(base_langsys if base_langsys is not None else other_langsys)
+        source_tags = _langsys_feature_tags(base_langsys, base_features) if base_langsys is not None else []
+        other_tags = _langsys_feature_tags(other_langsys, other_features) if other_langsys is not None else []
+        merged_tags = source_tags + [tag for tag in other_tags if tag not in source_tags]
+        mapped_indices = [new_feature_index_by_tag[tag] for tag in merged_tags if tag in new_feature_index_by_tag]
+        langsys.FeatureIndex = mapped_indices
+        langsys.FeatureCount = len(mapped_indices)
+        req_tag = _langsys_req_feature_tag(base_langsys, base_features) if base_langsys is not None else None
+        if req_tag is None and other_langsys is not None:
+            req_tag = _langsys_req_feature_tag(other_langsys, other_features)
+        langsys.ReqFeatureIndex = new_feature_index_by_tag.get(req_tag, 0xFFFF) if req_tag else 0xFFFF
+        return langsys
+
+    for source_script_record in source_script_records:
+        script_tag = getattr(source_script_record, "ScriptTag", "")
+        if not isinstance(script_tag, str):
+            continue
+        seen_script_tags.add(script_tag)
+        merged_script_record = copy.deepcopy(source_script_record)
+        target_script_record = target_script_map.get(script_tag)
+        target_script = getattr(target_script_record, "Script", None) if target_script_record is not None else None
+        source_script = source_script_record.Script
+        merged_script_record.Script.DefaultLangSys = merge_langsys(
+            getattr(source_script, "DefaultLangSys", None),
+            getattr(target_script, "DefaultLangSys", None),
+            source_feature_records,
+            target_feature_records,
+        )
+        source_lang_map = {getattr(record, "LangSysTag", ""): record for record in getattr(source_script, "LangSysRecord", []) or []}
+        target_lang_map = {getattr(record, "LangSysTag", ""): record for record in getattr(target_script, "LangSysRecord", []) or []} if target_script is not None else {}
+        merged_langsys_records: List[Any] = []
+        seen_lang_tags: set[str] = set()
+        for lang_tag, source_lang_record in source_lang_map.items():
+            if not isinstance(lang_tag, str):
+                continue
+            seen_lang_tags.add(lang_tag)
+            merged_lang_record = copy.deepcopy(source_lang_record)
+            target_lang_record = target_lang_map.get(lang_tag)
+            merged_lang_record.LangSys = merge_langsys(
+                source_lang_record.LangSys,
+                target_lang_record.LangSys if target_lang_record is not None else None,
+                source_feature_records,
+                target_feature_records,
+            )
+            merged_langsys_records.append(merged_lang_record)
+        for lang_tag, target_lang_record in target_lang_map.items():
+            if not isinstance(lang_tag, str) or lang_tag in seen_lang_tags:
+                continue
+            merged_lang_record = copy.deepcopy(target_lang_record)
+            merged_lang_record.LangSys = merge_langsys(
+                None,
+                target_lang_record.LangSys,
+                source_feature_records,
+                target_feature_records,
+            )
+            merged_langsys_records.append(merged_lang_record)
+        merged_script_record.Script.LangSysRecord = merged_langsys_records
+        merged_script_record.Script.LangSysCount = len(merged_langsys_records)
+        merged_script_records.append(merged_script_record)
+
+    for target_script_record in target_script_records:
+        script_tag = getattr(target_script_record, "ScriptTag", "")
+        if not isinstance(script_tag, str) or script_tag in seen_script_tags:
+            continue
+        merged_script_record = copy.deepcopy(target_script_record)
+        target_script = target_script_record.Script
+        merged_script_record.Script.DefaultLangSys = merge_langsys(
+            None,
+            getattr(target_script, "DefaultLangSys", None),
+            source_feature_records,
+            target_feature_records,
+        )
+        merged_langsys_records = []
+        for target_lang_record in getattr(target_script, "LangSysRecord", []) or []:
+            merged_lang_record = copy.deepcopy(target_lang_record)
+            merged_lang_record.LangSys = merge_langsys(
+                None,
+                target_lang_record.LangSys,
+                source_feature_records,
+                target_feature_records,
+            )
+            merged_langsys_records.append(merged_lang_record)
+        merged_script_record.Script.LangSysRecord = merged_langsys_records
+        merged_script_record.Script.LangSysCount = len(merged_langsys_records)
+        merged_script_records.append(merged_script_record)
+
+    merged_table.ScriptList.ScriptRecord = merged_script_records
+    merged_table.ScriptList.ScriptCount = len(merged_script_records)
+    target_font["GPOS"] = merged_gpos
+    stats["enabled"] = 1
+    return stats
+
+
 def copy_patched_tables(
     original_font_path: Path,
     patched_font_path: Path,
     output_path: Path,
     enable_fix_stat_linked_bold: bool,
-) -> Dict[str, int]:
+    merge_source_kern_from: Path | None,
+) -> Tuple[Dict[str, int], Dict[str, int]]:
     """Summary: Copy patched tables onto the original font and save output.
 
     Args:
@@ -1316,10 +1577,10 @@ def copy_patched_tables(
         enable_fix_stat_linked_bold: Whether to patch STAT linked bold entries.
 
     Returns:
-        Dict[str, int]: STAT linked bold stats.
+        tuple[Dict[str, int], Dict[str, int]]: STAT linked bold stats and GPOS merge stats.
 
     Example:
-        copy_patched_tables(Path("in.ttf"), Path("patched.ttf"), Path("out.ttf"), False)
+        copy_patched_tables(Path("in.ttf"), Path("patched.ttf"), Path("out.ttf"), False, None)
     """
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -1329,14 +1590,28 @@ def copy_patched_tables(
         "entries_already_ok": 0,
         "stat_missing": 0,
     }
+    gpos_merge_stats = {
+        "enabled": 0,
+        "source_kern_lookups_found": 0,
+        "kern_lookups_merged": 0,
+        "features_updated": 0,
+        "preserved_variable_gpos": 0,
+    }
     with TTFont(str(original_font_path)) as original_font, TTFont(str(patched_font_path)) as patched_font:
-        for tag in PATCHED_TABLE_TAGS:
+        patched_table_tags = PATCHED_TABLE_TAGS
+        if merge_source_kern_from is not None and merge_source_kern_from.exists():
+            patched_table_tags = tuple(tag for tag in PATCHED_TABLE_TAGS if tag not in {"GDEF", "GPOS"})
+            gpos_merge_stats["preserved_variable_gpos"] = 1
+        for tag in patched_table_tags:
             if tag in patched_font:
                 original_font[tag] = copy.deepcopy(patched_font[tag])
+        if merge_source_kern_from is not None and merge_source_kern_from.exists():
+            with TTFont(str(merge_source_kern_from)) as source_font:
+                gpos_merge_stats = merge_source_kern_into_patched_gpos(source_font, original_font)
         if enable_fix_stat_linked_bold:
             stat_fix_stats = fix_stat_linked_bold(original_font)
         original_font.save(str(output_path))
-    return stat_fix_stats
+    return stat_fix_stats, gpos_merge_stats
 
 
 def main() -> int:
@@ -1359,6 +1634,7 @@ def main() -> int:
     rules_json_path = Path(args.rules_json).resolve()
     name_json_path = Path(args.name_json).resolve()
     anchor_rules_json_path = Path(args.anchor_rules_json).resolve()
+    merge_source_kern_from = Path(args.merge_source_kern_from).resolve() if args.merge_source_kern_from else None
 
     if not input_path.exists():
         eprint(f"Input file not found: {input_path}")
@@ -1399,11 +1675,12 @@ def main() -> int:
             handle.write("\n")
 
         run_cmd([args.otfccbuild, str(json_path), "-o", str(patched_font_path)])
-        stat_fix_stats = copy_patched_tables(
+        stat_fix_stats, gpos_merge_stats = copy_patched_tables(
             input_path,
             patched_font_path,
             output_path,
             args.fix_stat_linked_bold,
+            merge_source_kern_from,
         )
 
     if added:
@@ -1484,6 +1761,14 @@ def main() -> int:
         f"entries_updated={stat_fix_stats['entries_updated']}, "
         f"entries_already_ok={stat_fix_stats['entries_already_ok']}, "
         f"stat_missing={stat_fix_stats['stat_missing']}"
+    )
+    print(
+        "merge_source_kern stats: "
+        f"enabled={gpos_merge_stats['enabled']}, "
+        f"source_kern_lookups_found={gpos_merge_stats['source_kern_lookups_found']}, "
+        f"kern_lookups_merged={gpos_merge_stats['kern_lookups_merged']}, "
+        f"features_updated={gpos_merge_stats['features_updated']}, "
+        f"preserved_variable_gpos={gpos_merge_stats['preserved_variable_gpos']}"
     )
 
     print(f"Done: {output_path}")
