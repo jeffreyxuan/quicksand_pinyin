@@ -795,7 +795,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 		- anchor copied from Í, adjust height
 		
-	- I̍ = I + ̋ (uni030B)
+	- I̋ = I + ̋ (uni030B)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name I_uni030B
 		- from Ǐ, Edit -> Copy reference
 		- copy reference from uni030B
@@ -811,12 +811,16 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- align the bottom of uni030D to "v"
 		- delete "v"
 		
+		- anchor copied from O, adjust height
+		
 	- U̍ = U + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name U_uni030D
 		- from Ǔ, Edit -> Copy reference
 		- copy reference from uni030D
 		- align the bottom of uni030D to "v"
 		- delete "v"
+		
+		- anchor copied from Ú, adjust height
 		
 	- M̍ = M + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name M_uni030D
@@ -825,6 +829,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- align the bottom of uni030D to center
 		- delete "v"
 		
+		- anchor copied from M, adjust top height
+		
 	- N̍ = N + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name N_uni030D
 		- from N, Edit -> Copy reference
@@ -832,113 +838,165 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- align the bottom of uni030D to center
 		- delete "v"
 		
+		- anchor copied from N, adjust top height
+		
 	- o͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name o_uni0358
 		- reference from o + uni0358
+		- anchor copied from o, adjust top height
 
 	- ó͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name oacute_uni0358
 		- reference from oacute + uni0358
+		
+		- anchor copied from o, adjust top height
 
 	- ò͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name ograve_uni0358
 		- reference from ograve + uni0358
+		
+		- anchor copied from o, adjust top height
 
 	- ô͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name ocircumflex_uni0358
 		- reference from ocircumflex + uni0358
+		
+		- anchor copied from o, adjust top height
 
 	- ǒ͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D2_uni0358
 		- reference from ocaron + uni0358
+		
+		- anchor copied from o, adjust top height
 
 	- ō͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name omacron_uni0358
 		- reference from omacron + uni0358
+		
+		- anchor copied from o, adjust top height
 
 	- o̍͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name o_uni030D_uni0358
 		- reference from o_uni030D + uni0358
+		
+		- anchor copied from o, adjust top height
 
 	- ŏ͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name obreve_uni0358
 		- reference from obreve + uni0358
+		
+		- anchor copied from o, adjust top height
 
 	- ő͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name ohungarumlaut_uni0358
 		- reference from ohungarumlaut + uni0358
+		
+		- anchor copied from o, adjust top height
 
 	- O͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name O_uni0358
 		- reference from O + uni0358
+		
+		- anchor copied from O, adjust top height
 
 	- Ó͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Oacute_uni0358
 		- reference from Oacute + uni0358
+		
+		- anchor copied from O, adjust top height
 
 	- Ò͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ograve_uni0358
 		- reference from Ograve + uni0358
+		
+		- anchor copied from O, adjust top height
 
 	- Ô͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ocircumflex_uni0358
 		- reference from Ocircumflex + uni0358
+		
+		- anchor copied from O, adjust top height
 
 	- Ǒ͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D1_uni0358
 		- reference from Ocaron + uni0358
+		
+		- anchor copied from O, adjust top height
 
 	- Ō͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Omacron_uni0358
 		- reference from Omacron + uni0358
+		
+		- anchor copied from O, adjust top height
 
 	- O̍͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name O_uni030D_uni0358
 		- reference from O_uni030D + uni0358
+		
+		- anchor copied from O, adjust top height
 
 	- Ŏ͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Obreve_uni0358
 		- reference from Obreve + uni0358
+		
+		- anchor copied from O, adjust top height
 
 	- Ő͘
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ohungarumlaut_uni0358
 		- reference from Ohungarumlaut + uni0358
+		
+		- anchor copied from O, adjust top height
 		
 	- ǖ U+01D6
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D6
 		- reference from ü U+00FC
 		- reference head from ê̄ếê̌ề
 		
+		- anchor copied from ế, adjust top height
+		
+		
 	- ǘ U+01D8
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D8
 		- reference from ü U+00FC
 		- reference head from ê̄ếê̌ề
+		
+		- anchor copied from ế, adjust top height
 		
 	- ǚ U+01DA
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01DA
 		- reference from ü U+00FC
 		- reference head from ê̄ếê̌ề
 		
+		- anchor copied from ế, adjust top height
+		
 	- ǜ U+01DC
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01DC
 		- reference from ü U+00FC
 		- reference head from ê̄ếê̌ề
+		
+		- anchor copied from ế, adjust top height
 		
 	- Ǖ U+01D5
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D5
 		- reference from Ü Udieresis
 		- reference head from Ê̄Ê̌
 		
+		- anchor copied from Ü, adjust top height
+		
 	- Ǚ U+01D9
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D9
 		- reference from Ü Udieresis
 		- reference head from Ê̄Ê̌
+		
+		- anchor copied from Ü, adjust top height
 		
 	- ḿ U+1E3F
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni1E3F
 		- copy from m̍
 		- reference from acutecomb, align the bottom of ̍
 		- delete ̍
+		
+		- anchor copied from m, adjust top height
 		
 	- ǹ U+01F9
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01F9

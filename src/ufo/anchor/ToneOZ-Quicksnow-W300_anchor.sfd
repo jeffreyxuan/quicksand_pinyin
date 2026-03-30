@@ -22,7 +22,7 @@ OS2Version: 4
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1774769700
-ModificationTime: 1774851576
+ModificationTime: 1774864085
 PfmFamily: 81
 TTFWeight: 300
 TTFWidth: 5
@@ -319,9 +319,9 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 65500 25 8
+WinInfo: 475 25 8
 AnchorClass2: "Anchor-0" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-1" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-2" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-3" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-4" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-5" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-6" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-7" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-8" "'mkmk' Mark to Mark in Latin lookup 3 subtable" "Anchor-9" "'mkmk' Mark to Mark in Latin lookup 4 subtable" "Anchor-10" "'mkmk' Mark to Mark in Latin lookup 5 subtable"
-BeginChars: 65695 862
+BeginChars: 65695 870
 
 StartChar: .notdef
 Encoding: 65536 -1 0
@@ -20151,7 +20151,7 @@ EndChar
 StartChar: I_uni030B
 Encoding: 65673 -1 839
 Width: 322
-Flags: WO
+Flags: W
 AnchorPoint: "Anchor-3" 318 10 basechar 0
 AnchorPoint: "Anchor-2" 162 0 basechar 0
 AnchorPoint: "Anchor-0" 162 926 basechar 0
@@ -20167,10 +20167,15 @@ StartChar: U_uni030D
 Encoding: 65674 -1 840
 Width: 715
 Flags: W
+AnchorPoint: "Anchor-0" 351 926 basechar 0
+AnchorPoint: "Anchor-1" 521 697 basechar 0
+AnchorPoint: "Anchor-2" 358 0 basechar 0
+AnchorPoint: "Anchor-3" 643 10 basechar 0
 LayerCount: 2
 Fore
 Refer: 809 781 N 1 0 0 1 195 200 2
 Refer: 199 85 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" U uni030D
 EndChar
 
@@ -20178,10 +20183,13 @@ StartChar: M_uni030D
 Encoding: 65675 -1 841
 Width: 829
 Flags: W
+AnchorPoint: "Anchor-0" 415 922 basechar 0
+AnchorPoint: "Anchor-2" 415 0 basechar 0
 LayerCount: 2
 Fore
 Refer: 809 781 N 1 0 0 1 261 200 2
 Refer: 116 77 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" M uni030D
 EndChar
 
@@ -20189,10 +20197,13 @@ StartChar: N_uni030D
 Encoding: 65676 -1 842
 Width: 725
 Flags: W
+AnchorPoint: "Anchor-0" 363 922 basechar 0
+AnchorPoint: "Anchor-2" 363 0 basechar 0
 LayerCount: 2
 Fore
 Refer: 809 781 N 1 0 0 1 205 200 2
 Refer: 118 78 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" N uni030D
 EndChar
 
@@ -20283,10 +20294,17 @@ StartChar: o_uni0358
 Encoding: 65677 -1 844
 Width: 597
 Flags: W
+AnchorPoint: "Anchor-0" 299 509 basechar 0
+AnchorPoint: "Anchor-1" 316 496 basechar 0
+AnchorPoint: "Anchor-2" 299 0 basechar 0
+AnchorPoint: "Anchor-3" 534 10 basechar 0
+AnchorPoint: "Anchor-4" 299 250 basechar 0
+AnchorPoint: "Anchor-5" 299 250 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 380 0 2
 Refer: 376 111 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" o uni0358
 EndChar
 
@@ -20294,10 +20312,17 @@ StartChar: oacute_uni0358
 Encoding: 65678 -1 845
 Width: 597
 Flags: W
+AnchorPoint: "Anchor-0" 299 719 basechar 0
+AnchorPoint: "Anchor-1" 316 496 basechar 0
+AnchorPoint: "Anchor-2" 299 0 basechar 0
+AnchorPoint: "Anchor-3" 534 10 basechar 0
+AnchorPoint: "Anchor-4" 299 250 basechar 0
+AnchorPoint: "Anchor-5" 299 250 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 380 0 2
 Refer: 377 243 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" oacute uni0358
 EndChar
 
@@ -20305,10 +20330,17 @@ StartChar: ograve_uni0358
 Encoding: 65679 -1 846
 Width: 597
 Flags: W
+AnchorPoint: "Anchor-5" 299 250 basechar 0
+AnchorPoint: "Anchor-4" 299 250 basechar 0
+AnchorPoint: "Anchor-3" 534 10 basechar 0
+AnchorPoint: "Anchor-2" 299 0 basechar 0
+AnchorPoint: "Anchor-1" 316 496 basechar 0
+AnchorPoint: "Anchor-0" 299 719 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 380 0 2
 Refer: 391 242 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" ograve uni0358
 EndChar
 
@@ -20316,10 +20348,17 @@ StartChar: ocircumflex_uni0358
 Encoding: 65680 -1 847
 Width: 597
 Flags: W
+AnchorPoint: "Anchor-5" 299 250 basechar 0
+AnchorPoint: "Anchor-4" 299 250 basechar 0
+AnchorPoint: "Anchor-3" 534 10 basechar 0
+AnchorPoint: "Anchor-2" 299 0 basechar 0
+AnchorPoint: "Anchor-1" 316 496 basechar 0
+AnchorPoint: "Anchor-0" 299 699 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 380 0 2
 Refer: 380 244 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" ocircumflex uni0358
 EndChar
 
@@ -20327,11 +20366,18 @@ StartChar: uni01D2_uni0358
 Encoding: 65681 -1 848
 Width: 597
 Flags: W
+AnchorPoint: "Anchor-0" 299 699 basechar 0
+AnchorPoint: "Anchor-1" 316 496 basechar 0
+AnchorPoint: "Anchor-2" 299 0 basechar 0
+AnchorPoint: "Anchor-3" 534 10 basechar 0
+AnchorPoint: "Anchor-4" 299 250 basechar 0
+AnchorPoint: "Anchor-5" 299 250 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 380 0 2
 Refer: 376 111 N 1 0 0 1 0 0 2
 Refer: 744 780 N 1 0 0 1 142 0 2
+LCarets2: 2 0 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" uni01D2 uni0358
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" o uni0358 uni030D
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" o uni030D uni0358
@@ -20341,10 +20387,17 @@ StartChar: omacron_uni0358
 Encoding: 65682 -1 849
 Width: 597
 Flags: W
+AnchorPoint: "Anchor-0" 299 699 basechar 0
+AnchorPoint: "Anchor-1" 316 496 basechar 0
+AnchorPoint: "Anchor-2" 299 0 basechar 0
+AnchorPoint: "Anchor-3" 534 10 basechar 0
+AnchorPoint: "Anchor-4" 299 250 basechar 0
+AnchorPoint: "Anchor-5" 299 250 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 380 0 2
 Refer: 401 333 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" omacron uni0358
 EndChar
 
@@ -20352,6 +20405,12 @@ StartChar: o_uni030D_uni0358
 Encoding: 65683 -1 850
 Width: 597
 Flags: W
+AnchorPoint: "Anchor-0" 299 722 basechar 0
+AnchorPoint: "Anchor-1" 316 496 basechar 0
+AnchorPoint: "Anchor-2" 299 0 basechar 0
+AnchorPoint: "Anchor-3" 534 10 basechar 0
+AnchorPoint: "Anchor-4" 299 250 basechar 0
+AnchorPoint: "Anchor-5" 299 250 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 380 0 2
@@ -20362,10 +20421,17 @@ StartChar: obreve_uni0358
 Encoding: 65684 -1 851
 Width: 597
 Flags: W
+AnchorPoint: "Anchor-5" 299 250 basechar 0
+AnchorPoint: "Anchor-4" 299 250 basechar 0
+AnchorPoint: "Anchor-3" 534 10 basechar 0
+AnchorPoint: "Anchor-2" 299 0 basechar 0
+AnchorPoint: "Anchor-1" 316 496 basechar 0
+AnchorPoint: "Anchor-0" 299 722 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 380 0 2
 Refer: 378 335 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" obreve uni0358
 EndChar
 
@@ -20373,10 +20439,17 @@ StartChar: ohungarumlaut_uni0358
 Encoding: 65685 -1 852
 Width: 597
 Flags: W
+AnchorPoint: "Anchor-5" 299 250 basechar 0
+AnchorPoint: "Anchor-4" 299 250 basechar 0
+AnchorPoint: "Anchor-3" 534 10 basechar 0
+AnchorPoint: "Anchor-2" 299 0 basechar 0
+AnchorPoint: "Anchor-1" 316 496 basechar 0
+AnchorPoint: "Anchor-0" 299 722 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 380 0 2
 Refer: 399 337 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" ohungarumlaut uni0358
 EndChar
 
@@ -20384,10 +20457,17 @@ StartChar: O_uni0358
 Encoding: 65686 -1 853
 Width: 688
 Flags: W
+AnchorPoint: "Anchor-0" 344 700 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-5" 352 445 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 470 210 2
 Refer: 131 79 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" O uni0358
 EndChar
 
@@ -20395,10 +20475,17 @@ StartChar: Oacute_uni0358
 Encoding: 65687 -1 854
 Width: 688
 Flags: W
+AnchorPoint: "Anchor-0" 344 910 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-5" 352 445 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 470 210 2
 Refer: 132 211 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" Oacute uni0358
 EndChar
 
@@ -20406,10 +20493,17 @@ StartChar: Ograve_uni0358
 Encoding: 65688 -1 855
 Width: 688
 Flags: W
+AnchorPoint: "Anchor-5" 352 445 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 910 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 470 210 2
 Refer: 146 210 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" Ograve uni0358
 EndChar
 
@@ -20417,10 +20511,17 @@ StartChar: Ocircumflex_uni0358
 Encoding: 65689 -1 856
 Width: 688
 Flags: W
+AnchorPoint: "Anchor-5" 352 445 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 910 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 470 210 2
 Refer: 135 212 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" Ocircumflex uni0358
 EndChar
 
@@ -20428,10 +20529,17 @@ StartChar: uni01D1_uni0358
 Encoding: 65690 -1 857
 Width: 688
 Flags: W
+AnchorPoint: "Anchor-5" 352 445 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 910 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 470 210 2
 Refer: 134 465 N 1 0 0 1 0 0 2
+LCarets2: 2 0 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" uni01D1 uni0358
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" O uni0358 uni030D
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" O uni030D uni0358
@@ -20441,10 +20549,17 @@ StartChar: Omacron_uni0358
 Encoding: 65691 -1 858
 Width: 688
 Flags: W
+AnchorPoint: "Anchor-5" 352 445 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 910 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 470 210 2
 Refer: 156 332 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" Omacron uni0358
 EndChar
 
@@ -20452,6 +20567,12 @@ StartChar: O_uni030D_uni0358
 Encoding: 65692 -1 859
 Width: 688
 Flags: W
+AnchorPoint: "Anchor-5" 352 445 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 920 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 470 210 2
@@ -20462,10 +20583,17 @@ StartChar: Obreve_uni0358
 Encoding: 65693 -1 860
 Width: 688
 Flags: W
+AnchorPoint: "Anchor-5" 352 445 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 910 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 470 210 2
 Refer: 133 334 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" Obreve uni0358
 EndChar
 
@@ -20473,11 +20601,130 @@ StartChar: Ohungarumlaut_uni0358
 Encoding: 65694 -1 861
 Width: 688
 Flags: W
+AnchorPoint: "Anchor-5" 352 445 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 910 basechar 0
 LayerCount: 2
 Fore
 Refer: 810 856 N 1 0 0 1 470 210 2
 Refer: 154 336 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" Ohungarumlaut uni0358
+EndChar
+
+StartChar: uni01D5
+Encoding: 469 469 862
+Width: 715
+VWidth: 0
+Flags: W
+AnchorPoint: "Anchor-0" 358 1010 basechar 0
+AnchorPoint: "Anchor-1" 521 697 basechar 0
+AnchorPoint: "Anchor-2" 358 0 basechar 0
+AnchorPoint: "Anchor-3" 643 10 basechar 0
+LayerCount: 2
+Fore
+Refer: 748 772 N 1 0 0 1 170 400 2
+Refer: 205 220 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni01D9
+Encoding: 473 473 863
+Width: 715
+VWidth: 0
+Flags: W
+AnchorPoint: "Anchor-3" 643 10 basechar 0
+AnchorPoint: "Anchor-2" 358 0 basechar 0
+AnchorPoint: "Anchor-1" 521 697 basechar 0
+AnchorPoint: "Anchor-0" 358 1020 basechar 0
+LayerCount: 2
+Fore
+Refer: 744 780 N 1 0 0 1 205 350 2
+Refer: 205 220 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni1E3F
+Encoding: 7743 7743 864
+Width: 909
+VWidth: 0
+Flags: W
+AnchorPoint: "Anchor-0" 455 709 basechar 0
+AnchorPoint: "Anchor-2" 455 0 basechar 0
+LayerCount: 2
+Fore
+Refer: 740 769 N 1 0 0 1 355 3 2
+Refer: 361 109 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni01F9
+Encoding: 505 505 865
+Width: 572
+VWidth: 0
+Flags: W
+AnchorPoint: "Anchor-0" 297 709 basechar 0
+AnchorPoint: "Anchor-2" 286 0 basechar 0
+LayerCount: 2
+Fore
+Refer: 739 768 N 1 0 0 1 150 2 2
+Refer: 363 110 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni01D6
+Encoding: 470 470 866
+Width: 563
+VWidth: 0
+Flags: W
+AnchorPoint: "Anchor-0" 285 775 basechar 0
+AnchorPoint: "Anchor-2" 278 0 basechar 0
+AnchorPoint: "Anchor-3" 497 10 basechar 0
+LayerCount: 2
+Fore
+Refer: 748 772 N 1 0 0 1 90 170 2
+Refer: 450 252 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni01D8
+Encoding: 472 472 867
+Width: 563
+VWidth: 0
+Flags: W
+AnchorPoint: "Anchor-3" 497 10 basechar 0
+AnchorPoint: "Anchor-2" 278 0 basechar 0
+AnchorPoint: "Anchor-0" 285 855 basechar 0
+LayerCount: 2
+Fore
+Refer: 740 769 N 1 0 0 1 148 150 2
+Refer: 450 252 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni01DA
+Encoding: 474 474 868
+Width: 563
+VWidth: 0
+Flags: W
+AnchorPoint: "Anchor-0" 285 855 basechar 0
+AnchorPoint: "Anchor-2" 278 0 basechar 0
+AnchorPoint: "Anchor-3" 497 10 basechar 0
+LayerCount: 2
+Fore
+Refer: 744 780 N 1 0 0 1 125 150 2
+Refer: 450 252 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni01DC
+Encoding: 476 476 869
+Width: 563
+VWidth: 0
+Flags: W
+AnchorPoint: "Anchor-0" 285 855 basechar 0
+AnchorPoint: "Anchor-2" 278 0 basechar 0
+AnchorPoint: "Anchor-3" 497 10 basechar 0
+LayerCount: 2
+Fore
+Refer: 739 768 N 1 0 0 1 161 142 2
+Refer: 450 252 N 1 0 0 1 0 0 2
 EndChar
 EndChars
 EndSplineFont
