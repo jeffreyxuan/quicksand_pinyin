@@ -33,7 +33,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- increase the width of the tail of the "t" progressively, to be the same as "f"
 			3 steps
 			
-		- anchor-1 right 1 steps, down 1 step
+		- (300) anchor-1 right 1 steps, down 1 step
+		- (700) anchor all manul adjust
 		
 		
 	- k
@@ -41,7 +42,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- move the left side of "/" and "\" to touch the intersection of "|" and "-"
 		- add a dot at the bottom left of "/", convert the dot type to "corner"
 		
-		- anchor no change
+		- (300) anchor no change
+		- (700) anchor-0 1 step up
 	
 	- K
 		- width should be similar and a little bigger then R
@@ -54,7 +56,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- (300 only)move the K left 2 steps
 		- (300 only)move the right of the width control, left 6 steps, 682 -> 622
 		
-		- anchor-0 left 2 steps
+		- (300) anchor-0 left 2 steps
+		- (700) anchor no change
 		
 	- I
 		- copy "-" (U+002D)
@@ -87,11 +90,18 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- due to the width is increase by 80, all other combinedmark with I should move the part right 4 steps
 			ÍĬǏÎȈÏḮİỊÌỈȊĪĮĨ
 			
-		- anchor-0 right 4 steps
-		- anchor-2 right 4 steps
-		- anchor-3 right 10 steps
-		- due to the width is increase by 80, all other combinedmark with I should move the part right 4 steps
+		- (300) anchor-0 right 4 steps
+		- (300) anchor-2 right 4 steps
+		- (300) anchor-3 right 10 steps
+		- (300) due to the width is increased, all other combinedmark with I should manually adjust
 			ÍĬǏÎȈÏḮİỊÌỈȊĪĮĨ
+			
+		- (700) anchor-0 right 5.9 steps
+		- (700) anchor-2 right 5.7 steps
+		- (700) anchor-3 right 14 steps
+		- (700) due to the width is increased, all other combinedmark with I should manually adjust
+			ÍĬǏÎȈÏḮİỊÌỈȊĪĮĨ
+		
 		
 		
 	- Į U+012E Iogonek same as I
@@ -101,6 +111,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- cut "=" from background to foreground
 		- move top of the "|" 2 steps down
 		- make the cure smooth, move the cure control points of the bottom left , right 1 to 2 steps
+		
+		- anchor manual adjust
 	
 		
 	- J 
@@ -119,6 +131,9 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- move left 5 + 2 steps
 		- move J center left 2 steps
 		- move uni0304 left 2 steps
+		
+		- (300) anchor left 9 steps
+		- (700) anchor left 7 steps
 		
 		
 		
@@ -148,19 +163,38 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- (300)due J moved left 5 + 2 + 2 steps, all other combinedmark with J should 
 			move left 5 + 2 + 2 steps
 	- 0x65 uni004A0301
+		- (300) anchor left 9 steps
+		- (700) anchor left 7 steps
+		
 	- 0x66 U+0134 Jcircumflex
+		- (300) anchor left 9 steps
+		- (700) anchor left 7 steps
 	
 	- Ǉ U+01C7 uni01C7
 		- (300)J move left 3 steps
 		- (700)J move left 5 steps
+		- anchor no change
+		
 	- Ǌ U+01CA uni01CA
 		- J move left 7 steps
+		- anchor no change
 
 		
 	- j 
 		#- in Quicksand-VariableFont_wght-W300.ufo.sfd
 		- shrink width from 268 to 236
 		#- shrink width from 268 to 206, same width as "i"
+		
+		- anchor-2 was wrong in the orignal Quicksand
+			- examples: j̣ j̤ j̦ j̧ j̭ j̮ j̱ 
+		- (300) anchor-2 down 20 steps, left 7 steps
+		- (700) anchor-2 down 20 steps, left 9 steps
+				
+	- uni006A0301
+		- anchor follow j
+		
+	- jcircumflex
+		- anchor follow j
 
 	- uni0237 dotless j
 		- add 2 dots before the point of the tail of the j
@@ -182,6 +216,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		#- merge a dot at the tail
 		#- move tail right 4 steps
 
+		- anchor follow j
 
 	- O
 		- shrink the width for O by move each side of O towards center, 4 steps progressively
@@ -195,6 +230,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 			upper part move left 2 more steps
 			Ohorn、uni1EDA、 uni1EE2
 			
+		- anchor-0,1,2,4,5 move left 4 steps
+		- anchor-3 move left 6 steps
 	
 	
 	- ◌ uni25CC U+25CC  虛線圓

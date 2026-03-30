@@ -1222,6 +1222,8 @@ def apply_json_fixes(
     ccmp_stats["lookup_updates"] += int(rule_stats.get("lookup_updates", 0))
     ccmp_stats["rules_added_or_updated"] += int(rule_stats.get("rules_added_or_updated", 0))
     ccmp_stats["languages_updated"] += int(rule_stats.get("languages_updated", 0))
+    # Kerning copy must run on the final preserved GPOS, not on intermediate
+    # otfcc JSON that may be bypassed by later table-preservation steps.
     kern_copy_stats = {
         "x_left_rules_found": 0,
         "x_right_rules_found": 0,
@@ -1229,16 +1231,12 @@ def apply_json_fixes(
         "i_right_rules_added_or_updated": 0,
         "skipped_conflicts": 0,
     }
-    if enable_copy_kern_x_to_i:
-        kern_copy_stats = copy_kern_x_to_i(data)
     kern_t_to_j_stats = {
         "t_left_rules_found": 0,
         "j_left_rules_added_or_updated": 0,
         "j_right_rules_preserved": 0,
         "skipped_conflicts": 0,
     }
-    if enable_copy_kern_t_left_to_j:
-        kern_t_to_j_stats = copy_kern_t_left_only_to_j(data)
     anchor_patch_stats = apply_anchor_rules_from_json(data, anchor_rules_json_path)
     return (
         added,
@@ -1561,13 +1559,267 @@ def merge_source_kern_into_patched_gpos(source_font: TTFont, target_font: TTFont
     return stats
 
 
+def _get_kern_lookup_indices(font: TTFont) -> List[int]:
+    """Summary: Collect lookup indices referenced by the GPOS kern feature."""
+
+    feature_records = _get_feature_records(font)
+    lookup_indices: List[int] = []
+    for feature_record in feature_records:
+        if getattr(feature_record, "FeatureTag", None) != "kern":
+            continue
+        for lookup_index in getattr(feature_record.Feature, "LookupListIndex", []) or []:
+            if isinstance(lookup_index, int) and lookup_index not in lookup_indices:
+                lookup_indices.append(lookup_index)
+    return lookup_indices
+
+
+def _ensure_pairset_for_left_glyph(subtable: Any, glyph_name: str) -> Any | None:
+    """Summary: Ensure a PairSet entry exists for one left glyph in format-1 PairPos."""
+
+    coverage = list(getattr(subtable.Coverage, "glyphs", []) or [])
+    pair_sets = list(getattr(subtable, "PairSet", []) or [])
+    if glyph_name in coverage:
+        index = coverage.index(glyph_name)
+        return pair_sets[index] if index < len(pair_sets) else None
+    if not pair_sets:
+        return None
+    template_pairset = copy.deepcopy(pair_sets[0])
+    template_pairset.PairValueRecord = []
+    coverage.append(glyph_name)
+    pair_sets.append(template_pairset)
+    subtable.Coverage.glyphs = coverage
+    subtable.PairSet = pair_sets
+    subtable.PairSetCount = len(pair_sets)
+    return pair_sets[-1]
+
+
+def _sort_pairpos_format1_subtable(subtable: Any, glyph_order_map: Dict[str, int]) -> None:
+    """Summary: Sort PairPos format-1 coverage and pair records by glyph order."""
+
+    coverage = list(getattr(subtable.Coverage, "glyphs", []) or [])
+    pair_sets = list(getattr(subtable, "PairSet", []) or [])
+    combined = list(zip(coverage, pair_sets))
+    combined.sort(key=lambda item: glyph_order_map.get(item[0], 10**9))
+    subtable.Coverage.glyphs = [glyph for glyph, _ in combined]
+    subtable.PairSet = [pairset for _, pairset in combined]
+    subtable.PairSetCount = len(subtable.PairSet)
+    for pairset in subtable.PairSet:
+        records = list(getattr(pairset, "PairValueRecord", []) or [])
+        records.sort(key=lambda record: glyph_order_map.get(getattr(record, "SecondGlyph", ""), 10**9))
+        pairset.PairValueRecord = records
+        pairset.PairValueCount = len(records)
+
+
+def _count_nonzero_pairvalue_records(records: List[Any]) -> int:
+    """Summary: Count non-zero XAdvance records in PairValueRecord list."""
+
+    total = 0
+    for record in records:
+        value1 = getattr(record, "Value1", None)
+        x_advance = getattr(value1, "XAdvance", None) if value1 is not None else None
+        if isinstance(x_advance, int) and x_advance != 0:
+            total += 1
+    return total
+
+
+def _copy_direct_left_pairs(subtable: Any, source_left: str, target_left: str) -> Tuple[int, int]:
+    """Summary: Copy all direct left pairs from one glyph to another."""
+
+    coverage = list(getattr(subtable.Coverage, "glyphs", []) or [])
+    pair_sets = list(getattr(subtable, "PairSet", []) or [])
+    if source_left not in coverage:
+        return (0, 0)
+    source_index = coverage.index(source_left)
+    if source_index >= len(pair_sets):
+        return (0, 0)
+    source_pairset = pair_sets[source_index]
+    source_records = list(getattr(source_pairset, "PairValueRecord", []) or [])
+    found = _count_nonzero_pairvalue_records(source_records)
+    target_pairset = _ensure_pairset_for_left_glyph(subtable, target_left)
+    if target_pairset is None:
+        return (found, 0)
+    target_pairset.PairValueRecord = copy.deepcopy(source_records)
+    target_pairset.PairValueCount = len(target_pairset.PairValueRecord)
+    return (found, found)
+
+
+def _copy_direct_right_pairs(subtable: Any, source_right: str, target_right: str) -> Tuple[int, int]:
+    """Summary: Copy all direct right pairs from one glyph to another."""
+
+    coverage = list(getattr(subtable.Coverage, "glyphs", []) or [])
+    pair_sets = list(getattr(subtable, "PairSet", []) or [])
+    found = 0
+    updated = 0
+    for pairset in pair_sets:
+        records = list(getattr(pairset, "PairValueRecord", []) or [])
+        source_record = None
+        target_index = None
+        for index, record in enumerate(records):
+            if getattr(record, "SecondGlyph", None) == source_right:
+                source_record = record
+            if getattr(record, "SecondGlyph", None) == target_right:
+                target_index = index
+        if source_record is None:
+            continue
+        value1 = getattr(source_record, "Value1", None)
+        x_advance = getattr(value1, "XAdvance", None) if value1 is not None else None
+        if isinstance(x_advance, int) and x_advance != 0:
+            found += 1
+            cloned_record = copy.deepcopy(source_record)
+            cloned_record.SecondGlyph = target_right
+            if target_index is None:
+                records.append(cloned_record)
+            else:
+                records[target_index] = cloned_record
+            records.sort(key=lambda item: getattr(item, "SecondGlyph", ""))
+            pairset.PairValueRecord = records
+            pairset.PairValueCount = len(records)
+            updated += 1
+    return (found, updated)
+
+
+def copy_kern_x_to_i_in_final_gpos(font: TTFont) -> Dict[str, int]:
+    """Summary: Copy X-left/X-right kerning to I on the final preserved GPOS."""
+
+    stats = {
+        "x_left_rules_found": 0,
+        "x_right_rules_found": 0,
+        "i_left_rules_added_or_updated": 0,
+        "i_right_rules_added_or_updated": 0,
+        "skipped_conflicts": 0,
+    }
+    if "GPOS" not in font:
+        return stats
+    glyph_order_map = {name: index for index, name in enumerate(font.getGlyphOrder())}
+    lookup_records = _get_lookup_records(font)
+    for lookup_index in _get_kern_lookup_indices(font):
+        if lookup_index < 0 or lookup_index >= len(lookup_records):
+            continue
+        lookup = lookup_records[lookup_index]
+        if getattr(lookup, "LookupType", None) != 2:
+            continue
+        for subtable in getattr(lookup, "SubTable", []) or []:
+            fmt = getattr(subtable, "Format", None)
+            if fmt == 1:
+                found, updated = _copy_direct_left_pairs(subtable, "X", "I")
+                stats["x_left_rules_found"] += found
+                stats["i_left_rules_added_or_updated"] += updated
+                found, updated = _copy_direct_right_pairs(subtable, "X", "I")
+                stats["x_right_rules_found"] += found
+                stats["i_right_rules_added_or_updated"] += updated
+                _sort_pairpos_format1_subtable(subtable, glyph_order_map)
+            elif fmt == 2:
+                class_def1 = getattr(subtable, "ClassDef1", None)
+                class_def2 = getattr(subtable, "ClassDef2", None)
+                class_defs1 = getattr(class_def1, "classDefs", None)
+                class_defs2 = getattr(class_def2, "classDefs", None)
+                if isinstance(class_defs1, dict):
+                    x_left_class = class_defs1.get("X")
+                    if isinstance(x_left_class, int):
+                        stats["x_left_rules_found"] += _count_nonzero_class1_row(subtable, x_left_class)
+                        if class_defs1.get("I") != x_left_class:
+                            class_defs1["I"] = x_left_class
+                            stats["i_left_rules_added_or_updated"] += _count_nonzero_class1_row(subtable, x_left_class)
+                if isinstance(class_defs2, dict):
+                    x_right_class = class_defs2.get("X")
+                    if isinstance(x_right_class, int):
+                        stats["x_right_rules_found"] += _count_nonzero_class2_col(subtable, x_right_class)
+                        if class_defs2.get("I") != x_right_class:
+                            class_defs2["I"] = x_right_class
+                            stats["i_right_rules_added_or_updated"] += _count_nonzero_class2_col(subtable, x_right_class)
+    return stats
+
+
+def copy_kern_t_left_only_to_j_in_final_gpos(font: TTFont) -> Dict[str, int]:
+    """Summary: Copy T-left kerning to J-left on the final preserved GPOS."""
+
+    stats = {
+        "t_left_rules_found": 0,
+        "j_left_rules_added_or_updated": 0,
+        "j_right_rules_preserved": 0,
+        "skipped_conflicts": 0,
+    }
+    if "GPOS" not in font:
+        return stats
+    glyph_order_map = {name: index for index, name in enumerate(font.getGlyphOrder())}
+    lookup_records = _get_lookup_records(font)
+    for lookup_index in _get_kern_lookup_indices(font):
+        if lookup_index < 0 or lookup_index >= len(lookup_records):
+            continue
+        lookup = lookup_records[lookup_index]
+        if getattr(lookup, "LookupType", None) != 2:
+            continue
+        for subtable in getattr(lookup, "SubTable", []) or []:
+            fmt = getattr(subtable, "Format", None)
+            if fmt == 1:
+                # Preserve existing J-right records by not touching SecondGlyph J entries.
+                found, updated = _copy_direct_left_pairs(subtable, "T", "J")
+                stats["t_left_rules_found"] += found
+                stats["j_left_rules_added_or_updated"] += updated
+                _sort_pairpos_format1_subtable(subtable, glyph_order_map)
+            elif fmt == 2:
+                class_def1 = getattr(subtable, "ClassDef1", None)
+                class_def2 = getattr(subtable, "ClassDef2", None)
+                class_defs1 = getattr(class_def1, "classDefs", None)
+                class_defs2 = getattr(class_def2, "classDefs", None)
+                if isinstance(class_defs2, dict):
+                    j_right_class = class_defs2.get("J")
+                    if isinstance(j_right_class, int):
+                        stats["j_right_rules_preserved"] += _count_nonzero_class2_col(subtable, j_right_class)
+                if not isinstance(class_defs1, dict):
+                    continue
+                t_left_class = class_defs1.get("T")
+                if not isinstance(t_left_class, int):
+                    continue
+                stats["t_left_rules_found"] += _count_nonzero_class1_row(subtable, t_left_class)
+                if class_defs1.get("J") != t_left_class:
+                    class_defs1["J"] = t_left_class
+                    stats["j_left_rules_added_or_updated"] += _count_nonzero_class1_row(subtable, t_left_class)
+    return stats
+
+
+def _count_nonzero_class1_row(subtable: Any, row_index: int) -> int:
+    """Summary: Count non-zero class kerning values in one Class1Record row."""
+
+    class1_records = list(getattr(subtable, "Class1Record", []) or [])
+    if row_index < 0 or row_index >= len(class1_records):
+        return 0
+    class2_records = list(getattr(class1_records[row_index], "Class2Record", []) or [])
+    total = 0
+    for record in class2_records:
+        value1 = getattr(record, "Value1", None)
+        x_advance = getattr(value1, "XAdvance", None) if value1 is not None else None
+        if isinstance(x_advance, int) and x_advance != 0:
+            total += 1
+    return total
+
+
+def _count_nonzero_class2_col(subtable: Any, col_index: int) -> int:
+    """Summary: Count non-zero class kerning values in one Class2Record column."""
+
+    if col_index < 0:
+        return 0
+    total = 0
+    for row in list(getattr(subtable, "Class1Record", []) or []):
+        class2_records = list(getattr(row, "Class2Record", []) or [])
+        if col_index >= len(class2_records):
+            continue
+        value1 = getattr(class2_records[col_index], "Value1", None)
+        x_advance = getattr(value1, "XAdvance", None) if value1 is not None else None
+        if isinstance(x_advance, int) and x_advance != 0:
+            total += 1
+    return total
+
+
 def copy_patched_tables(
     original_font_path: Path,
     patched_font_path: Path,
     output_path: Path,
     enable_fix_stat_linked_bold: bool,
     merge_source_kern_from: Path | None,
-) -> Tuple[Dict[str, int], Dict[str, int]]:
+    enable_copy_kern_x_to_i: bool,
+    enable_copy_kern_t_left_to_j: bool,
+) -> Tuple[Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int]]:
     """Summary: Copy patched tables onto the original font and save output.
 
     Args:
@@ -1577,10 +1829,11 @@ def copy_patched_tables(
         enable_fix_stat_linked_bold: Whether to patch STAT linked bold entries.
 
     Returns:
-        tuple[Dict[str, int], Dict[str, int]]: STAT linked bold stats and GPOS merge stats.
+        tuple[Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int]]:
+            STAT linked bold stats, GPOS merge stats, X->I kern stats, and T->J kern stats.
 
     Example:
-        copy_patched_tables(Path("in.ttf"), Path("patched.ttf"), Path("out.ttf"), False, None)
+          copy_patched_tables(Path("in.ttf"), Path("patched.ttf"), Path("out.ttf"), False, None, False, False)
     """
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -1597,6 +1850,19 @@ def copy_patched_tables(
         "features_updated": 0,
         "preserved_variable_gpos": 0,
     }
+    kern_copy_stats = {
+        "x_left_rules_found": 0,
+        "x_right_rules_found": 0,
+        "i_left_rules_added_or_updated": 0,
+        "i_right_rules_added_or_updated": 0,
+        "skipped_conflicts": 0,
+    }
+    kern_t_to_j_stats = {
+        "t_left_rules_found": 0,
+        "j_left_rules_added_or_updated": 0,
+        "j_right_rules_preserved": 0,
+        "skipped_conflicts": 0,
+    }
     with TTFont(str(original_font_path)) as original_font, TTFont(str(patched_font_path)) as patched_font:
         patched_table_tags = PATCHED_TABLE_TAGS
         if merge_source_kern_from is not None and merge_source_kern_from.exists():
@@ -1608,10 +1874,14 @@ def copy_patched_tables(
         if merge_source_kern_from is not None and merge_source_kern_from.exists():
             with TTFont(str(merge_source_kern_from)) as source_font:
                 gpos_merge_stats = merge_source_kern_into_patched_gpos(source_font, original_font)
+        if enable_copy_kern_x_to_i:
+            kern_copy_stats = copy_kern_x_to_i_in_final_gpos(original_font)
+        if enable_copy_kern_t_left_to_j:
+            kern_t_to_j_stats = copy_kern_t_left_only_to_j_in_final_gpos(original_font)
         if enable_fix_stat_linked_bold:
             stat_fix_stats = fix_stat_linked_bold(original_font)
         original_font.save(str(output_path))
-    return stat_fix_stats, gpos_merge_stats
+    return stat_fix_stats, gpos_merge_stats, kern_copy_stats, kern_t_to_j_stats
 
 
 def main() -> int:
@@ -1675,12 +1945,14 @@ def main() -> int:
             handle.write("\n")
 
         run_cmd([args.otfccbuild, str(json_path), "-o", str(patched_font_path)])
-        stat_fix_stats, gpos_merge_stats = copy_patched_tables(
+        stat_fix_stats, gpos_merge_stats, kern_copy_stats, kern_t_to_j_stats = copy_patched_tables(
             input_path,
             patched_font_path,
             output_path,
             args.fix_stat_linked_bold,
             merge_source_kern_from,
+            args.copy_kern_x_to_i,
+            args.copy_kern_t_left_to_j,
         )
 
     if added:

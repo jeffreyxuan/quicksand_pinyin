@@ -154,3 +154,5 @@ uni01D5
 uni01D9
 uni1E3F
 uni01F9
+uni006A0301
+jcircumflex
