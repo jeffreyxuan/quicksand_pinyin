@@ -22,7 +22,7 @@ OS2Version: 4
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1774769700
-ModificationTime: 1774864085
+ModificationTime: 1774864474
 PfmFamily: 81
 TTFWeight: 300
 TTFWidth: 5
@@ -319,7 +319,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 475 25 8
+WinInfo: 275 25 8
 AnchorClass2: "Anchor-0" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-1" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-2" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-3" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-4" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-5" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-6" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-7" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-8" "'mkmk' Mark to Mark in Latin lookup 3 subtable" "Anchor-9" "'mkmk' Mark to Mark in Latin lookup 4 subtable" "Anchor-10" "'mkmk' Mark to Mark in Latin lookup 5 subtable"
 BeginChars: 65695 870
 
@@ -6415,7 +6415,7 @@ GlyphClass: 2
 Flags: W
 AnchorPoint: "Anchor-3" 497 10 basechar 0
 AnchorPoint: "Anchor-2" 278 0 basechar 0
-AnchorPoint: "Anchor-0" 285 646 basechar 0
+AnchorPoint: "Anchor-0" 285 706 basechar 0
 LayerCount: 2
 Fore
 Refer: 289 101 N 1 0 0 1 0 0 2
@@ -6617,7 +6617,7 @@ GlyphClass: 2
 Flags: W
 AnchorPoint: "Anchor-3" 497 10 basechar 0
 AnchorPoint: "Anchor-2" 278 0 basechar 0
-AnchorPoint: "Anchor-0" 245 658 basechar 0
+AnchorPoint: "Anchor-0" 275 705 basechar 0
 LayerCount: 2
 Fore
 Refer: 289 101 N 1 0 0 1 0 0 2
@@ -8011,7 +8011,7 @@ Width: 572
 GlyphClass: 2
 Flags: W
 AnchorPoint: "Anchor-2" 286 0 basechar 0
-AnchorPoint: "Anchor-0" 297 646 basechar 0
+AnchorPoint: "Anchor-0" 297 706 basechar 0
 LayerCount: 2
 Fore
 Refer: 363 110 N 1 0 0 1 0 0 2
@@ -8291,7 +8291,7 @@ AnchorPoint: "Anchor-4" 299 250 basechar 0
 AnchorPoint: "Anchor-3" 534 10 basechar 0
 AnchorPoint: "Anchor-2" 299 0 basechar 0
 AnchorPoint: "Anchor-1" 316 496 basechar 0
-AnchorPoint: "Anchor-0" 299 656 basechar 0
+AnchorPoint: "Anchor-0" 299 716 basechar 0
 LayerCount: 2
 Fore
 Refer: 376 111 N 1 0 0 1 0 0 2
@@ -8526,7 +8526,7 @@ AnchorPoint: "Anchor-4" 299 250 basechar 0
 AnchorPoint: "Anchor-3" 534 10 basechar 0
 AnchorPoint: "Anchor-2" 299 0 basechar 0
 AnchorPoint: "Anchor-1" 316 496 basechar 0
-AnchorPoint: "Anchor-0" 259 668 basechar 0
+AnchorPoint: "Anchor-0" 300 718 basechar 0
 LayerCount: 2
 Fore
 Refer: 376 111 N 1 0 0 1 0 0 2
@@ -9726,7 +9726,7 @@ Flags: W
 AnchorPoint: "Anchor-3" 507 10 basechar 0
 AnchorPoint: "Anchor-2" 282 0 basechar 0
 AnchorPoint: "Anchor-1" 384 496 basechar 0
-AnchorPoint: "Anchor-0" 282 646 basechar 0
+AnchorPoint: "Anchor-0" 282 706 basechar 0
 LayerCount: 2
 Fore
 Refer: 444 117 N 1 0 0 1 0 0 2
@@ -9831,7 +9831,7 @@ Flags: W
 AnchorPoint: "Anchor-3" 507 10 basechar 0
 AnchorPoint: "Anchor-2" 282 0 basechar 0
 AnchorPoint: "Anchor-1" 384 496 basechar 0
-AnchorPoint: "Anchor-0" 242 658 basechar 0
+AnchorPoint: "Anchor-0" 282 708 basechar 0
 LayerCount: 2
 Fore
 Refer: 444 117 N 1 0 0 1 0 0 2

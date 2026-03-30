@@ -1046,4 +1046,4 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	
 - anchor only
 
-	- á
+	- áàéèíìóòúùń	
