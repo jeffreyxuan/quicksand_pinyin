@@ -228,10 +228,16 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 			32 個：
 			O_uni030D、Oacute、Obreve、Ocircumflex、Odieresis、Ograve、Ohungarumlaut、Omacron、Otilde、uni01D1、uni020C、uni020E、uni022A、uni022C、uni0230、uni1E4C、uni1E4E、uni1E50、uni1E52、uni1ECC、uni1ED0、uni1ED2、uni1ED4、uni1ED6、uni1ED8、uni1EDC、uni1EDE、uni1EE0、uni1ECE、
 			upper part move left 2 more steps
-			Ohorn、uni1EDA、 uni1EE2
+			Ohorn、uni1EDA、uni1EE2
 			
 		- anchor-0,1,2,4,5 move left 4 steps
 		- anchor-3 move left 6 steps
+		- anchor also apply to 34 個：
+			Oacute、Obreve、Ocircumflex、Odieresis、Ograve、Ohungarumlaut、Omacron、Otilde、uni01D1、uni020C、uni020E、uni022A、uni022C、uni0230、uni1E4C、uni1E4E、uni1E50、uni1E52、uni1ECC、uni1ED0、uni1ED2、uni1ED4、uni1ED6、uni1ED8、uni1EDC、uni1EDE、uni1EE0、uni1ECE、			
+			Ohorn、uni1EDA、uni1EE2
+		- anchor O_uni030D copyed from Oacute, adjust anchor-0
+		- anchor-0 adjust height to align to the top of acute and grave
+			Oacute, Ograve
 	
 	
 	- ◌ uni25CC U+25CC  虛線圓
@@ -242,6 +248,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 	- ǒ
 		- move the top v down 1 step
+		- anchor no change
 	
 	- u
 		- create the tail from "i"
@@ -249,6 +256,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- do exactly the same procdue on the exactly point number on both 300 and 700
 		- lift up the curve to the tail 2 steps
 		- move the curve join point to the tail right 1 step
+		
+		- anchor no change
 		
 	- y
 		- cut original outline to background
@@ -261,7 +270,9 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- move the "j" to align with the right side of the "v"
 		- cut the upper part of "j", move to foreground
 		
-
+		- anchor-2 was wrong in the orignal Quicksand
+			- examples: ỵy̤y̦y̧y̭y̮y̱
+			- !!! 不修, 漢語拼音沒在用
 		
 		
 		
@@ -269,6 +280,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- press the bottom
 		- clockwise -15 degree
 		- up 1.4 step
+		- anchor bottom up 1.4 steps
+		- anchor top align with top
 		
 	- gravecomb
 		- in Quicksand-VariableFont_wght-W300.ufo.sfd
@@ -280,6 +293,9 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- in Quicksand-VariableFont_wght-W700.ufo.sfd
 		- roate manually
 		
+		- anchor bottom down 0.3 step
+		- anchor top align with top
+		
 	- uni030D ̍
 		- copy from uni030C ???? uni0300 ???
 		- move outline to background
@@ -289,17 +305,23 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 			align the bottom of the outline with the background
 			- right 6 step2
 			- bottom 5 steps
+			
+		- (700) anchor bottom alignment (right 3 steps)
 		
 	- uni0358 is a dot
 		- copy from uni0307
 		- right 5 steps
 		- bottom align to the top of "o" (down 7 steps
 		
+		- anchor copy from uni0307 to relative pos
+		
 	- ı dotlessi U+0131
 		- 300 head is higher than j
 		- 300 move down the head 1.5 step
+		
+		- (700) anchor-0 move up 2 steps
 
-	- i̍ i_hungarumlautcomb = uni030D + dotlessi
+	- i̍ i_hungarumlautcomb = dotlessi + uni030B
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name i_hungarumlautcomb。
 		- from dotlessi, Edit -> Copy reference  
 		- paste the reference to i_hungarumlautcomb
@@ -307,7 +329,9 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- paste the reference to i_hungarumlautcomb
 		- move uni030D reference to center (Left 8 steps)
 		
-	- i̋ i_verticallineabovecomb = dotlessi + uni030B
+		- anchor copied from iacute, adjust height
+		
+	- i̋ i_verticallineabovecomb = uni030D + dotlessi
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name i_verticallineabovecomb。
 		- from dotlessi, Edit -> Copy reference  
 		- paste the reference to i_hungarumlautcomb
@@ -315,11 +339,17 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- paste the reference to i_hungarumlautcomb
 		- move uni030B reference to center (Left 8 steps)
 		
+		- anchor copied from iacute
+		
+		- anchor copied from iacute, adjust height
+		
 	- ī	imacron U+012B
 		- the original "-" uni0304 on the head is too wide
 		- replaced it with "̵" uni0335, copy, not reference
 		- reduce width more move left 3 steps right
 		- move right 3 steps left
+		
+		- anchor no change
 		
 	- ĭ ibreve U+012D
 		- due to in 700, the top is too low, we need to modify both 300 and 700
@@ -329,26 +359,41 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- 700 move uni0306 both side toward center 2 steps progressively
 		- 300 uni0306 is too tall. move the head 2 steps down
 		
+		- (700) anchor-0 move up 9 step2
+		
 	- ế uni1EBF
 		- acutecomb
 			visually same hight with ề gravecomb
+			
+		- (300) anchor-0 move up 13 steps
+		- (700) anchor-0 move up 20 steps
 	
 	- ề uni1EC1
 		- gravecomb
 			visually same hight with ế acutecomb
+		- (300) anchor-0 move up 12 steps
+		- (700) anchor-0 move up 22 steps
+			
 	- Ế uni1EBE
 		- remove acutecomb.case
 		- add acutecomb
 		
+		- align anchor-0 to the top
+		
 	- Ề uni1EC0
 		- remove gravecomb.case
 		- add gravecomb
+		
+		- align anchor-0 to the top
+		
 		
 	- Á Aacute
 		- go to acutecomb, copy reference
 		- add acutecomb, bottom to be the same as original acutecomb.case
 		- move acutecomb to center
 		- remove acutecomb.case
+		
+		- align anchor-0 to the top
 	
 	- À Agrave
 		- go to gravecomb, copy reference
@@ -356,23 +401,31 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- move gravecomb to center
 		- remove gravecomb.case
 		
+		- align anchor-0 to the top
+		
 	- É Eacute
 		- go to acutecomb, copy reference
 		- add acutecomb, bottom to be the same as original acutecomb.case
 		- move acutecomb to center
 		- remove acutecomb.case
 		
+		- align anchor-0 to the top
+		
 	- È Egrave
 		- go to gravecomb, copy reference
 		- add gravecomb, bottom to be the same as original gravecomb.case
 		- move gravecomb to center
 		- remove gravecomb.case
+		
+		- align anchor-0 to the top
 	
 	- Í Iacute
 		- go to acutecomb, copy reference
 		- add acutecomb, bottom to be the same as original acutecomb.case
 		- move acutecomb to center
 		- remove acutecomb.case	
+		
+		- anchor move anchor-0 up  
 	
 	- Ì Igrave
 		- go to gravecomb, copy reference
@@ -380,11 +433,15 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- move gravecomb to center
 		- remove gravecomb.case
 		
+		- anchor move anchor-0 up  
+		
 	- Ó Oacute
 		- go to acutecomb, copy reference
 		- add acutecomb, bottom to be the same as original acutecomb.case
 		- move acutecomb to center
 		- remove acutecomb.case	
+		
+		- anchor move anchor-0 up  
 		
 	- Ò Ograve
 		- go to gravecomb, copy reference
@@ -392,17 +449,23 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- move gravecomb to center
 		- remove gravecomb.case
 		
+		- anchor move anchor-0 up  
+		
 	- Ú Uacute
 		- go to acutecomb, copy reference
 		- add acutecomb, bottom to be the same as original acutecomb.case
 		- move acutecomb to center
 		- remove acutecomb.case
 		
+		- anchor move anchor-0 up  
+		
 	- Ù Ugrave
 		- go to gravecomb, copy reference
 		- add gravecomb, bottom to be the same as original gravecomb.case
 		- move gravecomb to center
 		- remove gravecomb.case	
+		
+		- anchor move anchor-0 up  
 		
 	- Ǘ uni01D7  unicode分解 Udieresis(U+00DC) + acutecomb(U+0301)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D7。
@@ -413,6 +476,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- paste the reference to uni01D7
 		- move acutecomb reference to center (right 8 steps)
 		
+		- anchor copied from Ugrave, adjust height
+		
 	- Ǜ uni01DB unicode分解 Udieresis(U+00DC) + gravecomb(U+0300)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01DB。
 		- 設定 Glyph Unicode U+01DB
@@ -421,6 +486,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- go to Ề, copy the gravecomb's reference
 		- paste the reference to uni01DB
 		- move gravecomb reference to center (0 steps)
+		
+		- anchor copied from uni01D7
 
 	- Ḿ 分解 M + acutecomb
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni1E3E。
@@ -430,6 +497,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- go to Ó, copy the acutecomb's reference
 		- paste the reference to Ó
 		- move acutecomb reference to center (right 3 steps)
+		
+		- anchor copied from M, adjust top height
 	
 	- M̀  M_gravecomb = M + uni0300
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name M_gravecomb。
@@ -438,10 +507,14 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- from Ò copy the uni0300
 		- paste the reference to M_gravecomb
 		- move uni0300 reference to center (right 2 steps)
+		
+		- anchor copied from M, adjust top height
 	
 	- Ń Nacute
 		- copy acutecomb from Ú
 		- delete acutecomb.case
+		
+		- anchor copied from M, adjust top height
 		
 	- Ǹ uni01F8 分解
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01F8。

@@ -1,0 +1,9 @@
+{
+  "pair_overrides": [
+    {
+      "left": "J",
+      "right": "J",
+      "xAdvance": -80
+    }
+  ]
+}

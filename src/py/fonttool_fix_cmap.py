@@ -32,6 +32,7 @@ PATCHED_TABLE_TAGS = ("cmap", "GDEF", "GPOS", "GSUB", "name", "head", "OS/2")
 DEFAULT_RULES_JSON = Path(__file__).resolve().parents[1] / "json" / "fonttool_fix_cmap_rules.json"
 DEFAULT_NAME_JSON = Path(__file__).resolve().parents[1] / "json" / "name_Quicksand-VariableFont_wght.json"
 DEFAULT_ANCHOR_RULES_JSON = Path(__file__).resolve().parents[1] / "json" / "fonttool_fix_anchor_rules.json"
+DEFAULT_KERN_RULES_JSON = Path(__file__).resolve().parents[1] / "json" / "fonttool_fix_kern_rules.json"
 UNI030D_ON_UNI0358_X_SHIFT = -12
 UNI030D_ON_UNI0358_Y_SHIFT = 30
 
@@ -141,6 +142,11 @@ def parse_args() -> argparse.Namespace:
         "--anchor-rules-json",
         default=str(DEFAULT_ANCHOR_RULES_JSON),
         help="Path to JSON rules file for patching GPOS mark_to_base anchors",
+    )
+    parser.add_argument(
+        "--kern-rules-json",
+        default=str(DEFAULT_KERN_RULES_JSON),
+        help="Path to JSON rules file for final GPOS kern pair overrides",
     )
     parser.add_argument(
         "--merge-source-kern-from",
@@ -1610,6 +1616,110 @@ def _sort_pairpos_format1_subtable(subtable: Any, glyph_order_map: Dict[str, int
         pairset.PairValueCount = len(records)
 
 
+def _load_kern_rules(kern_rules_json: Path) -> List[Dict[str, Any]]:
+    """Summary: Load pair override rules from JSON."""
+
+    if not kern_rules_json.exists():
+        return []
+    with kern_rules_json.open("r", encoding="utf-8") as handle:
+        data = json.load(handle)
+    pair_overrides = data.get("pair_overrides", [])
+    return pair_overrides if isinstance(pair_overrides, list) else []
+
+
+def _ensure_unique_left_class(subtable: Any, glyph_name: str) -> Tuple[int | None, int]:
+    """Summary: Ensure one glyph has a unique left class row in PairPos format-2."""
+
+    class_def1 = getattr(subtable, "ClassDef1", None)
+    class_defs1 = getattr(class_def1, "classDefs", None)
+    class1_records = list(getattr(subtable, "Class1Record", []) or [])
+    if not isinstance(class_defs1, dict) or not class1_records:
+        return (None, 0)
+    current_class = class_defs1.get(glyph_name, 0)
+    if not isinstance(current_class, int) or current_class >= len(class1_records):
+        return (None, 0)
+    members = [g for g, cls in class_defs1.items() if cls == current_class]
+    if members == [glyph_name]:
+        return (current_class, 0)
+    new_class = len(class1_records)
+    class1_records.append(copy.deepcopy(class1_records[current_class]))
+    subtable.Class1Record = class1_records
+    subtable.Class1Count = len(class1_records)
+    class_defs1[glyph_name] = new_class
+    return (new_class, 1)
+
+
+def apply_kern_pair_overrides_in_final_gpos(font: TTFont, kern_rules_json: Path) -> Dict[str, int]:
+    """Summary: Apply explicit pair kerning overrides on final preserved GPOS kern."""
+
+    stats = {
+        "enabled": 0,
+        "pairs_requested": 0,
+        "pairs_updated": 0,
+        "pairs_skipped": 0,
+        "classes_split": 0,
+    }
+    pair_overrides = _load_kern_rules(kern_rules_json)
+    if not pair_overrides or "GPOS" not in font:
+        return stats
+    stats["enabled"] = 1
+    lookup_records = _get_lookup_records(font)
+    for rule in pair_overrides:
+        left = rule.get("left")
+        right = rule.get("right")
+        x_advance = rule.get("xAdvance")
+        stats["pairs_requested"] += 1
+        if not isinstance(left, str) or not isinstance(right, str) or not isinstance(x_advance, int):
+            stats["pairs_skipped"] += 1
+            continue
+        updated = False
+        for lookup_index in _get_kern_lookup_indices(font):
+            if lookup_index < 0 or lookup_index >= len(lookup_records):
+                continue
+            lookup = lookup_records[lookup_index]
+            if getattr(lookup, "LookupType", None) != 2:
+                continue
+            for subtable in getattr(lookup, "SubTable", []) or []:
+                fmt = getattr(subtable, "Format", None)
+                if fmt != 2:
+                    continue
+                class_def1 = getattr(subtable, "ClassDef1", None)
+                class_def2 = getattr(subtable, "ClassDef2", None)
+                class_defs1 = getattr(class_def1, "classDefs", None)
+                class_defs2 = getattr(class_def2, "classDefs", None)
+                if not isinstance(class_defs1, dict) or not isinstance(class_defs2, dict):
+                    continue
+                if right not in class_defs2:
+                    continue
+                left_class, split_count = _ensure_unique_left_class(subtable, left)
+                if left_class is None:
+                    continue
+                stats["classes_split"] += split_count
+                right_class = class_defs2.get(right, 0)
+                if not isinstance(right_class, int):
+                    continue
+                class1_records = list(getattr(subtable, "Class1Record", []) or [])
+                if left_class >= len(class1_records):
+                    continue
+                class2_records = list(getattr(class1_records[left_class], "Class2Record", []) or [])
+                if right_class >= len(class2_records):
+                    continue
+                value_record = class2_records[right_class]
+                if getattr(value_record, "Value1", None) is None:
+                    from fontTools.ttLib.tables.otBase import ValueRecord
+                    value_record.Value1 = ValueRecord()
+                value_record.Value1.XAdvance = x_advance
+                updated = True
+                break
+            if updated:
+                break
+        if updated:
+            stats["pairs_updated"] += 1
+        else:
+            stats["pairs_skipped"] += 1
+    return stats
+
+
 def _count_nonzero_pairvalue_records(records: List[Any]) -> int:
     """Summary: Count non-zero XAdvance records in PairValueRecord list."""
 
@@ -1819,7 +1929,8 @@ def copy_patched_tables(
     merge_source_kern_from: Path | None,
     enable_copy_kern_x_to_i: bool,
     enable_copy_kern_t_left_to_j: bool,
-) -> Tuple[Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int]]:
+    kern_rules_json: Path,
+) -> Tuple[Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int]]:
     """Summary: Copy patched tables onto the original font and save output.
 
     Args:
@@ -1829,11 +1940,12 @@ def copy_patched_tables(
         enable_fix_stat_linked_bold: Whether to patch STAT linked bold entries.
 
     Returns:
-        tuple[Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int]]:
-            STAT linked bold stats, GPOS merge stats, X->I kern stats, and T->J kern stats.
+        tuple[Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int]]:
+            STAT linked bold stats, GPOS merge stats, X->I kern stats, T->J kern stats,
+            and pair-override stats.
 
     Example:
-          copy_patched_tables(Path("in.ttf"), Path("patched.ttf"), Path("out.ttf"), False, None, False, False)
+          copy_patched_tables(Path("in.ttf"), Path("patched.ttf"), Path("out.ttf"), False, None, False, False, Path("rules.json"))
     """
 
     output_path.parent.mkdir(parents=True, exist_ok=True)
@@ -1863,6 +1975,13 @@ def copy_patched_tables(
         "j_right_rules_preserved": 0,
         "skipped_conflicts": 0,
     }
+    kern_override_stats = {
+        "enabled": 0,
+        "pairs_requested": 0,
+        "pairs_updated": 0,
+        "pairs_skipped": 0,
+        "classes_split": 0,
+    }
     with TTFont(str(original_font_path)) as original_font, TTFont(str(patched_font_path)) as patched_font:
         patched_table_tags = PATCHED_TABLE_TAGS
         if merge_source_kern_from is not None and merge_source_kern_from.exists():
@@ -1878,10 +1997,11 @@ def copy_patched_tables(
             kern_copy_stats = copy_kern_x_to_i_in_final_gpos(original_font)
         if enable_copy_kern_t_left_to_j:
             kern_t_to_j_stats = copy_kern_t_left_only_to_j_in_final_gpos(original_font)
+        kern_override_stats = apply_kern_pair_overrides_in_final_gpos(original_font, kern_rules_json)
         if enable_fix_stat_linked_bold:
             stat_fix_stats = fix_stat_linked_bold(original_font)
         original_font.save(str(output_path))
-    return stat_fix_stats, gpos_merge_stats, kern_copy_stats, kern_t_to_j_stats
+    return stat_fix_stats, gpos_merge_stats, kern_copy_stats, kern_t_to_j_stats, kern_override_stats
 
 
 def main() -> int:
@@ -1904,6 +2024,7 @@ def main() -> int:
     rules_json_path = Path(args.rules_json).resolve()
     name_json_path = Path(args.name_json).resolve()
     anchor_rules_json_path = Path(args.anchor_rules_json).resolve()
+    kern_rules_json_path = Path(args.kern_rules_json).resolve()
     merge_source_kern_from = Path(args.merge_source_kern_from).resolve() if args.merge_source_kern_from else None
 
     if not input_path.exists():
@@ -1945,7 +2066,7 @@ def main() -> int:
             handle.write("\n")
 
         run_cmd([args.otfccbuild, str(json_path), "-o", str(patched_font_path)])
-        stat_fix_stats, gpos_merge_stats, kern_copy_stats, kern_t_to_j_stats = copy_patched_tables(
+        stat_fix_stats, gpos_merge_stats, kern_copy_stats, kern_t_to_j_stats, kern_override_stats = copy_patched_tables(
             input_path,
             patched_font_path,
             output_path,
@@ -1953,6 +2074,7 @@ def main() -> int:
             merge_source_kern_from,
             args.copy_kern_x_to_i,
             args.copy_kern_t_left_to_j,
+            kern_rules_json_path,
         )
 
     if added:
@@ -2018,6 +2140,14 @@ def main() -> int:
         f"j_left_rules_added_or_updated={kern_t_to_j_stats['j_left_rules_added_or_updated']}, "
         f"j_right_rules_preserved={kern_t_to_j_stats['j_right_rules_preserved']}, "
         f"skipped_conflicts={kern_t_to_j_stats['skipped_conflicts']}"
+    )
+    print(
+        "kern pair override stats: "
+        f"enabled={kern_override_stats['enabled']}, "
+        f"pairs_requested={kern_override_stats['pairs_requested']}, "
+        f"pairs_updated={kern_override_stats['pairs_updated']}, "
+        f"pairs_skipped={kern_override_stats['pairs_skipped']}, "
+        f"classes_split={kern_override_stats['classes_split']}"
     )
     print(
         "anchor patch stats: "

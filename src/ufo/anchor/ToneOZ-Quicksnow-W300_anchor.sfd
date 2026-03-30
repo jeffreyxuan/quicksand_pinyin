@@ -22,7 +22,7 @@ OS2Version: 4
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1774769700
-ModificationTime: 1774834661
+ModificationTime: 1774847731
 PfmFamily: 81
 TTFWeight: 300
 TTFWidth: 5
@@ -319,7 +319,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 525 25 8
+WinInfo: 175 25 8
 AnchorClass2: "Anchor-0" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-1" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-2" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-3" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-4" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-5" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-6" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-7" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-8" "'mkmk' Mark to Mark in Latin lookup 3 subtable" "Anchor-9" "'mkmk' Mark to Mark in Latin lookup 4 subtable" "Anchor-10" "'mkmk' Mark to Mark in Latin lookup 5 subtable"
 BeginChars: 65695 862
 
@@ -406,7 +406,7 @@ GlyphClass: 2
 Flags: W
 AnchorPoint: "Anchor-3" 584 10 basechar 0
 AnchorPoint: "Anchor-2" 325 0 basechar 0
-AnchorPoint: "Anchor-0" 368 846 basechar 0
+AnchorPoint: "Anchor-0" 322 906 basechar 0
 LayerCount: 2
 Fore
 Refer: 740 769 N 1 0 0 1 170 200 2
@@ -654,7 +654,7 @@ GlyphClass: 2
 Flags: W
 AnchorPoint: "Anchor-3" 584 10 basechar 0
 AnchorPoint: "Anchor-2" 325 0 basechar 0
-AnchorPoint: "Anchor-0" 303 843 basechar 0
+AnchorPoint: "Anchor-0" 324 901 basechar 0
 LayerCount: 2
 Fore
 Refer: 739 768 N 1 0 0 1 220 192 2
@@ -1310,7 +1310,7 @@ GlyphClass: 2
 Flags: W
 AnchorPoint: "Anchor-3" 510 10 basechar 0
 AnchorPoint: "Anchor-2" 320 0 basechar 0
-AnchorPoint: "Anchor-0" 365 846 basechar 0
+AnchorPoint: "Anchor-0" 315 906 basechar 0
 LayerCount: 2
 Fore
 Refer: 740 769 N 1 0 0 1 210 200 2
@@ -1381,7 +1381,7 @@ GlyphClass: 2
 Flags: W
 AnchorPoint: "Anchor-3" 510 10 basechar 0
 AnchorPoint: "Anchor-2" 320 0 basechar 0
-AnchorPoint: "Anchor-0" 498 919 basechar 0
+AnchorPoint: "Anchor-0" 318 1057 basechar 0
 LayerCount: 2
 Fore
 Refer: 740 769 N 1 0 0 1 140 350 2
@@ -1411,7 +1411,7 @@ GlyphClass: 2
 Flags: W
 AnchorPoint: "Anchor-3" 510 10 basechar 0
 AnchorPoint: "Anchor-2" 320 0 basechar 0
-AnchorPoint: "Anchor-0" 414 980 basechar 0
+AnchorPoint: "Anchor-0" 324 1048 basechar 0
 LayerCount: 2
 Fore
 Refer: 739 768 N 1 0 0 1 240 340 2
@@ -1512,7 +1512,7 @@ GlyphClass: 2
 Flags: W
 AnchorPoint: "Anchor-3" 510 10 basechar 0
 AnchorPoint: "Anchor-2" 320 0 basechar 0
-AnchorPoint: "Anchor-0" 300 843 basechar 0
+AnchorPoint: "Anchor-0" 320 903 basechar 0
 LayerCount: 2
 Fore
 Refer: 739 768 N 1 0 0 1 160 194 2
@@ -2079,7 +2079,7 @@ GlyphClass: 2
 Flags: W
 AnchorPoint: "Anchor-3" 318 10 basechar 0
 AnchorPoint: "Anchor-2" 162 0 basechar 0
-AnchorPoint: "Anchor-0" 174 906 basechar 0
+AnchorPoint: "Anchor-0" 162 906 basechar 0
 LayerCount: 2
 Fore
 Refer: 740 769 N 1 0 0 1 60 200 2
@@ -2774,7 +2774,7 @@ Width: 725
 GlyphClass: 2
 Flags: W
 AnchorPoint: "Anchor-2" 363 0 basechar 0
-AnchorPoint: "Anchor-0" 406 846 basechar 0
+AnchorPoint: "Anchor-0" 366 906 basechar 0
 LayerCount: 2
 Fore
 Refer: 740 769 N 1 0 0 1 267 201 2
@@ -3030,12 +3030,12 @@ Encoding: 211 211 132
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-5" 392 445 basechar 0
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 427 846 basechar 0
+AnchorPoint: "Anchor-5" 352 445 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 357 906 basechar 0
 LayerCount: 2
 Fore
 Refer: 740 769 N 1 0 0 1 253 201 2
@@ -3047,12 +3047,12 @@ Encoding: 334 334 133
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-5" 392 445 basechar 0
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 904 basechar 0
+AnchorPoint: "Anchor-5" 352 445 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 904 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3064,12 +3064,12 @@ Encoding: 465 465 134
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-5" 392 445 basechar 0
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 860 basechar 0
+AnchorPoint: "Anchor-5" 352 445 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 860 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3081,12 +3081,12 @@ Encoding: 212 212 135
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-5" 392 445 basechar 0
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 890 basechar 0
+AnchorPoint: "Anchor-5" 352 445 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 890 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3098,11 +3098,11 @@ Encoding: 7888 7888 136
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 551 923 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 511 923 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3115,11 +3115,11 @@ Encoding: 7896 7896 137
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 -137 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 890 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 -137 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 890 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3132,11 +3132,11 @@ Encoding: 7890 7890 138
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 475 976 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 435 976 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3149,11 +3149,11 @@ Encoding: 7892 7892 139
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 998 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 998 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3166,11 +3166,11 @@ Encoding: 7894 7894 140
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 1000 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 1000 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3183,11 +3183,11 @@ Encoding: 524 524 141
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 888 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 888 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3199,11 +3199,11 @@ Encoding: 214 214 142
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 860 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 860 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3215,11 +3215,11 @@ Encoding: 554 554 143
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 1009 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 1009 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3232,11 +3232,11 @@ Encoding: 560 560 144
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 1009 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 1009 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3249,11 +3249,11 @@ Encoding: 7884 7884 145
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 -137 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 700 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 -137 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 700 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3265,12 +3265,12 @@ Encoding: 210 210 146
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-5" 392 445 basechar 0
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 362 843 basechar 0
+AnchorPoint: "Anchor-5" 352 445 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 352 898 basechar 0
 LayerCount: 2
 Fore
 Refer: 739 768 N 1 0 0 1 191 194 2
@@ -3282,11 +3282,11 @@ Encoding: 7886 7886 147
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 926 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 926 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3298,11 +3298,11 @@ Encoding: 416 416 148
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 700 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 700 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3314,11 +3314,11 @@ Encoding: 7898 7898 149
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 427 846 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 387 846 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3331,11 +3331,11 @@ Encoding: 7906 7906 150
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 -137 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 700 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 -137 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 700 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3348,11 +3348,11 @@ Encoding: 7900 7900 151
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 362 843 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 322 843 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3365,11 +3365,11 @@ Encoding: 7902 7902 152
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 926 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 926 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3382,11 +3382,11 @@ Encoding: 7904 7904 153
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 884 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 884 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3399,12 +3399,12 @@ Encoding: 336 336 154
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-5" 392 445 basechar 0
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 870 basechar 0
+AnchorPoint: "Anchor-5" 352 445 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 870 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3416,11 +3416,11 @@ Encoding: 526 526 155
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 904 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 904 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3432,12 +3432,12 @@ Encoding: 332 332 156
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-5" 392 445 basechar 0
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 849 basechar 0
+AnchorPoint: "Anchor-5" 352 445 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 849 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3449,11 +3449,11 @@ Encoding: 7762 7762 157
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 427 995 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 387 995 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3466,11 +3466,11 @@ Encoding: 7760 7760 158
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 362 992 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 322 992 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3626,11 +3626,11 @@ Encoding: 213 213 162
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 884 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 884 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3642,11 +3642,11 @@ Encoding: 7756 7756 163
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 427 1030 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 387 1030 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3659,11 +3659,11 @@ Encoding: 7758 7758 164
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 1044 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 1044 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -3676,11 +3676,11 @@ Encoding: 556 556 165
 Width: 688
 GlyphClass: 2
 Flags: W
-AnchorPoint: "Anchor-4" 384 350 basechar 0
-AnchorPoint: "Anchor-3" 691 10 basechar 0
-AnchorPoint: "Anchor-2" 384 0 basechar 0
-AnchorPoint: "Anchor-1" 391 697 basechar 0
-AnchorPoint: "Anchor-0" 384 1033 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-0" 344 1033 basechar 0
 LayerCount: 2
 Fore
 Refer: 131 79 N 1 0 0 1 0 0 2
@@ -4529,7 +4529,7 @@ Flags: W
 AnchorPoint: "Anchor-3" 643 10 basechar 0
 AnchorPoint: "Anchor-2" 358 0 basechar 0
 AnchorPoint: "Anchor-1" 521 697 basechar 0
-AnchorPoint: "Anchor-0" 401 846 basechar 0
+AnchorPoint: "Anchor-0" 361 906 basechar 0
 LayerCount: 2
 Fore
 Refer: 740 769 N 1 0 0 1 267 201 2
@@ -4634,7 +4634,7 @@ Flags: W
 AnchorPoint: "Anchor-3" 643 10 basechar 0
 AnchorPoint: "Anchor-2" 358 0 basechar 0
 AnchorPoint: "Anchor-1" 521 697 basechar 0
-AnchorPoint: "Anchor-0" 336 843 basechar 0
+AnchorPoint: "Anchor-0" 358 903 basechar 0
 LayerCount: 2
 Fore
 Refer: 739 768 N 1 0 0 1 205 194 2
@@ -6486,7 +6486,7 @@ GlyphClass: 2
 Flags: W
 AnchorPoint: "Anchor-3" 497 10 basechar 0
 AnchorPoint: "Anchor-2" 278 0 basechar 0
-AnchorPoint: "Anchor-0" 285 725 basechar 0
+AnchorPoint: "Anchor-0" 285 855 basechar 0
 LayerCount: 2
 Fore
 Refer: 289 101 N 1 0 0 1 0 0 2
@@ -6516,7 +6516,7 @@ GlyphClass: 2
 Flags: W
 AnchorPoint: "Anchor-3" 497 10 basechar 0
 AnchorPoint: "Anchor-2" 278 0 basechar 0
-AnchorPoint: "Anchor-0" 285 735 basechar 0
+AnchorPoint: "Anchor-0" 285 847 basechar 0
 LayerCount: 2
 Fore
 Refer: 289 101 N 1 0 0 1 0 0 2
@@ -7187,7 +7187,7 @@ GlyphClass: 2
 Flags: W
 AnchorPoint: "Anchor-3" 165 10 basechar 0
 AnchorPoint: "Anchor-2" 103 0 basechar 0
-AnchorPoint: "Anchor-0" 103 646 basechar 0
+AnchorPoint: "Anchor-0" 103 706 basechar 0
 LayerCount: 2
 Fore
 Refer: 327 305 N 1 0 0 1 0 0 2
@@ -7520,7 +7520,7 @@ StartChar: uni0237
 Encoding: 567 567 345
 Width: 229
 GlyphClass: 2
-Flags: WO
+Flags: W
 AnchorPoint: "Anchor-2" 45 -200 basechar 0
 AnchorPoint: "Anchor-0" 116 500 basechar 0
 LayerCount: 2
@@ -17720,10 +17720,10 @@ Encoding: 768 768 739
 Width: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "Anchor-9" 113 658 basemark 0
-AnchorPoint: "Anchor-9" 153 499 mark 0
-AnchorPoint: "Anchor-6" 153 499 mark 0
-AnchorPoint: "Anchor-0" 153 499 mark 0
+AnchorPoint: "Anchor-9" 113 708 basemark 0
+AnchorPoint: "Anchor-9" 153 496 mark 0
+AnchorPoint: "Anchor-6" 153 496 mark 0
+AnchorPoint: "Anchor-0" 153 496 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -17755,10 +17755,10 @@ Encoding: 769 769 740
 Width: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "Anchor-9" 114 646 basemark 0
-AnchorPoint: "Anchor-9" 114 499 mark 0
-AnchorPoint: "Anchor-6" 114 499 mark 0
-AnchorPoint: "Anchor-0" 114 499 mark 0
+AnchorPoint: "Anchor-9" 114 706 basemark 0
+AnchorPoint: "Anchor-9" 114 513 mark 0
+AnchorPoint: "Anchor-6" 114 513 mark 0
+AnchorPoint: "Anchor-0" 114 513 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -19619,10 +19619,17 @@ StartChar: O_uni030D
 Encoding: 65650 -1 808
 Width: 688
 Flags: W
+AnchorPoint: "Anchor-0" 346 920 basechar 0
+AnchorPoint: "Anchor-1" 351 697 basechar 0
+AnchorPoint: "Anchor-2" 344 0 basechar 0
+AnchorPoint: "Anchor-3" 631 10 basechar 0
+AnchorPoint: "Anchor-4" 344 350 basechar 0
+AnchorPoint: "Anchor-5" 352 445 basechar 0
 LayerCount: 2
 Fore
 Refer: 809 781 N 1 0 0 1 189 200 2
 Refer: 131 79 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" O uni030D
 EndChar
 
@@ -19658,8 +19665,10 @@ Encoding: 856 856 810
 Width: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "Anchor-9" 123 610 basemark 0
-AnchorPoint: "Anchor-5" -146 249 mark 0
+AnchorPoint: "Anchor-0" 135 430 mark 0
+AnchorPoint: "Anchor-6" 135 430 mark 0
+AnchorPoint: "Anchor-9" 135 430 mark 0
+AnchorPoint: "Anchor-9" 135 560 basemark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -19681,10 +19690,14 @@ StartChar: i_hungarumlautcomb
 Encoding: 65651 -1 811
 Width: 206
 Flags: W
+AnchorPoint: "Anchor-0" 103 706 basechar 0
+AnchorPoint: "Anchor-2" 103 0 basechar 0
+AnchorPoint: "Anchor-3" 165 10 basechar 0
 LayerCount: 2
 Fore
 Refer: 741 779 N 1 0 0 1 -50 0 2
 Refer: 327 305 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" i uni030B
 EndChar
 
@@ -19692,10 +19705,14 @@ StartChar: i_verticallineabovecomb
 Encoding: 65652 -1 812
 Width: 206
 Flags: W
+AnchorPoint: "Anchor-0" 103 718 basechar 0
+AnchorPoint: "Anchor-2" 103 0 basechar 0
+AnchorPoint: "Anchor-3" 165 10 basechar 0
 LayerCount: 2
 Fore
 Refer: 809 781 N 1 0 0 1 -54 0 2
 Refer: 327 305 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" i uni030D
 EndChar
 
@@ -19703,6 +19720,10 @@ StartChar: uni01D7
 Encoding: 471 471 813
 Width: 715
 Flags: W
+AnchorPoint: "Anchor-0" 366 1053 basechar 0
+AnchorPoint: "Anchor-1" 521 697 basechar 0
+AnchorPoint: "Anchor-2" 358 0 basechar 0
+AnchorPoint: "Anchor-3" 643 10 basechar 0
 LayerCount: 2
 Fore
 Refer: 740 769 N 1 0 0 1 260 350 2
@@ -19713,6 +19734,10 @@ StartChar: uni01DB
 Encoding: 475 475 814
 Width: 715
 Flags: W
+AnchorPoint: "Anchor-3" 643 10 basechar 0
+AnchorPoint: "Anchor-2" 358 0 basechar 0
+AnchorPoint: "Anchor-1" 521 697 basechar 0
+AnchorPoint: "Anchor-0" 366 1053 basechar 0
 LayerCount: 2
 Fore
 Refer: 739 768 N 1 0 0 1 200 340 2
@@ -19835,6 +19860,8 @@ StartChar: uni1E3E
 Encoding: 7742 7742 820
 Width: 829
 Flags: W
+AnchorPoint: "Anchor-0" 415 910 basechar 0
+AnchorPoint: "Anchor-2" 415 0 basechar 0
 LayerCount: 2
 Fore
 Refer: 740 769 N 1 0 0 1 323 201 2
@@ -19845,10 +19872,13 @@ StartChar: M_gravecomb
 Encoding: 65656 -1 821
 Width: 829
 Flags: W
+AnchorPoint: "Anchor-2" 415 0 basechar 0
+AnchorPoint: "Anchor-0" 415 910 basechar 0
 LayerCount: 2
 Fore
 Refer: 739 768 N 1 0 0 1 251 194 2
 Refer: 116 77 N 1 0 0 1 0 0 2
+LCarets2: 1 0
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" M gravecomb.case
 Ligature2: "'ccmp' Glyph Composition/Decomposition in Latin lookup 9 subtable" M gravecomb
 EndChar

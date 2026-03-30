@@ -24,6 +24,7 @@ VARWIDEUFO_PY = REPO_ROOT / "src" / "py" / "varwideufo" / "varwideufo.py"
 FONTTOOL_FIX_CMAP_PY = REPO_ROOT / "src" / "py" / "fonttool_fix_cmap.py"
 NAME_JSON_PATH = REPO_ROOT / "src" / "json" / "name_Quicksand-VariableFont_wght.json"
 ANCHOR_RULES_JSON_PATH = REPO_ROOT / "src" / "json" / "fonttool_fix_anchor_rules.json"
+KERN_RULES_JSON_PATH = REPO_ROOT / "src" / "json" / "fonttool_fix_kern_rules.json"
 ANCHOR_DIR_NAME = "anchor"
 GLYF_DIR_NAME = "glyf"
 PROJECT_METADATA_FILENAME = "varwideufo_source.plist"
@@ -771,6 +772,8 @@ def run_fonttool_fix_cmap(
         "--name-json",
         str(NAME_JSON_PATH),
         "--copy_kern_T_left_only_to_J",
+        "--kern-rules-json",
+        str(KERN_RULES_JSON_PATH),
     ]
     if anchor_rules_json_path is not None:
         cmd.extend(["--anchor-rules-json", str(anchor_rules_json_path)])
