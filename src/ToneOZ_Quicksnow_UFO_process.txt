@@ -514,7 +514,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- copy acutecomb from Ú
 		- delete acutecomb.case
 		
-		- anchor copied from M, adjust top height
+		- anchor copied from N, adjust top height
 		
 	- Ǹ uni01F8 分解
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01F8。
@@ -524,13 +524,19 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- go to Ò, copy the gravecomb's reference
 		- paste the reference to uni01F8
 		- move acutecomb reference to center (left 2 steps)
+		
+		- anchor copied from N, adjust top height
 	
 	- í iacute
 		- acutecomb
 			- left 3 steps
+			
+		- anchor-0 align to top center
 
 	- ì igrave
 		- right 4 steps
+		
+		- anchor-0 align to top center
 		
 	- Q
 		- in Quicksand-VariableFont_wght-W300.ufo.sfd
@@ -561,6 +567,9 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 			(700)whole 3 steps, bottom part left 3 more steps, then move the center control point up 0.8 steps
 		- move the right of the width control, left 8 steps, 782 -> 702
 		
+		- (300)anchor move left 5 steps
+		- (700)anchor move left 4 steps
+		
 	- R
 		- Copy original R to background
 		- in foreground, delete the right bottom tail
@@ -574,6 +583,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- delete the upper part of the leg
 		- re-join the leg in the overlap area of the P and the leg
 			make sure there is no new control point added
+			
+		- anchor no change
 				
 	- ê̌  = ê (ecircumflex) + ̌ (uni030C)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name ecircumflex_uni030C。
@@ -585,6 +596,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- move uni030C reference to center (right 13.1 steps)
 		- move uni030C reference top as the same as the acutecomb in the background (up 15 steps)
 		
+		- anchor copied from uni1EBF
+		
 	- ê̄  = ê (ecircumflex) + ̄ (uni0304)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name ecircumflex_uni0304。
 		- copy from ê̌
@@ -592,6 +605,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- paste the reference to ecircumflex_uni0304
 		- align uni0304 to the center of ̌
 		- delete ̌
+		
+		- anchor copied from uni1EBF
 		
 	- Ê̌  = Ê (Ecircumflex) + ̌ (uni030C.case)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ecircumflex_uni030C。
@@ -603,6 +618,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- move uni030C reference to center (right 16.5 steps)
 		- move uni030C reference top as the same as the acutecomb in the background (up 21 steps)
 		
+		- anchor copied from uni1EBE
+		
 	- Ê̄  = Ê (Ecircumflex) + ̄ (uni0304.case)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ecircumflex_uni0304。
 		- copy from Ê̌
@@ -612,6 +629,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- move uni0304 reference top as the same as the acutecomb
 		- down 2 steps
 		- delete acutecomb
+		
+		- anchor copied from uni1EBE
 	
 	- n̄  = n + ̄ (uni0304)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name n_uni0304。
@@ -620,6 +639,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- copy ̄ from ō
 		- paste the reference to n_uni0304
 		- center (left 1 step)
+		
+		- anchor copy anchor-0 and anchor-2 from ē
 		
 	
 	- N̄  = n + ̄ (uni0304)
@@ -630,6 +651,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- paste the reference to n_uni0304
 		- center 
 		
+		- anchor copy anchor-0 and anchor-2 from Ň
 		
 - 台語
 		
@@ -663,12 +685,16 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- align the bottom of uni030D to "v"
 		- delete "v"
 		
+		- anchor copied from á
+		
 	- a̋ = a + ̋ (uni030B)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name a_uni030B
 		- copy from ǎ, not reference
 		- copy reference from uni030B
 		- align the left of uni030B to the left of "v"
 		- delete "v"
+		
+		- anchor copied from á
 	
 	- e̍ = e + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name e_uni030D
@@ -677,12 +703,16 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- align the bottom of uni030D to "v"
 		- delete "v"
 		
+		- anchor copied from á, adjust the top
+		
 	- e̋ = e + ̋ (uni030B)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name e_uni030B
 		- copy from ě, not reference
 		- copy reference from uni030B
 		- align the left of uni030B to the left of "v"
 		- delete "v"
+		
+		- anchor copied from e_uni030D
 		
 	- o̍ = o + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name o_uni030D
@@ -691,12 +721,16 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- align the bottom of uni030D to "v"
 		- delete "v"
 		
+		- anchor copied from o, adjust height
+		
 	- u̍ = u + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name u_uni030D
 		- copy from ǔ, not reference
 		- copy reference from uni030D
 		- align the bottom of uni030D to "v"
 		- delete "v"
+		
+		- anchor copied from u, adjust height
 		
 	- m̍ = m + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name m_uni030D
@@ -705,12 +739,16 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- align the bottom of uni030D to center
 		- delete "v"
 		
+		- anchor copied from m, adjust height
+		
 	- n̍ = n + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name n_uni030D
 		- from n, Edit -> Copy reference
 		- copy reference from uni030D
 		- align the bottom of uni030D to center
 		- delete "v"
+		
+		- anchor copied from n, adjust height
 		
 	- A̍ = A + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name A_uni030D
@@ -719,12 +757,16 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- align the bottom of uni030D to "v"
 		- delete "v"
 		
+		- anchor copied from Á, adjust height
+		
 	- A̋ = A + ̋ (uni030B)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name A_uni030B
 		- copy from Ǎ, not reference
 		- copy reference from uni030B
 		- align the left of uni030B to the left of "v"
 		- delete "v"
+		
+		- anchor copied from Á, adjust height
 		
 	- E̍ = E + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name E_uni030D
@@ -733,12 +775,16 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- align the bottom of uni030D to "v"
 		- delete "v"
 		
+		- anchor copied from É, adjust height
+		
 	- E̋ = E + ̋ (uni030B)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name E_uni030B
 		- from Ě, Edit -> Copy reference
 		- copy reference from uni030B
 		- align the left of uni030B to the left of "v"
 		- delete "v"
+		
+		- anchor copied from É, adjust height
 		
 	- I̍ = I + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name I_uni030D
@@ -747,12 +793,16 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- align the bottom of uni030D to "v"
 		- delete "v"
 		
+		- anchor copied from Í, adjust height
+		
 	- I̍ = I + ̋ (uni030B)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name I_uni030B
 		- from Ǐ, Edit -> Copy reference
 		- copy reference from uni030B
 		- align the bottom of uni030B to "v"
-		- delete "v"		
+		- delete "v"	
+
+		- anchor copied from Í, adjust height		
 	
 	- O̍ = O + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name O_uni030D
@@ -934,3 +984,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- remove the triangle at the intersection of "|" and "\" and "/"
 		
 	- x
+		- join  the top right countour 0 "/" and bottom left countour 2
+	
+- anchor only
+
+	- á
