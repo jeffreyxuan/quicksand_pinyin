@@ -11,7 +11,7 @@ from fontTools.ttLib import TTFont
 from fontTools.ttLib.tables._n_a_m_e import NameRecord
 from fontTools.varLib.instancer import instantiateVariableFont
 
-DEFAULT_WEIGHTS = (300, 400, 500, 600, 700)
+DEFAULT_WEIGHTS = (300, 350, 400, 450, 500, 550, 600, 650, 700)
 
 
 def indent_stderr(stderr_text: str) -> str:
@@ -70,7 +70,7 @@ def parse_args() -> argparse.Namespace:
     """
 
     parser = argparse.ArgumentParser(
-        description="Build default static instances (300/400/500/600/700) from a variable TTF."
+        description="Build default static instances (300/350/400/450/500/550/600/650/700) from a variable TTF."
     )
     parser.add_argument("-input", required=True, help="Input variable TTF path")
     parser.add_argument("-output-dir", required=True, help="Output directory for static TTFs")

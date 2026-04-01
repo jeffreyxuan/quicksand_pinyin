@@ -447,9 +447,22 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- go to gravecomb, copy reference
 		- add gravecomb, bottom to be the same as original gravecomb.case
 		- move gravecomb to center
-		- remove gravecomb.case
+		- remove gravecomb.case		
 		
 		- anchor move anchor-0 up  
+		
+	- ò ograve
+		- move gravecomb down 0.8 step
+		
+	- ù ugrave
+		- move gravecomb down 1.8 step
+	
+	- ú uacute
+		- move acutecomb down 1 step
+		
+	- ǔ  uni01D4
+		- move acutecomb down 1 step
+	
 		
 	- Ú Uacute
 		- go to acutecomb, copy reference
@@ -946,11 +959,17 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- reference from Ohungarumlaut + uni0358
 		
 		- anchor copied from O, adjust top height
+	
+	- ü U+00FC udieresis
+		- (300)move uni0308 down 5.3 steps, align with the bottom of the gravecomb in ugrave		
+		- (700)move uni0308 down 3 steps,
 		
 	- ǖ U+01D6
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D6
 		- reference from ü U+00FC
 		- reference head from ê̄ếê̌ề
+		- (300)move head down 5.3 steps,
+		- (700)move head down 3 steps,
 		
 		- anchor copied from ế, adjust top height
 		
@@ -959,6 +978,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D8
 		- reference from ü U+00FC
 		- reference head from ê̄ếê̌ề
+		- (300)move head down 5.3 steps,
+		- (700)move head down 3 steps,
 		
 		- anchor copied from ế, adjust top height
 		
@@ -966,6 +987,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01DA
 		- reference from ü U+00FC
 		- reference head from ê̄ếê̌ề
+		- (300)move head down 5.3 steps,
+		- (700)move head down 3 steps,
 		
 		- anchor copied from ế, adjust top height
 		
@@ -973,6 +996,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01DC
 		- reference from ü U+00FC
 		- reference head from ê̄ếê̌ề
+		- (300)move head down 5.3 steps,
+		- (700)move head down 3 steps,
 		
 		- anchor copied from ế, adjust top height
 		
@@ -1043,7 +1068,33 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 	- x
 		- join  the top right countour 0 "/" and bottom left countour 2
+		
+		
+	- ɛ
+	- ɝ
+	- ɪ
+	- ɑ
+	- ɔ
+	- ʌ
+	- ː
+	- aɪ
+	- au
+	- θ
+	- ʃ
+	- ʒ
+	- ͵
+	- ɚ
+	- ⌃  "^"
+	- ɨ
+	- Ɨ
+	- ʉ
+	- Ʉ
+	- Å
+	
 	
 - anchor only
 
 	- áàéèíìóòúùń	
+	
+	
+	
