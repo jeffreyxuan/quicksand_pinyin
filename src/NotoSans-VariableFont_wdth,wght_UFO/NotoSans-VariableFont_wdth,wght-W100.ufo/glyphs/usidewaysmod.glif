@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="usidewaysmod" format="2">
+  <unicode hex="1D59" />
+  <advance width="383" />
+  <outline>
+    <contour>
+      <point x="374" y="435" type="qcurve" />
+      <point x="374" y="383" />
+      <point x="313" y="327" />
+      <point x="250" y="327" type="qcurve" />
+      <point x="25" y="327" type="line" />
+      <point x="25" y="342" type="line" />
+      <point x="249" y="342" type="line" />
+      <point x="306" y="342" />
+      <point x="358" y="391" />
+      <point x="358" y="435" type="qcurve" />
+      <point x="358" y="486" />
+      <point x="291" y="550" />
+      <point x="221" y="550" type="qcurve" />
+      <point x="25" y="550" type="line" />
+      <point x="25" y="566" type="line" />
+      <point x="368" y="566" type="line" />
+      <point x="368" y="553" type="line" />
+      <point x="296" y="551" type="line" />
+      <point x="296" y="550" type="line" />
+      <point x="325" y="539" />
+      <point x="374" y="485" />
+    </contour>
+  </outline>
+</glyph>

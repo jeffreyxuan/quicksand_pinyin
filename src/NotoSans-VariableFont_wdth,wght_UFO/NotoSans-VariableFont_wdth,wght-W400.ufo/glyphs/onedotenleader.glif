@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="onedotenleader" format="2">
+  <unicode hex="2024" />
+  <advance width="500" />
+  <outline>
+    <component base="period" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="116" yOffset="0" />
+  </outline>
+</glyph>

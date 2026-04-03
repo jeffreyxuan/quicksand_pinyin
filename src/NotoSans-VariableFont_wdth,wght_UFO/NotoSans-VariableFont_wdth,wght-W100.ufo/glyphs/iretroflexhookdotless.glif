@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="iretroflexhookdotless" format="2">
+  <advance width="207" />
+  <outline>
+    <contour>
+      <point x="116" y="528" type="line" />
+      <point x="116" y="25" type="line" />
+      <point x="158" y="25" type="line" />
+      <point x="158" y="-89" type="line" />
+      <point x="158" y="-129" />
+      <point x="186" y="-162" />
+      <point x="214" y="-162" type="qcurve" />
+      <point x="227" y="-162" />
+      <point x="250" y="-157" />
+      <point x="258" y="-153" type="qcurve" />
+      <point x="258" y="-178" type="line" />
+      <point x="252" y="-181" />
+      <point x="228" y="-187" />
+      <point x="214" y="-187" type="qcurve" />
+      <point x="186" y="-187" />
+      <point x="150" y="-167" />
+      <point x="132" y="-124" />
+      <point x="132" y="-92" type="qcurve" />
+      <point x="132" y="0" type="line" />
+      <point x="90" y="0" type="line" />
+      <point x="90" y="528" type="line" />
+    </contour>
+  </outline>
+</glyph>

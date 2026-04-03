@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="cornishversedivider" format="2">
+  <unicode hex="2E4F" />
+  <advance width="325" />
+  <outline>
+    <contour>
+      <point x="46" y="437" type="qcurve" />
+      <point x="29" y="437" />
+      <point x="14" y="458" />
+      <point x="14" y="481" type="qcurve" />
+      <point x="14" y="504" />
+      <point x="29" y="524" />
+      <point x="46" y="524" type="qcurve" />
+      <point x="65" y="524" />
+      <point x="80" y="504" />
+      <point x="80" y="481" type="qcurve" />
+      <point x="80" y="458" />
+      <point x="65" y="437" />
+    </contour>
+    <contour>
+      <point x="277" y="32" type="qcurve" />
+      <point x="260" y="32" />
+      <point x="245" y="52" />
+      <point x="245" y="75" type="qcurve" />
+      <point x="245" y="98" />
+      <point x="260" y="118" />
+      <point x="277" y="118" type="qcurve" />
+      <point x="296" y="118" />
+      <point x="311" y="98" />
+      <point x="311" y="75" type="qcurve" />
+      <point x="311" y="52" />
+      <point x="296" y="32" />
+    </contour>
+    <contour>
+      <point x="26" y="265" type="line" />
+      <point x="14" y="287" type="line" />
+      <point x="297" y="455" type="line" />
+      <point x="310" y="432" type="line" />
+    </contour>
+    <contour>
+      <point x="26" y="101" type="line" />
+      <point x="14" y="124" type="line" />
+      <point x="297" y="291" type="line" />
+      <point x="309" y="269" type="line" />
+    </contour>
+  </outline>
+</glyph>

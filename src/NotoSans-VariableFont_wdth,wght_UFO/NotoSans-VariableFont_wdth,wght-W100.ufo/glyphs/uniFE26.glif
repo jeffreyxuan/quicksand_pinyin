@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniFE26" format="2">
+  <unicode hex="FE26" />
+  <advance width="0" />
+  <outline>
+    <contour>
+      <point x="-306" y="764" type="line" />
+      <point x="307" y="764" type="line" />
+      <point x="307" y="739" type="line" />
+      <point x="-306" y="739" type="line" />
+    </contour>
+  </outline>
+</glyph>

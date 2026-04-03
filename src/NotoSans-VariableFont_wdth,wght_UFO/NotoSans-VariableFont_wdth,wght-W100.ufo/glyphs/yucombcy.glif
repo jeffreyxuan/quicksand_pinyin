@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="yucombcy" format="2">
+  <unicode hex="2DFB" />
+  <advance width="0" />
+  <outline>
+    <contour>
+      <point x="158" y="726" type="qcurve" />
+      <point x="158" y="680" />
+      <point x="115" y="616" />
+      <point x="65" y="616" type="qcurve" />
+      <point x="18" y="616" />
+      <point x="-26" y="678" />
+      <point x="-26" y="726" type="qcurve" />
+      <point x="-112" y="726" type="line" />
+      <point x="-112" y="620" type="line" />
+      <point x="-124" y="620" type="line" />
+      <point x="-124" y="831" type="line" />
+      <point x="-112" y="831" type="line" />
+      <point x="-112" y="736" type="line" />
+      <point x="-26" y="736" type="line" />
+      <point x="-24" y="774" />
+      <point x="18" y="835" />
+      <point x="66" y="835" type="qcurve" />
+      <point x="119" y="835" />
+      <point x="158" y="769" />
+    </contour>
+    <contour>
+      <point x="-14" y="726" type="qcurve" />
+      <point x="-14" y="686" />
+      <point x="23" y="626" />
+      <point x="66" y="626" type="qcurve" />
+      <point x="108" y="626" />
+      <point x="146" y="684" />
+      <point x="146" y="726" type="qcurve" />
+      <point x="146" y="767" />
+      <point x="109" y="825" />
+      <point x="66" y="825" type="qcurve" />
+      <point x="23" y="825" />
+      <point x="-14" y="767" />
+    </contour>
+  </outline>
+</glyph>

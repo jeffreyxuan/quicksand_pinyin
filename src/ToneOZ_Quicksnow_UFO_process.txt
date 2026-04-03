@@ -1069,27 +1069,44 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	- x
 		- join  the top right countour 0 "/" and bottom left countour 2
 		
+	- Å Aring		
+		- higher the head "o"
 		
-	- ɛ
-	- ɝ
-	- ɪ
-	- ɑ
-	- ɔ
-	- ʌ
-	- ː
+		
+	- ɛ uni025B
+		- copy from notosans 210 600
+		#- copy from notosans 200 550
+		#- copy from notosans 240 700
+		- round the stroke
+
+	- ɜ uni025C
+	- ɝ uni025D
+	- ɪ uni026A
+		- copied from "I", reduce height
+		
+	- ɑ uni0251
+	- ɔ uni0254
+	- ʌ uni028C
+		- copied from "v"
+		- vertical flip with round to int
+		- clockwise
+		
+	- ː uni02D0
+	- θ theta U+03B8
+	- ʃ uni0283
+	- ʒ uni0292
+	- ʹ uni0374
+	- ͵ uni0375
+	- ɚ uni025A
+	- ɨ uni0268
+	- Ɨ uni0197 
+	- ʉ uni0289
+	- Ʉ uni0244
 	- aɪ
 	- au
-	- θ
-	- ʃ
-	- ʒ
-	- ͵
-	- ɚ
-	- ⌃  "^"
-	- ɨ
-	- Ɨ
-	- ʉ
-	- Ʉ
-	- Å
+	- aƱ
+	
+	
 	
 	
 - anchor only

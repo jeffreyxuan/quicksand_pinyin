@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="zhecombcy" format="2">
+  <unicode hex="2DE4" />
+  <advance width="0" />
+  <outline>
+    <contour>
+      <point x="136" y="831" type="line" />
+      <point x="30" y="728" type="line" />
+      <point x="144" y="620" type="line" />
+      <point x="128" y="620" type="line" />
+      <point x="16" y="727" type="line" />
+      <point x="16" y="620" type="line" />
+      <point x="4" y="620" type="line" />
+      <point x="4" y="727" type="line" />
+      <point x="-109" y="620" type="line" />
+      <point x="-124" y="620" type="line" />
+      <point x="-10" y="728" type="line" />
+      <point x="-117" y="831" type="line" />
+      <point x="-102" y="831" type="line" />
+      <point x="4" y="728" type="line" />
+      <point x="4" y="831" type="line" />
+      <point x="16" y="831" type="line" />
+      <point x="16" y="728" type="line" />
+      <point x="121" y="831" type="line" />
+    </contour>
+  </outline>
+</glyph>

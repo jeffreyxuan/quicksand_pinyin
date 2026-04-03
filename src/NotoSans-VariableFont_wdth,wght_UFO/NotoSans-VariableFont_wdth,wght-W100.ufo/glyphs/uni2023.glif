@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni2023" format="2">
+  <unicode hex="2023" />
+  <advance width="381" />
+  <outline>
+    <contour>
+      <point x="84" y="258" type="line" />
+      <point x="84" y="487" type="line" />
+      <point x="280" y="373" type="line" />
+    </contour>
+  </outline>
+</glyph>

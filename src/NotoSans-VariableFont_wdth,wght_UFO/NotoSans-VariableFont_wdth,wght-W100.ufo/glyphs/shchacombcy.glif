@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="shchacombcy" format="2">
+  <unicode hex="2DF3" />
+  <advance width="0" />
+  <outline>
+    <contour>
+      <point x="153" y="831" type="line" />
+      <point x="153" y="630" type="line" />
+      <point x="183" y="630" type="line" />
+      <point x="183" y="549" type="line" />
+      <point x="172" y="549" type="line" />
+      <point x="172" y="620" type="line" />
+      <point x="-137" y="620" type="line" />
+      <point x="-137" y="831" type="line" />
+      <point x="-125" y="831" type="line" />
+      <point x="-125" y="630" type="line" />
+      <point x="2" y="630" type="line" />
+      <point x="2" y="831" type="line" />
+      <point x="14" y="831" type="line" />
+      <point x="14" y="630" type="line" />
+      <point x="141" y="630" type="line" />
+      <point x="141" y="831" type="line" />
+    </contour>
+  </outline>
+</glyph>

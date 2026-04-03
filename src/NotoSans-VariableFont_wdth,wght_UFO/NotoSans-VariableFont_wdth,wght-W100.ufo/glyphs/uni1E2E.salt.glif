@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni1E2E.salt" format="2">
+  <advance width="232" />
+  <outline>
+    <contour>
+      <point x="92" y="945" type="line" />
+      <point x="121" y="973" />
+      <point x="185" y="1049" />
+      <point x="206" y="1081" type="qcurve" />
+      <point x="236" y="1081" type="line" />
+      <point x="236" y="1074" type="line" />
+      <point x="219" y="1052" />
+      <point x="180" y="1005" />
+      <point x="137" y="960" />
+      <point x="113" y="939" type="qcurve" />
+      <point x="92" y="939" type="line" />
+    </contour>
+    <contour>
+      <point x="18" y="833" type="qcurve" />
+      <point x="5" y="833" />
+      <point x="-5" y="851" />
+      <point x="-5" y="864" type="qcurve" />
+      <point x="-5" y="876" />
+      <point x="5" y="895" />
+      <point x="18" y="895" type="qcurve" />
+      <point x="35" y="895" />
+      <point x="43" y="876" />
+      <point x="43" y="864" type="qcurve" />
+      <point x="43" y="851" />
+      <point x="35" y="833" />
+    </contour>
+    <contour>
+      <point x="203" y="833" type="qcurve" />
+      <point x="190" y="833" />
+      <point x="180" y="851" />
+      <point x="180" y="864" type="qcurve" />
+      <point x="180" y="876" />
+      <point x="190" y="895" />
+      <point x="203" y="895" type="qcurve" />
+      <point x="220" y="895" />
+      <point x="228" y="876" />
+      <point x="228" y="864" type="qcurve" />
+      <point x="228" y="851" />
+      <point x="220" y="833" />
+    </contour>
+    <contour>
+      <point x="103" y="0" type="line" />
+      <point x="103" y="714" type="line" />
+      <point x="129" y="714" type="line" />
+      <point x="129" y="0" type="line" />
+    </contour>
+  </outline>
+</glyph>

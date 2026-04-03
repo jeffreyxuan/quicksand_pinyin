@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Iotaserifed" format="2">
+  <unicode hex="A7AE" />
+  <advance width="505" />
+  <outline>
+    <contour>
+      <point x="3" y="1" type="line" />
+      <point x="3" y="26" type="line" />
+      <point x="239" y="26" type="line" />
+      <point x="239" y="689" type="line" />
+      <point x="2" y="689" type="line" />
+      <point x="2" y="714" type="line" />
+      <point x="503" y="714" type="line" />
+      <point x="503" y="689" type="line" />
+      <point x="267" y="689" type="line" />
+      <point x="267" y="26" type="line" />
+      <point x="504" y="26" type="line" />
+      <point x="504" y="1" type="line" />
+    </contour>
+  </outline>
+</glyph>

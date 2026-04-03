@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Build default static-weight TTF instances from a variable font."""
+"""Build static-weight TTF instances from a variable font."""
 
 from __future__ import annotations
 
@@ -11,7 +11,9 @@ from fontTools.ttLib import TTFont
 from fontTools.ttLib.tables._n_a_m_e import NameRecord
 from fontTools.varLib.instancer import instantiateVariableFont
 
-DEFAULT_WEIGHTS = (300, 350, 400, 450, 500, 550, 600, 650, 700)
+MIN_ALLOWED_WEIGHT = 100
+MAX_ALLOWED_WEIGHT = 900
+DEFAULT_WEIGHT_STEP = 50
 
 
 def indent_stderr(stderr_text: str) -> str:
@@ -69,12 +71,46 @@ def parse_args() -> argparse.Namespace:
         python make_static_instances.py -input _output/ToneOZ-Quicksnow.ttf -output-dir _tmp/static
     """
 
-    parser = argparse.ArgumentParser(
-        description="Build default static instances (300/350/400/450/500/550/600/650/700) from a variable TTF."
-    )
+    parser = argparse.ArgumentParser(description="Build static instances from a variable TTF.")
     parser.add_argument("-input", required=True, help="Input variable TTF path")
     parser.add_argument("-output-dir", required=True, help="Output directory for static TTFs")
+    parser.add_argument(
+        "-start",
+        type=int,
+        default=300,
+        help="Start weight for output instances (default: 300)",
+    )
+    parser.add_argument(
+        "-end",
+        type=int,
+        default=700,
+        help="End weight for output instances (default: 700)",
+    )
+    parser.add_argument(
+        "-step",
+        type=int,
+        default=DEFAULT_WEIGHT_STEP,
+        help=f"Weight step for output instances (default: {DEFAULT_WEIGHT_STEP})",
+    )
     return parser.parse_args()
+
+
+def iter_output_weights(start_weight: int, end_weight: int, step_weight: int) -> list[int]:
+    """Summary: Build the inclusive output weight list.
+
+    Args:
+        start_weight: Minimum weight to output.
+        end_weight: Maximum weight to output.
+        step_weight: Step between output weights.
+
+    Returns:
+        list[int]: Output weights from start to end using a fixed step.
+
+    Example:
+        iter_output_weights(100, 200, 50)
+    """
+
+    return list(range(start_weight, end_weight + 1, step_weight))
 
 
 def sanitize_postscript_name(name: str) -> str:
@@ -201,7 +237,7 @@ def make_static_instance(input_ttf: Path, output_ttf: Path, weight: int) -> None
         RuntimeError: If the variable font cannot be instantiated.
 
     Example:
-        make_static_instance(Path("_output/font.ttf"), Path("_tmp/font-W300.ttf"), 300)
+        make_static_instance(Path("_output/font.ttf"), Path("_tmp/font-W100.ttf"), 100)
     """
 
     output_ttf.parent.mkdir(parents=True, exist_ok=True)
@@ -216,32 +252,50 @@ def make_static_instance(input_ttf: Path, output_ttf: Path, weight: int) -> None
     print(f"Done: {output_ttf}")
 
 
-def build_default_instances(input_ttf: Path, output_dir: Path) -> None:
+def build_default_instances(
+    input_ttf: Path,
+    output_dir: Path,
+    start_weight: int = 300,
+    end_weight: int = 700,
+    step_weight: int = DEFAULT_WEIGHT_STEP,
+) -> None:
     """Summary: Build default static instances from a variable TTF.
 
     Args:
         input_ttf: Input variable TTF path.
         output_dir: Output directory path.
+        start_weight: Minimum weight to output.
+        end_weight: Maximum weight to output.
+        step_weight: Step between output weights.
 
     Returns:
         None
 
     Example:
-        build_default_instances(Path("_output/font.ttf"), Path("_tmp/static"))
+        build_default_instances(Path("_output/font.ttf"), Path("_tmp/static"), 400, 600, 50)
     """
 
     base_name = input_ttf.stem
-    for weight in DEFAULT_WEIGHTS:
+    for weight in iter_output_weights(start_weight, end_weight, step_weight):
         output_ttf = output_dir / f"{base_name}-W{weight}.ttf"
         make_static_instance(input_ttf, output_ttf, weight)
 
 
-def validate_args(input_ttf: Path, output_dir: Path) -> None:
+def validate_args(
+    input_ttf: Path,
+    output_dir: Path,
+    start_weight: int,
+    end_weight: int,
+    step_weight: int,
+) -> None:
     """Summary: Validate CLI paths before building static instances.
 
     Args:
         input_ttf: Input variable TTF path.
         output_dir: Output directory path.
+        start_weight: Minimum weight to output.
+        end_weight: Maximum weight to output.
+        step_weight: Step between output weights.
 
     Returns:
         None
@@ -250,7 +304,7 @@ def validate_args(input_ttf: Path, output_dir: Path) -> None:
         ValueError: If any input path is invalid.
 
     Example:
-        validate_args(Path("_output/font.ttf"), Path("_tmp/static"))
+        validate_args(Path("_output/font.ttf"), Path("_tmp/static"), 300, 700, 50)
     """
 
     if not input_ttf.exists() or not input_ttf.is_file():
@@ -259,6 +313,18 @@ def validate_args(input_ttf: Path, output_dir: Path) -> None:
         raise ValueError(f"-input must be a .ttf file: {input_ttf}")
     if output_dir.exists() and not output_dir.is_dir():
         raise ValueError(f"-output-dir must be a directory path: {output_dir}")
+    if start_weight < MIN_ALLOWED_WEIGHT:
+        raise ValueError(f"-start must be >= {MIN_ALLOWED_WEIGHT}")
+    if end_weight > MAX_ALLOWED_WEIGHT:
+        raise ValueError(f"-end must be <= {MAX_ALLOWED_WEIGHT}")
+    if start_weight > end_weight:
+        raise ValueError("-start must be less than or equal to -end")
+    if step_weight <= 0:
+        raise ValueError("-step must be > 0")
+    if start_weight % step_weight != 0:
+        raise ValueError(f"-start must be a multiple of -step ({step_weight})")
+    if end_weight % step_weight != 0:
+        raise ValueError(f"-end must be a multiple of -step ({step_weight})")
 
 
 def main() -> int:
@@ -277,11 +343,14 @@ def main() -> int:
     args = parse_args()
     input_ttf = Path(args.input).expanduser().resolve()
     output_dir = Path(args.output_dir).expanduser().resolve()
+    start_weight = int(args.start)
+    end_weight = int(args.end)
+    step_weight = int(args.step)
 
     try:
-        validate_args(input_ttf, output_dir)
+        validate_args(input_ttf, output_dir, start_weight, end_weight, step_weight)
         output_dir.mkdir(parents=True, exist_ok=True)
-        build_default_instances(input_ttf, output_dir)
+        build_default_instances(input_ttf, output_dir, start_weight, end_weight, step_weight)
         return 0
     except Exception as exc:  # noqa: BLE001
         eprint(f"Error: {exc}")

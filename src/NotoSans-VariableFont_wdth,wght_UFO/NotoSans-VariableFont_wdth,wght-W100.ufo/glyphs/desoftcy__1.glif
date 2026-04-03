@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="desoftcy" format="2">
+  <unicode hex="A663" />
+  <advance width="767" />
+  <outline>
+    <contour>
+      <point x="441" y="0" type="line" />
+      <point x="441" y="528" type="line" />
+      <point x="742" y="528" type="line" />
+      <point x="742" y="503" type="line" />
+      <point x="467" y="503" type="line" />
+      <point x="467" y="0" type="line" />
+    </contour>
+    <contour>
+      <point x="5" y="-140" type="line" />
+      <point x="5" y="25" type="line" />
+      <point x="66" y="25" type="line" />
+      <point x="88" y="56" />
+      <point x="118" y="125" />
+      <point x="136" y="207" />
+      <point x="140" y="256" type="qcurve" />
+      <point x="142" y="276" />
+      <point x="144" y="316" />
+      <point x="147" y="373" />
+      <point x="152" y="461" />
+      <point x="155" y="528" type="qcurve" />
+      <point x="467" y="528" type="line" />
+      <point x="467" y="25" type="line" />
+      <point x="552" y="25" type="line" />
+      <point x="552" y="-140" type="line" />
+      <point x="526" y="-140" type="line" />
+      <point x="526" y="0" type="line" />
+      <point x="31" y="0" type="line" />
+      <point x="31" y="-140" type="line" />
+    </contour>
+    <contour>
+      <point x="98" y="25" type="qcurve" />
+      <point x="441" y="25" type="line" />
+      <point x="441" y="503" type="line" />
+      <point x="179" y="503" type="line" />
+      <point x="177" y="463" />
+      <point x="174" y="387" />
+      <point x="170" y="318" />
+      <point x="168" y="287" type="qcurve" />
+      <point x="163" y="199" />
+      <point x="128" y="73" />
+    </contour>
+  </outline>
+</glyph>

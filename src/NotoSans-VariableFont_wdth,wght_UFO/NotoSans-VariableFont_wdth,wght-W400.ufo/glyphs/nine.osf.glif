@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="nine.osf" format="2">
+  <advance width="575" />
+  <outline>
+    <contour>
+      <point x="520" y="232" type="qcurve" />
+      <point x="520" y="127" />
+      <point x="478" y="-26" />
+      <point x="394" y="-124" />
+      <point x="269" y="-172" />
+      <point x="187" y="-172" type="qcurve" />
+      <point x="160" y="-172" />
+      <point x="112" y="-166" />
+      <point x="91" y="-161" type="qcurve" />
+      <point x="91" y="-88" type="line" />
+      <point x="112" y="-94" />
+      <point x="163" y="-101" />
+      <point x="184" y="-101" type="qcurve" />
+      <point x="262" y="-101" />
+      <point x="371" y="-38" />
+      <point x="433" y="91" />
+      <point x="438" y="188" type="qcurve" />
+      <point x="434" y="188" type="line" />
+      <point x="414" y="155" />
+      <point x="363" y="112" />
+      <point x="296" y="92" />
+      <point x="253" y="92" type="qcurve" />
+      <point x="156" y="92" />
+      <point x="47" y="205" />
+      <point x="47" y="308" type="qcurve" />
+      <point x="47" y="380" />
+      <point x="102" y="487" />
+      <point x="205" y="547" />
+      <point x="275" y="547" type="qcurve" />
+      <point x="331" y="547" />
+      <point x="422" y="508" />
+      <point x="486" y="430" />
+      <point x="520" y="312" />
+    </contour>
+    <contour>
+      <point x="277" y="473" type="qcurve" />
+      <point x="209" y="473" />
+      <point x="135" y="387" />
+      <point x="135" y="311" type="qcurve" />
+      <point x="135" y="239" />
+      <point x="206" y="162" />
+      <point x="273" y="162" type="qcurve" />
+      <point x="313" y="162" />
+      <point x="383" y="195" />
+      <point x="428" y="255" />
+      <point x="428" y="295" type="qcurve" />
+      <point x="428" y="329" />
+      <point x="409" y="392" />
+      <point x="371" y="443" />
+      <point x="314" y="473" />
+    </contour>
+  </outline>
+</glyph>

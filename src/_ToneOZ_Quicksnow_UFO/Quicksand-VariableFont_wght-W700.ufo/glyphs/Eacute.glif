@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Eacute" format="2">
+  <unicode hex="00C9" />
+  <advance width="572" />
+  <outline>
+    <component base="E" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="0" yOffset="0" />
+    <component base="acutecomb.case" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="227" yOffset="0" />
+  </outline>
+</glyph>

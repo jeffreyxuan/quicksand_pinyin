@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="yerubackyercy" format="2">
+  <unicode hex="A651" />
+  <advance width="784" />
+  <outline>
+    <contour>
+      <point x="176" y="0" type="line" />
+      <point x="176" y="503" type="line" />
+      <point x="21" y="503" type="line" />
+      <point x="21" y="528" type="line" />
+      <point x="202" y="528" type="line" />
+      <point x="202" y="302" type="line" />
+      <point x="409" y="302" type="line" />
+      <point x="467" y="302" />
+      <point x="541" y="266" />
+      <point x="576" y="200" />
+      <point x="576" y="156" type="qcurve" />
+      <point x="576" y="106" />
+      <point x="536" y="36" />
+      <point x="456" y="0" />
+      <point x="395" y="0" type="qcurve" />
+    </contour>
+    <contour>
+      <point x="391" y="25" type="line" />
+      <point x="478" y="25" />
+      <point x="549" y="93" />
+      <point x="549" y="157" type="qcurve" />
+      <point x="549" y="214" />
+      <point x="479" y="277" />
+      <point x="405" y="277" type="qcurve" />
+      <point x="202" y="277" type="line" />
+      <point x="202" y="25" type="line" />
+    </contour>
+    <contour>
+      <point x="669" y="0" type="line" />
+      <point x="669" y="528" type="line" />
+      <point x="695" y="528" type="line" />
+      <point x="695" y="0" type="line" />
+    </contour>
+  </outline>
+</glyph>

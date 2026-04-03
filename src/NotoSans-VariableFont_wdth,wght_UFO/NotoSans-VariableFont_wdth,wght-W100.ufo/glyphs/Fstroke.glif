@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Fstroke" format="2">
+  <unicode hex="A798" />
+  <advance width="492" />
+  <outline>
+    <contour>
+      <point x="129" y="0" type="line" />
+      <point x="103" y="0" type="line" />
+      <point x="103" y="714" type="line" />
+      <point x="489" y="714" type="line" />
+      <point x="489" y="689" type="line" />
+      <point x="129" y="689" type="line" />
+      <point x="129" y="354" type="line" />
+      <point x="470" y="354" type="line" />
+      <point x="470" y="329" type="line" />
+      <point x="129" y="329" type="line" />
+    </contour>
+    <contour>
+      <point x="17" y="503" type="line" />
+      <point x="17" y="528" type="line" />
+      <point x="283" y="528" type="line" />
+      <point x="283" y="503" type="line" />
+    </contour>
+  </outline>
+</glyph>

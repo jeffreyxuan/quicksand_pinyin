@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni1F8C.ad" format="2">
+  <advance width="1034" />
+  <outline>
+    <component base="A" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="173" yOffset="0" />
+    <component base="uni1FBF" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="-28" yOffset="-62" />
+    <component base="tonos" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="133" yOffset="-62" />
+    <component base="uni1FBE" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="750" yOffset="0" />
+  </outline>
+</glyph>

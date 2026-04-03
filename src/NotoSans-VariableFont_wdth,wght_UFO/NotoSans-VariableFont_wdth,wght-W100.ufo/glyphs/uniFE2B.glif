@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniFE2B" format="2">
+  <unicode hex="FE2B" />
+  <advance width="0" />
+  <outline>
+    <contour>
+      <point x="252" y="-218" type="line" />
+      <point x="252" y="-243" type="line" />
+      <point x="-3" y="-243" type="line" />
+      <point x="-3" y="-218" type="line" />
+    </contour>
+  </outline>
+</glyph>

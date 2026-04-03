@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniFE27" format="2">
+  <unicode hex="FE27" />
+  <advance width="0" />
+  <outline>
+    <contour>
+      <point x="-382" y="-66" type="qcurve" />
+      <point x="-350" y="-66" type="line" />
+      <point x="-320" y="-119" />
+      <point x="-209" y="-187" />
+      <point x="-72" y="-218" />
+      <point x="-5" y="-218" type="qcurve" />
+      <point x="0" y="-218" type="line" />
+      <point x="0" y="-243" type="line" />
+      <point x="-5" y="-243" type="line" />
+      <point x="-59" y="-243" />
+      <point x="-171" y="-222" />
+      <point x="-276" y="-179" />
+      <point x="-358" y="-112" />
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="_Comp_reph_candraBindudeva" format="2">
+  <advance width="291" />
+  <outline>
+    <contour>
+      <point x="75" y="615" type="line" />
+      <point x="56" y="652" />
+      <point x="24" y="733" />
+      <point x="24" y="773" type="qcurve" />
+      <point x="24" y="832" />
+      <point x="96" y="896" />
+      <point x="154" y="896" type="qcurve" />
+      <point x="177" y="896" />
+      <point x="216" y="890" />
+      <point x="235" y="884" type="qcurve" />
+      <point x="230" y="860" type="line" />
+      <point x="211" y="865" />
+      <point x="175" y="870" />
+      <point x="156" y="870" type="qcurve" />
+      <point x="101" y="870" />
+      <point x="48" y="815" />
+      <point x="48" y="771" type="qcurve" />
+      <point x="48" y="732" />
+      <point x="77" y="653" />
+      <point x="98" y="615" type="qcurve" />
+    </contour>
+    <contour>
+      <point x="216" y="782" type="qcurve" />
+      <point x="216" y="770" />
+      <point x="204" y="755" />
+      <point x="195" y="755" type="qcurve" />
+      <point x="185" y="755" />
+      <point x="173" y="770" />
+      <point x="173" y="782" type="qcurve" />
+      <point x="173" y="794" />
+      <point x="185" y="809" />
+      <point x="195" y="809" type="qcurve" />
+      <point x="216" y="809" />
+    </contour>
+    <contour>
+      <point x="287" y="776" type="line" />
+      <point x="282" y="724" />
+      <point x="234" y="676" />
+      <point x="195" y="676" type="qcurve" />
+      <point x="155" y="676" />
+      <point x="106" y="724" />
+      <point x="101" y="776" type="qcurve" />
+      <point x="124" y="781" type="line" />
+      <point x="127" y="739" />
+      <point x="163" y="697" />
+      <point x="195" y="697" type="qcurve" />
+      <point x="226" y="697" />
+      <point x="260" y="739" />
+      <point x="264" y="781" type="qcurve" />
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni1F9E" format="2">
+  <unicode hex="1F9E" />
+  <advance width="1061" />
+  <outline>
+    <component base="H" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="355" yOffset="0" />
+    <component base="uni1FBF" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="81" yOffset="-191" />
+    <component base="tilde" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="-30" yOffset="1" />
+    <component base="uni037A" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="615" yOffset="0" />
+  </outline>
+</glyph>

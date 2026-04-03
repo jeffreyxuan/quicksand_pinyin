@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni03B9030403130300" format="2">
+  <advance width="284" />
+  <outline>
+    <component base="iota" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="0" yOffset="0" />
+    <component base="macronmod" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="-72" yOffset="0" />
+    <component base="uni1FBF" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="-74" yOffset="42" />
+    <component base="uni1FEF" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="87" yOffset="42" />
+  </outline>
+</glyph>

@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni1D35.salt" format="2">
+  <advance width="185" />
+  <outline>
+    <contour>
+      <point x="63" y="287" type="line" />
+      <point x="63" y="715" type="line" />
+      <point x="122" y="715" type="line" />
+      <point x="122" y="287" type="line" />
+    </contour>
+  </outline>
+</glyph>

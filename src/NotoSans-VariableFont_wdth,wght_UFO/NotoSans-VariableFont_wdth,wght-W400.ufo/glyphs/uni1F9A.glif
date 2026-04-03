@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni1F9A" format="2">
+  <unicode hex="1F9A" />
+  <advance width="1086" />
+  <outline>
+    <component base="H" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="345" yOffset="0" />
+    <component base="uni1FBF" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="-31" yOffset="-62" />
+    <component base="uni1FEF" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="130" yOffset="-62" />
+    <component base="uni037A" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="592" yOffset="0" />
+  </outline>
+</glyph>

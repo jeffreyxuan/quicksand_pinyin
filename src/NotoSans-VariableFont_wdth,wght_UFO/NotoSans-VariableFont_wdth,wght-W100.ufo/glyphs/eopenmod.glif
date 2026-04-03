@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="eopenmod" format="2">
+  <unicode hex="1D4B" />
+  <advance width="283" />
+  <outline>
+    <contour>
+      <point x="205" y="463" type="line" />
+      <point x="205" y="448" type="line" />
+      <point x="166" y="448" type="line" />
+      <point x="110" y="448" />
+      <point x="48" y="411" />
+      <point x="48" y="370" type="qcurve" />
+      <point x="48" y="338" />
+      <point x="100" y="296" />
+      <point x="155" y="296" type="qcurve" />
+      <point x="184" y="296" />
+      <point x="234" y="305" />
+      <point x="258" y="314" type="qcurve" />
+      <point x="258" y="299" type="line" />
+      <point x="241" y="292" />
+      <point x="187" y="281" />
+      <point x="155" y="281" type="qcurve" />
+      <point x="91" y="281" />
+      <point x="31" y="330" />
+      <point x="31" y="370" type="qcurve" />
+      <point x="31" y="402" />
+      <point x="68" y="447" />
+      <point x="107" y="456" type="qcurve" />
+      <point x="107" y="457" type="line" />
+      <point x="70" y="467" />
+      <point x="42" y="503" />
+      <point x="42" y="528" type="qcurve" />
+      <point x="42" y="558" />
+      <point x="75" y="594" />
+      <point x="127" y="610" />
+      <point x="157" y="610" type="qcurve" />
+      <point x="189" y="610" />
+      <point x="234" y="600" />
+      <point x="257" y="592" type="qcurve" />
+      <point x="252" y="577" type="line" />
+      <point x="233" y="585" />
+      <point x="184" y="595" />
+      <point x="158" y="595" type="qcurve" />
+      <point x="110" y="595" />
+      <point x="60" y="560" />
+      <point x="60" y="528" type="qcurve" />
+      <point x="60" y="496" />
+      <point x="114" y="463" />
+      <point x="170" y="463" type="qcurve" />
+    </contour>
+  </outline>
+</glyph>

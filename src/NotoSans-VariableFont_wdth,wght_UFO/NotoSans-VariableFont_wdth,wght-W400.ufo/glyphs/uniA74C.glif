@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniA74C" format="2">
+  <unicode hex="A74C" />
+  <advance width="936" />
+  <outline>
+    <component base="O" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="0" yOffset="0" />
+    <component base="degree" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="563" yOffset="0" />
+  </outline>
+</glyph>

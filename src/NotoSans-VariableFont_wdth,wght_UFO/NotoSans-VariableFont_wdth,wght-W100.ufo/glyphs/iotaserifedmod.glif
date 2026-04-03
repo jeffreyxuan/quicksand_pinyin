@@ -1,0 +1,21 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="iotaserifedmod" format="2">
+  <unicode hex="1DA6" />
+  <advance width="191" />
+  <outline>
+    <contour>
+      <point x="150" y="604" type="line" />
+      <point x="150" y="592" type="line" />
+      <point x="104" y="589" type="line" />
+      <point x="104" y="301" type="line" />
+      <point x="150" y="299" type="line" />
+      <point x="150" y="287" type="line" />
+      <point x="42" y="287" type="line" />
+      <point x="42" y="299" type="line" />
+      <point x="87" y="301" type="line" />
+      <point x="87" y="589" type="line" />
+      <point x="42" y="592" type="line" />
+      <point x="42" y="604" type="line" />
+    </contour>
+  </outline>
+</glyph>

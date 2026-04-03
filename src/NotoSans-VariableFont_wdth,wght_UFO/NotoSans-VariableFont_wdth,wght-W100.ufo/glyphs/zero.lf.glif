@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="zero.lf" format="2">
+  <advance width="576" />
+  <outline>
+    <contour>
+      <point x="511" y="360" type="qcurve" />
+      <point x="511" y="267" />
+      <point x="484" y="128" />
+      <point x="429" y="36" />
+      <point x="346" y="-10" />
+      <point x="289" y="-10" type="qcurve" />
+      <point x="235" y="-10" />
+      <point x="152" y="34" />
+      <point x="95" y="125" />
+      <point x="66" y="265" />
+      <point x="66" y="360" type="qcurve" />
+      <point x="66" y="466" />
+      <point x="108" y="630" />
+      <point x="206" y="725" />
+      <point x="290" y="725" type="qcurve" />
+      <point x="377" y="725" />
+      <point x="473" y="633" />
+      <point x="511" y="469" />
+    </contour>
+    <contour>
+      <point x="93" y="360" type="qcurve" />
+      <point x="93" y="184" />
+      <point x="192" y="15" />
+      <point x="289" y="15" type="qcurve" />
+      <point x="392" y="15" />
+      <point x="484" y="185" />
+      <point x="484" y="360" type="qcurve" />
+      <point x="484" y="462" />
+      <point x="451" y="615" />
+      <point x="367" y="700" />
+      <point x="290" y="700" type="qcurve" />
+      <point x="215" y="700" />
+      <point x="129" y="612" />
+      <point x="93" y="459" />
+    </contour>
+  </outline>
+</glyph>

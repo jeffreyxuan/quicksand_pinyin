@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni1FD7" format="2">
+  <unicode hex="1FD7" />
+  <advance width="332" />
+  <outline>
+    <component base="iota" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="0" yOffset="0" />
+    <component base="tilde" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="-90" yOffset="154" />
+    <component base="dieresis" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="-156" yOffset="0" />
+  </outline>
+</glyph>

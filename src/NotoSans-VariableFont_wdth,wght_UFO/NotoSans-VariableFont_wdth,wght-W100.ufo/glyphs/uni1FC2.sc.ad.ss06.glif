@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni1FC2.sc.ad.ss06" format="2">
+  <advance width="794" />
+  <outline>
+    <component base="h.sc" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="0" yOffset="0" />
+    <component base="uni1FEF" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="170" yOffset="31" />
+    <component base="i.sc" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="567" yOffset="0" />
+  </outline>
+</glyph>

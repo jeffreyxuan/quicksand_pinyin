@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni1DBA" format="2">
+  <unicode hex="1DBA" />
+  <advance width="280" />
+  <outline>
+    <contour>
+      <point x="147" y="604" type="line" />
+      <point x="280" y="287" type="line" />
+      <point x="262" y="287" type="line" />
+      <point x="164" y="521" type="line" />
+      <point x="156" y="540" />
+      <point x="146" y="567" />
+      <point x="140" y="582" type="qcurve" />
+      <point x="139" y="582" type="line" />
+      <point x="133" y="567" />
+      <point x="123" y="540" />
+      <point x="115" y="521" type="qcurve" />
+      <point x="18" y="287" type="line" />
+      <point x="0" y="287" type="line" />
+      <point x="133" y="604" type="line" />
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni030C.sc" format="2">
+  <advance width="0" />
+  <outline>
+    <contour>
+      <point x="416" y="773" type="line" />
+      <point x="399" y="753" />
+      <point x="354" y="698" />
+      <point x="313" y="642" />
+      <point x="300" y="620" type="qcurve" />
+      <point x="270" y="620" type="line" />
+      <point x="260" y="639" />
+      <point x="229" y="684" />
+      <point x="185" y="740" />
+      <point x="155" y="773" type="qcurve" />
+      <point x="155" y="780" type="line" />
+      <point x="171" y="780" type="line" />
+      <point x="203" y="749" />
+      <point x="262" y="686" />
+      <point x="286" y="656" type="qcurve" />
+      <point x="313" y="688" />
+      <point x="371" y="753" />
+      <point x="399" y="780" type="qcurve" />
+      <point x="416" y="780" type="line" />
+    </contour>
+  </outline>
+</glyph>

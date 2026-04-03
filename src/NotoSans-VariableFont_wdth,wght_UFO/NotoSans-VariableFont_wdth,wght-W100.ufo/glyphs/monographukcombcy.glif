@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="monographukcombcy" format="2">
+  <unicode hex="2DF9" />
+  <advance width="0" />
+  <outline>
+    <contour>
+      <point x="11" y="616" type="qcurve" />
+      <point x="-25" y="616" />
+      <point x="-65" y="650" />
+      <point x="-65" y="678" type="qcurve" />
+      <point x="-65" y="703" />
+      <point x="-37" y="743" />
+      <point x="2" y="770" type="qcurve" />
+      <point x="-29" y="791" />
+      <point x="-58" y="826" />
+      <point x="-68" y="863" />
+      <point x="-68" y="888" type="qcurve" />
+      <point x="-56" y="888" type="line" />
+      <point x="-56" y="863" />
+      <point x="-47" y="829" />
+      <point x="-18" y="797" />
+      <point x="11" y="776" type="qcurve" />
+      <point x="39" y="797" />
+      <point x="70" y="834" />
+      <point x="82" y="883" />
+      <point x="83" y="924" type="qcurve" />
+      <point x="94" y="924" type="line" />
+      <point x="94" y="883" />
+      <point x="81" y="831" />
+      <point x="49" y="792" />
+      <point x="20" y="770" type="qcurve" />
+      <point x="63" y="740" />
+      <point x="86" y="699" />
+      <point x="86" y="677" type="qcurve" />
+      <point x="86" y="651" />
+      <point x="48" y="616" />
+    </contour>
+    <contour>
+      <point x="12" y="626" type="qcurve" />
+      <point x="43" y="626" />
+      <point x="74" y="654" />
+      <point x="74" y="678" type="qcurve" />
+      <point x="74" y="699" />
+      <point x="51" y="734" />
+      <point x="11" y="764" type="qcurve" />
+      <point x="-28" y="737" />
+      <point x="-53" y="701" />
+      <point x="-53" y="679" type="qcurve" />
+      <point x="-53" y="654" />
+      <point x="-19" y="626" />
+    </contour>
+  </outline>
+</glyph>

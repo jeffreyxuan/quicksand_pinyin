@@ -1,0 +1,27 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni0365" format="2">
+  <unicode hex="0365" />
+  <advance width="0" />
+  <outline>
+    <contour>
+      <point x="53" y="841" type="line" />
+      <point x="53" y="620" type="line" />
+      <point x="-33" y="620" type="line" />
+      <point x="-33" y="841" type="line" />
+    </contour>
+    <contour>
+      <point x="10" y="930" type="qcurve" />
+      <point x="28" y="930" />
+      <point x="56" y="917" />
+      <point x="56" y="896" type="qcurve" />
+      <point x="56" y="877" />
+      <point x="28" y="863" />
+      <point x="10" y="863" type="qcurve" />
+      <point x="-8" y="863" />
+      <point x="-35" y="877" />
+      <point x="-35" y="896" type="qcurve" />
+      <point x="-35" y="917" />
+      <point x="-8" y="930" />
+    </contour>
+  </outline>
+</glyph>

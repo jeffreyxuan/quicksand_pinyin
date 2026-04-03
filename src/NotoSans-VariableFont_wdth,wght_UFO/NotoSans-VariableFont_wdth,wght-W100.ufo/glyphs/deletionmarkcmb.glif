@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="deletionmarkcmb" format="2">
+  <unicode hex="1DFB" />
+  <advance width="0" />
+  <outline>
+    <component base="uni2034" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="-279" yOffset="0" />
+  </outline>
+</glyph>

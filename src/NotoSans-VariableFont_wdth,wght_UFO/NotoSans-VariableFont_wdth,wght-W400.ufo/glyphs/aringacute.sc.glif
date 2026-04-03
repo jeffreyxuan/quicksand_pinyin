@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="aringacute.sc" format="2">
+  <advance width="528" />
+  <outline>
+    <component base="a.sc" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="0" yOffset="0" />
+    <component base="uni030A.sc" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="-14" yOffset="-76" />
+    <component base="acutecomb.sc" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="20" yOffset="150" />
+  </outline>
+</glyph>

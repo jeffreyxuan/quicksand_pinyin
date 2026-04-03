@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Utilde" format="2">
+  <unicode hex="0168" />
+  <advance width="705" />
+  <outline>
+    <component base="U" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="0" yOffset="0" />
+    <component base="tildecomb.case" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="123" yOffset="0" />
+  </outline>
+</glyph>

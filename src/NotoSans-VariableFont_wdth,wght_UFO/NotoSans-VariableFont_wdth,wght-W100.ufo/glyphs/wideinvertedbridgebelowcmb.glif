@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="wideinvertedbridgebelowcmb" format="2">
+  <unicode hex="1DF9" />
+  <advance width="0" />
+  <outline>
+    <contour>
+      <point x="173" y="-173" type="line" />
+      <point x="-173" y="-173" type="line" />
+      <point x="-273" y="-46" type="line" />
+      <point x="-239" y="-46" type="line" />
+      <point x="-159" y="-142" type="line" />
+      <point x="159" y="-142" type="line" />
+      <point x="239" y="-46" type="line" />
+      <point x="273" y="-46" type="line" />
+    </contour>
+  </outline>
+</glyph>

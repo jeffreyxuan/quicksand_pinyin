@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="tecombcy" format="2">
+  <unicode hex="2DEE" />
+  <advance width="0" />
+  <outline>
+    <contour>
+      <point x="98" y="821" type="line" />
+      <point x="16" y="821" type="line" />
+      <point x="16" y="620" type="line" />
+      <point x="4" y="620" type="line" />
+      <point x="4" y="821" type="line" />
+      <point x="-77" y="821" type="line" />
+      <point x="-77" y="831" type="line" />
+      <point x="98" y="831" type="line" />
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="phi.salt" format="2">
+  <advance width="847" />
+  <outline>
+    <contour>
+      <point x="324" y="-240" type="line" />
+      <point x="324" y="-4" type="line" />
+      <point x="240" y="2" />
+      <point x="113" y="69" />
+      <point x="42" y="196" />
+      <point x="42" y="291" type="qcurve" />
+      <point x="42" y="350" />
+      <point x="66" y="449" />
+      <point x="115" y="529" />
+      <point x="155" y="560" type="qcurve" />
+      <point x="297" y="484" type="line" />
+      <point x="272" y="463" />
+      <point x="241" y="401" />
+      <point x="228" y="331" />
+      <point x="228" y="298" type="qcurve" />
+      <point x="228" y="247" />
+      <point x="250" y="182" />
+      <point x="293" y="147" />
+      <point x="324" y="138" type="qcurve" />
+      <point x="324" y="326" type="line" />
+      <point x="324" y="438" />
+      <point x="433" y="560" />
+      <point x="541" y="560" type="qcurve" />
+      <point x="623" y="560" />
+      <point x="740" y="497" />
+      <point x="804" y="379" />
+      <point x="804" y="295" type="qcurve" />
+      <point x="804" y="204" />
+      <point x="728" y="76" />
+      <point x="593" y="4" />
+      <point x="505" y="-4" type="qcurve" />
+      <point x="505" y="-240" type="line" />
+    </contour>
+    <contour>
+      <point x="505" y="138" type="line" />
+      <point x="547" y="142" />
+      <point x="595" y="190" />
+      <point x="614" y="268" />
+      <point x="614" y="314" type="qcurve" />
+      <point x="614" y="342" />
+      <point x="601" y="389" />
+      <point x="573" y="418" />
+      <point x="550" y="418" type="qcurve" />
+      <point x="535" y="418" />
+      <point x="515" y="403" />
+      <point x="505" y="375" />
+      <point x="505" y="353" type="qcurve" />
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="germandbls.sc" format="2">
+  <advance width="599" />
+  <outline>
+    <contour>
+      <point x="381" y="317" type="line" />
+      <point x="475" y="313" />
+      <point x="556" y="229" />
+      <point x="556" y="158" type="qcurve" />
+      <point x="556" y="109" />
+      <point x="507" y="34" />
+      <point x="414" y="-7" />
+      <point x="349" y="-7" type="qcurve" />
+      <point x="307" y="-7" />
+      <point x="238" y="2" />
+      <point x="211" y="11" type="qcurve" />
+      <point x="211" y="87" type="line" />
+      <point x="239" y="75" />
+      <point x="305" y="64" />
+      <point x="342" y="64" type="qcurve" />
+      <point x="397" y="64" />
+      <point x="467" y="112" />
+      <point x="467" y="157" type="qcurve" />
+      <point x="467" y="207" />
+      <point x="404" y="259" />
+      <point x="315" y="259" type="qcurve" />
+      <point x="285" y="259" type="line" />
+      <point x="285" y="315" type="line" />
+      <point x="395" y="441" type="line" />
+      <point x="382" y="473" />
+      <point x="328" y="509" />
+      <point x="286" y="509" type="qcurve" />
+      <point x="224" y="509" />
+      <point x="157" y="432" />
+      <point x="157" y="358" type="qcurve" />
+      <point x="157" y="1" type="line" />
+      <point x="69" y="1" type="line" />
+      <point x="69" y="361" type="line" />
+      <point x="69" y="465" />
+      <point x="183" y="580" />
+      <point x="285" y="580" type="qcurve" />
+      <point x="372" y="580" />
+      <point x="470" y="505" />
+      <point x="489" y="435" type="qcurve" />
+    </contour>
+  </outline>
+</glyph>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="Glottalstopcased" format="2">
+  <unicode hex="0241" />
+  <advance width="397" />
+  <outline>
+    <contour>
+      <point x="179" y="723" type="qcurve" />
+      <point x="240" y="723" />
+      <point x="326" y="676" />
+      <point x="373" y="589" />
+      <point x="373" y="528" type="qcurve" />
+      <point x="373" y="470" />
+      <point x="338" y="389" />
+      <point x="280" y="334" />
+      <point x="212" y="297" />
+      <point x="180" y="283" type="qcurve" />
+      <point x="180" y="0" type="line" />
+      <point x="154" y="0" type="line" />
+      <point x="154" y="299" type="line" />
+      <point x="190" y="314" />
+      <point x="259" y="349" />
+      <point x="314" y="399" />
+      <point x="346" y="473" />
+      <point x="346" y="526" type="qcurve" />
+      <point x="346" y="610" />
+      <point x="256" y="698" />
+      <point x="178" y="698" type="qcurve" />
+      <point x="143" y="698" />
+      <point x="85" y="686" />
+      <point x="38" y="668" />
+      <point x="19" y="658" type="qcurve" />
+      <point x="9" y="681" type="line" />
+      <point x="43" y="698" />
+      <point x="122" y="723" />
+    </contour>
+  </outline>
+</glyph>

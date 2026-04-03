@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni031A.nonspacing" format="2">
+  <advance width="0" />
+  <outline>
+    <contour>
+      <point x="-78" y="942" type="line" />
+      <point x="178" y="942" type="line" />
+      <point x="178" y="702" type="line" />
+      <point x="112" y="702" type="line" />
+      <point x="112" y="882" type="line" />
+      <point x="-78" y="882" type="line" />
+    </contour>
+  </outline>
+</glyph>

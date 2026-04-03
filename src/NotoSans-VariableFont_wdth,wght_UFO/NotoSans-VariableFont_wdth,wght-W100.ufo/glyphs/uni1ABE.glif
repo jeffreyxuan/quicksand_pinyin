@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni1ABE" format="2">
+  <unicode hex="1ABE" />
+  <advance width="0" />
+  <outline>
+    <contour>
+      <point x="-398" y="221" type="qcurve" />
+      <point x="-398" y="253" />
+      <point x="-366" y="309" />
+      <point x="-333" y="331" type="qcurve" />
+      <point x="-304" y="331" type="line" />
+      <point x="-366" y="283" />
+      <point x="-366" y="221" type="qcurve" />
+      <point x="-366" y="190" />
+      <point x="-334" y="131" />
+      <point x="-304" y="107" type="qcurve" />
+      <point x="-333" y="107" type="line" />
+      <point x="-366" y="130" />
+      <point x="-398" y="190" />
+    </contour>
+    <contour>
+      <point x="398" y="218" type="qcurve" />
+      <point x="398" y="187" />
+      <point x="366" y="130" />
+      <point x="332" y="107" type="qcurve" />
+      <point x="303" y="107" type="line" />
+      <point x="334" y="130" />
+      <point x="365" y="188" />
+      <point x="365" y="218" type="qcurve" />
+      <point x="365" y="249" />
+      <point x="334" y="307" />
+      <point x="303" y="331" type="qcurve" />
+      <point x="332" y="331" type="line" />
+      <point x="366" y="308" />
+      <point x="398" y="250" />
+    </contour>
+  </outline>
+</glyph>

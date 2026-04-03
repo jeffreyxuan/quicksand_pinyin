@@ -1,0 +1,15 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uni094D0930" format="2">
+  <advance width="0" />
+  <outline>
+    <contour>
+      <point x="-424" y="-167" type="line" />
+      <point x="-238" y="5" type="line" />
+      <point x="-228" y="5" type="line" />
+      <point x="-47" y="-167" type="line" />
+      <point x="-66" y="-185" type="line" />
+      <point x="-234" y="-23" type="line" />
+      <point x="-405" y="-185" type="line" />
+    </contour>
+  </outline>
+</glyph>

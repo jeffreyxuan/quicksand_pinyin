@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniFE25" format="2">
+  <unicode hex="FE25" />
+  <advance width="0" />
+  <outline>
+    <contour>
+      <point x="3" y="764" type="line" />
+      <point x="3" y="739" type="line" />
+      <point x="-252" y="739" type="line" />
+      <point x="-252" y="764" type="line" />
+    </contour>
+  </outline>
+</glyph>

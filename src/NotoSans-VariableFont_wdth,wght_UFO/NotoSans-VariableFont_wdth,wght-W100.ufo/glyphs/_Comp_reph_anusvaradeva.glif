@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="_Comp_reph_anusvaradeva" format="2">
+  <advance width="247" />
+  <outline>
+    <contour>
+      <point x="142" y="742" type="qcurve" />
+      <point x="142" y="759" />
+      <point x="159" y="778" />
+      <point x="173" y="778" type="qcurve" />
+      <point x="187" y="778" />
+      <point x="204" y="759" />
+      <point x="204" y="742" type="qcurve" />
+      <point x="204" y="723" />
+      <point x="187" y="706" />
+      <point x="173" y="706" type="qcurve" />
+      <point x="160" y="706" />
+      <point x="142" y="724" />
+    </contour>
+    <contour>
+      <point x="75" y="615" type="line" />
+      <point x="56" y="652" />
+      <point x="24" y="733" />
+      <point x="24" y="773" type="qcurve" />
+      <point x="24" y="832" />
+      <point x="96" y="896" />
+      <point x="154" y="896" type="qcurve" />
+      <point x="177" y="896" />
+      <point x="216" y="890" />
+      <point x="235" y="884" type="qcurve" />
+      <point x="230" y="860" type="line" />
+      <point x="211" y="865" />
+      <point x="175" y="870" />
+      <point x="156" y="870" type="qcurve" />
+      <point x="101" y="870" />
+      <point x="48" y="815" />
+      <point x="48" y="771" type="qcurve" />
+      <point x="48" y="732" />
+      <point x="77" y="653" />
+      <point x="98" y="615" type="qcurve" />
+    </contour>
+  </outline>
+</glyph>

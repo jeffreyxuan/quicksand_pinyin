@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="stackedcommadbl" format="2">
+  <unicode hex="2E49" />
+  <advance width="309" />
+  <outline>
+    <component base="comma" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="40" yOffset="368" />
+    <component base="comma" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="20" yOffset="58" />
+  </outline>
+</glyph>

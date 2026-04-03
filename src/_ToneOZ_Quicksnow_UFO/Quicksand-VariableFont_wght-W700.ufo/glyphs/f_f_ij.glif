@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="f_f_ij" format="2">
+  <advance width="1355" />
+  <outline>
+    <component base="f" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="0" yOffset="0" />
+    <component base="f" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="437" yOffset="0" />
+    <component base="dotlessi" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="874" yOffset="0" />
+    <component base="uni0307" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="879" yOffset="0" />
+    <component base="uni0237" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="1080" yOffset="0" />
+    <component base="uni0307" xScale="1" xyScale="0" yxScale="0" yScale="1" xOffset="1106" yOffset="0" />
+  </outline>
+</glyph>

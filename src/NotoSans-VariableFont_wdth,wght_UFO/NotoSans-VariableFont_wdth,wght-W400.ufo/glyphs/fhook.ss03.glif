@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="fhook.ss03" format="2">
+  <advance width="572" />
+  <outline>
+    <contour>
+      <point x="407" y="724" type="qcurve" />
+      <point x="439" y="724" />
+      <point x="491" y="710" />
+      <point x="510" y="703" type="qcurve" />
+      <point x="488" y="635" type="line" />
+      <point x="472" y="640" />
+      <point x="431" y="651" />
+      <point x="410" y="651" type="qcurve" />
+      <point x="367" y="651" />
+      <point x="326" y="605" />
+      <point x="326" y="543" type="qcurve" />
+      <point x="326" y="474" type="line" />
+      <point x="461" y="474" type="line" />
+      <point x="461" y="406" type="line" />
+      <point x="328" y="406" type="line" />
+      <point x="328" y="-64" type="line" />
+      <point x="328" y="-129" />
+      <point x="289" y="-206" />
+      <point x="215" y="-240" />
+      <point x="161" y="-240" type="qcurve" />
+      <point x="142" y="-240" />
+      <point x="107" y="-235" />
+      <point x="93" y="-231" type="qcurve" />
+      <point x="93" y="-158" type="line" />
+      <point x="108" y="-162" />
+      <point x="140" y="-167" />
+      <point x="156" y="-167" type="qcurve" />
+      <point x="198" y="-167" />
+      <point x="238" y="-123" />
+      <point x="238" y="-64" type="qcurve" />
+      <point x="238" y="406" type="line" />
+      <point x="133" y="406" type="line" />
+      <point x="133" y="447" type="line" />
+      <point x="238" y="477" type="line" />
+      <point x="238" y="542" type="line" />
+      <point x="238" y="611" />
+      <point x="278" y="690" />
+      <point x="353" y="724" />
+    </contour>
+  </outline>
+</glyph>
