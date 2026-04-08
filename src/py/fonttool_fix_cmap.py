@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any, Dict, Iterable, List, Tuple
 
 from fontTools.ttLib import TTFont
+from fontTools.ttLib.tables import otTables
 
 from ff_fix_cmap import (
     collect_required_codepoints,
@@ -1921,6 +1922,120 @@ def _count_nonzero_class2_col(subtable: Any, col_index: int) -> int:
     return total
 
 
+def _iter_gsub_ligature_subtables(font: TTFont) -> Iterable[Any]:
+    """Summary: Yield GSUB ligature subtables from a font.
+
+    Args:
+        font: Mutable font object.
+
+    Returns:
+        Iterable[Any]: LookupType 4 subtables.
+
+    Example:
+        list(_iter_gsub_ligature_subtables(TTFont("font.ttf")))
+    """
+
+    if "GSUB" not in font:
+        return []
+    lookup_list = getattr(font["GSUB"].table, "LookupList", None)
+    lookups = getattr(lookup_list, "Lookup", None)
+    if not isinstance(lookups, list):
+        return []
+    subtables: List[Any] = []
+    for lookup in lookups:
+        if getattr(lookup, "LookupType", None) != 4:
+            continue
+        for subtable in getattr(lookup, "SubTable", []) or []:
+            if hasattr(subtable, "ligatures"):
+                subtables.append(subtable)
+    return subtables
+
+
+def _find_final_ligature(font: TTFont, from_glyphs: List[str], to_glyph: str) -> Tuple[Any | None, Any | None]:
+    """Summary: Find a ligature substitution in final GSUB.
+
+    Args:
+        font: Mutable font object.
+        from_glyphs: Ligature source glyph sequence.
+        to_glyph: Ligature output glyph.
+
+    Returns:
+        Tuple[Any | None, Any | None]: Matching subtable and ligature object.
+
+    Example:
+        _find_final_ligature(font, ["E", "uni030A"], "E_uni030A")
+    """
+
+    if len(from_glyphs) < 2:
+        return (None, None)
+    first = from_glyphs[0]
+    rest = from_glyphs[1:]
+    for subtable in _iter_gsub_ligature_subtables(font):
+        ligatures = getattr(subtable, "ligatures", {})
+        for lig in ligatures.get(first, []) or []:
+            if list(getattr(lig, "Component", []) or []) == rest and getattr(lig, "LigGlyph", None) == to_glyph:
+                return (subtable, lig)
+    return (None, None)
+
+
+def ensure_case_ligatures_in_final_gsub(font: TTFont, rules_json_path: Path) -> Dict[str, int]:
+    """Summary: Re-add missing .case ligature substitutions on final GSUB.
+
+    Args:
+        font: Mutable output font.
+        rules_json_path: GSUB ligature rules JSON path.
+
+    Returns:
+        Dict[str, int]: Patch statistics.
+
+    Example:
+        ensure_case_ligatures_in_final_gsub(TTFont("font.ttf"), Path("rules.json"))
+    """
+
+    stats = {
+        "enabled": 0,
+        "case_rules_requested": 0,
+        "case_rules_added": 0,
+        "case_rules_skipped": 0,
+    }
+    if "GSUB" not in font:
+        return stats
+    rules = load_rules(rules_json_path)
+    if not rules:
+        return stats
+    stats["enabled"] = 1
+    for rule in rules:
+        from_glyphs = [str(x) for x in rule.get("from", [])]
+        to_glyph = str(rule.get("to", ""))
+        if len(from_glyphs) < 2 or not any(name.endswith(".case") for name in from_glyphs[1:]):
+            continue
+        stats["case_rules_requested"] += 1
+        existing_subtable, _ = _find_final_ligature(font, from_glyphs, to_glyph)
+        if existing_subtable is not None:
+            stats["case_rules_skipped"] += 1
+            continue
+        base_from = [from_glyphs[0]] + [name[:-5] if name.endswith(".case") else name for name in from_glyphs[1:]]
+        target_subtable, _ = _find_final_ligature(font, base_from, to_glyph)
+        if target_subtable is None:
+            stats["case_rules_skipped"] += 1
+            continue
+        ligatures = getattr(target_subtable, "ligatures", None)
+        if not isinstance(ligatures, dict):
+            stats["case_rules_skipped"] += 1
+            continue
+        first = from_glyphs[0]
+        lig = otTables.Ligature()
+        lig.Component = from_glyphs[1:]
+        lig.CompCount = len(from_glyphs)
+        lig.LigGlyph = to_glyph
+        bucket = list(ligatures.get(first, []) or [])
+        bucket.append(lig)
+        bucket.sort(key=lambda item: (-len(list(getattr(item, "Component", []) or [])), tuple(getattr(item, "Component", []) or []), str(getattr(item, "LigGlyph", ""))))
+        ligatures[first] = bucket
+        stats["case_rules_added"] += 1
+    return stats
+
+
 def copy_patched_tables(
     original_font_path: Path,
     patched_font_path: Path,
@@ -1929,8 +2044,9 @@ def copy_patched_tables(
     merge_source_kern_from: Path | None,
     enable_copy_kern_x_to_i: bool,
     enable_copy_kern_t_left_to_j: bool,
+    rules_json_path: Path,
     kern_rules_json: Path,
-) -> Tuple[Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int]]:
+) -> Tuple[Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int]]:
     """Summary: Copy patched tables onto the original font and save output.
 
     Args:
@@ -1940,9 +2056,9 @@ def copy_patched_tables(
         enable_fix_stat_linked_bold: Whether to patch STAT linked bold entries.
 
     Returns:
-        tuple[Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int]]:
+        tuple[Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int], Dict[str, int]]:
             STAT linked bold stats, GPOS merge stats, X->I kern stats, T->J kern stats,
-            and pair-override stats.
+            pair-override stats, and final GSUB .case ligature stats.
 
     Example:
           copy_patched_tables(Path("in.ttf"), Path("patched.ttf"), Path("out.ttf"), False, None, False, False, Path("rules.json"))
@@ -1982,6 +2098,12 @@ def copy_patched_tables(
         "pairs_skipped": 0,
         "classes_split": 0,
     }
+    final_case_ligature_stats = {
+        "enabled": 0,
+        "case_rules_requested": 0,
+        "case_rules_added": 0,
+        "case_rules_skipped": 0,
+    }
     with TTFont(str(original_font_path)) as original_font, TTFont(str(patched_font_path)) as patched_font:
         patched_table_tags = PATCHED_TABLE_TAGS
         if merge_source_kern_from is not None and merge_source_kern_from.exists():
@@ -1998,10 +2120,11 @@ def copy_patched_tables(
         if enable_copy_kern_t_left_to_j:
             kern_t_to_j_stats = copy_kern_t_left_only_to_j_in_final_gpos(original_font)
         kern_override_stats = apply_kern_pair_overrides_in_final_gpos(original_font, kern_rules_json)
+        final_case_ligature_stats = ensure_case_ligatures_in_final_gsub(original_font, rules_json_path)
         if enable_fix_stat_linked_bold:
             stat_fix_stats = fix_stat_linked_bold(original_font)
         original_font.save(str(output_path))
-    return stat_fix_stats, gpos_merge_stats, kern_copy_stats, kern_t_to_j_stats, kern_override_stats
+    return stat_fix_stats, gpos_merge_stats, kern_copy_stats, kern_t_to_j_stats, kern_override_stats, final_case_ligature_stats
 
 
 def main() -> int:
@@ -2066,7 +2189,7 @@ def main() -> int:
             handle.write("\n")
 
         run_cmd([args.otfccbuild, str(json_path), "-o", str(patched_font_path)])
-        stat_fix_stats, gpos_merge_stats, kern_copy_stats, kern_t_to_j_stats, kern_override_stats = copy_patched_tables(
+        stat_fix_stats, gpos_merge_stats, kern_copy_stats, kern_t_to_j_stats, kern_override_stats, final_case_ligature_stats = copy_patched_tables(
             input_path,
             patched_font_path,
             output_path,
@@ -2074,6 +2197,7 @@ def main() -> int:
             merge_source_kern_from,
             args.copy_kern_x_to_i,
             args.copy_kern_t_left_to_j,
+            rules_json_path,
             kern_rules_json_path,
         )
 
@@ -2148,6 +2272,13 @@ def main() -> int:
         f"pairs_updated={kern_override_stats['pairs_updated']}, "
         f"pairs_skipped={kern_override_stats['pairs_skipped']}, "
         f"classes_split={kern_override_stats['classes_split']}"
+    )
+    print(
+        "final case ligature stats: "
+        f"enabled={final_case_ligature_stats['enabled']}, "
+        f"case_rules_requested={final_case_ligature_stats['case_rules_requested']}, "
+        f"case_rules_added={final_case_ligature_stats['case_rules_added']}, "
+        f"case_rules_skipped={final_case_ligature_stats['case_rules_skipped']}"
     )
     print(
         "anchor patch stats: "

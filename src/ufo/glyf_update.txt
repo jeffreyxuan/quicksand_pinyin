@@ -180,3 +180,6 @@ uni0268
 uni0197 
 uni0289
 uni0244
+ebreve
+E_uni030A
+e_uni030A

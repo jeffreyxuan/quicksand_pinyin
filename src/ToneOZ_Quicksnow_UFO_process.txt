@@ -13,10 +13,18 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- keep the distance between the right side of "a" to the advancewidth right the same
 			- (300) width reduce 599 -> 580
 			- (700) width reduce 628 -> 601
+
+	- ebreve
+		- (700) move the head breve 2 steps 2 
 		
-	- 9
-	- 8
-	- 4
+	- E̊
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name E_uni030A。
+		- copy from Ebreve
+		- copy reference from uni030A, align with the bottom of breve
+		- delete the reference of breve
+		
+	- e̊
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name e_uni030A。
 		
 		
 	- r 
