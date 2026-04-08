@@ -1,4 +1,24 @@
 W300 UFO, select "Round to Int" during rotate, rotate by Last press	
+	- a
+		- copy o
+		- progressively thin the o
+		- rotate clock wise 10 round int
+		- copy headless j
+		- horizontal flip headless j
+		- make flipped headless j clockwise
+		- align the flipped headless j to the right side of the o
+		- move down 1 step flipped headless j
+		- flipped headless j head align with the original "a"
+		- select 1 dot from the right side of the "o", move down 2 steps
+		- keep the distance between the right side of "a" to the advancewidth right the same
+			- (300) width reduce 599 -> 580
+			- (700) width reduce 628 -> 601
+		
+	- 9
+	- 8
+	- 4
+		
+		
 	- r 
 		- right side stroke width too narrow
 		- (300) on the right side stroke, bottom edge, there are 4 dots
