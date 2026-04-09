@@ -185,3 +185,5 @@ E_uni030A
 e_uni030A
 uni2035
 uni207A
+a.ss01
+uni028A

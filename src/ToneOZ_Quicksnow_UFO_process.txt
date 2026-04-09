@@ -1100,6 +1100,10 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	- Å Aring		
 		- higher the head "o"
 		
+	- a.ss01
+		- manual adjust	
+		- top hight than normal a, move up 1 step 
+		
 		
 	- ɛ uni025B
 		- copy from notosans 210 600
@@ -1108,29 +1112,78 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- round the stroke
 
 	- ɜ uni025C
+		- copy from notosans 210 600		
+		- round the stroke
+		
 	- ɝ uni025D
+		- copy from notosans 210 600		
+		- round the stroke
+		
 	- ɪ uni026A
-		- copied from "I", reduce height
+		- copy from notosans 210 600		
+		- round the stroke
 		
 	- ɑ uni0251
+		- copy from notosans 210 600		
+		- round the stroke
+		
 	- ɔ uni0254
+		- copy from notosans 210 600		
+		- round the stroke
+		
 	- ʌ uni028C
 		- copied from "v"
 		- vertical flip with round to int
 		- clockwise
 		
 	- ː uni02D0
+		- copy from notosans 210 600		
+		- round the stroke
+		
 	- θ theta U+03B8
+		- copy from notosans 210 600		
+		
+		
 	- ʃ uni0283
+		- copy from notosans 210 600		
+		- round the stroke
+		
 	- ʒ uni0292
+		- copy from notosans 210 600		
+		- round the stroke
+		
 	- ʹ uni0374
+		- copy from notosans 210 600		
+		- round the stroke
+		
 	- ͵ uni0375
+		- copy from notosans 210 600		
+		- round the stroke
+		
 	- ɚ uni025A
+		- copy from notosans 210 600		
+		- round the stroke
+		
 	- ɨ uni0268
+		- copy from notosans 210 600		
+		- round the stroke
+		
 	- Ɨ uni0197 
+		- copy from notosans 210 600		
+		- round the stroke
+		
 	- ʉ uni0289
+		- copy from notosans 210 600		
+		- reference from u
+		
 	- Ʉ uni0244
+		- copy from notosans 210 600		
+		- reference from U
+		
 	- ‵ uni2035
+		- copy from notosans 210 600		
+		- round the stroke
+		
 	- aɪ
 	- au
 	- aƱ
@@ -1139,7 +1192,17 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- copy from cross, center align with 8, vertical lower than the middle of 8
 		- (300) shrink the + to center by 11 steps
 		- (700) shrink the + to center by 10 steps
-		- change weight -5 with "-" and "|" separately
+		- change weight -5 with "-" and "|" separately	
+	
+	- ʊ uni028A
+		- copy from notosans 210 600		
+		- round the stroke
+		
+		#- copied from e
+		#- copy outline from uni2126 to background
+		#- flip uni2126, clockwise
+		#- scale uniform 75%
+		#- align to e
 	
 	
 	
