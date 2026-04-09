@@ -8,18 +8,38 @@ if /I "%~1"=="-y" (
     set "AUTO_COPY=1"
 )
 
-set "TEMP_OUTPUT=src\_ToneOZ_Quicksnow_UFO"
-set "FINAL_OUTPUT=src\ToneOZ_Quicksnow_UFO"
+call :convert_font "res\Quicksand-VariableFont_wght.ttf" "src\_ToneOZ_Quicksnow_UFO" "src\ToneOZ_Quicksnow_UFO"
+if errorlevel 1 (
+    set "ERR=%errorlevel%"
+    popd
+    exit /b %ERR%
+)
+
+call :convert_font "res\NotoSans-VariableFont_wdth,wght.ttf" "src\_NotoSans-VariableFont_wdth,wght_UFO" "src\NotoSans-VariableFont_wdth,wght_UFO"
+if errorlevel 1 (
+    set "ERR=%errorlevel%"
+    popd
+    exit /b %ERR%
+)
+
+set "ERR=0"
+
+popd
+
+exit /b %ERR%
+
+:convert_font
+set "INPUT_FILE=%~1"
+set "TEMP_OUTPUT=%~2"
+set "FINAL_OUTPUT=%~3"
 
 if exist "%TEMP_OUTPUT%" (
     rmdir /S /Q "%TEMP_OUTPUT%"
 )
 
-call C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "$env:PYTHONUTF8='1'; $env:PYTHONIOENCODING='utf-8'; $env:PYTHONLEGACYWINDOWSSTDIO='1'; python3 src\py\varwideufo\varwideufo.py -input res\Quicksand-VariableFont_wght.ttf -output src\_ToneOZ_Quicksnow_UFO"
+call C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "$env:PYTHONUTF8='1'; $env:PYTHONIOENCODING='utf-8'; $env:PYTHONLEGACYWINDOWSSTDIO='1'; python3 src\py\varwideufo\varwideufo.py -input %INPUT_FILE% -output %TEMP_OUTPUT%"
 if errorlevel 1 (
-    set ERR=%errorlevel%
-    popd
-    exit /b %ERR%
+    exit /b %errorlevel%
 )
 
 set "DO_COPY=0"
@@ -40,14 +60,8 @@ if "%DO_COPY%"=="1" (
     )
     xcopy "%TEMP_OUTPUT%" "%FINAL_OUTPUT%\" /E /I /Y >nul
     if errorlevel 1 (
-        set ERR=%errorlevel%
-        popd
-        exit /b %ERR%
+        exit /b %errorlevel%
     )
 )
 
-set ERR=0
-
-popd
-
-exit /b %ERR%
+exit /b 0

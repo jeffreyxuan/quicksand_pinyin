@@ -5,6 +5,9 @@ pushd "%~dp0.."
 
 set "OUTPUT_FILE=_output\ToneOZ-Quicksnow.ttf"
 set "PUBLISH_DIR=C:\Users\jeffreyx\Documents\git\peruseFont_mengshen\res\fonts\varwidetest"
+set "STATIC_OUTPUT_FILE=_output\static_instances\ToneOZ-Quicksnow-W450.ttf"
+set "PUBLISH_STATIC_DIR1=C:\Users\jeffreyx\Documents\git\peruseFont_mengshen\res\fonts\varwide_arplkaisimplified"
+set "PUBLISH_STATIC_DIR2=C:\Users\jeffreyx\Documents\git\peruseFont_mengshen\res\fonts\varwide_arplkaitraditonal"
 set "ANCHOR_SFD=src\ufo\anchor\ToneOZ-Quicksnow_anchor.sfd"
 set "ANCHOR_W300_SFD=src\ufo\anchor\ToneOZ-Quicksnow-W300_anchor.sfd"
 set "ANCHOR_W700_SFD=src\ufo\anchor\ToneOZ-Quicksnow-W700_anchor.sfd"
@@ -47,6 +50,38 @@ if not exist "%PUBLISH_DIR%" (
 )
 
 copy /Y "%OUTPUT_FILE%" "%PUBLISH_DIR%\"
+if errorlevel 1 (
+    set ERR=%errorlevel%
+    popd
+    exit /b %ERR%
+)
+
+if not exist "%PUBLISH_STATIC_DIR1%" (
+    mkdir "%PUBLISH_STATIC_DIR1%"
+    if errorlevel 1 (
+        set ERR=%errorlevel%
+        popd
+        exit /b %ERR%
+    )
+)
+
+copy /Y "%STATIC_OUTPUT_FILE%" "%PUBLISH_STATIC_DIR1%\"
+if errorlevel 1 (
+    set ERR=%errorlevel%
+    popd
+    exit /b %ERR%
+)
+
+if not exist "%PUBLISH_STATIC_DIR2%" (
+    mkdir "%PUBLISH_STATIC_DIR2%"
+    if errorlevel 1 (
+        set ERR=%errorlevel%
+        popd
+        exit /b %ERR%
+    )
+)
+
+copy /Y "%STATIC_OUTPUT_FILE%" "%PUBLISH_STATIC_DIR2%\"
 
 set ERR=%errorlevel%
 
