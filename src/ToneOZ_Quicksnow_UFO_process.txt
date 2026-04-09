@@ -17,7 +17,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	- ebreve
 		- (700) move the head breve 2 steps 2 
 		
-	- E̊
+	- E̊E̊
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name E_uni030A。
 		- copy from Ebreve
 		- copy reference from uni030A, align with the bottom of breve
@@ -1130,16 +1130,22 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	- Ɨ uni0197 
 	- ʉ uni0289
 	- Ʉ uni0244
+	- ‵ uni2035
 	- aɪ
 	- au
 	- aƱ
-	
+	- ⁺ uni207A
+		- copied from uni2078 ⁸
+		- copy from cross, center align with 8, vertical lower than the middle of 8
+		- (300) shrink the + to center by 11 steps
+		- (700) shrink the + to center by 10 steps
+		- change weight -5 with "-" and "|" separately
 	
 	
 	
 - anchor only
 
 	- áàéèíìóòúùń	
-	
+	- ̍ (700) move up 2 steps
 	
 	

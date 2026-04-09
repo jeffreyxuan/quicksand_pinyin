@@ -22,7 +22,7 @@ OS2Version: 4
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1774769700
-ModificationTime: 1774864700
+ModificationTime: 1775716884
 PfmFamily: 81
 TTFWeight: 700
 TTFWidth: 5
@@ -319,7 +319,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 200 25 8
+WinInfo: 750 25 8
 AnchorClass2: "Anchor-0" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-1" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-2" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-3" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-4" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-5" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-6" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-7" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-8" "'mkmk' Mark to Mark in Latin lookup 3 subtable" "Anchor-9" "'mkmk' Mark to Mark in Latin lookup 4 subtable" "Anchor-10" "'mkmk' Mark to Mark in Latin lookup 5 subtable"
 BeginChars: 65695 870
 
@@ -19638,8 +19638,8 @@ Encoding: 781 781 809
 Width: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "Anchor-9" 188 520 mark 0
-AnchorPoint: "Anchor-0" 188 520 mark 0
+AnchorPoint: "Anchor-9" 188 550 mark 0
+AnchorPoint: "Anchor-0" 188 550 mark 0
 LayerCount: 2
 Fore
 SplineSet
