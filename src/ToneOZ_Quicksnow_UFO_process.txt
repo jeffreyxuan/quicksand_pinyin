@@ -987,6 +987,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- reference from Ohungarumlaut + uni0358
 		
 		- anchor copied from O, adjust top height
+		
+	- _̇  
 	
 	- ü U+00FC udieresis
 		- (300)move uni0308 down 5.3 steps, align with the bottom of the gravecomb in ugrave		
