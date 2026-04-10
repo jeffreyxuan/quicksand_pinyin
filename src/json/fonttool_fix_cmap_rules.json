@@ -275,6 +275,20 @@
         "latn_DFLT"
       ],
       "from": [
+        "underscore",
+        "uni0307"
+      ],
+      "to": "underscore_uni0307"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
         "o",
         "uni030D"
       ],
