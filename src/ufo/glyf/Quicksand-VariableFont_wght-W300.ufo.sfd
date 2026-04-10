@@ -23,7 +23,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1773233631
-ModificationTime: 1775819548
+ModificationTime: 1775853324
 PfmFamily: 16
 TTFWeight: 300
 TTFWidth: 5
@@ -7859,7 +7859,7 @@ LayerCount: 4
 Fore
 Refer: 289 101 N 1 0 0 1 0 0 2
 Refer: 743 770 N 1 0 0 1 113 -16 2
-Refer: 740 769 S 1 0 0 1 108 130 2
+Refer: 740 769 S 1 0 0 1 108 140 2
 EndChar
 
 StartChar: uni1EC7
@@ -20876,7 +20876,7 @@ VWidth: 0
 Flags: W
 LayerCount: 4
 Fore
-Refer: 744 780 S 1 0 0 1 131 150 2
+Refer: 744 780 S 1 0 0 1 131 160 2
 Refer: 294 234 N 1 0 0 1 0 0 2
 EndChar
 
@@ -22740,7 +22740,7 @@ EndChar
 StartChar: uni035C
 Encoding: 896 860 896
 Width: 0
-Flags: WO
+Flags: W
 LayerCount: 4
 Fore
 SplineSet

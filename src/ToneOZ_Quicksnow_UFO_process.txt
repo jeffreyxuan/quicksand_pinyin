@@ -636,6 +636,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- paste the reference to ecircumflex_uni030C
 		- move uni030C reference to center (right 13.1 steps)
 		- move uni030C reference top as the same as the acutecomb in the background (up 15 steps)
+		- move uni030C reference 1 more step up
 		
 		- anchor copied from uni1EBF
 		
@@ -1220,6 +1221,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 - anchor only
 
 	- áàéèíìóòúùń	
+	- ê ecircumflex
+		- anchor-0 move up 1 step
 	- ̍ (700) move up 2 steps
 	
 	
