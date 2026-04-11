@@ -1216,7 +1216,22 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		#- scale uniform 75%
 		#- align to e
 	
-	
+	- Ṳ uni1E72 U+1E72
+		- reference from U
+		- reference from uni0324.case
+		- anchor copied from U
+		- anchor-2 move down
+		
+	- ṳ uni1E73 U+1E73
+		- reference from u
+		- reference from uni0324
+		- anchor copied from u
+		- anchor-2 move down
+		
+	- ẙ uni1E99 U+1E99
+		- reference from y
+		- reference from uni02DA
+		- anchor copied from uni1E8F
 	
 - anchor only
 

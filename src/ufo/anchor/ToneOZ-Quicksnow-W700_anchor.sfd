@@ -22,7 +22,7 @@ OS2Version: 4
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1774769700
-ModificationTime: 1775853924
+ModificationTime: 1775918556
 PfmFamily: 81
 TTFWeight: 700
 TTFWidth: 5
@@ -319,9 +319,9 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 200 25 8
+WinInfo: 7750 25 8
 AnchorClass2: "Anchor-0" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-1" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-2" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-3" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-4" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-5" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-6" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-7" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-8" "'mkmk' Mark to Mark in Latin lookup 3 subtable" "Anchor-9" "'mkmk' Mark to Mark in Latin lookup 4 subtable" "Anchor-10" "'mkmk' Mark to Mark in Latin lookup 5 subtable"
-BeginChars: 65695 870
+BeginChars: 65695 873
 
 StartChar: .notdef
 Encoding: 65536 -1 0
@@ -20728,6 +20728,49 @@ LayerCount: 2
 Fore
 Refer: 739 768 N 1 0 0 1 163 29 2
 Refer: 363 110 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni1E72
+Encoding: 7794 7794 870
+Width: 705
+VWidth: 0
+Flags: W
+AnchorPoint: "Anchor-0" 353 700 basechar 0
+AnchorPoint: "Anchor-1" 486 713 basechar 0
+AnchorPoint: "Anchor-2" 353 -140 basechar 0
+AnchorPoint: "Anchor-3" 634 10 basechar 0
+LayerCount: 2
+Fore
+Refer: 795 -1 N 1 0 0 1 140 0 2
+Refer: 199 85 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni1E73
+Encoding: 7795 7795 871
+Width: 587
+VWidth: 0
+Flags: W
+AnchorPoint: "Anchor-0" 294 515 basechar 0
+AnchorPoint: "Anchor-1" 376 547 basechar 0
+AnchorPoint: "Anchor-2" 294 -141 basechar 0
+AnchorPoint: "Anchor-3" 528 10 basechar 0
+LayerCount: 2
+Fore
+Refer: 755 804 S 1 0 0 1 86 0 2
+Refer: 444 117 N 1 0 0 1 0 0 2
+EndChar
+
+StartChar: uni1E99
+Encoding: 7833 7833 872
+Width: 562
+VWidth: 0
+Flags: W
+AnchorPoint: "Anchor-0" 284 719 basechar 0
+AnchorPoint: "Anchor-2" 582 0 basechar 0
+LayerCount: 2
+Fore
+Refer: 774 730 N 1 0 0 1 120 0 2
+Refer: 475 121 N 1 0 0 1 0 0 2
 EndChar
 EndChars
 EndSplineFont

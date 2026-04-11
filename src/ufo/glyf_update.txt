@@ -191,3 +191,6 @@ underscore_uni0307
 uni02CD
 uni0336
 uni035C
+uni1E73
+uni1E72
+uni1E99

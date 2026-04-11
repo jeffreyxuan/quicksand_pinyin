@@ -4,6 +4,21 @@
       "left": "J",
       "right": "J",
       "xAdvance": -80
+    },
+    {
+      "left": "V",
+      "right": "a",
+      "xAdvance": -64
+    },
+    {
+      "left": "W",
+      "right": "e",
+      "xAdvance": -32
+    },
+    {
+      "left": "W",
+      "right": "a",
+      "xAdvance": -64
     }
   ]
 }

@@ -4,7 +4,9 @@ setlocal
 pushd "%~dp0.."
 
 set "OUTPUT_FILE=_output\ToneOZ-Quicksnow.ttf"
+set "WOFF2_OUTPUT_FILE=_output\ToneOZ-Quicksnow.woff2"
 set "PUBLISH_DIR=C:\Users\jeffreyx\Documents\git\peruseFont_mengshen\res\fonts\varwidetest"
+set "DEMO_DIR=src\demo_quicksnow"
 set "STATIC_OUTPUT_FILE=_output\static_instances\ToneOZ-Quicksnow-W450.ttf"
 set "PUBLISH_STATIC_DIR1=C:\Users\jeffreyx\Documents\git\peruseFont_mengshen\res\fonts\varwide_arplkaisimplified"
 set "PUBLISH_STATIC_DIR2=C:\Users\jeffreyx\Documents\git\peruseFont_mengshen\res\fonts\varwide_arplkaitraditonal"
@@ -40,6 +42,13 @@ if errorlevel 1 (
     exit /b %ERR%
 )
 
+call C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -Command "$env:PYTHONUTF8='1'; $env:PYTHONIOENCODING='utf-8'; $env:PYTHONLEGACYWINDOWSSTDIO='1'; python3 src\py\ttf_to_woff2.py -input %OUTPUT_FILE% -output %WOFF2_OUTPUT_FILE%"
+if errorlevel 1 (
+    set ERR=%errorlevel%
+    popd
+    exit /b %ERR%
+)
+
 if not exist "%PUBLISH_DIR%" (
     mkdir "%PUBLISH_DIR%"
     if errorlevel 1 (
@@ -50,6 +59,13 @@ if not exist "%PUBLISH_DIR%" (
 )
 
 copy /Y "%OUTPUT_FILE%" "%PUBLISH_DIR%\"
+if errorlevel 1 (
+    set ERR=%errorlevel%
+    popd
+    exit /b %ERR%
+)
+
+copy /Y "%WOFF2_OUTPUT_FILE%" "%DEMO_DIR%\"
 if errorlevel 1 (
     set ERR=%errorlevel%
     popd

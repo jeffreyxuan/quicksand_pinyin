@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ToneOZ Quicksnow Demo</title>
+  <style>
+    @font-face {
+      font-family: "ToneOZ Quicksnow";
+      src: url("./ToneOZ-Quicksnow.woff2") format("truetype");
+      font-weight: 300 700;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    :root {
+      color-scheme: light;
+      --page-bg: #f5f1ea;
+      --panel-bg: rgba(255, 255, 255, 0.8);
+      --ink: #1e1b18;
+      --muted: #665f57;
+      --line: rgba(30, 27, 24, 0.12);
+      --accent: #a95d35;
+      --shadow: 0 20px 50px rgba(58, 39, 24, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(169, 93, 53, 0.12), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(87, 130, 122, 0.14), transparent 24%),
+        linear-gradient(180deg, #fbf8f2 0%, var(--page-bg) 100%);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    a {
+      color: #8f3d2e;
+      text-decoration: none;
+      background-image: linear-gradient(120deg, rgba(143, 61, 46, 0.15), rgba(201, 130, 68, 0.28));
+      background-repeat: no-repeat;
+      background-size: 100% 0.10em;
+      background-position: 0 92%;
+      padding: 0 0.08em;
+      border-radius: 0.2em;
+      transition: color 160ms ease, background-size 160ms ease, background-position 160ms ease;
+    }
+
+    a:hover,
+    a:focus-visible {
+      color: #5f261d;
+      background-size: 100% 100%;
+      background-position: 0 100%;
+      outline: none;
+    }
+
+    main {
+      width: min(1080px, calc(100vw - 24px));
+      margin: 0 auto;
+      padding: 12px 0 20px;
+    }
+
+    .hero,
+    .panel {
+      background: var(--panel-bg);
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .hero {
+      padding: 6px 20px;
+      margin-bottom: 14px;
+	  position: sticky;
+	  top: 0em;
+	  z-index:1;
+	  box-shadow: var(--shadow);
+    }
+
+    .eyebrow {
+      margin: 0 0 6px;
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0 0 6px;
+      font-family: "ToneOZ Quicksnow";
+	  font-weight: 600;
+	  font-size:36px;
+    }
+
+    .hero p {
+      margin: 0;
+      max-width: 56rem;
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.55;
+    }
+
+    .layout {
+      display: grid;
+      gap: 14px;
+    }
+
+    .panel {
+      padding: 18px 20px;
+    }
+
+    .panel h2 {
+      margin: 0 0 4px;
+      font-size: 1rem;
+    }
+
+    .panel p {
+      margin: 0 0 14px;
+      color: #000;
+    }
+
+    .weights {
+      display: grid;
+      gap: 10px;
+    }
+
+    .sample {
+      padding: 0 6px 12px 14px;
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .sample-header {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 6px;
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .sample-label {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .sample-text {
+      margin: 0;
+      font-family: "ToneOZ Quicksnow";
+      font-size:12px;
+      word-break: break-word;
+    }
+	.demotext{
+		font-size:36px;
+		line-height: 1.2;
+		padding-bottom:12px;
+		display:inline-block;
+	}
+
+    .sample-text.weight-300 { font-weight: 300; }
+    .sample-text.weight-400 { font-weight: 400; }
+    .sample-text.weight-500 { font-weight: 500; }
+    .sample-text.weight-600 { font-weight: 600; }
+    .sample-text.weight-700 { font-weight: 700; }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.2em;
+    }
+
+    .comparison-card {
+      padding: 0.5em 0 0.5em 1em;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.68);
+    }
+
+    .comparison-card h3 {
+      margin: 0 0 6px;
+      font-size: 0.82rem;
+      color: var(--muted);
+      font-family: system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+
+    .comparison-card p {
+      margin: 0;
+      font-family: "ToneOZ Quicksnow", system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.2;
+      color: #000;
+	  font-size:24px;
+    }
+
+    .weight-300 { font-weight: 300; }
+    .weight-400 { font-weight: 400; }
+    .weight-500 { font-weight: 500; }
+    .weight-600 { font-weight: 600; }
+    .weight-700 { font-weight: 700; }
+	
+	.subtitle {
+		font-size:12px;
+		font-weight: normal !important;
+	}
+	.hide {
+		display:none;
+	}
+    .toolbox {
+      display: inline-flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+	  white-space: nowrap;
+    }
+    .weight-button, .download-button {
+      padding: 6px 10px;
+      border: 1px solid rgba(30, 27, 24, 0.16);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.75);
+      color: var(--ink);
+      font: 500 12px/1.2 system-ui, -apple-system, "Segoe UI", sans-serif;
+      cursor: pointer;
+    }
+    .weight-button.is-active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+    .weight-range {
+	  vertical-align:middle;
+      width: min(260px, 100%);
+      accent-color: var(--accent);
+      cursor: pointer;
+    }
+    .weight-range-label {
+      min-width: 72px;
+      color: var(--muted);
+      font: 600 13px/1.2 system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+	.linkbox{
+		font-size: 12px;
+	}
+  </style>
+</head>
+<body>
+  <main>
+    <section class="hero">
+      <h1>ToneOZ-Quicksnow</h1>
+	  <span><a href="https://toneoz.com">澳聲通</a>「快雪時晴」英數字體</span> <span class="linkbox">
+	  <nobr><a href="https://toneoz.com/blog/download-quicksnow">字體下載 Download TTF Font</a></nobr></span><br>
+      <span class="toolbox">
+        <button class="weight-button" type="button" data-weight="300">300 Light</button>
+        <button class="weight-button is-active" type="button" data-weight="400">400 Regular</button>
+        <button class="weight-button" type="button" data-weight="500">500 Medium</button>
+        <button class="weight-button" type="button" data-weight="600">600 Semi-Bold</button>
+        <button class="weight-button" type="button" data-weight="700">700 Bold</button>				
+      </span>
+	  <span class="toolbox">
+        <span class="subtitle">Variable Weight<span><input class="weight-range" type="range" min="300" max="700" step="1" value="400">
+        <span class="weight-range-label">400</span>
+	  </span>
+    </section>
+
+    <div class="layout">
+      <section class="panel">
+        <div class="weights">
+          <article class="sample">
+		  <div class="weight-400 sample-text">
+<span class="subtitle">以下可自由編輯 Content is editable, feel free to try your own text.</span><br>
+<span class="demotext" contenteditable>The quick brown fox jumps over the lazy dog</span><br>
+
+<span class="subtitle">雨後，棕色狐狸對讀書的女孩輕聲說：「山路好走了，你去遠處吧。」</span><br>
+
+<span class="demotext" contenteditable>yǔhòu zōngsè húlí duì dúshū de nǚhái qīngshēng shuō <span class="hide">shānlù hǎozǒu le nǐ qù yuǎnchù ba</span></span><br>
+
+<span class="subtitle">威妥瑪拼音</span><br>
+<span class="demotext" contenteditable>yü³-hou⁴ tsung¹-sê⁴ hu²-li² tui⁴-tu² shu¹ te nü³-hai² <span class="hide">ch‘ing¹-sheng¹ shuo¹ shan¹-lu⁴ hao³-tsou³ le ni³ ch‘ü⁴ yüan³-ch‘u⁴ pa</span></span><br>
+
+<span class="subtitle">台羅拼音</span><br>
+<span class="demotext" contenteditable>hō͘-āu, tsi̍t tsiah tsong-sik hô͘-lî tuì tha̍k-tsu ê lú-hái <span class="hide">khin-siann suah san-lōo hó-tsáu--ah, lí khì hn̄g-chhù bah</span></span><br>
+
+<span class="subtitle">白話字</span><br>
+<span class="demotext" contenteditable>hō͘-āu, chi̍t chiah chong-sek hô͘-lî tùi tha̍k-chheh ê lú-hái <span class="hide">khin-siaⁿ soah san-lō͘ hó-cháu--ah, lí khì hn̄g-chhù bah</span></span><br>
+
+<span class="subtitle">客語拼音</span><br>
+<span class="demotext" contenteditable>vuˊ heuˋ, idˋ ziiˊ zungˊ sedˋ fuˊ liˇ duiˋ tugˋ suˊ geˋ ngˊ haiˇ <span class="hide">hinˊ siangˊ sodˋ sanˊ luˋ hoˋ zeuˋ leˊ, ngiˊ hiˋ yenˇ cuˋ ba</span></span><br>
+
+<span class="subtitle">KK音標</span><br>
+<span class="demotext" contenteditable>/ðə kwɪk br<span style="font-feature-settings:'ss01' 1;">a</span>ʊn fɑks dʒʌmps ˈovɚ ðə ˈlezi dɔg/</span><br>            
+
+<span class="subtitle">英文字母</span><br>
+<span class="demotext" contenteditable>
+ABCDEFGHIJKLMNOPQRSTUVWXYZ<br>
+abcdefghijklmnopqrstuvwxyz<br>
+</span>
+			</div>
+          </article>          
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="comparison-grid">
+          <article class="comparison-card">
+            <h3>300 Light</h3>
+            <p class="weight-300">The quick brown fox jumps over the lazy dog</p>
+          </article>
+          <article class="comparison-card">
+            <h3>400 Regular</h3>
+            <p class="weight-400">The quick brown fox jumps over the lazy dog</p>
+          </article>
+          <article class="comparison-card">
+            <h3>500 Medium</h3>
+            <p class="weight-500">The quick brown fox jumps over the lazy dog</p>
+          </article>
+          <article class="comparison-card">
+            <h3>600 Semi-Bold</h3>
+            <p class="weight-600">The quick brown fox jumps over the lazy dog</p>
+          </article>
+          <article class="comparison-card">
+            <h3>700 Bold</h3>
+            <p class="weight-700">The quick brown fox jumps over the lazy dog</p>
+          </article>
+        </div>
+      </section>
+	  
+	      
+      <section class="panel">
+        <div class="weights">
+          <article class="sample">
+		  <div class="weight-400 sample-text">
+<span class="subtitle">漢語拼音</span><br>
+<span class="demotext" contenteditable>āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜêê̄ếê̌ềm̄ḿm̌m̀n̄ńňǹ ĀÁǍÀĒÉĚÈĪÍǏÌŌÓǑÒŪÚǓÙÜǕǗǙǛÊÊ̄ẾÊ̌ỀM̄ḾM̌M̀N̄ŃŇǸ</span><br>
+
+<span class="subtitle">台語組合</span><br>
+<span class="demotext" contenteditable>◌́◌̀◌̂◌̌◌̄◌̍◌̋◌̆◌͘ a̍a̋e̍e̋i̍i̋o̍u̍m̀m̂m̌m̄m̍m̋m̆n̂n̄n̍n̋n̆ A̍A̋E̍E̋I̍I̋O̍U̍M̀M̂M̌M̄M̍M̋M̆N̂N̄N̍N̋N̆</span><br>
+
+<span class="subtitle">台語預組</span><br>
+<span class="demotext" contenteditable>áàǎâāăéèêěēĕíìîǐīĭóòôǒōőŏúùûǔūűŭḿńǹňⁿ ÁÀÂǍĀĂÉÈÊĚĒĔÍÌÎǏĪĬÓÒÔǑŌŐŎÚÙÛǓŪŰŬḾŃǸŇᴺ</span><br>
+
+<span class="subtitle">三種順序</span><br>
+<span class="demotext" contenteditable>o͘ó͘ò͘ô͘ǒ͘ō͘o̍͘ŏ͘ő͘ O͘Ó͘Ò͘Ô͘Ǒ͘Ō͘O̍͘Ŏ͘Ő͘ ó͘ò͘ô͘ǒ͘ō͘o̍͘ŏ͘ő͘ Ó͘Ò͘Ô͘Ǒ͘Ō͘O̍͘Ŏ͘Ő͘ ó͘ò͘ô͘ǒ͘ō͘o̍͘ŏ͘ő͘ Ó͘Ò͘Ô͘Ǒ͘Ō͘O̍͘Ŏ͘Ő͘</span><br>
+
+<span class="subtitle">客語等聲調</span><br>
+<span class="demotext" contenteditable>⁺ˆˇˊˋ ⁰¹²³⁴⁵⁶⁷⁸⁹</span><br>
+
+<span class="subtitle">族語拼音</span><br>
+<span class="demotext" contenteditable>ʼ⌃ṟéɨʉṞÉƗɄ</span><br>
+
+<span class="subtitle">馬祖福州語</span><br>
+<span class="demotext" contenteditable>āǎáàâēěéèêīǐíìîōǒóòôūǔúùûȳy̌ýỳŷ ĀǍÁÀÂĒĚÉÈÊĪǏÍÌÎŌǑÓÒÔŪǓÚÙÛȲY̌ÝỲŶ</span><br>
+
+<span class="subtitle">客語白話字</span><br>
+<span class="demotext" contenteditable>ṳṳ̂ṳ̀ṳ́ṳ̍ ṲṲ̂Ṳ̀Ṳ́Ṳ̍ ÅE̊I̊O̊ŮY̊ åe̊i̊o̊ůẙ</span><br>
+
+<span class="subtitle">KK/DJ音標</span><br>
+<span class="demotext" contenteditable>aæɛəɪɔʌɚɝː <span style="font-feature-settings:'ss01' 1;">a</span>ɪ<span style="font-feature-settings:'ss01' 1;">a</span>u θʃðʒŋḷṃṇ ‵ʹ͵ˈˌ</span><br>
+
+<span class="subtitle">越南文</span><br>
+<span class="demotext" contenteditable>ăâêôơưđắằẳẵặấầẩẫậếềểễệốồổỗộớờởỡợứừửữựĂÂÊÔƠƯĐẮẰẲẴẶẤẦẨẪẬ</span><br>  
+		  </div>
+		</div>
+	  </section>
+    </div>
+  </main>
+  <script>
+    const sampleTexts = document.querySelectorAll(".sample-text");
+    const weightButtons = document.querySelectorAll(".weight-button");
+    const weightRange = document.querySelector(".weight-range");
+    const weightRangeLabel = document.querySelector(".weight-range-label");
+    const weightClasses = ["weight-300", "weight-400", "weight-500", "weight-600", "weight-700"];
+
+    function updateWeight(weight) {
+      if (!sampleTexts.length) {
+        return;
+      }
+
+      for (const sampleText of sampleTexts) {
+        sampleText.classList.remove(...weightClasses);
+        sampleText.style.fontWeight = weight;
+      }
+
+      for (const item of weightButtons) {
+        const isActive = item.dataset.weight === weight;
+        item.classList.toggle("is-active", isActive);
+      }
+
+      if (weightRange) {
+        weightRange.value = weight;
+      }
+
+      if (weightRangeLabel) {
+        weightRangeLabel.textContent = weight;
+      }
+    }
+
+    for (const button of weightButtons) {
+      button.addEventListener("click", () => {
+        const weight = button.dataset.weight;
+        if (!weight) {
+          return;
+        }
+        updateWeight(weight);
+      });
+    }
+
+    if (weightRange) {
+      weightRange.addEventListener("input", () => {
+        updateWeight(weightRange.value);
+      });
+    }
+
+    const editableSpans = document.querySelectorAll("[contenteditable]");
+
+    for (const editable of editableSpans) {
+      editable.addEventListener("focus", () => {
+        const hiddenParts = editable.querySelectorAll(".hide");
+        for (const part of hiddenParts) {
+          part.style.display = "inline-block";
+        }
+      });
+
+      editable.addEventListener("blur", () => {
+        const hiddenParts = editable.querySelectorAll(".hide");
+        for (const part of hiddenParts) {
+          part.style.display = "";
+        }
+      });
+    }
+  </script>
+</body>
+</html>
