@@ -58,6 +58,30 @@ def eprint(*args: object, **kwargs: object) -> None:
     print(indent_stderr(text), end="", file=sys.stderr, **kwargs)
 
 
+def parse_bool_arg(value: str) -> bool:
+    """Summary: Parse a CLI boolean value.
+
+    Args:
+        value: Raw CLI string.
+
+    Returns:
+        bool: Parsed boolean value.
+
+    Raises:
+        argparse.ArgumentTypeError: If the value is not a supported boolean string.
+
+    Example:
+        parse_bool_arg("true")
+    """
+
+    normalized = value.strip().lower()
+    if normalized in {"1", "true", "t", "yes", "y", "on"}:
+        return True
+    if normalized in {"0", "false", "f", "no", "n", "off"}:
+        return False
+    raise argparse.ArgumentTypeError(f"Invalid boolean value: {value}")
+
+
 def parse_args() -> argparse.Namespace:
     """Summary: Parse command-line arguments.
 
@@ -91,6 +115,12 @@ def parse_args() -> argparse.Namespace:
         type=int,
         default=DEFAULT_WEIGHT_STEP,
         help=f"Weight step for output instances (default: {DEFAULT_WEIGHT_STEP})",
+    )
+    parser.add_argument(
+        "-merge-glyf",
+        type=parse_bool_arg,
+        default=True,
+        help="Whether to merge simple glyf overlaps while keeping composite references (default: true)",
     )
     return parser.parse_args()
 
@@ -222,13 +252,57 @@ def apply_static_metadata(font: TTFont, family_name: str, weight: int) -> None:
         font["OS/2"].usWeightClass = weight
 
 
-def make_static_instance(input_ttf: Path, output_ttf: Path, weight: int) -> None:
+def merge_simple_glyf_overlaps(font: TTFont) -> None:
+    """Summary: Merge overlaps for simple glyf glyphs while preserving composite references.
+
+    Args:
+        font: Static TTFont instance to simplify in place.
+
+    Returns:
+        None
+
+    Raises:
+        RuntimeError: If the overlap-removal dependency is unavailable.
+
+    Example:
+        merge_simple_glyf_overlaps(font)
+    """
+
+    if "glyf" not in font:
+        return
+
+    try:
+        from fontTools.ttLib.removeOverlaps import removeOverlaps
+    except ModuleNotFoundError as exc:
+        raise RuntimeError(
+            "merge_glyf=True requires the optional dependency 'skia-pathops' "
+            "(used by fontTools.ttLib.removeOverlaps)"
+        ) from exc
+
+    glyf_table = font["glyf"]
+    simple_glyph_names = [
+        glyph_name
+        for glyph_name in font.getGlyphOrder()
+        if (
+            glyph_name in glyf_table
+            and not glyf_table[glyph_name].isComposite()
+            and glyf_table[glyph_name].numberOfContours > 0
+        )
+    ]
+    if not simple_glyph_names:
+        return
+
+    removeOverlaps(font, glyphNames=simple_glyph_names, removeHinting=True, ignoreErrors=False)
+
+
+def make_static_instance(input_ttf: Path, output_ttf: Path, weight: int, merge_glyf: bool = True) -> None:
     """Summary: Build one static TTF instance from a variable TTF.
 
     Args:
         input_ttf: Input variable TTF path.
         output_ttf: Output static TTF path.
         weight: Target weight value for the `wght` axis.
+        merge_glyf: Whether to merge simple glyf overlaps while preserving composite references.
 
     Returns:
         None
@@ -237,7 +311,7 @@ def make_static_instance(input_ttf: Path, output_ttf: Path, weight: int) -> None
         RuntimeError: If the variable font cannot be instantiated.
 
     Example:
-        make_static_instance(Path("_output/font.ttf"), Path("_tmp/font-W100.ttf"), 100)
+        make_static_instance(Path("_output/font.ttf"), Path("_tmp/font-W100.ttf"), 100, True)
     """
 
     output_ttf.parent.mkdir(parents=True, exist_ok=True)
@@ -246,6 +320,8 @@ def make_static_instance(input_ttf: Path, output_ttf: Path, weight: int) -> None
         with TTFont(str(input_ttf)) as variable_font:
             static_font = instantiateVariableFont(variable_font, {"wght": float(weight)}, inplace=False)
             apply_static_metadata(static_font, family_name, weight)
+            if merge_glyf:
+                merge_simple_glyf_overlaps(static_font)
             static_font.save(str(output_ttf))
     except Exception as exc:  # noqa: BLE001
         raise RuntimeError(f"Failed to build static instance wght={weight}: {exc}") from exc
@@ -258,6 +334,7 @@ def build_default_instances(
     start_weight: int = 300,
     end_weight: int = 700,
     step_weight: int = DEFAULT_WEIGHT_STEP,
+    merge_glyf: bool = True,
 ) -> None:
     """Summary: Build default static instances from a variable TTF.
 
@@ -267,18 +344,19 @@ def build_default_instances(
         start_weight: Minimum weight to output.
         end_weight: Maximum weight to output.
         step_weight: Step between output weights.
+        merge_glyf: Whether to merge simple glyf overlaps while preserving composite references.
 
     Returns:
         None
 
     Example:
-        build_default_instances(Path("_output/font.ttf"), Path("_tmp/static"), 400, 600, 50)
+        build_default_instances(Path("_output/font.ttf"), Path("_tmp/static"), 400, 600, 50, True)
     """
 
     base_name = input_ttf.stem
     for weight in iter_output_weights(start_weight, end_weight, step_weight):
         output_ttf = output_dir / f"{base_name}-W{weight}.ttf"
-        make_static_instance(input_ttf, output_ttf, weight)
+        make_static_instance(input_ttf, output_ttf, weight, merge_glyf=merge_glyf)
 
 
 def validate_args(
@@ -346,11 +424,19 @@ def main() -> int:
     start_weight = int(args.start)
     end_weight = int(args.end)
     step_weight = int(args.step)
+    merge_glyf = bool(args.merge_glyf)
 
     try:
         validate_args(input_ttf, output_dir, start_weight, end_weight, step_weight)
         output_dir.mkdir(parents=True, exist_ok=True)
-        build_default_instances(input_ttf, output_dir, start_weight, end_weight, step_weight)
+        build_default_instances(
+            input_ttf,
+            output_dir,
+            start_weight,
+            end_weight,
+            step_weight,
+            merge_glyf=merge_glyf,
+        )
         return 0
     except Exception as exc:  # noqa: BLE001
         eprint(f"Error: {exc}")
