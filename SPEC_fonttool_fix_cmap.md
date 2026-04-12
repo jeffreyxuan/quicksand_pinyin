@@ -119,6 +119,7 @@
 - 沿用既有 lookup：`lookup_ccmp_6`（`type = gsub_ligature`）。
 - `GSUB.lookupOrder` 維持現有順序（不新增新 lookup name）。
 - `GSUB.languages` 維持現有掛接（`DFLT_DFLT`、`latn_DFLT` 與既有 `latn_*`）。
+- 若 rules JSON 中 `.case` 版本的 ligature substitution 在 `otfccbuild` 後遺失，`fonttool_fix_cmap.py` 必須在最終輸出 TTF 的 `GSUB` 補回缺漏規則。
 
 ## Kerning 複製（X -> I）
 - 新增可選開關：`--copy-kern-x-to-i`（預設關閉）。
@@ -178,9 +179,19 @@
   - `enabled`
   - `pairs_requested`
   - `pairs_updated`
-  - `pairs_skipped`
-  - `classes_split`
+- `pairs_skipped`
+- `classes_split`
 - 若 pair 原本落在 class-based kern，需只覆蓋指定 pair，不可改壞同 class 其他 pair。
+
+## function：ensure_case_ligatures_in_final_gsub
+- 實作位置：`src\py\fonttool_fix_cmap.py`
+- 目的：若 `otfccbuild` 漏掉 rules JSON 中的 `.case` ligature substitution，則在最終輸出字型 `GSUB` 補回缺漏規則。
+- 輸入：`font: TTFont`, `rules_json_path: Path`
+- 回傳統計至少包含：
+  - `enabled`
+  - `case_rules_requested`
+  - `case_rules_added`
+  - `case_rules_skipped`
 
 ## STAT linked bold 修補
 - 新增可選開關：`-fix_stat_linked_bold`（預設關閉）。
@@ -212,7 +223,7 @@ step 1. 在 `W300`、`W700` 的 SFD 都新增 glyph `ecircumflexuni030C`（`Enco
 step 2. 在 `W300`、`W700` 都完成 `ecircumflexuni030C` 字形。  
 step 3. 在 `glyf_update.txt` 加入 `ecircumflexuni030C`（若有改 `ecircumflex` / `uni030C` 也一起列）。  
 step 4. 建立規則檔：`C:\Users\jeffreyx\Documents\git\quicksand_pinyin\src\json\fonttool_fix_cmap_rules.json`。  
-step 5. 在規則 JSON 增加一行設定，例如：`{"from":["ecircumflex","uni030C"],"to":"ecircumflex_uni030C"}`。若是大寫組合（例如 `Ecircumflex + uni030C`），要同時加 `.case` 規則：`{"from":["Ecircumflex","uni030C.case"],"to":"Ecircumflex_uni030C"}`。  
+step 5. 在規則 JSON 增加一行設定，例如：`{"from":["ecircumflex","uni030C"],"to":"ecircumflex_uni030C"}`。若是大寫組合（例如 `Ecircumflex + uni030C`），要同時加 `.case` 規則：`{"from":["Ecircumflex","uni030C.case"],"to":"Ecircumflex_uni030C"}`。若是底線加上 U+0307，則加入：`{"from":["underscore","uni0307"],"to":"underscore_uni0307"}`。  
 step 6. 執行 `ufo_merge.bat`。  
 step 7. `ufo_merge.py` 先做 glyph merge 並產出中繼 TTF。  
 step 8. `fonttool_fix_cmap.py` 讀取 rules JSON，並在 `GSUB.lookups.lookup_ccmp_6`（`type = gsub_ligature`）加入 substitution：`{"from":["ecircumflex","uni030C"],"to":"ecircumflexuni030C"}`。  
@@ -224,6 +235,7 @@ step 11.0.1. 若存在 `--anchor-rules-json` 指定檔案，`fonttool_fix_cmap.p
 step 11.1. 若帶 `--copy-kern-x-to-i`，`fonttool_fix_cmap.py` 需在最終輸出階段對保留下來的 `GPOS kern` 執行 `copy_kern_X_to_I`，將 X 前後 kerning 複製到 I。  
 step 11.2. 若帶 `--copy-kern-t-left-to-j`（或 `--copy_kern_T_left_only_to_J`），`fonttool_fix_cmap.py` 需在最終輸出階段對保留下來的 `GPOS kern` 執行 `copy_kern_T_left_only_to_J`，只複製 T 在前 kerning 到 J 在前（保留 J 在後 kerning）。  
 step 11.2.1. 若存在 `--kern-rules-json` 指定檔案，`fonttool_fix_cmap.py` 需在最終輸出階段對保留下來的 `GPOS kern` 套用 `pair_overrides`。  
+step 11.2.2. 若 rules JSON 中 `.case` 版本 ligature 在 `otfccbuild` 後遺失，`fonttool_fix_cmap.py` 需在最終輸出階段對保留下來的 `GSUB` 補回缺漏的 `.case` 規則。  
 step 11.3. 若帶 `-fix_stat_linked_bold`，`fonttool_fix_cmap.py` 在最終 TTF 輸出階段直接修補 `STAT.AxisValueArray`，將 `300/500/600` 的 linked bold 都設為 `700`。  
 step 12. 建立 `verify_gsub_rules.py`（例如放在 `src\py\verify_gsub_rules.py`），用來檢查「規則存在 + shaping 命中」：  
 - `lookup_ccmp_6` 是否存在目標 substitution  
@@ -248,6 +260,7 @@ step 13. `Codex` 執行 `verify_gsub_rules.py` 自動驗證，並回報結果（
 11. 當提供 `--anchor-rules-json` 時，最終字型需局部套用指定 anchors，且不可蓋掉其他 GPOS 修補。  
 12. 本腳本輸出的 stderr 訊息，每行前面需有 8 個空白。  
 13. 當使用 `--merge-source-kern-from` 時，最終字型必須保留輸入中繼字型的 variable `GPOS/GDEF`，不可把 `Format 3` anchor 壓平成固定 `Format 1`。  
-14. 當使用 `--copy-kern-t-left-to-j` 時，需以最終輸出字型驗證 `Te == Je`、`TA == JA` 等 pair 已真正生效，不可只看中途 JSON stats。  
-15. 當使用 `--copy-kern-x-to-i` 時，需以最終輸出字型驗證 `XO == IO`、`OX == OI` 等 pair 已真正生效，不可只看中途 JSON stats。  
-16. 當提供 `--kern-rules-json` 時，最終字型需正確套用指定 pair override；例如目前 `JJ` 必須為 `-80`，且 `Te`、`Je` 等非指定 pair 不可因此被破壞。  
+  14. 當使用 `--copy-kern-t-left-to-j` 時，需以最終輸出字型驗證 `Te == Je`、`TA == JA` 等 pair 已真正生效，不可只看中途 JSON stats。  
+  15. 當使用 `--copy-kern-x-to-i` 時，需以最終輸出字型驗證 `XO == IO`、`OX == OI` 等 pair 已真正生效，不可只看中途 JSON stats。  
+  16. 當提供 `--kern-rules-json` 時，最終字型需正確套用指定 pair override；例如目前 `JJ` 必須為 `-80`，且 `Te`、`Je` 等非指定 pair 不可因此被破壞。  
+  17. 若 rules JSON 含 `.case` 版本 ligature substitution，最終輸出字型必須可查到對應 `.case` 規則，即使 `otfccbuild` 未自動保留也必須在最終 TTF 階段補回。  
