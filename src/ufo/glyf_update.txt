@@ -194,3 +194,5 @@ uni035C
 uni1E73
 uni1E72
 uni1E99
+aring
+uring
