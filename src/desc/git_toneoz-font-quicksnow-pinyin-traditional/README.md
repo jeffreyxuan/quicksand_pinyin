@@ -58,6 +58,25 @@ https://toneoz.com/imez
 
 ---
 
+## 開源協作說明：如何更新 `sources/reference_tables/*.json`
+
+本專案中的 `sources/reference_tables/*.json` 是可讀的 OpenType table snapshot，用來在 build 階段補回 UFO 與 `fontmake` 目前無法穩定重建的 table，例如 `GDEF`、`GSUB`、`cmap`、`gasp`、`prep`、`name`。
+
+這些 `.json` 檔案是受版本控制的文字資料，可以直接用記事本打開、審查 diff、討論變更，也可以在理解欄位意義的前提下直接編輯。
+
+如果你修改了 UFO 結構，或需要同步新的相容性 table，建議先在 `deploy_quicksnow` 專案中更新生成邏輯，再重新執行對應字型的 deploy，讓工具重新生成 `sources/reference_tables/manifest.json` 與各個 `*.json`。
+
+建議流程：
+
+1. 在 `deploy_quicksnow` 專案中確認 `config/config_deploy_gitrepo_quicksnow.json` 指向正確的參考 TTF。
+2. 執行 `python3 deploy_gitrepo_quicksnow.py --ttf ToneOZQSPinyinKaiTraditional.ttf` 重新生成本 repo 的 `sources/` 內容。
+3. 回到本 repo 執行 `build.bat`，確認新的 TTF 可成功產出。
+4. 用 `sources/validate_build.py` 或直接執行 `build.bat` 內建驗證，確認 glyph count、cmap size 與必要 tables 仍符合預期。
+
+若你真的需要調整某個 table 的生成邏輯，請優先修改生成工具與文件，再重新導出 `.json`，不要只提交孤立的快照變更。
+
+---
+
 ## 特色
 
 - 免費、開源、可商用

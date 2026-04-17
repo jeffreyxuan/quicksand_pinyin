@@ -12,7 +12,8 @@ Font Installation Instructions
 ===========================
 
 1. Download link
-https://toneoz.com/blog/download-quicksnow/
+
+	https://toneoz.com/blog/quicksnow/
 
 There are four versions available:
 
@@ -24,13 +25,14 @@ There are four versions available:
 	   600 (Semi-Bold)
 	   700 (Bold)
 
-	- ToneOZ-Quicksnow (Latin/numeric, half-width, variable weight version)
-
 	- 澳聲通快雪拼音楷體繁
 	   ToneOZ QuickSnow Pinyin Kai (Traditional Chinese)
 
 	- 澳声通快雪拼音楷体简
 	   ToneOZ QuickSnow Pinyin Kai (Simplified Chinese)
+
+	- ToneOZ-Quicksnow (Latin/numeric, half-width, variable weight version)
+
 
 2. Installation
 The files are in ZIP format. Open the ZIP file and click on the .ttf file inside to install.
@@ -43,4 +45,4 @@ They also come with a free online Pinyin/Zhuyin editor (no installation required
 
 Online editor:
 
-https://toneoz.com/ime
+	https://toneoz.com/ime
