@@ -45,8 +45,8 @@ The **QuickSnow** series is designed for a wide range of educational use cases, 
 Fonts in the family include:
 
 - [x] **ToneOZ-Quicksnow** — half-width Latin letters and numerals
-- [x] **ToneOZ QuickSnow Phonetic Kai Traditional Chinese**
-- [x] **ToneOZ QuickSnow Phonetic Kai Simplified Chinese**
+- [x] **[ToneOZ QuickSnow Phonetic Kai Traditional Chinese](https://github.com/jeffreyxuan/toneoz-font-quicksnow-pinyin-kai-traditional)**
+- [x] **[ToneOZ QuickSnow Phonetic Kai Simplified Chinese](https://github.com/jeffreyxuan/toneoz-font-quicksnow-pinyin-kai-simplified)**
 
 ---
 
@@ -54,25 +54,6 @@ Fonts in the family include:
 
 1. Make sure `python3` is available in your environment.
 2. Run `build.bat`.
-
----
-
-## Open Source Collaboration: how to update `sources/reference_tables/*.json`
-
-The files under `sources/reference_tables/*.json` are readable OpenType table snapshots. They are used during the build to restore tables that UFO plus `fontmake` do not always reproduce reliably, such as `GDEF`, `GSUB`, `cmap`, `gasp`, `prep`, and `name`.
-
-These `.json` files are version-controlled text. They can be opened in a basic text editor, reviewed in diffs, discussed in pull requests, and edited directly by contributors who understand the field meanings.
-
-If you change the UFO structure or need to refresh compatibility tables, update the generator in `deploy_quicksnow`, then rerun the matching deploy task so the tool regenerates `sources/reference_tables/manifest.json` and the corresponding `*.json` files.
-
-Recommended workflow:
-
-1. In the `deploy_quicksnow` project, confirm that `config/config_deploy_gitrepo_quicksnow.json` points to the correct reference TTF.
-2. Run the matching deploy command, for example `python3 deploy_gitrepo_quicksnow.py --ttf ToneOZ-Quicksnow.ttf`.
-3. Return to this repo and run `build.bat` to regenerate the output font.
-4. Use `sources/validate_build.py`, or simply rely on the built-in validation inside `build.bat`, to confirm that glyph count, cmap size, and required tables still match expectations.
-
-If the actual table-generation strategy needs to change, update the generator and documentation first, then regenerate the `.json` files instead of committing an isolated snapshot edit.
 
 ---
 
