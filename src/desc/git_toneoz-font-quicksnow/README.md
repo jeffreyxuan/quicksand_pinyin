@@ -2,7 +2,7 @@
 
 **ToneOZ QuickSnow** is a free and open-source font family created by [ToneOZ.com](https://toneoz.com), released under the **SIL Open Font License**.
 
-<img width="1920" height="1080" alt="toneoz-quicksnow-logo01" src="https://github.com/user-attachments/assets/7a8181f0-721a-42c1-8139-dfe57988eed4" />
+<img width="1920" height="1080" alt="toneoz-quicksnow-logo01" src="./assets/toneoz-quicksnow-logo01.jpg" />
 
 
 Phonetic typefaces that deliver a textbook-quality reading experience and support a wide range of educational romanized phonetic annotation characters.
@@ -39,7 +39,7 @@ If ToneOZ has been useful to you, please consider sharing your experience in you
 
 The **QuickSnow** series is designed for a wide range of educational use cases, especially phonetic annotation in teaching materials.
 
-<img width="1920" height="1080" alt="toneoz-quicksnow-logo02" src="https://github.com/user-attachments/assets/af612059-6491-4690-9d4e-abd5def87fa5" />
+<img width="1920" height="1080" alt="toneoz-quicksnow-logo02" src="./assets/toneoz-quicksnow-logo02.jpg" />
 
 
 Fonts in the family include:
@@ -61,9 +61,9 @@ Fonts in the family include:
 
 The phonetic Kai fonts for Traditional and Simplified Chinese combine Quicksnow with education-oriented standard Kai typefaces. They support multiple pronunciations for a single character through the widely used IVS-based phonetic annotation specification (字嗨注音 IVS), and are designed for practical classroom use.
 
-<img width="1920" height="1080" alt="toneoz-quicksnow-logo03" src="https://github.com/user-attachments/assets/49892292-e38f-4b59-b7ec-f5b61e8b9309" />
+<img width="1920" height="1080" alt="toneoz-quicksnow-logo03" src="./assets/toneoz-quicksnow-logo03.jpg" />
 
-![toneoz-quicksnow-logo04](https://github.com/user-attachments/assets/ae4acb89-6d00-421c-acd3-19dee2cd2375)
+<img width="1920" height="1080" alt="toneoz-quicksnow-logo04" src="./assets/toneoz-quicksnow-logo04.jpg" />
 
 ---
 
