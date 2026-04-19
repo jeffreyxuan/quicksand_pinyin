@@ -2,7 +2,7 @@
   
 # 澳声通 快雪拼音楷体-简体版 ToneOZ QuickSnow Pinyin Kai Simplified
 
-![toneoz-quicksnow-simplified](https://github.com/user-attachments/assets/05d54b75-bdbb-45f8-af68-3d4a9fe63dd7)
+<img width="1920" height="1080" alt="toneoz-quicksnow-simplified" src="./assets/toneoz-quicksnow-simplified.jpg" />
 
 ---
 
@@ -59,11 +59,11 @@
 
 为了辅助教材制作，澳声通 ToneOZ 谨呈「[Quicksnow 快雪时晴](https://github.com/jeffreyxuan/toneoz-font-quicksnow)」系列拼音字体。
 
-<img width="1920" height="1080" alt="simplified_toneoz-quicksnow-logo03" src="https://github.com/user-attachments/assets/ebf38c45-1d3d-41de-a204-bab5ef8a80f9" />
+<img width="1920" height="1080" alt="simplified_toneoz-quicksnow-fb03" src="./assets/simplified_toneoz-quicksnow-fb03.jpg" />
 
 <br>
 
-<img width="1920" height="1080" alt="simplified_toneoz-quicksnow-logo02" src="https://github.com/user-attachments/assets/d4acbde7-e102-4ae8-895c-81c04d48dc20" />
+<img width="1920" height="1080" alt="simplified_toneoz-quicksnow-fb02" src="./assets/simplified_toneoz-quicksnow-fb02.jpg" />
 
 澳声通 [快雪时晴 QuickSnow](https://github.com/jeffreyxuan/toneoz-font-quicksnow) 英数字体，是基于 Google Fonts 的开源字体 [Quicksand](https://fonts.google.com/specimen/Quicksand?preview.script=Latn) 改造而来。
 

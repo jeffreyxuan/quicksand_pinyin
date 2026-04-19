@@ -1,6 +1,6 @@
 # 澳聲通 快雪拼音楷體字型-繁體版 ToneOZ QuickSnow Pinyin Kai Traditional
 
-<img width="1920" height="1080" alt="toneoz-quicksnow-traditional" src="https://github.com/user-attachments/assets/999d3aa5-fbb4-4a7c-9c88-e98824d410ad" />
+<img width="1920" height="1080" alt="toneoz-quicksnow-traditional" src="./assets/toneoz-quicksnow-traditional.jpg" />
 
 ---
 
@@ -57,9 +57,12 @@
 
 為了輔助教材製作，澳聲通 ToneOZ 特別開發，謹呈「[Quicksnow 快雪時晴](https://github.com/jeffreyxuan/toneoz-font-quicksnow)」系列拼音字體。
 
-<img width="1920" height="1080" alt="toneoz-quicksnow-logo03" src="https://github.com/user-attachments/assets/82a7e30e-cb73-4d3e-b212-c8cb93c68294" />
+<img width="1920" height="1080" alt="toneoz-quicksnow-fb03" src="./assets/toneoz-quicksnow-fb03.jpg" />
 
-<img width="1920" height="1080" alt="toneoz-quicksnow-logo02" src="https://github.com/user-attachments/assets/e2a650da-50c8-494c-83ab-a0eb6cf68170" />
+<br>
+
+<img width="1920" height="1080" alt="toneoz-quicksnow-fb02" src="./assets/toneoz-quicksnow-fb02.jpg" />
+
 
 澳聲通 [快雪時晴 QuickSnow](https://github.com/jeffreyxuan/toneoz-font-quicksnow) 英數字體，是改作自 Google Fonts 的開源字體 [Quicksand](https://fonts.google.com/specimen/Quicksand?preview.script=Latn) 「流沙」。
 
