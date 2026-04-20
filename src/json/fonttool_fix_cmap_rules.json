@@ -275,6 +275,132 @@
         "latn_DFLT"
       ],
       "from": [
+        "Y",
+        "uni030A"
+      ],
+      "to": "Y_uni030A"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "I",
+        "uni030A"
+      ],
+      "to": "I_uni030A"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "O",
+        "uni030A"
+      ],
+      "to": "O_uni030A"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "Y",
+        "uni030A.case"
+      ],
+      "to": "Y_uni030A"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "I",
+        "uni030A.case"
+      ],
+      "to": "I_uni030A"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "O",
+        "uni030A.case"
+      ],
+      "to": "O_uni030A"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "i",
+        "uni030A"
+      ],
+      "to": "i_uni030A"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "dotlessi",
+        "uni030A"
+      ],
+      "to": "i_uni030A"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "o",
+        "uni030A"
+      ],
+      "to": "o_uni030A"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
         "underscore",
         "uni0307"
       ],

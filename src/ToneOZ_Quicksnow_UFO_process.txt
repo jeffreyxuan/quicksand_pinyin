@@ -698,26 +698,32 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 - 台語
 		
 	- ⁿ
-		- in Quicksand-VariableFont_wght-W700.ufo.sfd
-		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni207F。
-		- 設定 Glyph Unicode U+207F
-		- copy from uni2078 ⁸  
+		- copy from noto 300
+		#- in Quicksand-VariableFont_wght-W700.ufo.sfd
+		#- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni207F。
+		#- 設定 Glyph Unicode U+207F
+		#- copy from uni2078 ⁸  
 				
-		- copy the outline from the "n" 
-		- scale uniform 40%
-		- align the bottom of "n" to the bottom of "8", center
-		- delete outline of 8
+		#- copy the outline from the "n" 
+		#- scale uniform 40%
+		#- align the bottom of "n" to the bottom of "8", center
+		#- delete outline of 8
 		
-		- the copy to Quicksand-VariableFont_wght-W300.ufo.sfd, do manual finetune
+		#- the copy to Quicksand-VariableFont_wght-W300.ufo.sfd, do manual finetune
+		
+		#- scale up 175%, bottom should touch the "-"
 		
 	- ᴺ
-		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni1D3A。
-		- 設定 Glyph Unicode U+1D3A
-		- copy from ⁿ
-		- delete outline
-		- copy the outline from N
-		- scale uniform 37%
-		- align the bottom of "N" to the bottom of "n", center
+		- copy from noto 700
+		#- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni1D3A。
+		#- 設定 Glyph Unicode U+1D3A
+		#- copy from ⁿ
+		#- delete outline
+		#- copy the outline from N
+		#- scale uniform 37%
+		#- align the bottom of "N" to the bottom of "n", center
+		
+		#- scale up 175%, bottom should touch the "-"
 		
 		
 	- a̍ = a + ̍ (uni030D)
@@ -1247,4 +1253,56 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	- ̍ (700) move up 2 steps
 	
 	
+- ̊ adjust
+	- Y̊
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Y_uni030A
+		- reference from Y
+		- reference from uni030A.case
+		
+	- I̊
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name I_uni030A
+		- reference from I
+		- reference from uni030A.case
+		
+	- O̊
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name O_uni030A
+		- reference from O
+		- reference from uni030A.case
+		
+	- i̊
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name i_uni030A
+		- reference from dotlessi
+		- reference from uni030A
+		
+	- o̊
+		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name o_uni030A
+		- reference from o
+		- reference from uni030A
+		
+	- ¹ one.dnom
+		- align top and bottom with zero.dnom
+		
+	- ² two.dnom
+		- align top and bottom with zero.dnom
+		
+	- uni00B3  3
 	
+	- ⁴ four.dnom
+		- align top and bottom with zero.dnom
+	- uni2074
+		
+	- ⁵ five.dnom
+		- align top with three.dnom
+	- uni2075
+		
+	- ⁶ six.dnom
+		- align top with three.dnom
+	- uni2076
+		six.dnom is not balance. move 0.5 step down
+	
+	- ⁷ seven.dnom
+	- uni2077
+	
+	- ⁸ eight.dnom
+		
+	- ⁹ nine.dnom
