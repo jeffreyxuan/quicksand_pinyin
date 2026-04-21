@@ -2,8 +2,9 @@
 
 **ToneOZ QuickSnow** is a free and open-source font family created by [ToneOZ.com](https://toneoz.com), released under the **SIL Open Font License**.
 
-<img width="1920" height="1080" alt="toneoz-quicksnow-logo01" src="./assets/toneoz-quicksnow-fb01.jpg" />
-
+<img width="1920" height="1080" alt="toneoz-quicksnow-logo06" src="./assets/toneoz-quicksnow-fb06.jpg" />
+<br>
+<img width="1920" height="1080" alt="toneoz-quicksnow-fb01" src="./assets/toneoz-quicksnow-fb01.jpg" />
 
 Phonetic typefaces that deliver a textbook-quality reading experience and support a wide range of educational romanized phonetic annotation characters.
 
@@ -39,7 +40,7 @@ If ToneOZ has been useful to you, please consider sharing your experience in you
 
 The **QuickSnow** series is designed for a wide range of educational use cases, especially phonetic annotation in teaching materials.
 
-<img width="1920" height="1080" alt="toneoz-quicksnow-logo02" src="./assets/toneoz-quicksnow-fb02.jpg" />
+<img width="1920" height="1080" alt="toneoz-quicksnow-fb02" src="./assets/toneoz-quicksnow-fb02.jpg" />
 
 
 Fonts in the family include:
@@ -86,6 +87,8 @@ Features of the editor include:
 
 ## Free and Open Source
 
+- [x] Design philosophy inspired by Morisawa’s Japanese textbook font [UD Gakusan Maru Gothic](https://www.morisawa.co.jp/topic/udgakusanrgo/).
+- [x] Structure and character planning inspired by the open-source font [Lesson One](https://github.com/ButTaiwan/LessonOne) from Zi Hai.
 - [x] Derived from the open-source Google font **Quicksand**
 - [x] Partly mixed with **Noto Sans**
 - [x] Free to use, including commercial use
