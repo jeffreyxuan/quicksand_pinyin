@@ -36,6 +36,14 @@ DEFAULT_ANCHOR_RULES_JSON = Path(__file__).resolve().parents[1] / "json" / "font
 DEFAULT_KERN_RULES_JSON = Path(__file__).resolve().parents[1] / "json" / "fonttool_fix_kern_rules.json"
 UNI030D_ON_UNI0358_X_SHIFT = -12
 UNI030D_ON_UNI0358_Y_SHIFT = 30
+I_TONE_KERN_CLASS_FALLBACKS: Dict[str, Tuple[str, ...]] = {
+    "iacute": ("i", "dotlessi"),
+    "igrave": ("i", "dotlessi"),
+    "icircumflex": ("i", "dotlessi"),
+    "uni01D0": ("i", "dotlessi"),
+    "imacron": ("i", "dotlessi"),
+    "ibreve": ("i", "dotlessi"),
+}
 
 
 def indent_stderr(stderr_text: str) -> str:
@@ -1617,6 +1625,60 @@ def _sort_pairpos_format1_subtable(subtable: Any, glyph_order_map: Dict[str, int
         pairset.PairValueCount = len(records)
 
 
+def _set_pairpos_format1_xadvance(
+    subtable: Any,
+    left: str,
+    right: str,
+    x_advance: int,
+    glyph_order_map: Dict[str, int],
+) -> bool:
+    """Summary: Set one PairPos format-1 pair XAdvance, creating the pair if needed.
+
+    Args:
+        subtable: PairPos format-1 subtable.
+        left: Left glyph name.
+        right: Right glyph name.
+        x_advance: Target kerning value.
+        glyph_order_map: Glyph order index map for sorting.
+
+    Returns:
+        bool: True if subtable was updated, else False.
+
+    Example:
+        _set_pairpos_format1_xadvance(subtable, "A", "V", -80, {"A": 1, "V": 2})
+    """
+
+    if left not in glyph_order_map or right not in glyph_order_map:
+        return False
+    pairset = _ensure_pairset_for_left_glyph(subtable, left)
+    if pairset is None:
+        return False
+    records = list(getattr(pairset, "PairValueRecord", []) or [])
+    target_record = None
+    for record in records:
+        if getattr(record, "SecondGlyph", None) == right:
+            target_record = record
+            break
+    if target_record is None:
+        target_record = otTables.PairValueRecord()
+        target_record.SecondGlyph = right
+        target_record.Value1 = None
+        target_record.Value2 = None
+        records.append(target_record)
+    if getattr(target_record, "Value1", None) is None:
+        from fontTools.ttLib.tables.otBase import ValueRecord
+
+        target_record.Value1 = ValueRecord()
+    previous_xadvance = getattr(target_record.Value1, "XAdvance", None)
+    if previous_xadvance == x_advance:
+        return False
+    target_record.Value1.XAdvance = x_advance
+    pairset.PairValueRecord = records
+    pairset.PairValueCount = len(records)
+    _sort_pairpos_format1_subtable(subtable, glyph_order_map)
+    return True
+
+
 def _load_kern_rules(kern_rules_json: Path) -> List[Dict[str, Any]]:
     """Summary: Load pair override rules from JSON."""
 
@@ -1626,6 +1688,60 @@ def _load_kern_rules(kern_rules_json: Path) -> List[Dict[str, Any]]:
         data = json.load(handle)
     pair_overrides = data.get("pair_overrides", [])
     return pair_overrides if isinstance(pair_overrides, list) else []
+
+
+def _iter_pairpos_kern_subtables(lookup: Any) -> Iterable[Any]:
+    """Summary: Iterate PairPos subtables from direct or extension kern lookups.
+
+    Args:
+        lookup: OpenType lookup record.
+
+    Returns:
+        Iterable[Any]: PairPos subtables (format 1/2).
+
+    Example:
+        list(_iter_pairpos_kern_subtables(lookup))
+    """
+
+    lookup_type = getattr(lookup, "LookupType", None)
+    if lookup_type == 2:
+        for subtable in getattr(lookup, "SubTable", []) or []:
+            yield subtable
+        return
+    if lookup_type != 9:
+        return
+    for ext_subtable in getattr(lookup, "SubTable", []) or []:
+        if getattr(ext_subtable, "ExtensionLookupType", None) != 2:
+            continue
+        inner_subtable = getattr(ext_subtable, "ExtSubTable", None)
+        if inner_subtable is not None:
+            yield inner_subtable
+
+
+def _ensure_glyph_in_classdef_with_fallback(class_defs: Dict[str, int], glyph_name: str) -> bool:
+    """Summary: Ensure one glyph exists in classDefs, optionally using fallback glyph classes.
+
+    Args:
+        class_defs: PairPos classDefs mapping.
+        glyph_name: Glyph name that should be present in classDefs.
+
+    Returns:
+        bool: True if glyph class is available (existing or fallback-mapped), else False.
+
+    Example:
+        _ensure_glyph_in_classdef_with_fallback({"i": 3}, "iacute")
+    """
+
+    current_class = class_defs.get(glyph_name)
+    if isinstance(current_class, int):
+        return True
+
+    for fallback_name in I_TONE_KERN_CLASS_FALLBACKS.get(glyph_name, ()):
+        fallback_class = class_defs.get(fallback_name)
+        if isinstance(fallback_class, int):
+            class_defs[glyph_name] = fallback_class
+            return True
+    return False
 
 
 def _ensure_unique_left_class(subtable: Any, glyph_name: str) -> Tuple[int | None, int]:
@@ -1665,6 +1781,7 @@ def apply_kern_pair_overrides_in_final_gpos(font: TTFont, kern_rules_json: Path)
         return stats
     stats["enabled"] = 1
     lookup_records = _get_lookup_records(font)
+    glyph_order_map = {glyph_name: index for index, glyph_name in enumerate(font.getGlyphOrder())}
     for rule in pair_overrides:
         left = rule.get("left")
         right = rule.get("right")
@@ -1678,10 +1795,12 @@ def apply_kern_pair_overrides_in_final_gpos(font: TTFont, kern_rules_json: Path)
             if lookup_index < 0 or lookup_index >= len(lookup_records):
                 continue
             lookup = lookup_records[lookup_index]
-            if getattr(lookup, "LookupType", None) != 2:
-                continue
-            for subtable in getattr(lookup, "SubTable", []) or []:
+            for subtable in _iter_pairpos_kern_subtables(lookup):
                 fmt = getattr(subtable, "Format", None)
+                if fmt == 1:
+                    if _set_pairpos_format1_xadvance(subtable, left, right, x_advance, glyph_order_map):
+                        updated = True
+                    continue
                 if fmt != 2:
                     continue
                 class_def1 = getattr(subtable, "ClassDef1", None)
@@ -1690,7 +1809,9 @@ def apply_kern_pair_overrides_in_final_gpos(font: TTFont, kern_rules_json: Path)
                 class_defs2 = getattr(class_def2, "classDefs", None)
                 if not isinstance(class_defs1, dict) or not isinstance(class_defs2, dict):
                     continue
-                if right not in class_defs2:
+                if not _ensure_glyph_in_classdef_with_fallback(class_defs1, left):
+                    continue
+                if not _ensure_glyph_in_classdef_with_fallback(class_defs2, right):
                     continue
                 left_class, split_count = _ensure_unique_left_class(subtable, left)
                 if left_class is None:
@@ -1708,12 +1829,11 @@ def apply_kern_pair_overrides_in_final_gpos(font: TTFont, kern_rules_json: Path)
                 value_record = class2_records[right_class]
                 if getattr(value_record, "Value1", None) is None:
                     from fontTools.ttLib.tables.otBase import ValueRecord
+
                     value_record.Value1 = ValueRecord()
-                value_record.Value1.XAdvance = x_advance
-                updated = True
-                break
-            if updated:
-                break
+                if getattr(value_record.Value1, "XAdvance", None) != x_advance:
+                    value_record.Value1.XAdvance = x_advance
+                    updated = True
         if updated:
             stats["pairs_updated"] += 1
         else:

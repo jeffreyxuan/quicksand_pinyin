@@ -72,7 +72,9 @@ Ohorn
 uni1EDA
 uni1EE2
 acutecomb
+acutecomb.case
 gravecomb
+gravecomb.case
 uni030D
 uni0358
 i_hungarumlautcomb
@@ -213,3 +215,17 @@ six.dnom
 uni2076
 seven.dnom
 uni2077
+uni03020301
+uni030C
+uni030C.case
+uni0302
+uni0302.case
+uni1EA5
+uni1EA5.ss01
+uni1ED1
+uni1EAF
+uni1EAF.ss01
+uni1EB1
+uni1EB1.ss01
+uni1EA4
+uni1E2F
