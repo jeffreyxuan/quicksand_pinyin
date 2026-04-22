@@ -311,6 +311,14 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- anchor bottom up 1.4 steps
 		- anchor top align with top
 		
+		- rotate 180 + 20 clockwise
+		- top move right 3 steps, top 3 steps
+		- (300)top move top 1 steps
+		- bottom move left 3 steps, bottom 2 steps
+		
+		- move left 3 steps
+		- (300) move up 1 step
+		
 	- gravecomb
 		- in Quicksand-VariableFont_wght-W300.ufo.sfd
 		- press the bottom		
@@ -323,6 +331,16 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 		- anchor bottom down 0.3 step
 		- anchor top align with top
+		
+		- rotate -20 clockwise
+		- top move left 3 steps, bottom 3 steps
+		- bottom move right 3 steps, top 2 steps
+		
+		- move right 3 steps
+		
+	- uni03020301
+		- (300) move acutecomb to left 21 steps
+		- (700) move acutecomb to left 27 steps up 3 steps
 		
 	- uni030D ̍
 		- copy from uni030C ???? uni0300 ???
