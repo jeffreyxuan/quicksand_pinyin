@@ -199,6 +199,186 @@
       "left": "ibreve",
       "right": "ibreve",
       "xAdvance": 120
+    },
+    {
+      "left": "Iacute",
+      "right": "Iacute",
+      "xAdvance": 60
+    },
+    {
+      "left": "Iacute",
+      "right": "Igrave",
+      "xAdvance": 60
+    },
+    {
+      "left": "Iacute",
+      "right": "Icircumflex",
+      "xAdvance": 60
+    },
+    {
+      "left": "Iacute",
+      "right": "uni01CF",
+      "xAdvance": 60
+    },
+    {
+      "left": "Iacute",
+      "right": "Imacron",
+      "xAdvance": 60
+    },
+    {
+      "left": "Iacute",
+      "right": "Ibreve",
+      "xAdvance": 60
+    },
+    {
+      "left": "Igrave",
+      "right": "Iacute",
+      "xAdvance": 60
+    },
+    {
+      "left": "Igrave",
+      "right": "Igrave",
+      "xAdvance": 60
+    },
+    {
+      "left": "Igrave",
+      "right": "Icircumflex",
+      "xAdvance": 60
+    },
+    {
+      "left": "Igrave",
+      "right": "uni01CF",
+      "xAdvance": 60
+    },
+    {
+      "left": "Igrave",
+      "right": "Imacron",
+      "xAdvance": 60
+    },
+    {
+      "left": "Igrave",
+      "right": "Ibreve",
+      "xAdvance": 60
+    },
+    {
+      "left": "Icircumflex",
+      "right": "Iacute",
+      "xAdvance": 60
+    },
+    {
+      "left": "Icircumflex",
+      "right": "Igrave",
+      "xAdvance": 60
+    },
+    {
+      "left": "Icircumflex",
+      "right": "Icircumflex",
+      "xAdvance": 60
+    },
+    {
+      "left": "Icircumflex",
+      "right": "uni01CF",
+      "xAdvance": 60
+    },
+    {
+      "left": "Icircumflex",
+      "right": "Imacron",
+      "xAdvance": 60
+    },
+    {
+      "left": "Icircumflex",
+      "right": "Ibreve",
+      "xAdvance": 60
+    },
+    {
+      "left": "uni01CF",
+      "right": "Iacute",
+      "xAdvance": 60
+    },
+    {
+      "left": "uni01CF",
+      "right": "Igrave",
+      "xAdvance": 60
+    },
+    {
+      "left": "uni01CF",
+      "right": "Icircumflex",
+      "xAdvance": 60
+    },
+    {
+      "left": "uni01CF",
+      "right": "uni01CF",
+      "xAdvance": 60
+    },
+    {
+      "left": "uni01CF",
+      "right": "Imacron",
+      "xAdvance": 60
+    },
+    {
+      "left": "uni01CF",
+      "right": "Ibreve",
+      "xAdvance": 60
+    },
+    {
+      "left": "Imacron",
+      "right": "Iacute",
+      "xAdvance": 60
+    },
+    {
+      "left": "Imacron",
+      "right": "Igrave",
+      "xAdvance": 60
+    },
+    {
+      "left": "Imacron",
+      "right": "Icircumflex",
+      "xAdvance": 60
+    },
+    {
+      "left": "Imacron",
+      "right": "uni01CF",
+      "xAdvance": 60
+    },
+    {
+      "left": "Imacron",
+      "right": "Imacron",
+      "xAdvance": 60
+    },
+    {
+      "left": "Imacron",
+      "right": "Ibreve",
+      "xAdvance": 60
+    },
+    {
+      "left": "Ibreve",
+      "right": "Iacute",
+      "xAdvance": 60
+    },
+    {
+      "left": "Ibreve",
+      "right": "Igrave",
+      "xAdvance": 60
+    },
+    {
+      "left": "Ibreve",
+      "right": "Icircumflex",
+      "xAdvance": 60
+    },
+    {
+      "left": "Ibreve",
+      "right": "uni01CF",
+      "xAdvance": 60
+    },
+    {
+      "left": "Ibreve",
+      "right": "Imacron",
+      "xAdvance": 60
+    },
+    {
+      "left": "Ibreve",
+      "right": "Ibreve",
+      "xAdvance": 60
     }
   ]
 }
