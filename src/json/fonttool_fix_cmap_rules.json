@@ -107,6 +107,34 @@
         "latn_DFLT"
       ],
       "from": [
+        "m",
+        "gravecomb"
+      ],
+      "to": "m_gravecomb"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
+        "m",
+        "gravecomb.case"
+      ],
+      "to": "m_gravecomb"
+    },
+    {
+      "enabled": true,
+      "feature": "ccmp_00002",
+      "lookup": "lookup_ccmp_6",
+      "languages": [
+        "DFLT_DFLT",
+        "latn_DFLT"
+      ],
+      "from": [
         "ecircumflex",
         "uni0304"
       ],

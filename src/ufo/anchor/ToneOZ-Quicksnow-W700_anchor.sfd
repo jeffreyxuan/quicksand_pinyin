@@ -22,7 +22,7 @@ OS2Version: 4
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1774769700
-ModificationTime: 1775918556
+ModificationTime: 1777027296
 PfmFamily: 81
 TTFWeight: 700
 TTFWidth: 5
@@ -319,7 +319,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 7750 25 8
+WinInfo: 725 25 8
 AnchorClass2: "Anchor-0" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-1" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-2" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-3" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-4" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-5" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-6" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-7" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-8" "'mkmk' Mark to Mark in Latin lookup 3 subtable" "Anchor-9" "'mkmk' Mark to Mark in Latin lookup 4 subtable" "Anchor-10" "'mkmk' Mark to Mark in Latin lookup 5 subtable"
 BeginChars: 65695 873
 
@@ -17725,22 +17725,39 @@ AnchorPoint: "Anchor-9" 170 512 mark 0
 AnchorPoint: "Anchor-6" 170 512 mark 0
 AnchorPoint: "Anchor-0" 170 512 mark 0
 LayerCount: 2
+Back
+SplineSet
+139 577 m 4,23,24
+ 134 579 134 579 129.5 583.5 c 132,-1,25
+ 125 588 125 588 122 594 c 6,26,-1
+ 62 690 l 6,27,28
+ 51 707 51 707 49.5 724 c 132,-1,29
+ 48 741 48 741 56 755 c 4,30,31
+ 67 775 67 775 89.5 777 c 132,-1,32
+ 112 779 112 779 126 770 c 4,33,34
+ 138 763 138 763 145.5 751 c 132,-1,35
+ 153 739 153 739 158 726 c 6,36,-1
+ 195 618 l 6,37,38
+ 201 600 201 600 194 588 c 4,39,40
+ 186 575 186 575 170.5 571.5 c 132,-1,41
+ 155 568 155 568 139 577 c 4,23,24
+EndSplineSet
 Fore
 SplineSet
-139 577 m 0,0,1
- 134 579 134 579 129.5 583.5 c 128,-1,2
- 125 588 125 588 122 594 c 2,3,-1
- 62 690 l 2,4,5
- 51 707 51 707 49.5 724 c 128,-1,6
- 48 741 48 741 56 755 c 0,7,8
- 67 775 67 775 89.5 777 c 128,-1,9
- 112 779 112 779 126 770 c 0,10,11
- 138 763 138 763 145.5 751 c 128,-1,12
- 153 739 153 739 158 726 c 2,13,-1
- 195 618 l 2,14,15
- 201 600 201 600 194 588 c 0,16,17
- 186 575 186 575 170.5 571.5 c 128,-1,18
- 155 568 155 568 139 577 c 0,0,1
+237 597 m 256,0,1
+ 232 596 232 596 226 597 c 0,2,3
+ 219 598 219 598 213 601 c 258,4,-1
+ 49 695 l 258,5,6
+ 25 709 25 709 19.5 716 c 0,7,8
+ 9 729 9 729 7 744 c 256,9,10
+ 5 767 5 767 22 781.5 c 128,-1,11
+ 39 796 39 796 56 797 c 256,12,13
+ 71 798 71 798 83.5 792.5 c 0,14,15
+ 103.263671875 782.900390625 103.263671875 782.900390625 107 780 c 258,16,-1
+ 259 662 l 258,17,18
+ 275 650 275 650 276 636 c 256,19,20
+ 277 621 277 621 266.5 609.5 c 0,21,22
+ 259 601 259 601 237 597 c 256,0,1
 EndSplineSet
 Substitution2: "'case' Case-Sensitive Forms in Latin lookup 35 subtable" gravecomb.case
 Substitution2: "Single Substitution lookup 7 subtable" gravecomb.case
@@ -17755,27 +17772,45 @@ Encoding: 769 769 740
 Width: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "Anchor-9" 130 808 basemark 0
-AnchorPoint: "Anchor-9" 80 559 mark 0
-AnchorPoint: "Anchor-6" 80 559 mark 0
-AnchorPoint: "Anchor-0" 80 559 mark 0
+AnchorPoint: "Anchor-9" 130 781 basemark 0
+AnchorPoint: "Anchor-9" 80 512 mark 0
+AnchorPoint: "Anchor-6" 80 512 mark 0
+AnchorPoint: "Anchor-0" 80 512 mark 0
 LayerCount: 2
+Back
+SplineSet
+91 599 m 4,25,26
+ 83 598 83 598 69 604 c 132,-1,27
+ 55 610 55 610 54 626 c 4,28,29
+ 52 635 52 635 56 646 c 6,30,-1
+ 96 757 l 6,31,32
+ 102 774 102 774 113.5 788 c 132,-1,33
+ 125 802 125 802 143 806 c 4,34,35
+ 171 811 171 811 186 798.5 c 132,-1,36
+ 201 786 201 786 204 766 c 4,37,38
+ 205 756 205 756 202 744 c 132,-1,39
+ 199 732 199 732 193 720 c 6,40,-1
+ 132 624 l 6,41,42
+ 124 611 124 611 113 606 c 132,-1,43
+ 102 601 102 601 91 599 c 4,25,26
+EndSplineSet
 Fore
 SplineSet
-91 599 m 0,0,1
- 83 598 83 598 69 604 c 128,-1,2
- 55 610 55 610 54 626 c 0,3,4
- 52 635 52 635 56 646 c 2,5,-1
- 96 757 l 2,6,7
- 102 774 102 774 113.5 788 c 128,-1,8
- 125 802 125 802 143 806 c 0,9,10
- 171 811 171 811 186 798.5 c 128,-1,11
- 201 786 201 786 204 766 c 0,12,13
- 205 756 205 756 202 744 c 128,-1,14
- 199 732 199 732 193 720 c 2,15,-1
- 132 624 l 2,16,17
- 124 611 124 611 113 606 c 128,-1,18
- 102 601 102 601 91 599 c 0,0,1
+-3 602 m 256,0,1
+ -11 605 -11 605 -20 617 c 0,2,3
+ -27 627 -27 627 -22 644 c 256,4,5
+ -19 653 -19 653 -10 660 c 258,6,-1
+ 132 768 l 0,7,-1
+ 145 778 l 266,8,9
+ 162 791 162 791 175 797 c 0,10,11
+ 192 804 192 804 210 797 c 256,12,13
+ 237 787 237 787 244 769 c 0,14,15
+ 252 748 252 748 243 731 c 256,16,17
+ 237 720 237 720 231 714 c 0,18,19
+ 224 707 224 707 210 699 c 265,20,-1
+ 44 603 l 258,21,22
+ 32 596 32 596 18 597 c 0,23,24
+ 9 597 9 597 -3 602 c 256,0,1
 EndSplineSet
 Substitution2: "'case' Case-Sensitive Forms in Latin lookup 35 subtable" acutecomb.case
 Substitution2: "Single Substitution lookup 7 subtable" acutecomb.case

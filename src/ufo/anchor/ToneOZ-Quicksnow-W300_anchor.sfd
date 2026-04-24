@@ -22,7 +22,7 @@ OS2Version: 4
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1774769700
-ModificationTime: 1775918348
+ModificationTime: 1777030016
 PfmFamily: 81
 TTFWeight: 300
 TTFWidth: 5
@@ -319,7 +319,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 25 25 8
+WinInfo: 725 25 8
 AnchorClass2: "Anchor-0" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-1" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-2" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-3" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-4" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-5" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-6" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-7" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-8" "'mkmk' Mark to Mark in Latin lookup 3 subtable" "Anchor-9" "'mkmk' Mark to Mark in Latin lookup 4 subtable" "Anchor-10" "'mkmk' Mark to Mark in Latin lookup 5 subtable"
 BeginChars: 65695 873
 
@@ -17720,27 +17720,27 @@ Encoding: 768 768 739
 Width: 0
 GlyphClass: 4
 Flags: W
-AnchorPoint: "Anchor-9" 113 708 basemark 0
-AnchorPoint: "Anchor-9" 153 496 mark 0
-AnchorPoint: "Anchor-6" 153 496 mark 0
-AnchorPoint: "Anchor-0" 153 496 mark 0
+AnchorPoint: "Anchor-9" 113 706 basemark 0
+AnchorPoint: "Anchor-9" 153 513 mark 0
+AnchorPoint: "Anchor-6" 153 513 mark 0
+AnchorPoint: "Anchor-0" 153 513 mark 0
 LayerCount: 2
 Fore
 SplineSet
-151 554 m 0,0,1
- 144 556 144 556 138.5 562.5 c 128,-1,2
- 133 569 133 569 130 576 c 2,3,-1
- 82 670 l 2,4,5
- 80 675 80 675 79 679 c 128,-1,6
- 78 683 78 683 79 688 c 0,7,8
- 82 699 82 699 89.5 703.5 c 128,-1,9
- 97 708 97 708 107 705 c 0,10,11
- 118 702 118 702 122 695 c 128,-1,12
- 126 688 126 688 128 683 c 2,13,-1
- 163 577 l 2,14,15
- 166 568 166 568 165 563 c 0,16,17
- 164 559 164 559 160 556 c 128,-1,18
- 156 553 156 553 151 554 c 0,0,1
+234 556 m 256,0,1
+ 226 553 226 553 217 556 c 0,2,3
+ 212.51171875 557.122070312 212.51171875 557.122070312 205 562 c 258,4,-1
+ 51 662 l 258,5,6
+ 42 668 42 668 42 668 c 0,7,8
+ 38 671 38 671 36 677 c 256,9,10
+ 32 687 32 687 36.5 693.5 c 128,-1,11
+ 41 700 41 700 50 704 c 256,12,13
+ 61 708 61 708 69 704.5 c 0,14,15
+ 76.4287109375 700.786132812 76.4287109375 700.786132812 80 698 c 258,16,-1
+ 230 581 l 258,17,18
+ 238 575 238 575 239 571 c 256,19,20
+ 240 567 240 567 239 561.5 c 0,21,22
+ 238 558 238 558 234 556 c 256,0,1
 EndSplineSet
 Substitution2: "'case' Case-Sensitive Forms in Latin lookup 35 subtable" gravecomb.case
 Substitution2: "Single Substitution lookup 7 subtable" gravecomb.case
@@ -17762,20 +17762,21 @@ AnchorPoint: "Anchor-0" 114 513 mark 0
 LayerCount: 2
 Fore
 SplineSet
-99 554 m 0,0,1
- 94 553 94 553 90 556 c 128,-1,2
- 86 559 86 559 85 563 c 0,3,4
- 84 568 84 568 87 576 c 2,5,-1
- 122 683 l 2,6,7
- 124 688 124 688 129 695 c 128,-1,8
- 134 702 134 702 143 704 c 0,9,10
- 154 707 154 707 162.5 703.5 c 128,-1,11
- 171 700 171 700 174 687 c 0,12,13
- 176 681 176 681 175 677 c 128,-1,14
- 174 673 174 673 172 669 c 2,15,-1
- 120 575 l 2,16,17
- 117 569 117 569 112 562.5 c 128,-1,18
- 107 556 107 556 99 554 c 0,0,1
+19 555 m 256,0,1
+ 14 557 14 557 13 561 c 0,2,3
+ 11 568 11 568 13 570 c 256,4,5
+ 15 574 15 574 23 580 c 258,6,-1
+ 166 690 l 0,7,-1
+ 177 699 l 258,8,9
+ 183 703 183 703 190 706 c 0,10,11
+ 198 709 198 709 207 705 c 256,12,13
+ 217 701 217 701 222 694 c 0,14,15
+ 227 686 227 686 222 673 c 256,16,17
+ 220 668 220 668 218 666 c 0,18,19
+ 216 663 216 663 211 660 c 257,20,-1
+ 49 561 l 258,21,22
+ 41 556 41 556 35 555 c 0,23,24
+ 25 553 25 553 19 555 c 256,0,1
 EndSplineSet
 Substitution2: "'case' Case-Sensitive Forms in Latin lookup 35 subtable" acutecomb.case
 Substitution2: "Single Substitution lookup 7 subtable" acutecomb.case
