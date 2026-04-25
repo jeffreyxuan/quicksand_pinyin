@@ -305,19 +305,21 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 		
 	- acutecomb	
-		- press the bottom
-		- clockwise -15 degree
-		- up 1.4 step
-		- anchor bottom up 1.4 steps
-		- anchor top align with top
+		- flip from gravecomb instead
 		
-		- rotate 180 + 20 clockwise
-		- top move right 3 steps, top 3 steps
-		- (300)top move top 1 steps
-		- bottom move left 3 steps, bottom 2 steps
+		#- press the bottom
+		#- clockwise -15 degree
+		#- up 1.4 step
+		#- anchor bottom up 1.4 steps
+		#- anchor top align with top
 		
-		- move left 3 steps
-		- (300) move up 1 step
+		#- rotate 180 + 20 clockwise
+		#- top move right 3 steps, top 3 steps
+		#- (300)top move top 1 steps
+		#- bottom move left 3 steps, bottom 2 steps
+		
+		#- move left 3 steps
+		#- (300) move up 1 step
 		
 	- acutecomb.case
 		- copy from acutecomb
