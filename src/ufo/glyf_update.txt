@@ -142,7 +142,6 @@ Omacron_uni0358
 O_uni030D_uni0358
 Obreve_uni0358
 Ohungarumlaut_uni0358
-imacron
 ibreve
 dotlessi
 uni01D6
@@ -241,3 +240,10 @@ ygrave
 yacute
 Yacute
 Ygrave
+uni0304
+uni0304.case
+amacron
+emacron
+imacron
+omacron
+umacron

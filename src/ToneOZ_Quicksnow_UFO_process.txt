@@ -1,4 +1,10 @@
 W300 UFO, select "Round to Int" during rotate, rotate by Last press	
+	- uni0304
+		- (300) reduce height , bottom and middle move up 0.2 steps, make top and bottom height the same
+		
+	- uni0304.case
+		- (300) reduce height , bottom and middle move up 0.2 steps, make top and bottom height the same
+		
 	- a
 		- copy o
 		- progressively thin the o
