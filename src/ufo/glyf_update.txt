@@ -247,3 +247,9 @@ emacron
 imacron
 omacron
 umacron
+Amacron
+Emacron
+Imacron
+Omacron
+Umacron
+uni1E7A
