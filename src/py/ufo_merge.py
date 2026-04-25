@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+from collections import deque
 import json
 import plistlib
 import shutil
@@ -12,7 +13,7 @@ import sys
 import tempfile
 import xml.etree.ElementTree as ET
 from pathlib import Path
-from typing import Dict, Iterable, List, Optional
+from typing import Deque, Dict, Iterable, List, Optional, Set
 
 from extract_sfd_anchors import extract_sfd_anchors
 
@@ -32,6 +33,7 @@ TMP_UFO_INPUT = REPO_ROOT / "_tmp" / "ufo_input"
 TMP_UFO_OUTPUT = REPO_ROOT / "_tmp" / "ufo_output"
 TMP_MERGED_TTF = REPO_ROOT / "_tmp" / "ufo_merge_intermediate.ttf"
 DISABLED_ANCHOR_RULES_JSON_PATH = REPO_ROOT / "_tmp" / "__disabled_anchor_rules__.json"
+AUTO_EXPAND_REFER_GLYPHS_DEFAULT = True
 
 FONTFORGE_UFO_SCRIPT = r'''
 import sys
@@ -113,6 +115,19 @@ def parse_args() -> argparse.Namespace:
         default=str(DEFAULT_TTFAUTOHINT),
         help="Path to ttfautohint executable (used with --autohint)",
     )
+    parser.set_defaults(auto_expand_refer_glyphs=AUTO_EXPAND_REFER_GLYPHS_DEFAULT)
+    parser.add_argument(
+        "--auto-expand-refer-glyphs",
+        dest="auto_expand_refer_glyphs",
+        action="store_true",
+        help="Auto-include glyphs that reference listed glyphs via SFD Refer (recursive)",
+    )
+    parser.add_argument(
+        "--no-auto-expand-refer-glyphs",
+        dest="auto_expand_refer_glyphs",
+        action="store_false",
+        help="Disable auto-expanding SFD Refer dependencies and only use glyf_update.txt",
+    )
     return parser.parse_args()
 
 
@@ -181,17 +196,17 @@ def resolve_glyph_update_path(input_dir: Path) -> Path:
     return glyph_update_path
 
 
-def read_modified_list(modified_list_path: Path) -> List[str]:
-    """Summary: Read glyph names from a shared glyph update file.
+def read_seed_modified_list(modified_list_path: Path) -> List[str]:
+    """Summary: Read seed glyph names from glyf_update.txt.
 
     Args:
         modified_list_path: Path to glyf_update.txt.
 
     Returns:
-        List[str]: Glyph names in file order without blank lines.
+        List[str]: Seed glyph names in file order without blank lines.
 
     Example:
-        read_modified_list(Path("src/ufo/glyf_update.txt"))
+        read_seed_modified_list(Path("src/ufo/glyf_update.txt"))
     """
 
     lines = modified_list_path.read_text(encoding="utf-8-sig").splitlines()
@@ -204,6 +219,206 @@ def read_modified_list(modified_list_path: Path) -> List[str]:
         seen.add(glyph_name)
         glyph_names.append(glyph_name)
     return glyph_names
+
+
+def parse_sfd_refer_dependencies(sfd_path: Path) -> Dict[str, Set[str]]:
+    """Summary: Parse one SFD and build reverse Refer dependency mapping.
+
+    Args:
+        sfd_path: Path to source SFD.
+
+    Returns:
+        Dict[str, Set[str]]: Mapping `base_glyph -> dependent glyphs`.
+
+    Raises:
+        ValueError: If a Refer line points to an encoding missing in the same SFD.
+
+    Example:
+        parse_sfd_refer_dependencies(Path("src/ufo/glyf/Quicksand-VariableFont_wght-W300.ufo.sfd"))
+    """
+
+    lines = sfd_path.read_text(encoding="utf-8").splitlines()
+    glyph_by_encoding: Dict[int, str] = {}
+    glyph_refer_encodings: Dict[str, Set[int]] = {}
+    refer_reverse: Dict[str, Set[str]] = {}
+
+    current_glyph: Optional[str] = None
+    for line in lines:
+        if line.startswith("StartChar: "):
+            current_glyph = line.split(": ", 1)[1].strip()
+            glyph_refer_encodings.setdefault(current_glyph, set())
+            continue
+        if line == "EndChar":
+            current_glyph = None
+            continue
+        if current_glyph is None:
+            continue
+        if line.startswith("Encoding: "):
+            parts = line.split(": ", 1)[1].split()
+            if parts:
+                encoding = int(parts[0])
+                glyph_by_encoding[encoding] = current_glyph
+            continue
+        if line.startswith("Refer: "):
+            parts = line.split()
+            if len(parts) >= 2:
+                refer_encoding = int(parts[1])
+                glyph_refer_encodings[current_glyph].add(refer_encoding)
+
+    for dependent_glyph, refer_encodings in glyph_refer_encodings.items():
+        for refer_encoding in refer_encodings:
+            base_glyph = glyph_by_encoding.get(refer_encoding)
+            if base_glyph is None:
+                raise ValueError(
+                    f"Invalid Refer encoding {refer_encoding} in {sfd_path} for glyph {dependent_glyph}"
+                )
+            refer_reverse.setdefault(base_glyph, set()).add(dependent_glyph)
+    return refer_reverse
+
+
+def validate_refer_dependencies_consistency(
+    sfd_paths: List[Path],
+    seed_glyph_names: List[str],
+) -> Dict[str, Set[str]]:
+    """Summary: Validate Refer dependencies are identical across all SFD masters for reachable seed chains.
+
+    Args:
+        sfd_paths: Master SFD paths.
+        seed_glyph_names: Root glyph names from glyf_update.txt used to scope validation.
+
+    Returns:
+        Dict[str, Set[str]]: Master-consistent reverse Refer mapping.
+
+    Raises:
+        ValueError: If any glyph Refer dependency set differs between masters.
+
+    Example:
+        validate_refer_dependencies_consistency([Path("W300.sfd"), Path("W700.sfd")], ["a"])
+    """
+
+    if not sfd_paths:
+        return {}
+
+    per_master_dependencies: Dict[Path, Dict[str, Set[str]]] = {
+        sfd_path: parse_sfd_refer_dependencies(sfd_path) for sfd_path in sfd_paths
+    }
+    mismatch_lines: List[str] = []
+    first_problem_glyph: Optional[str] = None
+    first_problem_base: Optional[str] = None
+    baseline_path = sfd_paths[0]
+    baseline = per_master_dependencies[baseline_path]
+    validated_reverse_dependencies: Dict[str, Set[str]] = {}
+    pending: Deque[str] = deque(seed_glyph_names)
+    visited: Set[str] = set()
+
+    while pending:
+        base_glyph = pending.popleft()
+        if base_glyph in visited:
+            continue
+        visited.add(base_glyph)
+
+        baseline_dependents = baseline.get(base_glyph, set())
+        mismatch_found = False
+        union_dependents: Set[str] = set(baseline_dependents)
+        for sfd_path in sfd_paths[1:]:
+            current_dependents = per_master_dependencies[sfd_path].get(base_glyph, set())
+            union_dependents.update(current_dependents)
+            if current_dependents != baseline_dependents:
+                mismatch_found = True
+                only_in_baseline = sorted(baseline_dependents - current_dependents)
+                only_in_current = sorted(current_dependents - baseline_dependents)
+                if first_problem_glyph is None:
+                    first_candidates = only_in_baseline + only_in_current
+                    if first_candidates:
+                        first_problem_glyph = first_candidates[0]
+                        first_problem_base = base_glyph
+                mismatch_lines.append(
+                    f"- base glyph {base_glyph!r} referenced_by mismatch: "
+                    f"only_in_{baseline_path.name}({len(only_in_baseline)}): {only_in_baseline}; "
+                    f"only_in_{sfd_path.name}({len(only_in_current)}): {only_in_current}"
+                )
+
+        for dependent in sorted(union_dependents):
+            if dependent not in visited:
+                pending.append(dependent)
+        if not mismatch_found:
+            validated_reverse_dependencies[base_glyph] = set(baseline_dependents)
+
+    if mismatch_lines:
+        first_problem_line = ""
+        if first_problem_glyph is not None and first_problem_base is not None:
+            first_problem_line = (
+                f"First problematic glyph: {first_problem_glyph!r} "
+                f"(in referenced_by of base glyph {first_problem_base!r}).\n"
+            )
+        raise ValueError(
+            "Reverse Refer dependencies (which glyphs reference a base glyph) differ across masters.\n"
+            f"Total mismatches: {len(mismatch_lines)}\n"
+            + first_problem_line
+            + "\n".join(mismatch_lines)
+            + "\nNote: this does NOT mean the base glyph references those glyphs; it means those glyphs reference the base glyph."
+        )
+
+    return validated_reverse_dependencies
+
+
+def expand_glyph_names_by_refer_dependencies(
+    seed_glyph_names: List[str],
+    refer_dependencies: Dict[str, Set[str]],
+) -> List[str]:
+    """Summary: Recursively expand glyph names by reverse Refer dependencies.
+
+    Args:
+        seed_glyph_names: Initial glyph names from glyf_update.txt.
+        refer_dependencies: Mapping `base_glyph -> dependent glyphs`.
+
+    Returns:
+        List[str]: Expanded glyph list with deterministic order and no duplicates.
+
+    Example:
+        expand_glyph_names_by_refer_dependencies(["a"], {"a": {"amacron"}})
+    """
+
+    expanded: List[str] = list(seed_glyph_names)
+    seen: Set[str] = set(seed_glyph_names)
+    queue: Deque[str] = deque(seed_glyph_names)
+
+    while queue:
+        glyph_name = queue.popleft()
+        for dependent in sorted(refer_dependencies.get(glyph_name, set())):
+            if dependent in seen:
+                continue
+            seen.add(dependent)
+            expanded.append(dependent)
+            queue.append(dependent)
+
+    return expanded
+
+
+def read_modified_list(modified_list_path: Path, sfd_paths: List[Path], auto_expand_refer_glyphs: bool) -> List[str]:
+    """Summary: Read glyph names from glyf_update.txt and optionally auto-expand Refer dependencies.
+
+    Args:
+        modified_list_path: Path to glyf_update.txt.
+        sfd_paths: SFD master paths used for Refer dependency analysis.
+        auto_expand_refer_glyphs: Whether to recursively include Refer dependents.
+
+    Returns:
+        List[str]: Glyph names in file order plus optional dependency expansion.
+
+    Raises:
+        ValueError: If Refer dependencies are inconsistent across masters.
+
+    Example:
+        read_modified_list(Path("src/ufo/glyf_update.txt"), [Path("W300.sfd"), Path("W700.sfd")], True)
+    """
+
+    seed_glyph_names = read_seed_modified_list(modified_list_path)
+    if not auto_expand_refer_glyphs:
+        return seed_glyph_names
+
+    refer_dependencies = validate_refer_dependencies_consistency(sfd_paths, seed_glyph_names)
+    return expand_glyph_names_by_refer_dependencies(seed_glyph_names, refer_dependencies)
 
 
 def extract_weight_token(path: Path) -> Optional[str]:
@@ -886,7 +1101,7 @@ def main() -> int:
         validate_args(input_dir, with_font, output_ttf, args.autohint, ttfautohint_exe)
         sfd_paths = find_sfd_inputs(input_dir)
         glyph_update_path = resolve_glyph_update_path(input_dir)
-        modified_glyphs = read_modified_list(glyph_update_path)
+        modified_glyphs = read_modified_list(glyph_update_path, sfd_paths, args.auto_expand_refer_glyphs)
         if not modified_glyphs:
             eprint(f"Warning: glyph update list is empty: {glyph_update_path}")
 
