@@ -181,7 +181,10 @@
   - `pairs_updated`
 - `pairs_skipped`
 - `classes_split`
+- 需同時處理 `PairPos format 1` 與 `PairPos format 2`；當 `format 1` 不存在目標 pair 時可補建該 pair 再套用 `xAdvance`。
+- 需支援 `LookupType 9 (Extension Positioning)` 中包裝的 `PairPos`（`ExtensionLookupType = 2`）。
 - 若 pair 原本落在 class-based kern，需只覆蓋指定 pair，不可改壞同 class 其他 pair。
+- 當 `left/right` glyph 未直接出現在 classDef，但屬於 i 聲調小寫（`iacute/igrave/icircumflex/uni01D0/imacron/ibreve`）時，允許以 `i`（其次 `dotlessi`）的 class 作為 fallback 後再套用 override。
 
 ## function：ensure_case_ligatures_in_final_gsub
 - 實作位置：`src\py\fonttool_fix_cmap.py`
@@ -223,7 +226,7 @@ step 1. 在 `W300`、`W700` 的 SFD 都新增 glyph `ecircumflexuni030C`（`Enco
 step 2. 在 `W300`、`W700` 都完成 `ecircumflexuni030C` 字形。  
 step 3. 在 `glyf_update.txt` 加入 `ecircumflexuni030C`（若有改 `ecircumflex` / `uni030C` 也一起列）。  
 step 4. 建立規則檔：`C:\Users\jeffreyx\Documents\git\quicksand_pinyin\src\json\fonttool_fix_cmap_rules.json`。  
-step 5. 在規則 JSON 增加一行設定，例如：`{"from":["ecircumflex","uni030C"],"to":"ecircumflex_uni030C"}`。若是大寫組合（例如 `Ecircumflex + uni030C`），要同時加 `.case` 規則：`{"from":["Ecircumflex","uni030C.case"],"to":"Ecircumflex_uni030C"}`。若是底線加上 U+0307，則加入：`{"from":["underscore","uni0307"],"to":"underscore_uni0307"}`。  
+step 5. 在規則 JSON 增加一行設定，例如：`{"from":["ecircumflex","uni030C"],"to":"ecircumflex_uni030C"}`。若是大寫組合（例如 `Ecircumflex + uni030C`），要同時加 `.case` 規則：`{"from":["Ecircumflex","uni030C.case"],"to":"Ecircumflex_uni030C"}`。若是底線加上 U+0307，則加入：`{"from":["underscore","uni0307"],"to":"underscore_uni0307"}`。若要補 `uni030A` 組合，則加入：`{"from":["Y","uni030A"],"to":"Y_uni030A"}`、`{"from":["I","uni030A"],"to":"I_uni030A"}`、`{"from":["O","uni030A"],"to":"O_uni030A"}`、`{"from":["Y","uni030A.case"],"to":"Y_uni030A"}`、`{"from":["I","uni030A.case"],"to":"I_uni030A"}`、`{"from":["O","uni030A.case"],"to":"O_uni030A"}`、`{"from":["i","uni030A"],"to":"i_uni030A"}`、`{"from":["dotlessi","uni030A"],"to":"i_uni030A"}`、`{"from":["o","uni030A"],"to":"o_uni030A"}`、`{"from":["m","gravecomb"],"to":"m_gravecomb"}`、`{"from":["m","gravecomb.case"],"to":"m_gravecomb"}`。  
 step 6. 執行 `ufo_merge.bat`。  
 step 7. `ufo_merge.py` 先做 glyph merge 並產出中繼 TTF。  
 step 8. `fonttool_fix_cmap.py` 讀取 rules JSON，並在 `GSUB.lookups.lookup_ccmp_6`（`type = gsub_ligature`）加入 substitution：`{"from":["ecircumflex","uni030C"],"to":"ecircumflexuni030C"}`。  
