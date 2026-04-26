@@ -364,6 +364,10 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- right side rotate 10 clockwise
 		- move  left head 2 step up, 1 step left
 		- move  right head 2 step up, 1 step right
+		- move  left head 2 step left
+		- move  right head 2 step right
+		- move all up 1 step
+		- anchor move down 1 step
 	- uni030C.case
 	
 	- uni0302
@@ -390,6 +394,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 			- bottom 5 steps
 			
 		- (700) anchor bottom alignment (right 3 steps)
+		- anchor move down 3 steps
 		
 	- uni0358 is a dot
 		- copy from uni0307
@@ -1401,3 +1406,31 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	
 	- ḯ uni1E2F
 		- (300) acutecomb move up 4 steps
+		
+	- āēīōūȳn̄
+		- (300) move the ̄ 3 steps up
+		
+	- Ē Emacron
+		- (300) move the ̄ 1 steps left
+	
+	- m̄
+		- (300) move anchor 3 steps down
+		
+	- y̌m̌ň
+	- ǎ uni01CE
+	- ě ecaron
+	- ǐ uni01D0
+	- ǒ uni01D2
+	- ǔ uni01D4
+	
+	- ň ncaron
+		- uni030C move up 1 step, move left 1 step
+		
+	- uni030B
+		- (300) move anchor 5 steps down
+		
+	- uni030B.case
+		- move anchor 3 steps down
+		
+	- ̍
+		- move anchor 3 steps down

@@ -253,3 +253,12 @@ Imacron
 Omacron
 Umacron
 uni1E7A
+amacron.ss01
+uni01CE
+ecaron
+uni01D0
+uni01D2
+uni01D4
+uni01CE.ss01
+ncaron
+uni030B.case
