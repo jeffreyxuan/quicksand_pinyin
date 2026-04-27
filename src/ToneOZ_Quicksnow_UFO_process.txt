@@ -312,6 +312,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 	- acutecomb	
 		- flip from gravecomb instead
+		- make it clockwise
 		
 		#- press the bottom
 		#- clockwise -15 degree
@@ -1434,3 +1435,29 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 	- ̍
 		- move anchor 3 steps down
+		
+	- ( parenleft
+	- ) parenright
+	- { braceleft
+		- fintune the bottom, sharp angle
+		
+	- [ bracketleft
+	- ] bracketright	
+		- top should be a little higher than the top of "b"
+		- bottom should be a little higher than the bottom of "g"
+		
+		- move up 1 steps, then progressively make it taller 5 steps
+		
+	- } braceright
+		- Quicksand was corrupted, bottom is too thin
+		- finetune manually
+		
+	- / slash
+	- / slash.case
+	- \ backslash
+	- \ backslash.case
+		- too tall too wide, upper case should not be different
+		- top should be align with "b"
+		- bottom should be align whith top of the bottom stroke of "]"
+	
+	

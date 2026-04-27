@@ -262,3 +262,17 @@ uni01D4
 uni01CE.ss01
 ncaron
 uni030B.case
+parenleft
+parenright
+braceleft
+braceright
+bracketleft
+bracketright
+parenleft.case
+parenright.case
+braceleft.case
+braceright.case
+bracketleft.case
+bracketright.case
+slash.case
+backslash.case

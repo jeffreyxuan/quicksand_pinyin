@@ -22,7 +22,7 @@ OS2Version: 4
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1774769700
-ModificationTime: 1777200156
+ModificationTime: 1777200834
 PfmFamily: 81
 TTFWeight: 300
 TTFWidth: 5
@@ -319,7 +319,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 750 25 8
+WinInfo: 65500 25 8
 AnchorClass2: "Anchor-0" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-1" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-2" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-3" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-4" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-5" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-6" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-7" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-8" "'mkmk' Mark to Mark in Latin lookup 3 subtable" "Anchor-9" "'mkmk' Mark to Mark in Latin lookup 4 subtable" "Anchor-10" "'mkmk' Mark to Mark in Latin lookup 5 subtable"
 BeginChars: 65695 873
 
@@ -17790,7 +17790,7 @@ StartChar: uni030B
 Encoding: 779 779 741
 Width: 0
 GlyphClass: 4
-Flags: WO
+Flags: W
 AnchorPoint: "Anchor-9" 152 688 basemark 0
 AnchorPoint: "Anchor-9" 152 453 mark 0
 AnchorPoint: "Anchor-6" 152 453 mark 0
@@ -17911,6 +17911,7 @@ EndChar
 StartChar: uni030C
 Encoding: 780 780 744
 Width: 0
+VWidth: 0
 GlyphClass: 4
 Flags: W
 AnchorPoint: "Anchor-9" 157 674 basemark 0
@@ -17920,25 +17921,25 @@ AnchorPoint: "Anchor-0" 157 489 mark 0
 LayerCount: 2
 Fore
 SplineSet
-151 558 m 2,0,1
- 135 558 135 558 127 570 c 2,2,-1
- 46 655 l 2,3,4
- 40 661 40 661 40 667 c 0,5,6
- 40 672 40 672 43.5 675.5 c 128,-1,7
- 47 679 47 679 52 679 c 0,8,9
- 59 679 59 679 71 669 c 2,10,-1
- 162 598 l 1,11,-1
- 151 594 l 1,12,-1
- 241 670 l 2,13,14
- 246 675 246 675 251 677.5 c 128,-1,15
- 256 680 256 680 260 680 c 0,16,17
- 265 680 265 680 268.5 676.5 c 128,-1,18
- 272 673 272 673 272 668 c 0,19,20
- 272 665 272 665 270.5 662 c 128,-1,21
- 269 659 269 659 266 656 c 2,22,-1
- 185 570 l 2,23,24
- 177 558 177 558 161 558 c 2,25,-1
- 151 558 l 2,0,1
+151 568 m 261,0,1
+ 138 568 138 568 132 574 c 261,2,-1
+ 7 664 l 261,3,4
+ 0 669 0 669 -1 675 c 261,5,6
+ -2 680 -2 680 1 684 c 132,-1,7
+ 4 688 4 688 9 689 c 261,8,9
+ 16 690 16 690 29 682 c 261,10,-1
+ 162 604 l 261,11,-1
+ 151 604 l 261,12,-1
+ 283 683 l 261,13,14
+ 289 687 289 687 294 688.5 c 132,-1,15
+ 299 690 299 690 303 690 c 261,16,17
+ 308 689 308 689 311 685 c 132,-1,18
+ 314 681 314 681 313 676 c 261,19,20
+ 312 673 312 673 310 670.5 c 132,-1,21
+ 308 668 308 668 305 665 c 261,22,-1
+ 180 574 l 261,23,24
+ 174 568 174 568 161 568 c 261,25,-1
+ 151 568 l 261,0,1
 EndSplineSet
 Substitution2: "'case' Case-Sensitive Forms in Latin lookup 35 subtable" uni030C.case
 Substitution2: "Single Substitution lookup 7 subtable" uni030C.case
@@ -19000,12 +19001,34 @@ StartChar: uni030C.case
 Encoding: 65634 -1 785
 Width: 0
 GlyphClass: 4
-Flags: W
+Flags: WO
 AnchorPoint: "Anchor-9" 157 812 basemark 0
 AnchorPoint: "Anchor-9" 157 652 mark 0
 AnchorPoint: "Anchor-6" 157 652 mark 0
 AnchorPoint: "Anchor-0" 157 652 mark 0
 LayerCount: 2
+Back
+SplineSet
+151 724 m 261,0,1
+ 138 724 138 724 132 730 c 261,2,-1
+ 7 820 l 261,3,4
+ 0 825 0 825 -1 831 c 261,5,6
+ -2 836 -2 836 1 840 c 132,-1,7
+ 4 844 4 844 9 845 c 261,8,9
+ 16 846 16 846 29 838 c 261,10,-1
+ 162 760 l 261,11,-1
+ 151 760 l 261,12,-1
+ 283 839 l 261,13,14
+ 289 843 289 843 294 844.5 c 132,-1,15
+ 299 846 299 846 303 846 c 261,16,17
+ 308 845 308 845 311 841 c 132,-1,18
+ 314 837 314 837 313 832 c 261,19,20
+ 312 829 312 829 310 826.5 c 132,-1,21
+ 308 824 308 824 305 821 c 261,22,-1
+ 180 730 l 261,23,24
+ 174 724 174 724 161 724 c 261,25,-1
+ 151 724 l 261,0,1
+EndSplineSet
 Fore
 SplineSet
 151 747 m 1,0,-1
