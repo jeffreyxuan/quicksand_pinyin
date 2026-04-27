@@ -7,6 +7,7 @@ set "OUTPUT_FILE=_output\ToneOZ-Quicksnow.ttf"
 set "WOFF2_OUTPUT_FILE=_output\ToneOZ-Quicksnow.woff2"
 set "PUBLISH_DIR=C:\Users\jeffreyx\Documents\git\peruseFont_mengshen\res\fonts\varwidetest"
 set "DEMO_DIR=src\demo_quicksnow"
+set "IME_CLIENT_FONT_DIR=C:\Users\jeffreyx\Documents\git\peruse2021\client\font"
 set "STATIC_OUTPUT_FILE=_output\static_instances\ToneOZ-Quicksnow-W450.ttf"
 set "PUBLISH_STATIC_DIR1=C:\Users\jeffreyx\Documents\git\peruseFont_mengshen\res\fonts\varwide_arplkaisimplified"
 set "PUBLISH_STATIC_DIR2=C:\Users\jeffreyx\Documents\git\peruseFont_mengshen\res\fonts\varwide_arplkaitraditonal"
@@ -66,6 +67,13 @@ if errorlevel 1 (
 )
 
 copy /Y "%WOFF2_OUTPUT_FILE%" "%DEMO_DIR%\"
+if errorlevel 1 (
+    set ERR=%errorlevel%
+    popd
+    exit /b %ERR%
+)
+
+copy /Y "%WOFF2_OUTPUT_FILE%" "%IME_CLIENT_FONT_DIR%\"
 if errorlevel 1 (
     set ERR=%errorlevel%
     popd

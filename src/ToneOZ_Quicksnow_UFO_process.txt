@@ -1453,11 +1453,31 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- finetune manually
 		
 	- / slash
-	- / slash.case
-	- \ backslash
-	- \ backslash.case
 		- too tall too wide, upper case should not be different
-		- top should be align with "b"
+		- top should be align with "b"		
+		- copy from |
+		
+		- (300) move top head down 18 steps
+		- (300) rotate 21 clockwise
+		- (300) width 507 -> 337
+		
+		- (700) move top head down 6 steps
+		- (700) rotate 21 clockwise
+		- (700) width 568 -> 408		
+		
+		- move bottom down 4 step
+		
+	- / slash.case
+	
+	- \ backslash
+		- (300) was 508
+		- flip from slash
+		- clockwise it
+		
+	- \ backslash.case
+		
+		
+		
 		- bottom should be align whith top of the bottom stroke of "]"
 	
 	

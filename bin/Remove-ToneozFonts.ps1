@@ -11,7 +11,8 @@ $Prefixes = @(
   "Toneoz",
   "LXGW",
   ([string][char]0x6FB3),                             # 澳
-  (([string][char]0x3105) + ([string][char]0x6FB3))   # ㄅ澳
+  (([string][char]0x3105) + ([string][char]0x6FB3)),   # ㄅ澳
+  ([string][char]0x66C9)                              # 曉
 )
 
 $RegPaths = @(

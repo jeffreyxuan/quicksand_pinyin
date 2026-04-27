@@ -274,5 +274,7 @@ braceleft.case
 braceright.case
 bracketleft.case
 bracketright.case
+slash
+backslash
 slash.case
 backslash.case
