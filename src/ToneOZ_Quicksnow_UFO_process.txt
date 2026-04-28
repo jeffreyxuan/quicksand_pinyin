@@ -1480,4 +1480,5 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 		- bottom should be align whith top of the bottom stroke of "]"
 	
-	
+	- uni0308
+		-(700) scale 120%
