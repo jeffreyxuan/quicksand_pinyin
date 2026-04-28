@@ -23,7 +23,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1773233665
-ModificationTime: 1777299403
+ModificationTime: 1777365725
 PfmFamily: 16
 TTFWeight: 700
 TTFWidth: 5
@@ -1673,7 +1673,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 300 25 8
+WinInfo: 625 25 8
 BeginChars: 906 906
 
 StartChar: .notdef
@@ -9284,7 +9284,7 @@ Encoding: 341 299 341
 GlifName: imacron__1
 Width: 236
 VWidth: 0
-Flags: WO
+Flags: W
 LayerCount: 4
 Back
 SplineSet
@@ -9309,13 +9309,13 @@ SplineSet
 EndSplineSet
 Fore
 SplineSet
-30 630 m 262
- -19.9995117188 630 -19.9995117188 630 -20 675 c 260
- -20 718.999511719 -20 718.999511719 30 719 c 262
- 206 719 l 262
- 255.999511719 719 255.999511719 719 256 675 c 260
- 256 630 256 630 206 630 c 262
- 30 630 l 262
+30 630 m 262,0,1
+ -19.9995117188 630 -19.9995117188 630 -20 675 c 260,2,3
+ -20 718.999511719 -20 718.999511719 30 719 c 262,4,-1
+ 206 719 l 262,5,6
+ 255.999511719 719 255.999511719 719 256 675 c 260,7,8
+ 256 630 256 630 206 630 c 262,9,-1
+ 30 630 l 262,0,1
 EndSplineSet
 Refer: 327 305 N 1 0 0 1 0 0 2
 Layer: 2
@@ -21007,8 +21007,8 @@ SplineSet
 EndSplineSet
 Fore
 SplineSet
-169 610 m 257,0,1
- 131 610 131 610 116 624 c 257,2,-1
+179 600 m 257,0,1
+ 142 600 142 600 116 624 c 257,2,-1
  33 691 l 257,3,4
  18 704 18 704 16 720 c 257,5,6
  13 733 13 733 22 742.5 c 128,-1,7
@@ -21024,8 +21024,8 @@ SplineSet
  360 716 360 716 354.5 708 c 128,-1,21
  349 700 349 700 339 689 c 257,22,-1
  258 625 l 257,23,24
- 242 610 242 610 205 610 c 257,25,-1
- 169 610 l 257,0,1
+ 231 600 231 600 195 600 c 257,25,-1
+ 179 600 l 257,0,1
 EndSplineSet
 Layer: 2
 SplineSet

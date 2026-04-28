@@ -1679,6 +1679,38 @@ def _set_pairpos_format1_xadvance(
     return True
 
 
+def _get_pairpos_format1_xadvance(subtable: Any, left: str, right: str) -> int:
+    """Summary: Read one PairPos format-1 pair XAdvance.
+
+    Args:
+        subtable: PairPos format-1 subtable.
+        left: Left glyph name.
+        right: Right glyph name.
+
+    Returns:
+        int: Existing XAdvance; returns 0 when pair/value is absent.
+
+    Example:
+        _get_pairpos_format1_xadvance(subtable, "A", "V")
+    """
+
+    coverage = list(getattr(subtable.Coverage, "glyphs", []) or [])
+    pair_sets = list(getattr(subtable, "PairSet", []) or [])
+    if left not in coverage:
+        return 0
+    left_index = coverage.index(left)
+    if left_index >= len(pair_sets):
+        return 0
+    pair_records = list(getattr(pair_sets[left_index], "PairValueRecord", []) or [])
+    for record in pair_records:
+        if getattr(record, "SecondGlyph", None) != right:
+            continue
+        value1 = getattr(record, "Value1", None)
+        x_advance = getattr(value1, "XAdvance", None) if value1 is not None else None
+        return x_advance if isinstance(x_advance, int) else 0
+    return 0
+
+
 def _load_kern_rules(kern_rules_json: Path) -> List[Dict[str, Any]]:
     """Summary: Load pair override rules from JSON."""
 
@@ -1775,6 +1807,7 @@ def apply_kern_pair_overrides_in_final_gpos(font: TTFont, kern_rules_json: Path)
         "pairs_updated": 0,
         "pairs_skipped": 0,
         "classes_split": 0,
+        "pairs_delta_applied": 0,
     }
     pair_overrides = _load_kern_rules(kern_rules_json)
     if not pair_overrides or "GPOS" not in font:
@@ -1786,11 +1819,19 @@ def apply_kern_pair_overrides_in_final_gpos(font: TTFont, kern_rules_json: Path)
         left = rule.get("left")
         right = rule.get("right")
         x_advance = rule.get("xAdvance")
+        x_advance_delta = rule.get("xAdvanceDelta")
         stats["pairs_requested"] += 1
-        if not isinstance(left, str) or not isinstance(right, str) or not isinstance(x_advance, int):
+        has_absolute = isinstance(x_advance, int)
+        has_delta = isinstance(x_advance_delta, int)
+        if (
+            not isinstance(left, str)
+            or not isinstance(right, str)
+            or has_absolute == has_delta
+        ):
             stats["pairs_skipped"] += 1
             continue
         updated = False
+        delta_applied = False
         for lookup_index in _get_kern_lookup_indices(font):
             if lookup_index < 0 or lookup_index >= len(lookup_records):
                 continue
@@ -1798,8 +1839,16 @@ def apply_kern_pair_overrides_in_final_gpos(font: TTFont, kern_rules_json: Path)
             for subtable in _iter_pairpos_kern_subtables(lookup):
                 fmt = getattr(subtable, "Format", None)
                 if fmt == 1:
-                    if _set_pairpos_format1_xadvance(subtable, left, right, x_advance, glyph_order_map):
+                    if has_delta:
+                        current_x_advance = _get_pairpos_format1_xadvance(subtable, left, right)
+                        target_x_advance = current_x_advance + int(x_advance_delta)
+                    else:
+                        target_x_advance = int(x_advance)
+                    if _set_pairpos_format1_xadvance(subtable, left, right, target_x_advance, glyph_order_map):
                         updated = True
+                    if has_delta:
+                        delta_applied = True
+                        break
                     continue
                 if fmt != 2:
                     continue
@@ -1831,11 +1880,21 @@ def apply_kern_pair_overrides_in_final_gpos(font: TTFont, kern_rules_json: Path)
                     from fontTools.ttLib.tables.otBase import ValueRecord
 
                     value_record.Value1 = ValueRecord()
-                if getattr(value_record.Value1, "XAdvance", None) != x_advance:
-                    value_record.Value1.XAdvance = x_advance
+                current_x_advance = getattr(value_record.Value1, "XAdvance", None)
+                current_x_advance_int = current_x_advance if isinstance(current_x_advance, int) else 0
+                target_x_advance = int(x_advance) if has_absolute else current_x_advance_int + int(x_advance_delta)
+                if current_x_advance_int != target_x_advance:
+                    value_record.Value1.XAdvance = target_x_advance
                     updated = True
+                if has_delta:
+                    delta_applied = True
+                    break
+            if has_delta and delta_applied:
+                break
         if updated:
             stats["pairs_updated"] += 1
+            if has_delta:
+                stats["pairs_delta_applied"] += 1
         else:
             stats["pairs_skipped"] += 1
     return stats
@@ -2217,6 +2276,7 @@ def copy_patched_tables(
         "pairs_updated": 0,
         "pairs_skipped": 0,
         "classes_split": 0,
+        "pairs_delta_applied": 0,
     }
     final_case_ligature_stats = {
         "enabled": 0,
@@ -2391,7 +2451,8 @@ def main() -> int:
         f"pairs_requested={kern_override_stats['pairs_requested']}, "
         f"pairs_updated={kern_override_stats['pairs_updated']}, "
         f"pairs_skipped={kern_override_stats['pairs_skipped']}, "
-        f"classes_split={kern_override_stats['classes_split']}"
+        f"classes_split={kern_override_stats['classes_split']}, "
+        f"pairs_delta_applied={kern_override_stats['pairs_delta_applied']}"
     )
     print(
         "final case ligature stats: "

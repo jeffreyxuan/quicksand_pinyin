@@ -379,6 +379,806 @@
       "left": "Ibreve",
       "right": "Ibreve",
       "xAdvance": 60
+    },
+    {
+      "left": "C",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "E",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "F",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "G",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "I",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "J",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "K",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "S",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "T",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "V",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "W",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "X",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "Y",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "Z",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "f",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "Z",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "Y",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "X",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "W",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "V",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "T",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "I",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "C",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "E",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "F",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "G",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "I",
+      "right": "uni01D0",
+      "xAdvanceDelta": 120
+    },
+    {
+      "left": "J",
+      "right": "uni01D0",
+      "xAdvanceDelta": 120
+    },
+    {
+      "left": "K",
+      "right": "uni01D0",
+      "xAdvanceDelta": 90
+    },
+    {
+      "left": "S",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "T",
+      "right": "uni01D0",
+      "xAdvanceDelta": 90
+    },
+    {
+      "left": "V",
+      "right": "uni01D0",
+      "xAdvanceDelta": 90
+    },
+    {
+      "left": "W",
+      "right": "uni01D0",
+      "xAdvanceDelta": 90
+    },
+    {
+      "left": "X",
+      "right": "uni01D0",
+      "xAdvanceDelta": 90
+    },
+    {
+      "left": "Y",
+      "right": "uni01D0",
+      "xAdvanceDelta": 90
+    },
+    {
+      "left": "Z",
+      "right": "uni01D0",
+      "xAdvanceDelta": 90
+    },
+    {
+      "left": "f",
+      "right": "uni01D0",
+      "xAdvanceDelta": 120
+    },
+    {
+      "left": "uni01D0",
+      "right": "Z",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni01D0",
+      "right": "Y",
+      "xAdvanceDelta": 90
+    },
+    {
+      "left": "uni01D0",
+      "right": "X",
+      "xAdvanceDelta": 90
+    },
+    {
+      "left": "uni01D0",
+      "right": "W",
+      "xAdvanceDelta": 90
+    },
+    {
+      "left": "uni01D0",
+      "right": "V",
+      "xAdvanceDelta": 90
+    },
+    {
+      "left": "uni01D0",
+      "right": "T",
+      "xAdvanceDelta": 90
+    },
+    {
+      "left": "uni01D0",
+      "right": "I",
+      "xAdvanceDelta": 120
+    },
+    {
+      "left": "d",
+      "right": "uni01D0",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "i",
+      "right": "uni01D0",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "j",
+      "right": "uni01D0",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "l",
+      "right": "uni01D0",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "uni01D0",
+      "right": "l",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "uni01D0",
+      "right": "k",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "uni01D0",
+      "right": "i",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "uni01D0",
+      "right": "j",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "uni01D0",
+      "right": "h",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "uni01D0",
+      "right": "b",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "uni01D0",
+      "right": "K",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "C",
+      "right": "iacute",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "S",
+      "right": "iacute",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "iacute",
+      "right": "Y",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "iacute",
+      "right": "X",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "iacute",
+      "right": "W",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "iacute",
+      "right": "V",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "iacute",
+      "right": "T",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "iacute",
+      "right": "I",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "I",
+      "right": "igrave",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "J",
+      "right": "igrave",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "T",
+      "right": "igrave",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "V",
+      "right": "igrave",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "W",
+      "right": "igrave",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "X",
+      "right": "igrave",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "Y",
+      "right": "igrave",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "f",
+      "right": "igrave",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "Y",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "W",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "V",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "E",
+      "right": "iacute",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "F",
+      "right": "iacute",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "I",
+      "right": "iacute",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "J",
+      "right": "iacute",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "K",
+      "right": "iacute",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "T",
+      "right": "iacute",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "V",
+      "right": "iacute",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "X",
+      "right": "iacute",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "W",
+      "right": "iacute",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "Y",
+      "right": "iacute",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "Z",
+      "right": "iacute",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "f",
+      "right": "iacute",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "E",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "F",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "I",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "K",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "S",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "T",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "X",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "i",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "l",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "igrave",
+      "right": "h",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "igrave",
+      "right": "b",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "d",
+      "right": "iacute",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "i",
+      "right": "iacute",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "j",
+      "right": "iacute",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "l",
+      "right": "iacute",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "igrave",
+      "right": "k",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "l",
+      "right": "imacron",
+      "xAdvanceDelta": 30
+    },
+    {
+      "left": "five",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "seven",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "five",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "three",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "seven",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni01D0",
+      "right": "three",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni01D0",
+      "right": "seven",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni01D0",
+      "right": "five",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "three",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "seven",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "seven",
+      "right": "igrave",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "seven",
+      "right": "iacute",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "seven",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "three",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni2070",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni01D0",
+      "right": "uni2070",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni00B9",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni01D0",
+      "right": "uni00B9",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni00B2",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni01D0",
+      "right": "uni00B2",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni00B3",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni01D0",
+      "right": "uni00B3",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni2074",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni01D0",
+      "right": "uni2074",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni2075",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni01D0",
+      "right": "uni2075",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni2076",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni01D0",
+      "right": "uni2076",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni2077",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni01D0",
+      "right": "uni2077",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni2078",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni01D0",
+      "right": "uni2078",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni2079",
+      "right": "uni01D0",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni01D0",
+      "right": "uni2079",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni2070",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "uni2070",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni00B9",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "uni00B9",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni00B2",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "uni00B2",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni00B3",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "uni00B3",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni2074",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "uni2074",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni2075",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "uni2075",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni2076",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "uni2076",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni2077",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "uni2077",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni2078",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "uni2078",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "uni2079",
+      "right": "imacron",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "imacron",
+      "right": "uni2079",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "uni2070",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "uni2076",
+      "xAdvanceDelta": 60
+    },
+    {
+      "left": "igrave",
+      "right": "uni2079",
+      "xAdvanceDelta": 60
     }
   ]
 }
