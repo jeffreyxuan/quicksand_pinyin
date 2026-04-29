@@ -167,7 +167,8 @@
 - `pair_overrides` 每筆至少包含：
   - `left`
   - `right`
-  - `xAdvance`
+  - `xAdvance` 或 `xAdvanceDelta`（二擇一）
+- `xAdvanceDelta` 語意：`new = current + delta`；若目標 pair 原本不存在，視為 `current = 0`。
 - 暫定預設規則：
   - `JJ = -80`
 
@@ -181,7 +182,8 @@
   - `pairs_updated`
 - `pairs_skipped`
 - `classes_split`
-- 需同時處理 `PairPos format 1` 與 `PairPos format 2`；當 `format 1` 不存在目標 pair 時可補建該 pair 再套用 `xAdvance`。
+- `pairs_delta_applied`
+- 需同時處理 `PairPos format 1` 與 `PairPos format 2`；當 `format 1` 不存在目標 pair 時可補建該 pair 再套用 `xAdvance`（或依 `xAdvanceDelta` 計算後套用）。
 - 需支援 `LookupType 9 (Extension Positioning)` 中包裝的 `PairPos`（`ExtensionLookupType = 2`）。
 - 若 pair 原本落在 class-based kern，需只覆蓋指定 pair，不可改壞同 class 其他 pair。
 - 當 `left/right` glyph 未直接出現在 classDef，但屬於 i 聲調小寫（`iacute/igrave/icircumflex/uni01D0/imacron/ibreve`）時，允許以 `i`（其次 `dotlessi`）的 class 作為 fallback 後再套用 override。
