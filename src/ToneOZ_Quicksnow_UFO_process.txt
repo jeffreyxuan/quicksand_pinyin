@@ -350,9 +350,14 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- top move left 3 steps, bottom 3 steps
 		- bottom move right 3 steps, top 2 steps
 		
-		- move right 3 steps
+		- move right 3.5 steps
 		- (300)move up 0.3 steps
 		- (700)move up 2.6 steps
+		
+		20260429
+		- rotate clockwise 10
+		- move up 3 steps
+		- move the head 4 steps up, 5 steps left
 		
 	- gravecomb.case
 		- copy from gravecomb
@@ -369,6 +374,16 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- move  right head 2 step right
 		- move all up 1 step
 		- anchor move down 1 step
+		
+		20260429
+		- move up 2.2 steps
+		- align the height, bottom, top, with gravecomb
+		- wings rotate 10 degree
+		- (300) move head 2 steps up, 1 steps right left
+		- (700) move head 4 steps up, 4 steps right left
+		- wings rotate 10 degree
+		- move head 2 steps up 2 step2 right left
+		
 	- uni030C.case
 	
 	- uni0302
