@@ -22,7 +22,7 @@ OS2Version: 4
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1774769700
-ModificationTime: 1777490280
+ModificationTime: 1777512765
 PfmFamily: 81
 TTFWeight: 300
 TTFWidth: 5
@@ -319,7 +319,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 65500 25 8
+WinInfo: 750 25 8
 AnchorClass2: "Anchor-0" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-1" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-2" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-3" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-4" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-5" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-6" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-7" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-8" "'mkmk' Mark to Mark in Latin lookup 3 subtable" "Anchor-9" "'mkmk' Mark to Mark in Latin lookup 4 subtable" "Anchor-10" "'mkmk' Mark to Mark in Latin lookup 5 subtable"
 BeginChars: 65695 873
 
@@ -17792,9 +17792,9 @@ Width: 0
 GlyphClass: 4
 Flags: W
 AnchorPoint: "Anchor-9" 152 688 basemark 0
-AnchorPoint: "Anchor-9" 152 453 mark 0
-AnchorPoint: "Anchor-6" 152 453 mark 0
-AnchorPoint: "Anchor-0" 152 453 mark 0
+AnchorPoint: "Anchor-9" 152 488 mark 0
+AnchorPoint: "Anchor-6" 152 488 mark 0
+AnchorPoint: "Anchor-0" 152 488 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -18180,11 +18180,11 @@ StartChar: uni030F
 Encoding: 783 783 750
 Width: 0
 GlyphClass: 4
-Flags: W
+Flags: WO
 AnchorPoint: "Anchor-9" 180 679 basemark 0
-AnchorPoint: "Anchor-9" 180 460 mark 0
-AnchorPoint: "Anchor-6" 180 460 mark 0
-AnchorPoint: "Anchor-0" 180 460 mark 0
+AnchorPoint: "Anchor-9" 180 495 mark 0
+AnchorPoint: "Anchor-6" 180 495 mark 0
+AnchorPoint: "Anchor-0" 180 495 mark 0
 LayerCount: 2
 Fore
 SplineSet
@@ -19023,7 +19023,7 @@ StartChar: uni030C.case
 Encoding: 65634 -1 785
 Width: 0
 GlyphClass: 4
-Flags: WO
+Flags: W
 AnchorPoint: "Anchor-9" 157 812 basemark 0
 AnchorPoint: "Anchor-9" 157 652 mark 0
 AnchorPoint: "Anchor-6" 157 652 mark 0

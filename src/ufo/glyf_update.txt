@@ -260,6 +260,7 @@ uni01D2
 uni01D4
 uni01CE.ss01
 ncaron
+uni030B
 uni030B.case
 parenleft
 parenright
@@ -282,3 +283,6 @@ uni03020301
 uni03020300
 uni03020309
 uni03020303
+uni1EC7
+uni1EC3
+uni1EC5

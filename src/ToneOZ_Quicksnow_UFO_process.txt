@@ -421,6 +421,17 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		20260429
 		- move head up 13 steps
 		
+	- uni1EC7
+		20260429
+		- move head up 13 steps
+	- uni1EC3
+		20260429
+		- move head up 13 steps
+	- uni1EC5		
+		20260429
+		- (300) move head up 13 steps
+		- (700) move head up 14 steps
+		
 	- uni03020303
 		20260429
 		- (300)move head up 13 steps
@@ -457,7 +468,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 		- (700) anchor-0 move up 2 steps
 
-	- i̍ i_hungarumlautcomb = dotlessi + uni030B
+	- i̋ i_hungarumlautcomb = dotlessi + uni030B
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name i_hungarumlautcomb。
 		- from dotlessi, Edit -> Copy reference  
 		- paste the reference to i_hungarumlautcomb
@@ -467,7 +478,10 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 		- anchor copied from iacute, adjust height
 		
-	- i̋ i_verticallineabovecomb = uni030D + dotlessi
+		20260429
+		- move uni030B 3 steps down
+		
+	- i̍ i_verticallineabovecomb = uni030D + dotlessi
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name i_verticallineabovecomb。
 		- from dotlessi, Edit -> Copy reference  
 		- paste the reference to i_hungarumlautcomb
@@ -885,6 +899,9 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- delete "v"
 		
 		- anchor copied from á
+		
+		20260429
+		- move uni030B 3 steps down
 	
 	- e̍ = e + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name e_uni030D
@@ -903,6 +920,9 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- delete "v"
 		
 		- anchor copied from e_uni030D
+		
+		20260429
+		- move uni030B 3 steps down
 		
 	- o̍ = o + ̍ (uni030D)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name o_uni030D
@@ -1519,6 +1539,15 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 	- uni030B
 		- (300) move anchor 5 steps down
+		
+		20260429
+		- copied one from uni030D
+		- (300) move head up 2.7 step
+		- (700) move head up 2.6 step
+		- rotate 30 clockwise
+		- align with original uni030B
+		- duplicate
+		- (300) move anchor 3.5 steps up
 		
 	- uni030B.case
 		- move anchor 3 steps down
