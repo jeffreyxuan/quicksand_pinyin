@@ -905,17 +905,17 @@
       "right": "imacron",
       "xAdvanceDelta": 140
     },
-	{
+    {
       "left": "eight",
       "right": "imacron",
       "xAdvanceDelta": 40
     },
-	{
+    {
       "left": "nine",
       "right": "imacron",
       "xAdvanceDelta": 40
     },
-	{
+    {
       "left": "zero",
       "right": "imacron",
       "xAdvanceDelta": 40
@@ -960,17 +960,17 @@
       "right": "seven",
       "xAdvanceDelta": 100
     },
-	{
+    {
       "left": "imacron",
       "right": "eight",
       "xAdvanceDelta": 40
     },
-	{
+    {
       "left": "imacron",
       "right": "nine",
       "xAdvanceDelta": 40
     },
-	{
+    {
       "left": "imacron",
       "right": "zero",
       "xAdvanceDelta": 40
@@ -1369,6 +1369,246 @@
       "left": "imacron",
       "right": "b",
       "xAdvance": 80
+    },
+    {
+      "left": "itilde",
+      "right": "i",
+      "xAdvance": 120
+    },
+    {
+      "left": "i",
+      "right": "itilde",
+      "xAdvance": 120
+    },
+    {
+      "left": "itilde",
+      "right": "iacute",
+      "xAdvance": 120
+    },
+    {
+      "left": "iacute",
+      "right": "itilde",
+      "xAdvance": 120
+    },
+    {
+      "left": "itilde",
+      "right": "igrave",
+      "xAdvance": 120
+    },
+    {
+      "left": "igrave",
+      "right": "itilde",
+      "xAdvance": 120
+    },
+    {
+      "left": "itilde",
+      "right": "uni1EC9",
+      "xAdvance": 120
+    },
+    {
+      "left": "uni1EC9",
+      "right": "itilde",
+      "xAdvance": 120
+    },
+    {
+      "left": "itilde",
+      "right": "imacron",
+      "xAdvance": 200
+    },
+    {
+      "left": "imacron",
+      "right": "itilde",
+      "xAdvance": 200
+    },
+    {
+      "left": "itilde",
+      "right": "uni01D0",
+      "xAdvance": 200
+    },
+    {
+      "left": "uni01D0",
+      "right": "itilde",
+      "xAdvance": 200
+    },
+    {
+      "left": "itilde",
+      "right": "itilde",
+      "xAdvance": 200
+    },
+    {
+      "left": "uni1EC9",
+      "right": "i",
+      "xAdvance": 120
+    },
+    {
+      "left": "i",
+      "right": "uni1EC9",
+      "xAdvance": 120
+    },
+    {
+      "left": "uni1EC9",
+      "right": "iacute",
+      "xAdvance": 120
+    },
+    {
+      "left": "iacute",
+      "right": "uni1EC9",
+      "xAdvance": 120
+    },
+    {
+      "left": "uni1EC9",
+      "right": "igrave",
+      "xAdvance": 120
+    },
+    {
+      "left": "igrave",
+      "right": "uni1EC9",
+      "xAdvance": 120
+    },
+    {
+      "left": "uni1EC9",
+      "right": "imacron",
+      "xAdvance": 200
+    },
+    {
+      "left": "imacron",
+      "right": "uni1EC9",
+      "xAdvance": 200
+    },
+    {
+      "left": "uni1EC9",
+      "right": "uni01D0",
+      "xAdvance": 200
+    },
+    {
+      "left": "uni01D0",
+      "right": "uni1EC9",
+      "xAdvance": 200
+    },
+    {
+      "left": "uni1ECB",
+      "right": "imacron",
+      "xAdvance": 120
+    },
+    {
+      "left": "imacron",
+      "right": "uni1ECB",
+      "xAdvance": 120
+    },
+    {
+      "left": "uni1ECB",
+      "right": "uni01D0",
+      "xAdvance": 120
+    },
+    {
+      "left": "uni01D0",
+      "right": "uni1ECB",
+      "xAdvance": 120
+    },
+    {
+      "left": "uni1ECB",
+      "right": "itilde",
+      "xAdvance": 120
+    },
+    {
+      "left": "itilde",
+      "right": "uni1ECB",
+      "xAdvance": 120
+    },
+    {
+      "left": "uni1ECB",
+      "right": "i",
+      "xAdvance": 120
+    },
+    {
+      "left": "i",
+      "right": "uni1ECB",
+      "xAdvance": 120
+    },
+    {
+      "left": "uni1ECB",
+      "right": "iacute",
+      "xAdvance": 120
+    },
+    {
+      "left": "iacute",
+      "right": "uni1ECB",
+      "xAdvance": 120
+    },
+    {
+      "left": "uni1ECB",
+      "right": "igrave",
+      "xAdvance": 120
+    },
+    {
+      "left": "igrave",
+      "right": "uni1ECB",
+      "xAdvance": 120
+    },
+    {
+      "left": "uni1ECB",
+      "right": "uni1EC9",
+      "xAdvance": 120
+    },
+    {
+      "left": "uni1EC9",
+      "right": "uni1ECB",
+      "xAdvance": 120
+    },
+    {
+      "left": "Itilde",
+      "right": "Iacute",
+      "xAdvance": 60
+    },
+    {
+      "left": "Iacute",
+      "right": "Itilde",
+      "xAdvance": 60
+    },
+    {
+      "left": "Itilde",
+      "right": "Igrave",
+      "xAdvance": 60
+    },
+    {
+      "left": "Igrave",
+      "right": "Itilde",
+      "xAdvance": 60
+    },
+    {
+      "left": "Itilde",
+      "right": "Icircumflex",
+      "xAdvance": 60
+    },
+    {
+      "left": "Icircumflex",
+      "right": "Itilde",
+      "xAdvance": 60
+    },
+    {
+      "left": "Itilde",
+      "right": "uni01CF",
+      "xAdvance": 60
+    },
+    {
+      "left": "uni01CF",
+      "right": "Itilde",
+      "xAdvance": 60
+    },
+    {
+      "left": "Itilde",
+      "right": "Imacron",
+      "xAdvance": 60
+    },
+    {
+      "left": "Imacron",
+      "right": "Itilde",
+      "xAdvance": 60
+    },
+    {
+      "left": "Itilde",
+      "right": "Itilde",
+      "xAdvance": 60
     }
   ]
 }
