@@ -1434,6 +1434,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 	- å aring
 		move up uni02DA
+	- å aring.ss01
 		
 	- ů uring
 		move up uni02DA
@@ -1507,10 +1508,17 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	-	uni1EA5.ss01
 		- (300) acutecomb move up 4 steps
 		- (700) acutecomb move up 8 steps
+		
+		20260429
+		- (300) acutecomb move up 10 steps
+		- (700) acutecomb move up 13 steps
 	
 	- ắ uni1EAF
 	-   uni1EAF.ss01
 		- (300) acutecomb move up 4 steps
+		
+		20260429
+		- (300) uni0306 move down 5.3 steps
 		
 	- ằ uni1EB1
 	-	uni1EB1.ss01
@@ -1521,6 +1529,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	- Ấ uni1EA4
 		- acutecomb.case move up 8 steps
 		
+	- uni1ED3
+	
 		
 	misc 
 	
@@ -1537,7 +1547,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- (300) move anchor 3 steps down
 		
 	- y̌m̌ň
-	- ǎ uni01CE
+	
 	- ě ecaron
 	- ǐ uni01D0
 	- ǒ uni01D2
@@ -1649,3 +1659,67 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	
 	- ucircumflex
 		- (700) uni0302 move down 2 steps
+			
+	- uni1EB7
+	- uni1EB1
+	- uni1EB3
+	- uni1EB5
+	- uni1EB7.ss01
+	- uni1EB1.ss01
+	- uni1EB3.ss01
+	- uni1EB5.ss01
+		- (300) uni0306 move down 5.3 steps
+		
+	- ǎ uni01CE	
+	
+	- uni1EAD
+	- uni1EAD.ss01
+	- uni1EA7
+	- uni1EA7.ss01
+	- uni1EA9
+		- move the question mark to the top
+	- uni1EA9.ss01
+		- move the question mark to the top
+	- uni1EAB
+	- uni1EAB.ss01
+	- uni0201
+	- uni0201.ss01
+	- adieresis
+	- adieresis.ss01
+	- uni1EA3
+	- uni1EA3.ss01
+	- uni0203
+	- uni0203.ss01
+	
+	- uni01FB
+	- uni01FB.ss01
+	
+	- uni1ED5
+	- uni1ED7
+	- uni020D
+	- edieresis
+	- odieresis
+	
+	- uni1EDF
+	- uni1EE1
+	- ohungarumlaut
+	- uni1EED
+	- uni1EEF
+	- uhungarumlaut
+	- uni0217
+	
+	- uni1EAE
+	- uni1EB6
+	- uni1EB0
+	- uni1EB2
+	- uni1EB4
+	- Acircumflex
+	- uni1EA4
+	- uni1EAC
+	- uni1EA6
+	- uni1EA8
+	- uni1EAA
+	- uni0200
+	- Adieresis
+	- uni1EA2
+	- Atilde
