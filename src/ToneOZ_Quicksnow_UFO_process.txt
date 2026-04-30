@@ -388,6 +388,8 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- anchor move up 2.2 steps
 		
 	- uni030C.case
+		20260429
+		- anchor move up 2.2 steps
 	
 	- uni0302
 		- roate by last click
@@ -462,6 +464,9 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 		- anchor copy from uni0307 to relative pos
 		
+		20260429
+		- (300) anchor move down 3 steps
+		
 	- ı dotlessi U+0131
 		- 300 head is higher than j
 		- 300 move down the head 1.5 step
@@ -513,6 +518,10 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- 300 uni0306 is too tall. move the head 2 steps down
 		
 		- (700) anchor-0 move up 9 step2
+		
+		20260409
+		
+		- copied uni0306
 		
 	- ế uni1EBF
 		- acutecomb
@@ -1552,6 +1561,10 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	- uni030B.case
 		- move anchor 3 steps down
 		
+		20260429
+		- copied from uni030B
+		- align the bottom with the original uni030B.case
+		
 	- ̍
 		- move anchor 3 steps down
 		
@@ -1601,3 +1614,35 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 	
 	- uni0308
 		-(700) scale 120%
+	
+	- ̆ uni0306	
+		- move up 6 steps
+		- (300) anchor move left 1 step
+		- scale width 2 step, move head up 2 step
+		- anchor move up 3 steps
+		
+	- uni0306.case
+		- copied from uni0306	
+		- align with original bottom
+		
+	- n
+		- top anchor move left 1 step
+		
+	- abreve
+		- align uni0306
+	- abreve.ss01
+		- align uni0306
+	- ebreve
+		- align uni0306
+	- obreve
+		- align uni0306
+	- ubreve
+		- align uni0306
+	- Abreve
+		- align uni0306	
+	- Ebreve
+		- align uni0306
+	- Obreve
+		- align uni0306
+	- Ubreve
+		- align uni0306

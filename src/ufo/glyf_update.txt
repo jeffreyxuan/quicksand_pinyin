@@ -286,3 +286,15 @@ uni03020303
 uni1EC7
 uni1EC3
 uni1EC5
+uni0306
+uni0306.case
+n
+abreve
+abreve.ss01
+ebreve
+obreve
+ubreve
+Abreve
+Ebreve
+Obreve
+Ubreve
