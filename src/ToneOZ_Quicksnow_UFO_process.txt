@@ -1646,3 +1646,6 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- align uni0306
 	- Ubreve
 		- align uni0306
+	
+	- ucircumflex
+		- (700) uni0302 move down 2 steps

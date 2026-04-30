@@ -22,7 +22,7 @@ OS2Version: 4
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 1
 CreationTime: 1774769700
-ModificationTime: 1777522441
+ModificationTime: 1777523657
 PfmFamily: 81
 TTFWeight: 700
 TTFWidth: 5
@@ -319,7 +319,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 65500 25 8
+WinInfo: 750 25 8
 AnchorClass2: "Anchor-0" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-1" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-2" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-3" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-4" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-5" "'mark' Mark Positioning in Latin lookup 1 subtable" "Anchor-6" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-7" "'mark' Mark Positioning in Latin lookup 2 subtable" "Anchor-8" "'mkmk' Mark to Mark in Latin lookup 3 subtable" "Anchor-9" "'mkmk' Mark to Mark in Latin lookup 4 subtable" "Anchor-10" "'mkmk' Mark to Mark in Latin lookup 5 subtable"
 BeginChars: 65695 873
 
@@ -17721,9 +17721,9 @@ Width: 0
 GlyphClass: 4
 Flags: W
 AnchorPoint: "Anchor-9" 130 781 basemark 0
-AnchorPoint: "Anchor-9" 170 512 mark 0
-AnchorPoint: "Anchor-6" 170 512 mark 0
-AnchorPoint: "Anchor-0" 170 512 mark 0
+AnchorPoint: "Anchor-9" 170 542 mark 0
+AnchorPoint: "Anchor-6" 170 542 mark 0
+AnchorPoint: "Anchor-0" 170 542 mark 0
 LayerCount: 2
 Back
 SplineSet
@@ -17773,9 +17773,9 @@ Width: 0
 GlyphClass: 4
 Flags: W
 AnchorPoint: "Anchor-9" 130 781 basemark 0
-AnchorPoint: "Anchor-9" 80 512 mark 0
-AnchorPoint: "Anchor-6" 80 512 mark 0
-AnchorPoint: "Anchor-0" 80 512 mark 0
+AnchorPoint: "Anchor-9" 80 542 mark 0
+AnchorPoint: "Anchor-6" 80 542 mark 0
+AnchorPoint: "Anchor-0" 80 542 mark 0
 LayerCount: 2
 Back
 SplineSet
@@ -19085,7 +19085,7 @@ StartChar: uni030C.case
 Encoding: 65634 -1 785
 Width: 0
 GlyphClass: 4
-Flags: WO
+Flags: W
 AnchorPoint: "Anchor-9" 196 926 basemark 0
 AnchorPoint: "Anchor-9" 196 722 mark 0
 AnchorPoint: "Anchor-6" 196 722 mark 0
@@ -19723,9 +19723,9 @@ StartChar: uni030D
 Encoding: 781 781 809
 Width: 0
 GlyphClass: 4
-Flags: W
-AnchorPoint: "Anchor-9" 188 520 mark 0
-AnchorPoint: "Anchor-0" 188 520 mark 0
+Flags: WO
+AnchorPoint: "Anchor-9" 188 550 mark 0
+AnchorPoint: "Anchor-0" 188 550 mark 0
 LayerCount: 2
 Fore
 SplineSet

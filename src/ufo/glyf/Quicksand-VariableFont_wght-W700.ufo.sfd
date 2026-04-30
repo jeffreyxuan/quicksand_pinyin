@@ -25,7 +25,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1773233665
-ModificationTime: 1777522012
+ModificationTime: 1777523154
 PfmFamily: 16
 TTFWeight: 700
 TTFWidth: 5
@@ -1675,7 +1675,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 350 25 8
+WinInfo: 375 25 8
 BeginChars: 906 906
 
 StartChar: .notdef
@@ -7026,7 +7026,7 @@ Flags: W
 LayerCount: 6
 Fore
 Refer: 230 89 N 1 0 0 1 0 0 2
-Refer: 789 -1 N 1 0 0 1 77 0 2
+Refer: 789 -1 S 1 0 0 1 77 30 2
 EndChar
 
 StartChar: uni1EF8
@@ -7507,7 +7507,7 @@ SplineSet
 EndSplineSet
 Fore
 Refer: 245 97 N 1 0 0 1 0 0 2
-Refer: 744 780 S 1 0 0 1 118 0 2
+Refer: 744 780 S 1 0 0 1 118 -20 2
 EndChar
 
 StartChar: acircumflex
@@ -8383,7 +8383,7 @@ Flags: W
 LayerCount: 6
 Fore
 Refer: 289 101 N 1 0 0 1 0 0 2
-Refer: 744 780 S 1 0 0 1 104 0 2
+Refer: 744 780 S 1 0 0 1 104 -20 2
 EndChar
 
 StartChar: uni1E1D
@@ -9253,8 +9253,8 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 327 305 S 1 0 0 1 0 0 2
-Refer: 744 780 S 1 0 0 1 -71 0 2
+Refer: 327 305 N 1 0 0 1 0 0 2
+Refer: 744 780 S 1 0 0 1 -71 -20 2
 EndChar
 
 StartChar: icircumflex
@@ -10467,7 +10467,7 @@ Flags: W
 LayerCount: 6
 Fore
 Refer: 376 111 N 1 0 0 1 0 0 2
-Refer: 744 780 N 1 0 0 1 123 0 2
+Refer: 744 780 S 1 0 0 1 123 -20 2
 EndChar
 
 StartChar: ocircumflex
@@ -11871,7 +11871,7 @@ Flags: W
 LayerCount: 6
 Fore
 Refer: 444 117 N 1 0 0 1 0 0 2
-Refer: 744 780 S 1 0 0 1 105 -10 2
+Refer: 744 780 S 1 0 0 1 105 -30 2
 EndChar
 
 StartChar: ucircumflex
@@ -11879,11 +11879,11 @@ Encoding: 448 251 448
 GlifName: ucircumflex__1
 Width: 587
 VWidth: 0
-Flags: W
+Flags: WO
 LayerCount: 6
 Fore
 Refer: 444 117 N 1 0 0 1 0 0 2
-Refer: 743 770 N 1 0 0 1 110 0 2
+Refer: 743 770 S 1 0 0 1 110 -20 2
 EndChar
 
 StartChar: uni0215

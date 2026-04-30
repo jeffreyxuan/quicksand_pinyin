@@ -298,3 +298,4 @@ Abreve
 Ebreve
 Obreve
 Ubreve
+ucircumflex
