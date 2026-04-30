@@ -1,9 +1,11 @@
 W300 UFO, select "Round to Int" during rotate, rotate by Last press	
 	- uni0304
 		- (300) reduce height , bottom and middle move up 0.2 steps, make top and bottom height the same
-		
+		- increase width, left 2 steps, right 2 steps
+				
 	- uni0304.case
 		- (300) reduce height , bottom and middle move up 0.2 steps, make top and bottom height the same
+		- increase width, left 2 steps, right 2 steps
 		
 	- a
 		- copy o
@@ -383,6 +385,7 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- (700) move head 4 steps up, 4 steps right left
 		- wings rotate 10 degree
 		- move head 2 steps up 2 step2 right left
+		- anchor move up 2.2 steps
 		
 	- uni030C.case
 	
@@ -393,11 +396,35 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- move  left head 2 step down, 1 step left
 		- move  right head 2 step down, 1 step right
 		
+		20260429
+		- flip uni030C
+		- clockwise		
+		
 	- uni0302.case
+	
+		20260429
+		- flip uni030C
+		- clockwise
+		
 		
 	- uni03020301
 		- (300) move acutecomb to left 21 steps
 		- (700) move acutecomb to left 27 steps up 3 steps
+		20260429
+		- move head up 13 steps
+		
+	- uni03020300
+		20260429
+		- move head up 13 steps
+		
+	- uni03020309
+		20260429
+		- move head up 13 steps
+		
+	- uni03020303
+		20260429
+		- (300)move head up 13 steps
+		- (700)move head up 14 steps
 		
 	- uni030D ̍
 		- copy from uni030C ???? uni0300 ???
@@ -411,6 +438,11 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 			
 		- (700) anchor bottom alignment (right 3 steps)
 		- anchor move down 3 steps
+		
+		20260429
+		- move up 3.2 steps
+		- (300) move head up 5.6 steps
+		- (700) move head up 4.4 steps
 		
 	- uni0358 is a dot
 		- copy from uni0307
@@ -455,6 +487,9 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 		- anchor no change
 		
+		20260429
+		- reference to uni0304 instead, make them same width
+		
 	- ĭ ibreve U+012D
 		- due to in 700, the top is too low, we need to modify both 300 and 700
 		- copy uni0306 to replace the reference
@@ -471,12 +506,20 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 			
 		- (300) anchor-0 move up 13 steps
 		- (700) anchor-0 move up 20 steps
+		
+		20260429
+		- (300) move acutecomb up 7 steps
+		- (700) move acutecomb up 10 steps
 	
 	- ề uni1EC1
 		- gravecomb
 			visually same hight with ế acutecomb
 		- (300) anchor-0 move up 12 steps
 		- (700) anchor-0 move up 22 steps
+		
+		20260429
+		- (300) move gravecomb up 7 steps
+		- (700) move gravecomb up 10 steps
 			
 	- Ế uni1EBE
 		- remove acutecomb.case
@@ -484,11 +527,19 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 		- align anchor-0 to the top
 		
+		20260429
+		- (300) move acutecomb up 7 steps
+		- (700) move acutecomb up 10 steps
+		
 	- Ề uni1EC0
 		- remove gravecomb.case
 		- add gravecomb
 		
 		- align anchor-0 to the top
+		
+		20260429
+		- (300) move gravecomb up 7 steps
+		- (700) move gravecomb up 10 steps
 		
 		
 	- Á Aacute
@@ -716,6 +767,10 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 		- anchor copied from uni1EBF
 		
+		20260429
+		- move ̌ down 3 steps
+		- move ̌ up 10 steps
+		
 	- ê̄  = ê (ecircumflex) + ̄ (uni0304)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name ecircumflex_uni0304。
 		- copy from ê̌
@@ -725,6 +780,10 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- delete ̌
 		
 		- anchor copied from uni1EBF
+		
+		20260429
+		- (300)move ̄ up 10 steps
+		- (700)move ̄ up 13 steps
 		
 	- Ê̌  = Ê (Ecircumflex) + ̌ (uni030C.case)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ecircumflex_uni030C。
@@ -738,6 +797,9 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 		- anchor copied from uni1EBE
 		
+		20260429
+		- move ̌ up 10 steps
+		
 	- Ê̄  = Ê (Ecircumflex) + ̄ (uni0304.case)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name Ecircumflex_uni0304。
 		- copy from Ê̌
@@ -749,6 +811,10 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- delete acutecomb
 		
 		- anchor copied from uni1EBE
+		
+		20260429
+		- (300)move ̄ up 10 steps
+		- (700)move ̄ up 13 steps
 	
 	- n̄  = n + ̄ (uni0304)
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name n_uni0304。
@@ -1105,6 +1171,9 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 		- anchor copied from ế, adjust top height
 		
+		20260429
+		- move gravecomb down 3 steps
+		
 	- ǚ U+01DA
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01DA
 		- reference from ü U+00FC
@@ -1114,6 +1183,9 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		
 		- anchor copied from ế, adjust top height
 		
+		20260429
+		- move uni030C down 3 steps
+		
 	- ǜ U+01DC
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01DC
 		- reference from ü U+00FC
@@ -1122,6 +1194,9 @@ W300 UFO, select "Round to Int" during rotate, rotate by Last press
 		- (700)move head down 3 steps,
 		
 		- anchor copied from ế, adjust top height
+		
+		20260429
+		- move acutecomb down 3 steps
 		
 	- Ǖ U+01D5
 		- Encoding -> Add Encoding Slots，並於 Glyph Info 設定 Glyph Name uni01D5

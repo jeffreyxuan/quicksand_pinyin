@@ -208,7 +208,6 @@ six.dnom
 uni2076
 seven.dnom
 uni2077
-uni03020301
 uni030C
 uni030C.case
 uni0302
@@ -279,3 +278,7 @@ backslash
 slash.case
 backslash.case
 uni0308
+uni03020301
+uni03020300
+uni03020309
+uni03020303
