@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
   <meta charset="utf-8">
@@ -15,16 +15,16 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Quicksnow 快雪時晴拼音">
 <meta property="og:description" content="實現如教科書般的閱讀體驗，涵蓋多種教學用羅馬拼音字符，為拼音教材與標音排版提供更清楚、自然、易讀的字體選擇。">
-<meta property="og:image" content="img/ogimg_toneoz-quicksnow-fb07.jpg?v=20260429">
+<meta property="og:image" content="img/ogimg_toneoz-quicksnow-fb07.jpg?v=20260501-3">
 
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Quicksnow 快雪時晴拼音">
 <meta name="twitter:description" content="實現如教科書般的閱讀體驗，涵蓋多種教學用羅馬拼音字符，為拼音教材與標音排版提供更清楚、自然、易讀的字體選擇。">
-<meta name="twitter:image" content="img/ogimg_toneoz-quicksnow-fb07.jpg?v=20260429">
+<meta name="twitter:image" content="img/ogimg_toneoz-quicksnow-fb07.jpg?v=20260501-3">
   <style>
     @font-face {
       font-family: "ToneOZ Quicksnow";
-      src: url("./ToneOZ-Quicksnow.woff2?v=20260430") format("truetype");
+      src: url("./ToneOZ-Quicksnow.woff2?v=20260501-3") format("truetype");
       font-weight: 300 700;
       font-style: normal;
       font-display: swap;
@@ -178,9 +178,12 @@
     }
 	.demotext{
 		font-size:36px;
-		line-height: 1.4;
+		line-height: 1.2;
 		padding-bottom:12px;
 		display:inline-block;
+	}
+	.demotext-tall{
+		line-height: 1.4;
 	}
 
     .sample-text.weight-300 { font-weight: 300; }
@@ -234,13 +237,50 @@
     .toolbox {
 	  white-space: nowrap;
     }
+    .weight-controls {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      width: 100%;
+    }
+    .weight-controls-left {
+      flex: 1 1 0;
+      min-width: 0;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      align-content: flex-start;
+      max-height: calc((30px * 2) + 6px);
+      overflow: hidden;
+    }
+    .weight-controls-right {
+      flex: 0 1 auto;
+      width: fit-content;
+      margin-left: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-end;
+      gap: 2px;
+      max-height: calc((22px * 2) + 2px);
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .weight-stack {
+      
+    }
+    .weight-meta {
+      margin-top: -7px;
+      line-height: 1.2;
+    }
     .weight-button, .download-button {
-      padding: 6px 10px;
+      padding: 2px 6px;
       border: 1px solid rgba(30, 27, 24, 0.16);
       border-radius: 999px;
       background: rgba(255, 255, 255, 0.75);
       color: var(--ink);
       font-size:12px;
+	  font-weight:600;
 	  font-family: "ToneOZ Quicksnow";
       cursor: pointer;
     }
@@ -249,9 +289,16 @@
       border-color: var(--accent);
       color: #fff;
     }
+    .font-size-button {
+      min-width: 2.4em;	  
+      text-align: center;
+    }
     .weight-range {
 	  vertical-align:middle;
-      width: min(60px, 100%);
+      display: block;
+      margin: 0;
+      width:100%;
+	  max-width:330px;
       accent-color: var(--accent);
       cursor: pointer;
     }
@@ -280,16 +327,28 @@
 	  <span class="linkbox"><a href="https://toneoz.com/blog/quicksnow">Download Font</a></span>
 	  <span class="toolbox">澳聲通「快雪時晴」</span> 
 	  <br>
+	  <span>		
+        <button class="weight-button" type="button" data-weight="300">Light</button>
+        <button class="weight-button is-active" type="button" data-weight="400">Regular</button>
+        <button class="weight-button" type="button" data-weight="500">Medium</button>
+        <button class="weight-button" type="button" data-weight="600">Semi-Bold</button>
+        <button class="weight-button" type="button" data-weight="700">Bold</button>				
+		<span class="weight-range-label">400</span>
+		<span class="weight-stack">
+		  <input class="weight-range" type="range" min="300" max="700" step="1" value="400">          
+		</span>
 	  
-        <button class="weight-button" type="button" data-weight="300">300 Light</button>
-        <button class="weight-button is-active" type="button" data-weight="400">400 Regular</button>
-        <button class="weight-button" type="button" data-weight="500">500 Medium</button>
-        <button class="weight-button" type="button" data-weight="600">600 Semi-Bold</button>
-        <button class="weight-button" type="button" data-weight="700">700 Bold</button>				
-      
-	  <span class="toolbox">
-        <span class="subtitle">Weight</span><span class="weight-range-label">400</span><input class="weight-range" type="range" min="300" max="700" step="1" value="400">
-        
+	  </span>
+	  <span class="font_size_wraper">
+		<span class="subtitle">Font size</span>
+        <button class="weight-button font-size-button" type="button" data-font-size="8">8</button>
+        <button class="weight-button font-size-button" type="button" data-font-size="12">12</button>
+        <button class="weight-button font-size-button" type="button" data-font-size="16">16</button>
+        <button class="weight-button font-size-button" type="button" data-font-size="20">20</button>
+        <button class="weight-button font-size-button" type="button" data-font-size="24">24</button>
+        <button class="weight-button font-size-button" type="button" data-font-size="28">28</button>
+        <button class="weight-button font-size-button" type="button" data-font-size="32">32</button>
+        <button class="weight-button font-size-button is-active" type="button" data-font-size="36">36</button>
 	  </span>
 	  
     </section>
@@ -409,8 +468,7 @@ http://toneoz C:\Windows
           <article class="sample">
 		  <div class="weight-400 sample-text">
 <span class="subtitle">漢語拼音</span><br>
-<span style="font-size:8px !important;" class="demotext" contenteditable>āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜêê̄ếê̌ềm̄ḿm̌m̀n̄ńňǹ ĀÁǍÀĒÉĚÈĪÍǏÌŌÓǑÒŪÚǓÙÜǕǗǙǛÊÊ̄ẾÊ̌ỀM̄ḾM̌M̀N̄ŃŇǸ</span><br>
-<span class="demotext" contenteditable>āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜêê̄ếê̌ềm̄ḿm̌m̀n̄ńňǹ ĀÁǍÀĒÉĚÈĪÍǏÌŌÓǑÒŪÚǓÙÜǕǗǙǛÊÊ̄ẾÊ̌ỀM̄ḾM̌M̀N̄ŃŇǸ</span><br>
+<span class="demotext demotext-tall" contenteditable>āáǎàēéěèīíǐìōóǒòūúǔùüǖǘǚǜêê̄ếê̌ềm̄ḿm̌m̀n̄ńňǹ ĀÁǍÀĒÉĚÈĪÍǏÌŌÓǑÒŪÚǓÙÜǕǗǙǛÊÊ̄ẾÊ̌ỀM̄ḾM̌M̀N̄ŃŇǸ</span><br>
 
 <span class="subtitle">台語組合</span><br>
 <span class="demotext" contenteditable>◌́◌̀◌̂◌̌◌̄◌̍◌̋◌̆◌͘ a̍a̋e̍e̋i̍i̋o̍u̍m̀m̂m̌m̄m̍m̋m̆n̂n̄n̍n̋n̆ A̍A̋E̍E̋I̍I̋O̍U̍M̀M̂M̌M̄M̍M̋M̆N̂N̄N̍N̋N̆</span><br>
@@ -428,7 +486,7 @@ http://toneoz C:\Windows
 <span class="demotext" contenteditable>ŋʼṟéɨʉṞÉƗɄ</span><br>
 
 <span class="subtitle">馬祖福州語</span><br>
-<span class="demotext" contenteditable>āǎáàâēěéèêīǐíìîōǒóòôūǔúùûȳy̌ýỳŷ ĀǍÁÀÂĒĚÉÈÊĪǏÍÌÎŌǑÓÒÔŪǓÚÙÛȲY̌ÝỲŶ</span><br>
+<span class="demotext demotext-tall" contenteditable>āǎáàâēěéèêīǐíìîōǒóòôūǔúùûȳy̌ýỳŷ ĀǍÁÀÂĒĚÉÈÊĪǏÍÌÎŌǑÓÒÔŪǓÚÙÛȲY̌ÝỲŶ</span><br>
 
 <span class="subtitle">客語白話字</span><br>
 <span class="demotext" contenteditable>ṳṳ̂ṳ̀ṳ́ṳ̍ ṲṲ̂Ṳ̀Ṳ́Ṳ̍ ÅE̊I̊O̊ŮY̊ åe̊i̊o̊ůẙ</span><br>
@@ -437,10 +495,12 @@ http://toneoz C:\Windows
 <span class="demotext" contenteditable>aæɛəɪɔʌɚɝː <span style="font-feature-settings:'ss01' 1;">a</span>ɪ<span style="font-feature-settings:'ss01' 1;">a</span>u θʃðʒŋḷṃṇ ‵ʹ͵ˈˌ</span><br>
 
 <span class="subtitle">越南文</span><br>
-<span class="demotext" contenteditable>ăâêôơưđắằẳẵặấầẩẫậếềểễệốồổỗộớờởỡợứừửữự<br>
+<span class="demotext demotext-tall" contenteditable>ăâêôơưđắằẳẵặấầẩẫậếềểễệốồổỗộớờởỡợứừửữự<br>
+<span class="hide">
 ĂÂÊÔƠƯĐẮẰẲẴẶẤẦẨẪẬ<br>
 aáàảãạăắằẳẵặâấầẩẫậbcdđeéèẻẽẹêếềểễệghiíìỉĩịklmnoóòỏõọôốồổỗộơớờởỡợpqrstuúùủũụưứừửữựvxyýỳỷỹỵ<br>
 AÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬBCDĐEÉÈẺẼẸÊẾỀỂỄỆGHIÍÌỈĨỊKLMNOÓÒỎÕỌÔỐỒỔỖỘƠỚỜỞỠỢPQRSTUÚÙỦŨỤƯỨỪỬỮỰVXYÝỲỶỸỴ
+</span>
 </span><br>  
 		  </div>
 		</div>
@@ -450,6 +510,8 @@ AÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬBCDĐEÉÈẺẼẸÊẾỀỂỄ
   <script>
     const sampleTexts = document.querySelectorAll(".sample-text");
     const weightButtons = document.querySelectorAll(".weight-button");
+    const fontSizeButtons = document.querySelectorAll(".font-size-button");
+    const demoTexts = document.querySelectorAll(".demotext");
     const weightRange = document.querySelector(".weight-range");
     const weightRangeLabel = document.querySelector(".weight-range-label");
     const weightClasses = ["weight-300", "weight-400", "weight-500", "weight-600", "weight-700"];
@@ -493,6 +555,33 @@ AÁÀẢÃẠĂẮẰẲẴẶÂẤẦẨẪẬBCDĐEÉÈẺẼẸÊẾỀỂỄ
         updateWeight(weightRange.value);
       });
     }
+
+    function updateDemoTextSize(size) {
+      if (!demoTexts.length) {
+        return;
+      }
+
+      for (const demoText of demoTexts) {
+        demoText.style.fontSize = `${size}px`;
+      }
+
+      for (const button of fontSizeButtons) {
+        const isActive = button.dataset.fontSize === String(size);
+        button.classList.toggle("is-active", isActive);
+      }
+    }
+
+    for (const button of fontSizeButtons) {
+      button.addEventListener("click", () => {
+        const size = button.dataset.fontSize;
+        if (!size) {
+          return;
+        }
+        updateDemoTextSize(size);
+      });
+    }
+
+    updateDemoTextSize(36);
 
     const editableSpans = document.querySelectorAll("[contenteditable]");
 
