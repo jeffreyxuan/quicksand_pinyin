@@ -25,7 +25,7 @@ OS2Version: 0
 OS2_WeightWidthSlopeOnly: 0
 OS2_UseTypoMetrics: 0
 CreationTime: 1773233631
-ModificationTime: 1777628678
+ModificationTime: 1777739177
 PfmFamily: 16
 TTFWeight: 300
 TTFWidth: 5
@@ -1675,7 +1675,7 @@ NameList: AGL For New Fonts
 DisplaySize: -48
 AntiAlias: 1
 FitToEm: 0
-WinInfo: 300 25 8
+WinInfo: 725 25 8
 BeginChars: 906 906
 
 StartChar: .notdef
@@ -10463,7 +10463,7 @@ Encoding: 341 299 341
 GlifName: imacron__1
 Width: 206
 VWidth: 0
-Flags: WO
+Flags: W
 LayerCount: 6
 Back
 SplineSet
@@ -10477,13 +10477,13 @@ SplineSet
 EndSplineSet
 Fore
 SplineSet
--7 602 m 258
- -27 602 -27 602 -27 620 c 256
- -27 638 -27 638 -7 638 c 258
- 213 638 l 262
- 233 638 233 638 233 620 c 260
- 233 602 233 602 213 602 c 262
- -7 602 l 258
+-7 602 m 258,0,1
+ -27 602 -27 602 -27 620 c 256,2,3
+ -27 638 -27 638 -7 638 c 258,4,-1
+ 213 638 l 262,5,6
+ 233 638 233 638 233 620 c 260,7,8
+ 233 602 233 602 213 602 c 262,9,-1
+ -7 602 l 258,0,1
 EndSplineSet
 Refer: 327 305 N 1 0 0 1 0 0 2
 Layer: 2
@@ -25870,7 +25870,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 809 856 S 1 0 0 1 380 -30 2
 Refer: 376 111 N 1 0 0 1 0 0 2
 EndChar
 
@@ -25881,7 +25881,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 809 856 S 1 0 0 1 380 -30 2
 Refer: 377 243 N 1 0 0 1 0 0 2
 EndChar
 
@@ -25892,7 +25892,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 809 856 S 1 0 0 1 380 -30 2
 Refer: 829 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -25903,7 +25903,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 809 856 S 1 0 0 1 470 180 2
 Refer: 838 -1 N 1 0 0 1 0 0 2
 EndChar
 
@@ -25914,7 +25914,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 N 1 0 0 1 380 0 2
+Refer: 809 856 S 1 0 0 1 380 -30 2
 Refer: 391 242 N 1 0 0 1 0 0 2
 EndChar
 
@@ -25925,7 +25925,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 809 856 S 1 0 0 1 380 -30 2
 Refer: 380 244 N 1 0 0 1 0 0 2
 EndChar
 
@@ -25936,7 +25936,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 809 856 S 1 0 0 1 380 -30 2
 Refer: 376 111 N 1 0 0 1 0 0 2
 Refer: 744 780 N 1 0 0 1 142 0 2
 EndChar
@@ -25948,7 +25948,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 809 856 S 1 0 0 1 380 -30 2
 Refer: 401 333 N 1 0 0 1 0 0 2
 EndChar
 
@@ -25959,7 +25959,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 809 856 S 1 0 0 1 380 -30 2
 Refer: 378 335 N 1 0 0 1 0 0 2
 EndChar
 
@@ -25970,7 +25970,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 380 0 2
+Refer: 809 856 S 1 0 0 1 380 -30 2
 Refer: 399 337 N 1 0 0 1 0 0 2
 EndChar
 
@@ -25981,7 +25981,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 809 856 S 1 0 0 1 470 180 2
 Refer: 131 79 N 1 0 0 1 0 0 2
 EndChar
 
@@ -25992,7 +25992,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 809 856 S 1 0 0 1 470 180 2
 Refer: 132 211 N 1 0 0 1 0 0 2
 EndChar
 
@@ -26003,7 +26003,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 809 856 S 1 0 0 1 470 180 2
 Refer: 146 210 N 1 0 0 1 0 0 2
 EndChar
 
@@ -26014,7 +26014,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 809 856 S 1 0 0 1 470 180 2
 Refer: 135 212 N 1 0 0 1 0 0 2
 EndChar
 
@@ -26025,7 +26025,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 809 856 S 1 0 0 1 470 180 2
 Refer: 134 465 N 1 0 0 1 0 0 2
 EndChar
 
@@ -26036,7 +26036,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 809 856 S 1 0 0 1 470 180 2
 Refer: 156 332 N 1 0 0 1 0 0 2
 EndChar
 
@@ -26047,7 +26047,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 809 856 S 1 0 0 1 470 180 2
 Refer: 133 334 N 1 0 0 1 0 0 2
 EndChar
 
@@ -26058,7 +26058,7 @@ VWidth: 0
 Flags: W
 LayerCount: 6
 Fore
-Refer: 809 856 S 1 0 0 1 470 210 2
+Refer: 809 856 S 1 0 0 1 470 180 2
 Refer: 154 336 N 1 0 0 1 0 0 2
 EndChar
 

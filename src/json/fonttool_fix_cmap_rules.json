@@ -643,7 +643,7 @@
         "uni0358",
         "uni030D"
       ],
-      "to": "uni01D2_uni0358"
+      "to": "o_uni030D_uni0358"
     },
     {
       "enabled": true,
@@ -658,7 +658,7 @@
         "uni030D",
         "uni0358"
       ],
-      "to": "uni01D2_uni0358"
+      "to": "o_uni030D_uni0358"
     },
     {
       "enabled": true,
@@ -673,7 +673,7 @@
         "uni0358",
         "uni030D"
       ],
-      "to": "uni01D1_uni0358"
+      "to": "O_uni030D_uni0358"
     },
     {
       "enabled": true,
@@ -688,7 +688,7 @@
         "uni030D",
         "uni0358"
       ],
-      "to": "uni01D1_uni0358"
+      "to": "O_uni030D_uni0358"
     },
     {
       "enabled": true,
